@@ -1,35 +1,41 @@
 # CONFLICT_LEDGER — where two trees disagree, both are kept
 
 **No winner is picked in this file.** The standing instruction is that if two trees
-disagree, both are kept and the disagreement is recorded. Every row below is a live
-disagreement between public refs, left live on purpose.
+disagree, both are kept and the disagreement is recorded.
+
+Rows were all live when first written. Two have since been **resolved by the owner**, and
+they are marked RESOLVED in place rather than deleted: a ledger that quietly drops a row
+once it stops being convenient is worth less than no ledger. Each says what resolved it
+and on what evidence, and the evidence was re-verified here rather than read off a
+closing note. The header of this file previously asserted that every row was live; that
+became false within the hour, and this paragraph is the correction.
 
 **Scientific effect: NONE.** Recording a disagreement is not resolving it, and none of
 these rows moves a theorem, lemma, prize or claim status.
 
 ---
 
-## C1 — `query-`: two independent gate-stub refresh routes
+## C1 — `query-`: two independent gate-stub refresh routes — **RESOLVED**
 
 | | |
 |---|---|
-| tree A | PR [#14](https://github.com/d6g8k5htny-coder/query-/pull/14) `copilot/fix-github-actions-job` @ `99372d3c9e7e…`, base = **PR #13's branch** |
+| tree A | PR [#14](https://github.com/d6g8k5htny-coder/query-/pull/14) `copilot/fix-github-actions-job`, base = **PR #13's branch** |
 | tree B | PR [#12](https://github.com/d6g8k5htny-coder/query-/pull/12) `cursor/peer-handoff-meta6-3c3cf11-2393`, base = **`main`** |
-| both change | `portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json` — the same pinned identities |
-| disagreement | different bases and different refresh generations. #12's body records a refresh to Math tip `703e947`; #14 refreshes to `10e1f191…`, which is the current default tip. |
-| what was done | **#14 was merged (fast-forward) because it is the fix for #13's own failing CI. #12 was left untouched and unmerged.** Its branch, its PR and its history are intact. |
-| what was NOT done | No attempt to reconcile the two, and no claim that either is correct. Merging both would require choosing which refresh generation is authoritative; that is the owner's call, not a merge. |
-| how to see the disagreement | `git -C repos/query- diff origin/main origin/cursor/peer-handoff-meta6-3c3cf11-2393 -- portable/` against the same diff for `#14`'s branch |
+| both changed | `portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json` — the same pinned identities, at different refresh generations (#12's body records Math tip `703e947`; #14 refreshes to `10e1f191…`, the current default tip) |
+| how it resolved | the **owner** merged **#13** at `2026-09-26T15:08:30Z` and **#14** at `15:08:50Z`, and closed **#12** unmerged at `15:24:41Z`. `query-` `main`'s tip commit is the #14 merge. So the refresh generation that landed is the one pinned to the current `Math-` default tip. |
+| what this map did | nothing. It recorded both routes and merged neither. The choice was made by the owner on the default branch, which is where it belonged. |
+| residue | none on the refresh question. #12's branch, PR and history remain intact and unmerged, and its route is still readable there. |
 
-## C2 — `query-`: `research_query.py` has two legitimate identities
+## C2 — `query-`: `research_query.py` had two legitimate identities — **RESOLVED**
 
 | | |
 |---|---|
 | tree A | `main` @ `a61656fc7cbe…` — **5577 bytes**, sha256 `54105dcd723e71b1…`, the canonical implementation |
 | tree B | `integration/public-src-20260926` @ `6c8389bf8566…` — **541 bytes**, sha256 `b49d32fed78ee78f…`, a compatibility wrapper |
-| disagreement | the same path holds different bytes with different roles, and an external consumer pins the A identity |
-| what was done | **Both identities recorded**, in `query-/portable/FEDERATION_IDENTITY_TRANSITION.json` and in this workspace's `IDENTITY_LEDGER.md`. The A identity was **not** overwritten in the record and the A pin in `trial/federation/replay.py` was **not** repointed. |
-| why neither is "the winner" | A is what `trial/federation/replay.py` fetches at immutable commit `8e201316…` and will keep fetching. B is what a `main`-merged src tree would present. Both are true of their own ref. |
+| the disagreement | the same path held different bytes with different roles, and an external consumer pins the A identity |
+| how it resolved | the #13 merge put the **wrapper** on `main`. Recomputed here from the current default tip `76e1ca09a483…` rather than assumed: `research_query.py` is **541 bytes**, sha256 `b49d32fed78ee78f688fee8e224629000964bf2b285d59e669a4dfbe9f131bfe`, blob `0a89183d0499…` — byte-identical to tree B. There is now one identity on the default branch, not two. |
+| the superseded identity is not lost | `a61656fc7cbe…:research_query.py` still resolves to **5577 bytes**, sha256 `54105dcd723e…`, checked. `trial/federation/replay.py` pins the superseded bytes at the **immutable commit** `8e201316…`, so it was never at risk and must still not be repointed. |
+| what remains open, and is NOT a conflict | no file on `main` records the *transition* — the superseded identity, and the four downstream consumers with why each is unaffected. `portable/FEDERATION_IDENTITY_TRANSITION.json` and `tests/test_federation_identity.py` exist only at `6c8389bf8566…`, on the branch of the closed PR #16, and are recoverable from it. The live cross-repository interface *is* controlled on `main`, by `tests/test_wrapper_parity.py::test_wrapper_reexports_legacy_api`, which asserts exactly the names `trial` imports — verified by reading that file at the default tip. So this is a provenance gap, not an unguarded interface, and the owner's judgement that it can be extracted if a consumer needs it is consistent with what the bytes show. |
 
 ## C3 — `main`: `claims/README.md` firewall table, resolved by keeping both sides
 
@@ -45,7 +51,7 @@ these rows moves a theorem, lemma, prize or claim status.
 
 | | |
 |---|---|
-| tree A | `main` @ `99f8c2b7db3c…` — the public reviewed default |
+| tree A | `main` @ `70664bd66f77…` — the public reviewed default (it was `99f8c2b7db3c…` when this row was written; the default moved within the hour, which is the point `tip_freshness` in `WORKSPACE.json` now makes explicitly) |
 | tree B | `chatgpt/drive-github-hardening-20260919` @ `cd66a655d0a9…` — the active research tree, where nearly all current work lands |
 | disagreement | they are far apart, and the research tree is where the live checkers and registers are |
 | what was done | **both are named in `BRANCH_MAP.md`**, the submodule pin is the *default* tip, and the research tree is labelled a research tree. This workspace does not present B as if it were the default. |
@@ -68,7 +74,9 @@ these rows moves a theorem, lemma, prize or claim status.
 
 ## What this ledger does not establish
 
-A recorded disagreement is not a resolved one. Nothing here says which tree is
+A recorded disagreement is not a resolved one, and a row marked RESOLVED above says only
+that the owner chose on the default branch and that the choice was verified from the bytes
+— not that either tree was mathematically right. Nothing here says which tree is
 mathematically right, which refresh generation is authoritative, or which branch should
 become a default. It says only that both exist, where to look, and that nothing was
 silently discarded to make the map tidy.

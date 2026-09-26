@@ -16,7 +16,7 @@
     {
       "name": "main",
       "default_branch": "main",
-      "default_tip": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8",
+      "default_tip": "70664bd66f7778c356665b26222df0a61314c813",
       "role": "q0 / SIDE24 research program: registers, claim graph, engine, drive source map, checkers"
     },
     {
@@ -28,13 +28,13 @@
     {
       "name": "query-",
       "default_branch": "main",
-      "default_tip": "a61656fc7cbe704f5b874e1cae08637fb914227f",
+      "default_tip": "76e1ca09a4838f84f20e28daa51eb024c0781dc1",
       "role": "read-only exact-source lookup CLI and portable stub verifier"
     },
     {
       "name": "trial",
       "default_branch": "main",
-      "default_tip": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6",
+      "default_tip": "3a70c967221dd8870347b1f926f81bd6d39845d3",
       "role": "cross-repository federation controls and bounded public replay"
     },
     {
@@ -60,7 +60,7 @@
     {
       "repo": "main",
       "branch": "main",
-      "sha": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8",
+      "sha": "70664bd66f7778c356665b26222df0a61314c813",
       "kind": "default",
       "pr": null,
       "why": "Public reviewed tip. This is the submodule pin for repos/main."
@@ -108,7 +108,7 @@
     {
       "repo": "query-",
       "branch": "main",
-      "sha": "a61656fc7cbe704f5b874e1cae08637fb914227f",
+      "sha": "76e1ca09a4838f84f20e28daa51eb024c0781dc1",
       "kind": "default",
       "pr": null,
       "why": "Public reviewed tip. NOTE: this tip has NO src/ tree; the src tree is the proposal below."
@@ -117,25 +117,25 @@
       "repo": "query-",
       "branch": "chatgpt/src-migration-20260925",
       "sha": "f186847dbe32d57f9f4561107c947b153f656264",
-      "kind": "open-pr",
+      "kind": "merged-pr",
       "pr": 13,
-      "why": "Listed. Publishes the canonical universal_law_query src package with compatibility wrappers."
+      "why": "MERGED into query- main at 2026-09-26T15:08:30Z. The public src/universal_law_query package a stranger imports comes from here. Named rather than dropped because the merge is what makes query- cloneable-and-importable, which was the point of listing it."
     },
     {
       "repo": "query-",
       "branch": "copilot/fix-github-actions-job",
       "sha": "99372d3c9e7e0c810e08746f676acbaabdb25941",
-      "kind": "open-pr",
+      "kind": "merged-pr",
       "pr": 14,
-      "why": "Listed. Refreshes the downstream gate stub identities that were failing CI as TIP_DRIFT. Based on PR 13's branch, not on main."
+      "why": "MERGED into query- main at 2026-09-26T15:08:50Z, and query- main's tip commit is that merge. This is the refresh that cleared TIP_DRIFT against the Math- default tip."
     },
     {
       "repo": "query-",
       "branch": "integration/public-src-20260926",
       "sha": "6c8389bf8566dc3280f8cfdd3197a0fc9cfd7a61",
-      "kind": "open-pr",
+      "kind": "closed-pr",
       "pr": 16,
-      "why": "PR 13 fast-forwarded onto PR 14 plus the federation identity control the pair was missing. This is the branch that actually satisfies Part A. CI success."
+      "why": "CLOSED WITHOUT MERGING at 2026-09-26T15:24:45Z, as superseded: #13 and #14 had already landed the public src/ tree and the wrapper on main, and query- main carries tests/test_wrapper_parity.py, whose test_wrapper_reexports_legacy_api asserts exactly the names trial imports (CatalogError, load_catalog, lookup, verify, main). Verified against the default tip rather than taken from the closing note. Named here because portable/FEDERATION_IDENTITY_TRANSITION.json and tests/test_federation_identity.py exist only at this sha and are recoverable from it; they document the superseded 5577-byte identity and the four downstream consumers, which no file on main does."
     },
     {
       "repo": "Math-",
@@ -180,7 +180,7 @@
     {
       "repo": "trial",
       "branch": "main",
-      "sha": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6",
+      "sha": "3a70c967221dd8870347b1f926f81bd6d39845d3",
       "kind": "default",
       "pr": null,
       "why": "Public reviewed tip."
@@ -271,5 +271,15 @@
       }
     ],
     "url_note": "Canonical casing as GitHub serves it. The all-lowercase spelling redirects, and git reports \"This repository moved\" when pushed to it, so the exact name is recorded here."
+  },
+  "tip_freshness": {
+    "note": "Each default_tip is the commit that WAS the default branch tip when this manifest was last refreshed, not a promise about now. A package default can move minutes later, and three of the seven moved within an hour of the first publication of this map. scripts/report_tip_drift.py compares the pins against live tips and prints the difference; drift is a fact to report, not an error, so it exits 0 either way.",
+    "refreshed_utc": "2026-09-26",
+    "previous_pins": {
+      "main": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8",
+      "query-": "a61656fc7cbe704f5b874e1cae08637fb914227f",
+      "trial": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6"
+    },
+    "observed_immediately_after_refresh": "The reporter's FIRST real run after this refresh already found `trial` moved again, 3a70c967221d -> 3ae33c80cddf, within minutes. The pin was deliberately NOT chased. Chasing tips is a treadmill and it is not what a pin is for: a pin says 'exactly these bytes', the reporter says 'and here is what is newer'. Refreshing is an act someone decides on, with a reason, and it is recorded in MERGE_LEDGER.md when it happens."
   }
 }

@@ -286,3 +286,53 @@ class WorkspaceControls(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+# ------------------------------------------------ the tip-drift reporter --
+# Exercised with `live_tip` replaced, so the controls need no network and cannot
+# be flaky. A reporter whose exit code nobody has checked is a reporter that can
+# quietly start failing the build on a fact that is not an error.
+
+def _drift_module():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        'report_tip_drift', ROOT / 'scripts' / 'report_tip_drift.py')
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+class TipDriftReporter(unittest.TestCase):
+    def _run(self, fake_live):
+        import contextlib, io
+        mod = _drift_module()
+        mod.live_tip = fake_live
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(io.StringIO()):
+            code = mod.main([])
+        return code, buf.getvalue()
+
+    def test_drift_is_reported_and_does_not_fail_the_run(self):
+        """Drift is the normal life of a repository. Exiting nonzero here would push
+        whoever hit it toward deleting the pin instead of recording the change."""
+        code, out = self._run(lambda owner, name, branch, timeout: 'f' * 40)
+        self.assertEqual(code, 0, out)
+        self.assertIn('DRIFTED', out)
+        self.assertIn('drifted=7', out)
+        self.assertIn('Drift is not an error', out)
+
+    def test_no_drift_is_reported_as_current(self):
+        m = json.loads((ROOT / 'WORKSPACE.json').read_text(encoding='utf-8'))
+        tips = {p['name']: p['default_tip'] for p in m['packages']}
+        code, out = self._run(lambda owner, name, branch, timeout: tips[name])
+        self.assertEqual(code, 0, out)
+        self.assertIn('drifted=0', out)
+        self.assertNotIn('DRIFTED', out)
+
+    def test_a_branch_it_could_not_read_refuses_rather_than_reading_as_unchanged(self):
+        """The one case that must NOT exit 0: "I could not look" printing the same as
+        "nothing has changed"."""
+        code, out = self._run(lambda owner, name, branch, timeout: None)
+        self.assertNotEqual(code, 0, out)
+        self.assertIn('UNREADABLE', out)
+        self.assertIn('unreadable=7', out)

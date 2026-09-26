@@ -88,11 +88,23 @@ repository and that repository's own CI was already about that change.
 | what was NOT done | no force-push, no rebase, no history rewritten, `main` not moved, and `chatgpt/federation-bootstrap-20260926` not touched |
 | scientific effect | NONE |
 
+## 7. `universal-law-workspace` — three pins refreshed after their defaults moved
+
+| | |
+|---|---|
+| repository | `universal-law-workspace` (the host) |
+| kind | **not a merge** — a pin refresh, recorded here because it changes what this map points at |
+| what moved | `main` `99f8c2b7db3c…` → `70664bd66f77…`; `query-` `a61656fc7cbe…` → `76e1ca09a483…`; `trial` `ff373ea56dfd…` → `3a70c967221d…`. `Math-`, `governance-`, `meta-framework` and `google-drive` had not moved. |
+| why it was needed | three of the seven package defaults moved within about an hour of this map's first publication, and `BRANCH_MAP.md` described each pin as "the default tip" without qualification. The pins were still valid custody; the *description* had become false. |
+| what was checked, not assumed | `trial`'s move touches 189 files but **`federation/` is byte-unchanged** between the old and new tips, so the cross-repository federation controls this map refers to are unaffected — verified by diffing that path, not inferred from the commit subject. `query-`'s move is the #13 + #14 merges; its wrapper identity was recomputed from the new tip. |
+| what it does NOT mean | a refreshed pin is not a claim that the new bytes are better, reviewed, or correct. `scripts/report_tip_drift.py` now reports drift on demand and **exits 0 when it finds some**, because drift is the normal life of a repository and a reporter that failed the build would push people toward deleting pins rather than recording differences. |
+| scientific effect | NONE |
+
 ## Merges deliberately NOT performed
 
 | proposed merge | why not |
 |---|---|
-| `query-` `integration/public-src-20260926` → `query-` **`main`** | This would change a **public default branch**. PR [#16](https://github.com/d6g8k5htny-coder/query-/pull/16) is green and one click away, but it is unreviewed, and the standing instruction is that default branches stay the public reviewed tips. Left to the owner. |
+| `query-` `integration/public-src-20260926` → `query-` **`main`** | Not performed, and now **settled by the owner**: PR [#16](https://github.com/d6g8k5htny-coder/query-/pull/16) was **closed without merging** at `2026-09-26T15:24:45Z` as superseded, after #13 and #14 were merged and put the public `src/` tree and the wrapper on `main` directly. Leaving the decision to the owner was the right call and the owner made it the other way, which is the outcome this row existed to allow. Not reopened. |
 | `query-` PR #12 → anything | Overlaps PR #14's gate-stub refresh on a different base. Merging either one would pick a winner between two refresh routes. Recorded in `CONFLICT_LEDGER.md` instead. |
 | anything → `Math-` **`main`** | No integration merge belongs on `Math-`'s default branch. None was performed, proposed or staged. |
 | the 17 unlisted open `Math-` PRs, and `main` PRs #135/#136 | Not on the instructed include list. Recorded in `BRANCH_MAP.md` as decisions rather than swept in. |

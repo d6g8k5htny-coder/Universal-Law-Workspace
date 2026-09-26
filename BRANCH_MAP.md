@@ -7,11 +7,11 @@ Generated from [`WORKSPACE.json`](WORKSPACE.json) by `scripts/generate_ledgers.p
 ## Included refs
 
 ### `main` — q0 / SIDE24 research program: registers, claim graph, engine, drive source map, checkers
-Submodule `repos/main` is pinned at the **default tip** `99f8c2b7db3c530bf554ff90fdef89cd57fc29d8` (`main`).
+Submodule `repos/main` is pinned at the **default tip** `70664bd66f7778c356665b26222df0a61314c813` (`main`).
 
 | ref | kind | PR | sha | why |
 |---|---|---|---|---|
-| `main` | default | — | `99f8c2b7db3c…` | Public reviewed tip. This is the submodule pin for repos/main. |
+| `main` | default | — | `70664bd66f77…` | Public reviewed tip. This is the submodule pin for repos/main. |
 | `chatgpt/drive-github-hardening-20260919` | research-tree | — | `cd66a655d0a9…` | The active research tree. Included BY NAME and explicitly NOT presented as default main. It is not the reviewed tip and this repository does not treat it as one. |
 | `chatgpt/sard-g-execution-repair-20260925` | open-pr | [#122](https://github.com/d6g8k5htny-coder/main/pull/122) | `a1fc9581291b…` | Listed. SARD-G repair: countable open charts and endpoint-support localization. |
 | `claude/firewalls-fail-closed` | open-pr | [#134](https://github.com/d6g8k5htny-coder/main/pull/134) | `1db16d1f59f4…` | Listed. Claim-graph firewalls converted to fail closed; gating CI green. |
@@ -30,21 +30,21 @@ Submodule `repos/Math-` is pinned at the **default tip** `10e1f191c7d9f2755ca971
 | `cursor/proof-custody-repair-8e33` | open-pr | [#70](https://github.com/d6g8k5htny-coder/Math-/pull/70) | `b39e9ff77646…` | Listed. |
 
 ### `query-` — read-only exact-source lookup CLI and portable stub verifier
-Submodule `repos/query-` is pinned at the **default tip** `a61656fc7cbe704f5b874e1cae08637fb914227f` (`main`).
+Submodule `repos/query-` is pinned at the **default tip** `76e1ca09a4838f84f20e28daa51eb024c0781dc1` (`main`).
 
 | ref | kind | PR | sha | why |
 |---|---|---|---|---|
-| `main` | default | — | `a61656fc7cbe…` | Public reviewed tip. NOTE: this tip has NO src/ tree; the src tree is the proposal below. |
-| `chatgpt/src-migration-20260925` | open-pr | [#13](https://github.com/d6g8k5htny-coder/query-/pull/13) | `f186847dbe32…` | Listed. Publishes the canonical universal_law_query src package with compatibility wrappers. |
-| `copilot/fix-github-actions-job` | open-pr | [#14](https://github.com/d6g8k5htny-coder/query-/pull/14) | `99372d3c9e7e…` | Listed. Refreshes the downstream gate stub identities that were failing CI as TIP_DRIFT. Based on PR 13's branch, not on main. |
-| `integration/public-src-20260926` | open-pr | [#16](https://github.com/d6g8k5htny-coder/query-/pull/16) | `6c8389bf8566…` | PR 13 fast-forwarded onto PR 14 plus the federation identity control the pair was missing. This is the branch that actually satisfies Part A. CI success. |
+| `main` | default | — | `76e1ca09a483…` | Public reviewed tip. NOTE: this tip has NO src/ tree; the src tree is the proposal below. |
+| `chatgpt/src-migration-20260925` | merged-pr | [#13](https://github.com/d6g8k5htny-coder/query-/pull/13) | `f186847dbe32…` | MERGED into query- main at 2026-09-26T15:08:30Z. The public src/universal_law_query package a stranger imports comes from here. Named rather than dropped because the merge is what makes query- cloneable-and-importable, which was the point of listing it. |
+| `copilot/fix-github-actions-job` | merged-pr | [#14](https://github.com/d6g8k5htny-coder/query-/pull/14) | `99372d3c9e7e…` | MERGED into query- main at 2026-09-26T15:08:50Z, and query- main's tip commit is that merge. This is the refresh that cleared TIP_DRIFT against the Math- default tip. |
+| `integration/public-src-20260926` | closed-pr | [#16](https://github.com/d6g8k5htny-coder/query-/pull/16) | `6c8389bf8566…` | CLOSED WITHOUT MERGING at 2026-09-26T15:24:45Z, as superseded: #13 and #14 had already landed the public src/ tree and the wrapper on main, and query- main carries tests/test_wrapper_parity.py, whose test_wrapper_reexports_legacy_api asserts exactly the names trial imports (CatalogError, load_catalog, lookup, verify, main). Verified against the default tip rather than taken from the closing note. Named here because portable/FEDERATION_IDENTITY_TRANSITION.json and tests/test_federation_identity.py exist only at this sha and are recoverable from it; they document the superseded 5577-byte identity and the four downstream consumers, which no file on main does. |
 
 ### `trial` — cross-repository federation controls and bounded public replay
-Submodule `repos/trial` is pinned at the **default tip** `ff373ea56dfdbe99d83701c20c5e083a984b9bb6` (`main`).
+Submodule `repos/trial` is pinned at the **default tip** `3a70c967221dd8870347b1f926f81bd6d39845d3` (`main`).
 
 | ref | kind | PR | sha | why |
 |---|---|---|---|---|
-| `main` | default | — | `ff373ea56dfd…` | Public reviewed tip. |
+| `main` | default | — | `3a70c967221d…` | Public reviewed tip. |
 
 ### `governance-` — operator protocols and governance records
 Submodule `repos/governance-` is pinned at the **default tip** `7476e29c65ce82d23e0b39e7f7d98741a875a8ff` (`main`).

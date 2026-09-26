@@ -171,7 +171,7 @@ and wrote straight through into the live checkout.
 | [`BRANCH_MAP.md`](BRANCH_MAP.md) | every included ref, its exact SHA and why; plus every open ref deliberately **not** imported, and why not |
 | [`MERGE_LEDGER.md`](MERGE_LEDGER.md) | every merge performed — base, head, conflicts, resolution, scientific effect; and every merge deliberately not performed |
 | [`IDENTITY_LEDGER.md`](IDENTITY_LEDGER.md) | bytes, SHA-256 and git blob for everything this proposal touches, computed from real bytes rather than typed |
-| [`CONFLICT_LEDGER.md`](CONFLICT_LEDGER.md) | five places where two trees disagree. **Both sides kept. No winner picked.** |
+| [`CONFLICT_LEDGER.md`](CONFLICT_LEDGER.md) | five places where two trees disagreed — three still live, two **resolved by the owner** and marked so in place rather than deleted. **Both sides kept. No winner picked here.** |
 
 [`WORKSPACE.json`](WORKSPACE.json) is the machine-readable source for the first of
 those; `BRANCH_MAP.md` is generated from it so a SHA is never retyped.
@@ -216,7 +216,16 @@ anything.
 - **No proof was rewritten** to fit this layout. Nothing was reshaped for tidiness.
 - **A pin is custody, not currency.** A pinned commit is exactly those bytes; it says
   nothing about whether a newer commit supersedes it, and a package's default branch may
-  have moved since. `scripts/fetch_named_branches.sh` reports drift rather than hiding it.
+  have moved since. This is not hypothetical: **three of the seven defaults moved within
+  about an hour** of this map's first publication. `scripts/report_tip_drift.py` compares
+  every pin against the live default tip and prints the difference; it **exits 0 when it
+  finds drift**, because drift is the normal life of a repository and a reporter that
+  failed the build would push whoever hit it toward deleting the pin rather than recording
+  the change. It exits nonzero only when it could not read a default branch at all, so
+  "I could not look" never prints as "nothing has changed". Its first real run after the
+  pins were refreshed immediately found `trial` had moved **again**, within minutes. That
+  pin was deliberately not chased — the reporter's job is to show the difference, not to
+  keep the map on a treadmill.
 - **`verify_workspace.py` passing is a documentation-consistency fact** — the gitlinks
   match the manifest and no secret is present. It verifies no mathematics.
 - **Review obligations are unaffected.** Nothing here discharges a review, and no

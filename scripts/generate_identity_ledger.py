@@ -17,18 +17,30 @@ import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-# (repository, ref, path, role)
+# (repository, ref, path, role). Refs are IMMUTABLE SHAS, not branch names. They were
+# branch names in the first revision, and within the hour `query-` `main` moved from the
+# canonical implementation to the wrapper -- so a row labelled "main: the canonical
+# implementation" silently started describing different bytes. A ledger of identities
+# cannot be keyed on a moving ref.
+CLOSED_PR16 = "6c8389bf8566dc3280f8cfdd3197a0fc9cfd7a61"
+QUERY_TIP = "76e1ca09a4838f84f20e28daa51eb024c0781dc1"      # default tip, #13 + #14 merged
+QUERY_PREV_TIP = "a61656fc7cbe704f5b874e1cae08637fb914227f"  # the default tip before those
 SUBJECTS = [
-    ("query-", "integration/public-src-20260926", "portable/FEDERATION_IDENTITY_TRANSITION.json",
-     "identity transition record authored for PR #16"),
-    ("query-", "integration/public-src-20260926", "tests/test_federation_identity.py",
-     "replacement control for the deleted pinned_federation_match step"),
-    ("query-", "integration/public-src-20260926", "research_query.py",
-     "compatibility wrapper (CURRENT identity)"),
-    ("query-", "main", "research_query.py",
-     "canonical implementation (SUPERSEDED identity)"),
-    ("query-", "integration/public-src-20260926", "portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json",
-     "downstream gate stub bundle, refreshed to the Math- default tip"),
+    ("query-", CLOSED_PR16, "portable/FEDERATION_IDENTITY_TRANSITION.json",
+     "identity transition record; exists ONLY at this sha, on the branch of closed PR #16, "
+     "and is recoverable from it"),
+    ("query-", CLOSED_PR16, "tests/test_federation_identity.py",
+     "the 7 controls written for that record; also only at this sha"),
+    ("query-", QUERY_TIP, "research_query.py",
+     "compatibility wrapper, now on the DEFAULT branch (CURRENT identity)"),
+    ("query-", QUERY_PREV_TIP, "research_query.py",
+     "canonical implementation at the PREVIOUS default tip (SUPERSEDED identity, still "
+     "reachable there; trial/federation/replay.py pins it at an immutable commit)"),
+    ("query-", QUERY_TIP, "tests/test_wrapper_parity.py",
+     "the control that actually guards the cross-repository interface on the default branch: "
+     "test_wrapper_reexports_legacy_api asserts the names trial imports"),
+    ("query-", QUERY_TIP, "portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json",
+     "downstream gate stub bundle at the Math- default tip, now on the default branch"),
 ]
 # (ref, path, role) read out of THIS repository's own history, not a sibling checkout.
 # The workspace was created with a GitHub auto-init README stub; this branch replaces it.
@@ -107,13 +119,16 @@ def main() -> int:
         for repo, ref, path, role, _ in missing:
             out.append(f"| `{repo}` | `{ref}` | `{path}` | {role} |\n")
     out.append("\n## The two identities that changed, and why they are recorded rather than restored\n")
-    out.append("`query-/research_query.py` appears twice above. On `main` it is the canonical "
-               "implementation; on the src-migration line it is a compatibility wrapper, so its "
-               "bytes differ. The pre-migration workflow asserted the old byte count inline and "
-               "that assertion was deleted in the same change that invalidated it. Re-asserting "
-               "the old count would be false, so both identities are on record and the current one "
-               "is pinned by a test. `trial/federation/replay.py` pins the superseded bytes at an "
-               "immutable commit and is unaffected.\n")
+    out.append("`query-/research_query.py` appears twice above, at two immutable shas. At "
+               "`a61656fc7cbe` -- the default tip until 2026-09-26T15:08Z -- it is the canonical "
+               "implementation at 5577 bytes. At `76e1ca09a483`, the default tip after PRs #13 and "
+               "#14 merged, it is a 541-byte compatibility wrapper, so the transition has landed on "
+               "the default branch rather than sitting on a proposal. The pre-migration workflow "
+               "asserted the old byte count inline and that assertion was deleted in the same "
+               "change that invalidated it; re-asserting the old count would be false, so both "
+               "identities stay on record. The live interface is guarded on the default branch by "
+               "`tests/test_wrapper_parity.py`, and `trial/federation/replay.py` pins the "
+               "superseded bytes at an immutable commit, so it was never at risk.\n")
     out.append("\n`universal-law-workspace/README.md` is the second. The repository was created "
                "with a 25-byte GitHub auto-init stub and this branch replaces it with the map. The "
                "stub is not deleted: `fcd1d01ed87b…` is a parent of this branch, so "
