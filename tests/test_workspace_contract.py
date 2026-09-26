@@ -27,7 +27,14 @@ class WorkspaceContractTests(unittest.TestCase):
     def setUp(self):
         self.good = json.loads(MANIFEST.read_text(encoding="utf-8"))
 
-    def test_committed_manifest_passes(self):
+    def test_committed_manifest_passes_and_does_not_duplicate_role_registry(self):
+        for item in self.good["repositories"]:
+            self.assertEqual(
+                set(item),
+                {"full_name"},
+                "machine repository-role metadata belongs only in "
+                "meta-framework/registry.json",
+            )
         result = run_checker(self.good)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn("problems=0", result.stdout)
@@ -71,12 +78,29 @@ class WorkspaceContractTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("observed_blob", result.stdout)
 
-    def test_workspace_role_must_explicitly_say_federation(self):
+    def test_repository_role_metadata_is_rejected(self):
         data = json.loads(json.dumps(self.good))
-        data["repositories"][0]["role"] = "Generic repository"
+        for item in data["repositories"]:
+            item.pop("role", None)
+        data["repositories"][0]["role"] = "Duplicate machine role"
         result = run_checker(data)
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("workspace role must contain 'Federation'", result.stdout)
+        self.assertIn(
+            "repository role metadata belongs to repository_registry",
+            result.stdout,
+        )
+
+    def test_canonical_input_repository_must_be_in_federation(self):
+        data = json.loads(json.dumps(self.good))
+        data["canonical_inputs"]["downstream_gate"]["repository"] = (
+            "d6g8k5htny-coder/not-in-federation"
+        )
+        result = run_checker(data)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            "canonical input downstream_gate repository is not in federation",
+            result.stdout,
+        )
 
 
 if __name__ == "__main__":
