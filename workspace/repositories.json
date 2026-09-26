@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "workspace": "d6g8k5htny-coder/Universal-Law-Workspace",
+  "scientific_effect": "NONE",
+  "scientific_status_authority": false,
+  "purpose": "Federation navigation, cross-repository source pins, conformance checks, reproducibility snapshots, and agent routing. This repository does not decide mathematical status.",
+  "canonical_inputs": {
+    "repository_registry": {
+      "repository": "d6g8k5htny-coder/meta-framework",
+      "path": "registry.json",
+      "observed_blob": "b41f43da5a05e33be032ead5a6c0b3b0e18de80e",
+      "meaning": "artifact routing and byte identities; not claim status"
+    },
+    "scientific_authority_map": {
+      "repository": "d6g8k5htny-coder/main",
+      "ref": "chatgpt/drive-github-hardening-20260919",
+      "path": "architecture/scientific_state/v1/AUTHORITY_MAP.json",
+      "observed_blob": "fb0e8c2275cf66dc686064f1476e99b7b3653bea",
+      "meaning": "ownership map for scientific-state fields; workspace consumes but never rewrites it"
+    },
+    "downstream_gate": {
+      "repository": "d6g8k5htny-coder/Math-",
+      "path": "frontiers/downstream_gate_20260925/GRAPH.json",
+      "observed_blob": "23a6759eb0e8aca9de1da9bb5410cdb0621542d8",
+      "meaning": "existing downstream classification/control surface; workspace does not duplicate it"
+    },
+    "landing_claims": {
+      "repository": "d6g8k5htny-coder/Math-",
+      "path": "claims/LANDING_CLAIMS.json",
+      "observed_blob": "1e178c2d948bab4de696c6b66724dd7a37fb34f1",
+      "meaning": "public landing projection; not a promotion engine"
+    }
+  },
+  "repositories": [
+    {
+      "full_name": "d6g8k5htny-coder/Universal-Law-Workspace",
+      "role": "Federation control surface for navigation, conformance, reproducibility snapshots, and agent routing; never theorem acceptance."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/main",
+      "role": "Research campaign, public reading path, reviews, discussion, and integration surface."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/Math-",
+      "role": "Candidate proofs, mathematical programs, reproducible enclosures, and existing downstream gate surfaces."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/meta-framework",
+      "role": "Machine-readable artifact routing and byte identities; not claim status."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/query-",
+      "role": "Read-only exact-key lookup and local artifact verification."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/google-drive",
+      "role": "Explicitly selected public Drive replicas with source custody."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/trial",
+      "role": "Cross-repository engineering integration tests; no research-register migration."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/governance-",
+      "role": "Current cross-repository working practices; not theorem acceptance."
+    },
+    {
+      "full_name": "d6g8k5htny-coder/sandbox",
+      "role": "Private exploratory experiments excluded from canonical public artifact routing."
+    }
+  ]
+}
