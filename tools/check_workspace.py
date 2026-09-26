@@ -108,23 +108,29 @@ def check_manifest(data: Any) -> list[str]:
         problems.append("repositories must be an array")
         repositories = []
     seen: set[str] = set()
-    roles: dict[str, str] = {}
     for index, item in enumerate(repositories):
         if not isinstance(item, dict):
             problems.append(f"repository entry {index} must be an object")
             continue
         full_name = item.get("full_name")
-        role = item.get("role")
         if not isinstance(full_name, str) or not full_name:
             problems.append(f"repository entry {index} missing full_name")
             continue
         if full_name in seen:
             problems.append(f"duplicate repository: {full_name}")
         seen.add(full_name)
-        if not isinstance(role, str) or not role.strip():
-            problems.append(f"repository {full_name} missing role")
-        else:
-            roles[full_name] = role
+
+        if "role" in item:
+            problems.append(
+                "repository role metadata belongs to repository_registry: "
+                f"{full_name}"
+            )
+        unsupported = sorted(set(item) - {"full_name", "role"})
+        if unsupported:
+            problems.append(
+                f"repository {full_name} has unsupported keys: "
+                + ", ".join(unsupported)
+            )
 
     for full_name in sorted(REQUIRED_REPOSITORIES - seen):
         problems.append(f"missing required repository: {full_name}")
@@ -133,9 +139,15 @@ def check_manifest(data: Any) -> list[str]:
             f"unexpected repository without contract update: {full_name}"
         )
 
-    workspace_role = roles.get(WORKSPACE, "")
-    if "Federation" not in workspace_role:
-        problems.append("workspace role must contain 'Federation'")
+    for key, item in canonical_inputs.items():
+        if not isinstance(item, dict):
+            continue
+        source_repo = item.get("repository")
+        if isinstance(source_repo, str) and source_repo not in seen:
+            problems.append(
+                f"canonical input {key} repository is not in federation: "
+                f"{source_repo}"
+            )
 
     return problems
 
