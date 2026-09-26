@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "workspace": "d6g8k5htny-coder/Universal-Law-Workspace",
+  "scientific_effect": "NONE",
+  "scientific_status_authority": false,
+  "purpose": "Federation navigation, cross-repository source pins, conformance checks, reproducibility snapshots, and agent routing. This repository does not decide mathematical status or duplicate canonical repository-role metadata.",
+  "canonical_inputs": {
+    "repository_registry": {
+      "repository": "d6g8k5htny-coder/meta-framework",
+      "path": "registry.json",
+      "observed_blob": "b41f43da5a05e33be032ead5a6c0b3b0e18de80e",
+      "meaning": "sole machine source for existing repository roles plus artifact routing and byte identities; not claim status"
+    },
+    "scientific_authority_map": {
+      "repository": "d6g8k5htny-coder/main",
+      "ref": "chatgpt/drive-github-hardening-20260919",
+      "path": "architecture/scientific_state/v1/AUTHORITY_MAP.json",
+      "observed_blob": "fb0e8c2275cf66dc686064f1476e99b7b3653bea",
+      "meaning": "ownership map for scientific-state fields; workspace consumes but never rewrites it"
+    },
+    "downstream_gate": {
+      "repository": "d6g8k5htny-coder/Math-",
+      "path": "frontiers/downstream_gate_20260925/GRAPH.json",
+      "observed_blob": "23a6759eb0e8aca9de1da9bb5410cdb0621542d8",
+      "meaning": "existing downstream classification/control surface; workspace does not duplicate it"
+    },
+    "landing_claims": {
+      "repository": "d6g8k5htny-coder/Math-",
+      "path": "claims/LANDING_CLAIMS.json",
+      "observed_blob": "1e178c2d948bab4de696c6b66724dd7a37fb34f1",
+      "meaning": "public landing projection; not a promotion engine"
+    }
+  },
+  "repositories": [
+    {"full_name": "d6g8k5htny-coder/Universal-Law-Workspace"},
+    {"full_name": "d6g8k5htny-coder/main"},
+    {"full_name": "d6g8k5htny-coder/Math-"},
+    {"full_name": "d6g8k5htny-coder/meta-framework"},
+    {"full_name": "d6g8k5htny-coder/query-"},
+    {"full_name": "d6g8k5htny-coder/google-drive"},
+    {"full_name": "d6g8k5htny-coder/trial"},
+    {"full_name": "d6g8k5htny-coder/governance-"},
+    {"full_name": "d6g8k5htny-coder/sandbox"}
+  ]
+}
