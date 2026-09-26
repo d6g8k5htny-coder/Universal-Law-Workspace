@@ -187,10 +187,17 @@ before that issue existed, so the slices overlap. Nothing was resolved by pushin
   `fcd1d01ed87b…` by an ordinary merge — no force-push, no rebase of anyone's history,
   no orphan tree. `scripts/verify_workspace.py` checks that descent mechanically and
   refuses if it is ever broken.
-- `chatgpt/federation-bootstrap-20260926` is untouched. At the time of writing it points
-  at the same root commit, so there was no work of that lane's to collide with.
-- The exact branch and paths are posted on issue #1, which is what that issue asks for,
-  so the other lane can yield the slice, keep it, or land both.
+- `chatgpt/federation-bootstrap-20260926` is untouched. It is now open as PR #2 with a
+  real tree — a federation contract, a fail-closed validator, contract tests and CI — so
+  the overlap is byte-level, not hypothetical. Colliding paths are `README.md`, `tests/`
+  and `.github/workflows/`; everything else is disjoint.
+- The exact branch and paths are posted on issue #1 and on PR #2, which is what that issue
+  asks for, so the other lane can yield the slice, keep it, or land both.
+- That PR asked for a review and got one: **AMEND**, with one blocking fail-open in its
+  authority boundary and a verified patch, delivered as a comment and **not** pushed to its
+  branch. The review declares the conflict of interest — it comes from the author of the
+  competing proposal — and carries **zero organizational independence credit**, so the
+  independence-requiring gate stays open.
 - `CONFLICT_LEDGER.md` **C5** records the overlap as live and unresolved, including the
   real hazard: two validators and two repository maps in one repository. Neither can
   promote anything — both fail closed and assert only documentation facts — but the

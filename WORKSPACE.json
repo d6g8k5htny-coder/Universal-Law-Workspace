@@ -256,16 +256,18 @@
       },
       {
         "branch": "chatgpt/federation-bootstrap-20260926",
-        "sha": "fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1",
+        "sha": "d72ccbe3044bdf46649762ab01582cba44cf1af1",
         "kind": "other lane",
-        "why": "The second bootstrap lane named in issue #1. At the time this manifest was written it holds no work beyond the root commit -- same sha as main. Not touched, not merged, not rebased. See CONFLICT_LEDGER.md C5."
+        "why": "The second bootstrap lane named in issue #1, now open as PR #2 with a real tree (federation contract, a fail-closed validator, 8 contract tests, CI and design notes). An earlier revision of this manifest recorded it at the root commit because that is where it stood when the manifest was written; it has since advanced. Not touched, not merged, not rebased, not reviewed into agreement. See CONFLICT_LEDGER.md C5.",
+        "pr": 2
       },
       {
         "branch": "claude/public-workspace-proposal-20260926",
         "sha": null,
         "resolves_to": "HEAD",
         "kind": "this proposal",
-        "why": "This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit."
+        "why": "This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit.",
+        "pr": 3
       }
     ],
     "url_note": "Canonical casing as GitHub serves it. The all-lowercase spelling redirects, and git reports \"This repository moved\" when pushed to it, so the exact name is recorded here."

@@ -56,10 +56,11 @@ def main() -> int:
         out.append(f"Root commit `{h['root_commit'][:12]}…`, created {h['created_utc']}; "
                    f"coordination issue "
                    f"[#{h['coordination_issue']}]({h['url']}/issues/{h['coordination_issue']}).\n\n")
-        out.append('| ref | kind | sha | why |\n|---|---|---|---|\n')
+        out.append('| ref | kind | PR | sha | why |\n|---|---|---|---|---|\n')
         for r in h['refs']:
             sha = f"`{r['sha'][:12]}…`" if r.get('sha') else f"*({r.get('resolves_to', 'unset')})*"
-            out.append(f"| `{r['branch']}` | {r['kind']} | {sha} | {r['why']} |\n")
+            pr = f"[#{r['pr']}]({h['url']}/pull/{r['pr']})" if r.get('pr') else '—'
+            out.append(f"| `{r['branch']}` | {r['kind']} | {pr} | {sha} | {r['why']} |\n")
 
     out.append('\n## How the named branches are materialised\n')
     out.append('The submodule gitlink pins ONE commit per package — the public reviewed default '

@@ -82,11 +82,11 @@ An omission recorded is a decision; an omission unrecorded is an oversight. Thes
 
 Root commit `fcd1d01ed87b…`, created 2026-09-26; coordination issue [#1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1).
 
-| ref | kind | sha | why |
-|---|---|---|---|
-| `main` | default | `fcd1d01ed87b…` | The repository-creation commit, made by the owner. Left exactly as it is: this proposal descends from it by an ordinary merge and does not replace it. |
-| `chatgpt/federation-bootstrap-20260926` | other lane | `fcd1d01ed87b…` | The second bootstrap lane named in issue #1. At the time this manifest was written it holds no work beyond the root commit -- same sha as main. Not touched, not merged, not rebased. See CONFLICT_LEDGER.md C5. |
-| `claude/public-workspace-proposal-20260926` | this proposal | *(HEAD)* | This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit. |
+| ref | kind | PR | sha | why |
+|---|---|---|---|---|
+| `main` | default | — | `fcd1d01ed87b…` | The repository-creation commit, made by the owner. Left exactly as it is: this proposal descends from it by an ordinary merge and does not replace it. |
+| `chatgpt/federation-bootstrap-20260926` | other lane | [#2](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/pull/2) | `d72ccbe3044b…` | The second bootstrap lane named in issue #1, now open as PR #2 with a real tree (federation contract, a fail-closed validator, 8 contract tests, CI and design notes). An earlier revision of this manifest recorded it at the root commit because that is where it stood when the manifest was written; it has since advanced. Not touched, not merged, not rebased, not reviewed into agreement. See CONFLICT_LEDGER.md C5. |
+| `claude/public-workspace-proposal-20260926` | this proposal | [#3](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/pull/3) | *(HEAD)* | This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit. |
 
 ## How the named branches are materialised
 The submodule gitlink pins ONE commit per package — the public reviewed default tip. The other named refs are not squashed away and are not silently absent: each is recorded above with its exact SHA, and `scripts/fetch_named_branches.sh` fetches every one of them into the corresponding submodule as a real local ref, so they become branches you can check out and diff. Nothing is copied into this repository to achieve that.
