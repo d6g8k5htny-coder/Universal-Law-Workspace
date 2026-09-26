@@ -4,15 +4,19 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   verify-pins:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
-          # Never initialise submodules here: repos/sandbox is private and
-          # opt-in (update = none), and the checker only needs the gitlinks
-          # in the HEAD tree, not the submodule contents.
+          # Never initialise submodules here: repos/sandbox is opt-in
+          # (update = none) so a checkout never depends on its visibility,
+          # and the checker only needs the gitlinks in the HEAD tree, not
+          # the submodule contents.
           submodules: false
       - uses: actions/setup-python@v5
         with:
