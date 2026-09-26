@@ -1,28 +1,25 @@
 # Universal Law Workspace
 
-**Federation, conformance, and reproducibility surface for the Universal Law research program.**
+**Supporting federation map and conformance surface for the Universal Law research program.**
 
-This repository is the system-level front door for a multi-repository mathematical research workspace. It exists to make repository topology, source identities, agent routing, and engineering checks easy to inspect without creating another scientific source of truth.
+The **only public front door is [d6g8k5htny-coder/main](https://github.com/d6g8k5htny-coder/main)**. This repository is deliberately narrower: it maps the repository set, pins observed cross-repository control inputs, and runs fail-closed structural checks. It is not a second research home and it is not a scientific-status authority.
 
 ## What this repository owns
 
-- workspace navigation and links to the canonical repository-role registry;
+- the supporting federation map;
 - observed, byte-addressed pointers to canonical cross-repository control inputs;
-- structural conformance checks for the federation contract;
-- reproducibility/workspace snapshots added in later reviewed changes;
-- engineering coordination between participating models.
+- structural conformance checks for that map;
+- engineering coordination for cross-repository navigation.
 
 ## What this repository does not own
 
-It does **not** decide theorem correctness, claim grade, terminal classification, review disposition, lemma closure, independence credit, or promotion. Green CI, a hash match, a merge, or model agreement is not mathematical acceptance.
+It does **not** decide theorem correctness, claim grade, terminal classification, review disposition, lemma closure, independence credit, or promotion. It also does not own the machine repository-role map; existing repository roles remain in `meta-framework/registry.json`.
 
-It also does not own the machine repository-role map. Roles for the pre-existing federation are authored in `meta-framework/registry.json`; the workspace manifest deliberately lists repository identities only.
-
-The current machine-readable boundary is [workspace/repositories.json](workspace/repositories.json). Its validator rejects scientific-state fields and duplicate machine role metadata so this repository cannot silently grow into a second promotion or role-authority engine.
+The machine-readable boundary is [workspace/repositories.json](workspace/repositories.json). Its validator rejects scientific-state fields and duplicate machine role metadata.
 
 ## Federation set
 
-- [main](https://github.com/d6g8k5htny-coder/main)
+- [main](https://github.com/d6g8k5htny-coder/main) — canonical public front door
 - [Math-](https://github.com/d6g8k5htny-coder/Math-)
 - [meta-framework](https://github.com/d6g8k5htny-coder/meta-framework)
 - [query-](https://github.com/d6g8k5htny-coder/query-)
@@ -32,21 +29,17 @@ The current machine-readable boundary is [workspace/repositories.json](workspace
 - [sandbox](https://github.com/d6g8k5htny-coder/sandbox)
 - **Universal-Law-Workspace**
 
-For machine repository roles and public/private routing metadata, consult the pinned `repository_registry` source in the workspace manifest rather than copying its fields here.
+For canonical repository roles and public/private routing metadata, consult the pinned `repository_registry` source in [workspace/repositories.json](workspace/repositories.json).
 
-## Verify the bootstrap
-
-The bootstrap uses only Python's standard library:
+## Verify the map
 
 ```sh
 python3 tools/check_workspace.py
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-The checker validates the local federation contract. It does not contact GitHub or verify mathematics.
+A green run means the local federation contract is structurally valid. It does not verify mathematics.
 
 ## Collaboration
 
-Engineering coordination for the initial bootstrap is [issue #1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1). Work on isolated branches, preserve exact external identities, and review overlap before editing shared surfaces.
-
-For the design rationale, read [the federation design](docs/superpowers/specs/2026-09-26-federation-workspace-design.md).
+Initial bootstrap coordination is [issue #1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1). Keep this repository map-sized: no proof-body migration, no duplicate status database, and no attempt to flatten the research repositories into this tree.
