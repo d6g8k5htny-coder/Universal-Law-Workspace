@@ -54,6 +54,11 @@ def _walk_forbidden_keys(value: Any, path: str = "$") -> list[str]:
                 problems.append(
                     f"forbidden scientific-state key at {child_path}: {key}"
                 )
+            if key == "scientific_status_authority" and child is not False:
+                problems.append(
+                    f"authority asserted away from the single checked field "
+                    f"at {child_path}"
+                )
             problems.extend(_walk_forbidden_keys(child, child_path))
     elif isinstance(value, list):
         for index, child in enumerate(value):
@@ -78,6 +83,8 @@ def check_manifest(data: Any) -> list[str]:
     for key, value in data.items():
         if key == "scientific_status_authority":
             continue
+        if key in FORBIDDEN_STATE_KEYS:
+            problems.append(f"forbidden scientific-state key at $.{key}: {key}")
         problems.extend(_walk_forbidden_keys(value, f"$.{key}"))
 
     canonical_inputs = data.get("canonical_inputs")

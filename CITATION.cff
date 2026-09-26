@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: "Universal Law Workspace"
+message: >-
+  This repository pins the public default tips of the Universal Law research
+  program's repositories as git submodules. It holds no proofs of its own.
+  Status labels live in the program's registers; a pin here is a pointer to a
+  commit, not a verdict on its contents, and no original prize problem is
+  solved.
+type: software
+authors:
+  - family-names: Roy
+    given-names: Dylan
+repository-code: "https://github.com/d6g8k5htny-coder/Universal-Law-Workspace"
+license: MIT
