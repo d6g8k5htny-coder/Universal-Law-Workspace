@@ -1,0 +1,23 @@
+name: federation-contract
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate federation manifest
+        run: python3 tools/check_workspace.py
+      - name: Run contract tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
