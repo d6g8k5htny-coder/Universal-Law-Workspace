@@ -1,0 +1,65 @@
+name: verify
+
+# Standard library only. No dependency is installed, so a green run cannot be green
+# because of something that happened to be on the runner.
+#
+# Scientific effect: NONE. This workflow checks that the repository describes itself
+# truthfully. It verifies no mathematics, accepts no theorem and moves no status. A green
+# check here is a run, not evidence.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      # fetch-depth 0 on purpose: verify_workspace.py checks that HEAD descends from the
+      # repository's recorded root commit, which a shallow clone does not contain.
+      # Submodules are deliberately NOT checked out -- the gitlink SHAs are read from the
+      # index, so the check needs no package contents and downloads none.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: python version actually used
+        run: python3 --version
+
+      - name: refuse if the workspace misdescribes itself
+        run: python3 scripts/verify_workspace.py
+
+      - name: negative controls -- every check must be observed refusing
+        run: python3 -m unittest discover -s tests -v
+
+      - name: the generated documents must match the manifest
+        run: |
+          set -euo pipefail
+          python3 scripts/generate_ledgers.py
+          if ! git diff --quiet -- BRANCH_MAP.md; then
+            echo "BRANCH_MAP.md is not what WORKSPACE.json generates. Regenerate it:"
+            echo "  python3 scripts/generate_ledgers.py"
+            git --no-pager diff -- BRANCH_MAP.md
+            exit 1
+          fi
+          echo "BRANCH_MAP.md matches the manifest"
+
+      - name: the public re-export layer imports from a clean checkout
+        run: |
+          set -euo pipefail
+          PYTHONPATH=src python3 -c "
+          import universal_law_workspace as w
+          eps = w.entry_points()
+          checks = w.documented_checks()
+          assert eps, 'no entry points listed'
+          assert checks, 'no documented checks listed'
+          for c in checks:
+              assert c.get('does_not_prove'), f'{c} states no limit on what it proves'
+          print('entry_points', len(eps), '| documented_checks', len(checks))
+          "

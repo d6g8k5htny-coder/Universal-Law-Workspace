@@ -121,6 +121,42 @@ cd repos/Math-/frontiers/downstream_gate_20260925 && python3 -B -S -m unittest t
 The `query-` **package** suite (`unittest discover -s tests`) needs the `src/` tree, so
 it runs against PR #16's ref rather than the pinned default — see `BRANCH_MAP.md`.
 
+## Checking this repository itself
+
+```bash
+python3 scripts/verify_workspace.py              # refuses if the map misdescribes itself
+python3 -m unittest discover -s tests -v         # 25 negative controls, standard library only
+python3 scripts/generate_ledgers.py              # BRANCH_MAP.md must come back unchanged
+```
+
+`scripts/verify_workspace.py` enforces nine things: the gitlink SHAs equal the recorded
+tips; `.gitmodules` carries public clonable URLs; no package is missing and none has
+appeared; no **tracked** file carries a credential, a private relay address or a mention
+of the excluded private package; every named ref has a 40-hex SHA and a stated reason;
+`BRANCH_MAP.md` carries every recorded SHA **and** branch name; the host repository's own
+refs — including the other bootstrap lane's — are recorded and mapped; `HEAD` descends
+from the owner's root commit; and a run that compared fewer than thirty things is a
+failure rather than a pass.
+
+The controls in `tests/` are the deliverable, not decoration. Each one weakens exactly one
+of those facts and asserts the verifier then **refuses**. Writing them found three real
+defects in the verifier they were written for:
+
+1. it scanned raw disk rather than tracked files, so compiled `__pycache__` bytecode —
+   ignored, untracked, in no clone — failed the tree, because Python folds `'a' + 'b'` at
+   compile time and the `.pyc` carried the very literals its source assembles at runtime
+   in order not to carry them;
+2. it compared SHAs but not branch names, so when two refs shared a SHA a ref could vanish
+   from `BRANCH_MAP.md` while a sibling row kept the check satisfied — the failure mode
+   that would have hidden the other lane's branch;
+3. the harness's own `git mktree` and `git hash-object --stdin` inherited the runner's
+   standard input and blocked forever instead of failing, so the suite hung rather than
+   reported.
+
+Every control runs against a real recursive copy, and one control asserts the copy's
+inodes differ from the original — an earlier harness in a sibling package used `cp -al`
+and wrote straight through into the live checkout.
+
 ## The ledgers
 
 | file | what it records |

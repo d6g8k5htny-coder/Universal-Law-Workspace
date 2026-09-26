@@ -71,6 +71,23 @@ repository and that repository's own CI was already about that change.
 
 ---
 
+## 6. `universal-law-workspace` — the repository's own root commit into this proposal
+
+| | |
+|---|---|
+| repository | `universal-law-workspace` (the host, not a mapped package) |
+| base merged in | `main` @ `fcd1d01ed87b…` — the owner's repository-creation commit |
+| head before | `0a6b57a` |
+| merge commit | `b5c2ec7` |
+| kind | ordinary merge, `--allow-unrelated-histories` |
+| why unrelated | the map was built as a local repository before this GitHub repository existed, so it began as its own root. The merge joins the two rather than replacing either. |
+| conflicts | **1, add/add on `README.md`** |
+| resolution | the map README is kept at that path. The 25-byte auto-init stub is **not discarded**: `fcd1d01` is now a parent of this branch, so `git show fcd1d01:README.md` returns those bytes verbatim; `IDENTITY_LEDGER.md` carries their sha256 and blob, computed from this repository's own history; `CONFLICT_LEDGER.md` C5 records why the path holds the map instead of a second copy. |
+| validated before push | `scripts/verify_workspace.py` problems=0 (54 comparisons); 25 negative controls pass; `BRANCH_MAP.md` byte-identical to what the manifest regenerates; `src/` imports on a bare `PYTHONPATH=src` |
+| observed refusing first | the ancestry check was written **before** this merge and observed refusing the orphan tree: `HEAD does not descend from the recorded root commit fcd1d01ed87b`. It passes only because of this merge. |
+| what was NOT done | no force-push, no rebase, no history rewritten, `main` not moved, and `chatgpt/federation-bootstrap-20260926` not touched |
+| scientific effect | NONE |
+
 ## Merges deliberately NOT performed
 
 | proposed merge | why not |
@@ -79,6 +96,8 @@ repository and that repository's own CI was already about that change.
 | `query-` PR #12 → anything | Overlaps PR #14's gate-stub refresh on a different base. Merging either one would pick a winner between two refresh routes. Recorded in `CONFLICT_LEDGER.md` instead. |
 | anything → `Math-` **`main`** | No integration merge belongs on `Math-`'s default branch. None was performed, proposed or staged. |
 | the 17 unlisted open `Math-` PRs, and `main` PRs #135/#136 | Not on the instructed include list. Recorded in `BRANCH_MAP.md` as decisions rather than swept in. |
+| `claude/public-workspace-proposal-20260926` → `universal-law-workspace` **`main`** | This is a **proposal**, and issue [#1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1) assigns an overlapping slice to a second bootstrap lane. Merging it would settle by push order a question that belongs to review. Opened as a draft PR and left there. |
+| anything → `chatgpt/federation-bootstrap-20260926` | The other lane's branch. Not merged into, not merged from, not rebased, not touched. It is recorded in `BRANCH_MAP.md` and `CONFLICT_LEDGER.md` C5 so it cannot be lost sight of. |
 | any merge mixing author-side AMEND math into an ACCEPTed landing path | **None was attempted.** No merge in this ledger crosses that boundary; had one been required, the instruction is to stop and record it, and that is what the row above for PR #12 does. |
 
 ## What this ledger does not establish

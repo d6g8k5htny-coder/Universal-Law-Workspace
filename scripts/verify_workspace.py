@@ -6,9 +6,12 @@ Checks, in order:
      equals the recorded default tip -- the pin and the document cannot disagree;
   2. .gitmodules names exactly the recorded packages, with public https URLs;
   3. no in-scope package is missing and no extra submodule has appeared;
-  4. `sandbox` appears nowhere except as a declared exclusion;
+  4. no tracked file carries a credential, a private relay address, or a mention of the
+     excluded private package outside the files allowed to declare the exclusion;
   5. every named branch row carries a 40-hex sha and a non-empty reason;
-  6. BRANCH_MAP.md is not stale: every recorded sha appears in it;
+  6. BRANCH_MAP.md is not stale: every recorded sha AND every recorded branch name
+     appears in it (a sha-only check is satisfied by a sibling row when two refs share
+     a sha, and the ref itself can then vanish from the map unnoticed);
   7. every host-repository ref carries a 40-hex sha (or resolves to HEAD) and a reason,
      and appears in BRANCH_MAP.md;
   8. HEAD descends from the host repository's recorded root commit -- a branch that
@@ -79,11 +82,23 @@ def main() -> int:
     excluded = {x['name'] for x in m['excluded_repositories']}
     if 'sandbox' not in excluded:
         problems.append('sandbox is not recorded as an excluded repository')
-    for path in sorted(ROOT.rglob('*')):
-        if '.git' in path.parts or not path.is_file():
-            continue
-        rel = path.relative_to(ROOT).as_posix()
-        if rel.startswith('repos/'):
+    # Scan what is PUBLISHED, i.e. what git tracks -- not whatever happens to be on disk.
+    # An untracked scratch file is not published and is not this checker's business; a
+    # tracked one is. This also matters in the other direction: Python folds string
+    # concatenation at compile time, so a __pycache__ entry contains the very literals its
+    # source assembles at runtime to avoid carrying. Scanning raw disk therefore flagged
+    # compiled bytecode that no clone of this repository will ever contain. The controls in
+    # tests/ caught that.
+    ls = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '-z'],
+                        capture_output=True, text=True)
+    if ls.returncode != 0:
+        problems.append(f'could not list tracked files (git exited {ls.returncode}: '
+                        f'{ls.stderr.strip() or "no message"}). The secret scan cannot run, '
+                        f'and a scan that cannot run is not a scan that passed.')
+    tracked = [r for r in ls.stdout.split('\0') if r and not r.startswith('repos/')]
+    for rel in sorted(tracked):
+        path = ROOT / rel
+        if not path.is_file():
             continue
         compared += 1
         text = path.read_text(encoding='utf-8', errors='replace')
@@ -107,6 +122,12 @@ def main() -> int:
             problems.append(f"{row['repo']}/{row['branch']}: included with no stated reason")
         if row['sha'][:12] not in branch_map:
             problems.append(f"{row['repo']}/{row['branch']}: sha {row['sha'][:12]} absent from "
+                            f"BRANCH_MAP.md -- regenerate it from the manifest")
+        # The name as well as the sha. Two refs can share a sha -- a branch cut from another
+        # branch and not yet advanced -- and then a sha-only check is satisfied by the OTHER
+        # row while this ref has silently vanished from the map. tests/ caught exactly that.
+        if f"`{row['branch']}`" not in branch_map:
+            problems.append(f"{row['repo']}/{row['branch']}: branch name absent from "
                             f"BRANCH_MAP.md -- regenerate it from the manifest")
     for row in m['deliberately_not_imported']:
         compared += 1
@@ -134,6 +155,11 @@ def main() -> int:
             elif sha[:12] not in branch_map:
                 problems.append(f"host ref {r.get('branch')}: sha {sha[:12]} absent from "
                                 f"BRANCH_MAP.md -- regenerate it from the manifest")
+            if f"`{r.get('branch')}`" not in branch_map:
+                problems.append(f"host ref {r.get('branch')}: branch name absent from "
+                                f"BRANCH_MAP.md. This repository's refs include a second "
+                                f"bootstrap lane; a lane that vanishes from the map is the "
+                                f"failure this check exists for.")
             if not r.get('why'):
                 problems.append(f"host ref {r.get('branch')}: recorded with no stated reason")
         if HEX40.match(root):
