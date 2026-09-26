@@ -1,0 +1,21 @@
+[submodule "main"]
+	path = repos/main
+	url = https://github.com/d6g8k5htny-coder/main.git
+[submodule "Math-"]
+	path = repos/Math-
+	url = https://github.com/d6g8k5htny-coder/Math-.git
+[submodule "query-"]
+	path = repos/query-
+	url = https://github.com/d6g8k5htny-coder/query-.git
+[submodule "trial"]
+	path = repos/trial
+	url = https://github.com/d6g8k5htny-coder/trial.git
+[submodule "governance-"]
+	path = repos/governance-
+	url = https://github.com/d6g8k5htny-coder/governance-.git
+[submodule "meta-framework"]
+	path = repos/meta-framework
+	url = https://github.com/d6g8k5htny-coder/meta-framework.git
+[submodule "google-drive"]
+	path = repos/google-drive
+	url = https://github.com/d6g8k5htny-coder/google-drive.git

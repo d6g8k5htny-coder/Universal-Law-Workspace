@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+"""Verify this workspace describes itself truthfully. Refuses on any mismatch.
+
+Checks, in order:
+  1. every package in WORKSPACE.json has a submodule gitlink, and the gitlink SHA
+     equals the recorded default tip -- the pin and the document cannot disagree;
+  2. .gitmodules names exactly the recorded packages, with public https URLs;
+  3. no in-scope package is missing and no extra submodule has appeared;
+  4. `sandbox` appears nowhere except as a declared exclusion;
+  5. every named branch row carries a 40-hex sha and a non-empty reason;
+  6. BRANCH_MAP.md is not stale: every recorded sha appears in it;
+  7. a vacuity floor -- a run that compared nothing is a failure, not a pass.
+
+A pass is a documentation-consistency fact. It verifies no mathematics, accepts no
+theorem and moves no status. Scientific effect: NONE.
+"""
+from __future__ import annotations
+
+import json
+import pathlib
+import re
+import subprocess
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+HEX40 = re.compile(r'^[0-9a-f]{40}$')
+
+# Assembled at runtime on purpose. A scanner that spells out the strings it forbids
+# trips its own rule -- the first version of this file did exactly that, and the rule was
+# right to flag it. Keeping the literals out keeps the rule honest about every file,
+# including this one.
+_RELAY_HOST = 'private' + 'relay.' + 'appleid' + '.com'
+_RELAY_HOST_ALT = 'users.' + 'noreply.' + 'github' + '.com'
+
+
+def main() -> int:
+    m = json.loads((ROOT / 'WORKSPACE.json').read_text(encoding='utf-8'))
+    problems: list[str] = []
+    compared = 0
+
+    gitlinks: dict[str, str] = {}
+    out = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '-s', 'repos/'],
+                         capture_output=True, text=True).stdout
+    for line in out.splitlines():
+        mode, sha, _stage_path = line.split(' ', 2)
+        _stage, path = _stage_path.split('\t', 1)
+        if mode != '160000':
+            problems.append(f'{path}: mode {mode}, expected 160000 (a submodule gitlink). '
+                            f'A non-gitlink here means bytes were vendored without an '
+                            f'IDENTITY_LEDGER row.')
+        gitlinks[path.removeprefix('repos/')] = sha
+
+    declared = {p['name']: p['default_tip'] for p in m['packages']}
+    for name, tip in sorted(declared.items()):
+        compared += 1
+        got = gitlinks.get(name)
+        if got is None:
+            problems.append(f'{name}: declared in WORKSPACE.json and has no submodule gitlink')
+        elif got != tip:
+            problems.append(f'{name}: gitlink {got[:12]} != recorded default tip {tip[:12]}; '
+                            f'the pin and the document disagree')
+    for name in sorted(set(gitlinks) - set(declared)):
+        problems.append(f'{name}: submodule present and not declared in WORKSPACE.json')
+
+    gm = (ROOT / '.gitmodules').read_text(encoding='utf-8')
+    for name in declared:
+        compared += 1
+        want = f'https://github.com/d6g8k5htny-coder/{name}.git'
+        if want not in gm:
+            problems.append(f'{name}: .gitmodules does not carry the public URL {want}; '
+                            f'a stranger could not clone it')
+    if 'file://' in gm or gm.count('url = /') or '\turl = ..' in gm:
+        problems.append('.gitmodules carries a local or relative URL; a stranger cannot clone that')
+
+    excluded = {x['name'] for x in m['excluded_repositories']}
+    if 'sandbox' not in excluded:
+        problems.append('sandbox is not recorded as an excluded repository')
+    for path in sorted(ROOT.rglob('*')):
+        if '.git' in path.parts or not path.is_file():
+            continue
+        rel = path.relative_to(ROOT).as_posix()
+        if rel.startswith('repos/'):
+            continue
+        compared += 1
+        text = path.read_text(encoding='utf-8', errors='replace')
+        for bad in (_RELAY_HOST, _RELAY_HOST_ALT):
+            if bad in text:
+                problems.append(f'{rel}: contains a private relay address ({bad})')
+        if re.search(r'gh[pousr]_[A-Za-z0-9]{16,}|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY', text):
+            problems.append(f'{rel}: looks like it contains a credential')
+        if 'sandbox' in text and rel not in {
+                'BRANCH_MAP.md', 'WORKSPACE.json', 'README.md', 'CONFLICT_LEDGER.md',
+                'scripts/verify_workspace.py', 'IDENTITY_LEDGER.md'}:
+            problems.append(f'{rel}: mentions sandbox outside the files allowed to declare '
+                            f'the exclusion')
+
+    branch_map = (ROOT / 'BRANCH_MAP.md').read_text(encoding='utf-8')
+    for row in m['named_branches']:
+        compared += 1
+        if not HEX40.match(row['sha']):
+            problems.append(f"{row['repo']}/{row['branch']}: sha is not 40 hex")
+        if not row.get('why'):
+            problems.append(f"{row['repo']}/{row['branch']}: included with no stated reason")
+        if row['sha'][:12] not in branch_map:
+            problems.append(f"{row['repo']}/{row['branch']}: sha {row['sha'][:12]} absent from "
+                            f"BRANCH_MAP.md -- regenerate it from the manifest")
+    for row in m['deliberately_not_imported']:
+        compared += 1
+        if not row.get('why_not'):
+            problems.append(f"{row['repo']}: omission recorded with no reason")
+
+    if compared < 30:
+        problems.append(f'VACUOUS RUN: only {compared} comparisons made. A run that checked '
+                        f'almost nothing is not a pass; the exit code would look the same if '
+                        f'the manifest had been emptied.')
+
+    for p in problems:
+        print(p)
+    print(f'verify_workspace: packages={len(declared)} gitlinks={len(gitlinks)} '
+          f'named_refs={len(m["named_branches"])} omissions={len(m["deliberately_not_imported"])} '
+          f'comparisons={compared} problems={len(problems)}')
+    print('A pass is a documentation-consistency fact. It verifies no mathematics, accepts no '
+          'theorem and moves no status.')
+    return 1 if problems else 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
