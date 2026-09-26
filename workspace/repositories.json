@@ -3,13 +3,13 @@
   "workspace": "d6g8k5htny-coder/Universal-Law-Workspace",
   "scientific_effect": "NONE",
   "scientific_status_authority": false,
-  "purpose": "Federation navigation, cross-repository source pins, conformance checks, reproducibility snapshots, and agent routing. This repository does not decide mathematical status.",
+  "purpose": "Federation navigation, cross-repository source pins, conformance checks, reproducibility snapshots, and agent routing. This repository does not decide mathematical status or duplicate canonical repository-role metadata.",
   "canonical_inputs": {
     "repository_registry": {
       "repository": "d6g8k5htny-coder/meta-framework",
       "path": "registry.json",
       "observed_blob": "b41f43da5a05e33be032ead5a6c0b3b0e18de80e",
-      "meaning": "artifact routing and byte identities; not claim status"
+      "meaning": "sole machine source for existing repository roles plus artifact routing and byte identities; not claim status"
     },
     "scientific_authority_map": {
       "repository": "d6g8k5htny-coder/main",
@@ -32,41 +32,14 @@
     }
   },
   "repositories": [
-    {
-      "full_name": "d6g8k5htny-coder/Universal-Law-Workspace",
-      "role": "Federation control surface for navigation, conformance, reproducibility snapshots, and agent routing; never theorem acceptance."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/main",
-      "role": "Research campaign, public reading path, reviews, discussion, and integration surface."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/Math-",
-      "role": "Candidate proofs, mathematical programs, reproducible enclosures, and existing downstream gate surfaces."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/meta-framework",
-      "role": "Machine-readable artifact routing and byte identities; not claim status."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/query-",
-      "role": "Read-only exact-key lookup and local artifact verification."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/google-drive",
-      "role": "Explicitly selected public Drive replicas with source custody."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/trial",
-      "role": "Cross-repository engineering integration tests; no research-register migration."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/governance-",
-      "role": "Current cross-repository working practices; not theorem acceptance."
-    },
-    {
-      "full_name": "d6g8k5htny-coder/sandbox",
-      "role": "Private exploratory experiments excluded from canonical public artifact routing."
-    }
+    {"full_name": "d6g8k5htny-coder/Universal-Law-Workspace"},
+    {"full_name": "d6g8k5htny-coder/main"},
+    {"full_name": "d6g8k5htny-coder/Math-"},
+    {"full_name": "d6g8k5htny-coder/meta-framework"},
+    {"full_name": "d6g8k5htny-coder/query-"},
+    {"full_name": "d6g8k5htny-coder/google-drive"},
+    {"full_name": "d6g8k5htny-coder/trial"},
+    {"full_name": "d6g8k5htny-coder/governance-"},
+    {"full_name": "d6g8k5htny-coder/sandbox"}
   ]
 }
