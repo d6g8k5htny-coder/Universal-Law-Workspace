@@ -2,7 +2,7 @@
 **Scientific effect: NONE.** Every row below is a git reference and a reason for including it. No row asserts that any theorem, lemma, prize or bound is accepted, and nothing here changes a claim status in any package.
 Generated from [`WORKSPACE.json`](WORKSPACE.json) by `scripts/generate_ledgers.py`, as of 2026-09-26. Do not hand-edit the SHAs here; edit the manifest and regenerate.
 ## Excluded by instruction
-- **`sandbox`** (private) — Private. Out of scope by instruction; never cloned, read, copied or referenced by content in this repository.
+- **`sandbox`** (public) — Out of scope by instruction; never cloned, read, copied or referenced by content in this repository. The exclusion rests on the instruction ALONE and not on visibility, so it is unaffected by the correction above.
 
 ## Included refs
 

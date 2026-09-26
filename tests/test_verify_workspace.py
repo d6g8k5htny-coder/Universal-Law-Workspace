@@ -336,3 +336,24 @@ class TipDriftReporter(unittest.TestCase):
         self.assertNotEqual(code, 0, out)
         self.assertIn('UNREADABLE', out)
         self.assertIn('unreadable=7', out)
+
+
+class ExclusionReason(unittest.TestCase):
+    """The excluded repository's row must rest on the INSTRUCTION, not on a guess
+    about visibility. It recorded `private` where the API says public, and that
+    false premise was then raised as a finding on another lane's pull request."""
+
+    def test_the_exclusion_states_a_reason_that_is_not_visibility(self):
+        m = json.loads((ROOT / 'WORKSPACE.json').read_text(encoding='utf-8'))
+        row = next(x for x in m['excluded_repositories'] if x['name'] == EXCLUDED_REPO)
+        self.assertIn('instruction', row['reason'].lower())
+        self.assertIn('visibility', row['reason'].lower(),
+                      'the reason must say the exclusion does not rest on visibility')
+
+    def test_the_recorded_visibility_is_the_checked_one(self):
+        m = json.loads((ROOT / 'WORKSPACE.json').read_text(encoding='utf-8'))
+        row = next(x for x in m['excluded_repositories'] if x['name'] == EXCLUDED_REPO)
+        self.assertEqual(row['visibility'], 'public')
+        self.assertTrue(row.get('visibility_checked_utc'), 'no date for the check')
+        self.assertIn('withdrawn', row.get('visibility_correction', ''),
+                      'the withdrawn finding must stay on the record, not be deleted')

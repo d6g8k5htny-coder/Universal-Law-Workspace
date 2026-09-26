@@ -28,7 +28,7 @@ requests, four are included — the four that were named. Every omission is writ
 in [`BRANCH_MAP.md`](BRANCH_MAP.md) as a decision, because an unrecorded omission is
 indistinguishable from an oversight.
 
-`sandbox` is **private and out of scope**. It was never cloned, read, copied or
+`sandbox` is **out of scope by instruction**. It was never cloned, read, copied or
 referenced by content here, and [`scripts/verify_workspace.py`](scripts/verify_workspace.py)
 fails if it is mentioned anywhere except as a declared exclusion.
 
@@ -132,7 +132,7 @@ python3 scripts/generate_ledgers.py              # BRANCH_MAP.md must come back 
 `scripts/verify_workspace.py` enforces nine things: the gitlink SHAs equal the recorded
 tips; `.gitmodules` carries public clonable URLs; no package is missing and none has
 appeared; no **tracked** file carries a credential, a private relay address or a mention
-of the excluded private package; every named ref has a 40-hex SHA and a stated reason;
+of the excluded package outside the files allowed to declare the exclusion; every named ref has a 40-hex SHA and a stated reason;
 `BRANCH_MAP.md` carries every recorded SHA **and** branch name; the host repository's own
 refs — including the other bootstrap lane's — are recorded and mapped; `HEAD` descends
 from the owner's root commit; and every category — packages, named refs, omissions, host
@@ -175,6 +175,22 @@ and wrote straight through into the live checkout.
 
 [`WORKSPACE.json`](WORKSPACE.json) is the machine-readable source for the first of
 those; `BRANCH_MAP.md` is generated from it so a SHA is never retyped.
+
+## A correction I owe, on the record
+
+An earlier revision of this repository recorded `sandbox` as **private**. That was
+false. The GitHub API reports `private=false` and the account's repository listing
+reports `visibility=public` — checked two ways. The error was transcribing the
+instruction's own wording ("private sandbox") as a verified fact instead of checking
+it, and it was then **amplified into a finding on another lane's pull request** about
+naming a private repository in a public file, and into a question put to the owner
+about a publication decision they did not need to make. There is no such disclosure.
+**That finding is withdrawn**, on the PR where it was raised and here.
+
+The exclusion itself is unchanged and unaffected: `sandbox` is out of scope because
+the instruction says so, which has nothing to do with visibility. `WORKSPACE.json`
+keeps the correction rather than quietly swapping the word, and two controls assert
+the exclusion's reason cites the instruction and not visibility.
 
 ## Two lanes are bootstrapping this repository
 

@@ -8,8 +8,10 @@
   "excluded_repositories": [
     {
       "name": "sandbox",
-      "visibility": "private",
-      "reason": "Private. Out of scope by instruction; never cloned, read, copied or referenced by content in this repository."
+      "visibility": "public",
+      "reason": "Out of scope by instruction; never cloned, read, copied or referenced by content in this repository. The exclusion rests on the instruction ALONE and not on visibility, so it is unaffected by the correction above.",
+      "visibility_checked_utc": "2026-09-26",
+      "visibility_correction": "An earlier revision of this file recorded this repository as PRIVATE. That was false. The GitHub API reports private=false and the account repository listing reports visibility=public, checked two ways. The error came from transcribing the instruction's own wording (\"private sandbox\") as a verified fact instead of checking it, and it was then amplified into a finding on another lane's pull request about naming a private repository in a public file. There is no such disclosure: the repository is public. The finding is withdrawn."
     }
   ],
   "packages": [
