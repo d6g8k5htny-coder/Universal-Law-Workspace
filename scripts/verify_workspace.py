@@ -9,7 +9,11 @@ Checks, in order:
   4. `sandbox` appears nowhere except as a declared exclusion;
   5. every named branch row carries a 40-hex sha and a non-empty reason;
   6. BRANCH_MAP.md is not stale: every recorded sha appears in it;
-  7. a vacuity floor -- a run that compared nothing is a failure, not a pass.
+  7. every host-repository ref carries a 40-hex sha (or resolves to HEAD) and a reason,
+     and appears in BRANCH_MAP.md;
+  8. HEAD descends from the host repository's recorded root commit -- a branch that
+     replaced the owner's history instead of building on it fails here;
+  9. a vacuity floor -- a run that compared nothing is a failure, not a pass.
 
 A pass is a documentation-consistency fact. It verifies no mathematics, accepts no
 theorem and moves no status. Scientific effect: NONE.
@@ -109,6 +113,43 @@ def main() -> int:
         if not row.get('why_not'):
             problems.append(f"{row['repo']}: omission recorded with no reason")
 
+    host = m.get('host_repository')
+    if not host:
+        problems.append('WORKSPACE.json: no host_repository block -- the repository this map '
+                        'lives in must be recorded, including any second bootstrap lane')
+    else:
+        root = host.get('root_commit', '')
+        if not HEX40.match(root):
+            problems.append('host_repository.root_commit is not 40 hex')
+        for r in host.get('refs', []):
+            compared += 1
+            sha = r.get('sha')
+            if sha is None:
+                if r.get('resolves_to') != 'HEAD':
+                    problems.append(f"host ref {r.get('branch')}: no sha and no resolves_to=HEAD")
+                if f"`{r.get('branch')}`" not in branch_map:
+                    problems.append(f"host ref {r.get('branch')}: absent from BRANCH_MAP.md")
+            elif not HEX40.match(sha):
+                problems.append(f"host ref {r.get('branch')}: sha is not 40 hex")
+            elif sha[:12] not in branch_map:
+                problems.append(f"host ref {r.get('branch')}: sha {sha[:12]} absent from "
+                                f"BRANCH_MAP.md -- regenerate it from the manifest")
+            if not r.get('why'):
+                problems.append(f"host ref {r.get('branch')}: recorded with no stated reason")
+        if HEX40.match(root):
+            compared += 1
+            anc = subprocess.run(['git', '-C', str(ROOT), 'merge-base', '--is-ancestor',
+                                  root, 'HEAD'], capture_output=True, text=True)
+            if anc.returncode == 1:
+                problems.append(f"HEAD does not descend from the recorded root commit "
+                                f"{root[:12]} -- this branch replaced the owner's history "
+                                f"instead of building on it")
+            elif anc.returncode != 0:
+                problems.append(f"could not check ancestry of {root[:12]} "
+                                f"(git exited {anc.returncode}: "
+                                f"{anc.stderr.strip() or 'no message'}). A check that cannot run "
+                                f"is not a check that passed.")
+
     if compared < 30:
         problems.append(f'VACUOUS RUN: only {compared} comparisons made. A run that checked '
                         f'almost nothing is not a pass; the exit code would look the same if '
@@ -118,6 +159,7 @@ def main() -> int:
         print(p)
     print(f'verify_workspace: packages={len(declared)} gitlinks={len(gitlinks)} '
           f'named_refs={len(m["named_branches"])} omissions={len(m["deliberately_not_imported"])} '
+          f'host_refs={len((m.get("host_repository") or {}).get("refs", []))} '
           f'comparisons={compared} problems={len(problems)}')
     print('A pass is a documentation-consistency fact. It verifies no mathematics, accepts no '
           'theorem and moves no status.')

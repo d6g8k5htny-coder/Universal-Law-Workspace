@@ -77,5 +77,16 @@ An omission recorded is a decision; an omission unrecorded is an oversight. Thes
 | `query-` | `cursor/peer-handoff-meta6-3c3cf11-2393` | #12 | Open, and it ALSO refreshes downstream gate stubs on base main -- overlapping work with PR 14. Not on the include list. Flagged in CONFLICT_LEDGER.md rather than imported, because importing both refresh routes would require picking a winner. |
 | `Math-` | *(all others)* | — | Math- has 21 open PRs; only the four listed (60, 64, 69, 70) are imported. The remaining 17 are not stale-branch noise to be swept in, and the instruction is explicit that every stale remote-tracking branch stays out. |
 
+## This repository's own refs (the host, not a mapped package)
+`universal-law-workspace` is where this map lives. This repository is NOT one of the seven mapped packages. It is the host. Its own refs are recorded here so a second bootstrap lane is visible rather than discovered by collision.
+
+Root commit `fcd1d01ed87b…`, created 2026-09-26; coordination issue [#1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1).
+
+| ref | kind | sha | why |
+|---|---|---|---|
+| `main` | default | `fcd1d01ed87b…` | The repository-creation commit, made by the owner. Left exactly as it is: this proposal descends from it by an ordinary merge and does not replace it. |
+| `chatgpt/federation-bootstrap-20260926` | other lane | `fcd1d01ed87b…` | The second bootstrap lane named in issue #1. At the time this manifest was written it holds no work beyond the root commit -- same sha as main. Not touched, not merged, not rebased. See CONFLICT_LEDGER.md C5. |
+| `claude/public-workspace-proposal-20260926` | this proposal | *(HEAD)* | This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit. |
+
 ## How the named branches are materialised
 The submodule gitlink pins ONE commit per package — the public reviewed default tip. The other named refs are not squashed away and are not silently absent: each is recorded above with its exact SHA, and `scripts/fetch_named_branches.sh` fetches every one of them into the corresponding submodule as a real local ref, so they become branches you can check out and diff. Nothing is copied into this repository to achieve that.

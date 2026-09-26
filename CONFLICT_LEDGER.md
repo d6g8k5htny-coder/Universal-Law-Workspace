@@ -51,6 +51,18 @@ these rows moves a theorem, lemma, prize or claim status.
 | what was done | **both are named in `BRANCH_MAP.md`**, the submodule pin is the *default* tip, and the research tree is labelled a research tree. This workspace does not present B as if it were the default. |
 | explicitly not done | no merge of B into A, and no relabelling of either |
 
+## C5 — this repository: two bootstrap lanes, declared before either tree exists
+
+| | |
+|---|---|
+| tree A | `chatgpt/federation-bootstrap-20260926` @ `fcd1d01ed87b…` — the lane described in [issue #1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1): federation contract/spec, repository map, validator, negative controls, CI |
+| tree B | `claude/public-workspace-proposal-20260926` — this branch: `WORKSPACE.json` (repository map), `scripts/verify_workspace.py` (validator + vacuity floor), seven submodule gitlinks, four ledgers |
+| disagreement | **scope overlap, not yet byte overlap.** Issue #1 assigns the map / validator / CI slice to lane A. Lane B built a map and a validator before the issue existed. As of this commit tree A holds *no work beyond the root commit* — `chatgpt/federation-bootstrap-20260926` and `main` are the same SHA — so there is nothing of lane A's to conflict with yet. |
+| the one concrete byte difference | `README.md`. The repository was created with a 25-byte auto-init stub (`# Universal-Law-Workspace`, no trailing newline, sha256 `d17ad4a96b30b8965cfde2dc976f42d7…`, blob `b4bb1f6da58b…`). This branch replaces it with the map README. The stub bytes are **not deleted**: `fcd1d01ed87b…` is a parent of this branch's merge commit, so `git show fcd1d01:README.md` returns them verbatim forever, and the row is in `IDENTITY_LEDGER.md`. |
+| what was done | **Nothing of lane A's was overwritten, rebased or force-pushed.** This branch descends from `fcd1d01` by an ordinary merge, so lane A can branch, push and open its PR against an unchanged `main`. The exact branch and paths were posted to issue #1 as that issue requests, so lane A can yield the slice, keep it, or land both — that is the owner's call. |
+| what was NOT done | No merge of this branch into `main`, no touching of `chatgpt/federation-bootstrap-20260926`, and no assertion that either lane's map or validator is the right one. If both land, the duplicate-validator question is resolved by review, not by whoever pushed first. |
+| residue | **live.** Two validators and two repository maps may exist in one repository. That is a real duplication hazard and issue #1 names it ("do not create a second scientific-status database"). Neither validator can promote anything — both fail closed and assert only documentation facts — but the redundancy itself is unresolved here on purpose. |
+
 ---
 
 ## What this ledger does not establish

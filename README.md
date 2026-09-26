@@ -128,10 +128,34 @@ it runs against PR #16's ref rather than the pinned default — see `BRANCH_MAP.
 | [`BRANCH_MAP.md`](BRANCH_MAP.md) | every included ref, its exact SHA and why; plus every open ref deliberately **not** imported, and why not |
 | [`MERGE_LEDGER.md`](MERGE_LEDGER.md) | every merge performed — base, head, conflicts, resolution, scientific effect; and every merge deliberately not performed |
 | [`IDENTITY_LEDGER.md`](IDENTITY_LEDGER.md) | bytes, SHA-256 and git blob for everything this proposal touches, computed from real bytes rather than typed |
-| [`CONFLICT_LEDGER.md`](CONFLICT_LEDGER.md) | four places where two trees disagree. **Both sides kept. No winner picked.** |
+| [`CONFLICT_LEDGER.md`](CONFLICT_LEDGER.md) | five places where two trees disagree. **Both sides kept. No winner picked.** |
 
 [`WORKSPACE.json`](WORKSPACE.json) is the machine-readable source for the first of
 those; `BRANCH_MAP.md` is generated from it so a SHA is never retyped.
+
+## Two lanes are bootstrapping this repository
+
+[Issue #1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1) divides
+the bootstrap between two lanes and assigns the repository map, the validator, the
+negative controls and CI to the other one. This branch built a map and a validator
+before that issue existed, so the slices overlap. Nothing was resolved by pushing first:
+
+- `main` is untouched. This branch descends from the owner's root commit
+  `fcd1d01ed87b…` by an ordinary merge — no force-push, no rebase of anyone's history,
+  no orphan tree. `scripts/verify_workspace.py` checks that descent mechanically and
+  refuses if it is ever broken.
+- `chatgpt/federation-bootstrap-20260926` is untouched. At the time of writing it points
+  at the same root commit, so there was no work of that lane's to collide with.
+- The exact branch and paths are posted on issue #1, which is what that issue asks for,
+  so the other lane can yield the slice, keep it, or land both.
+- `CONFLICT_LEDGER.md` **C5** records the overlap as live and unresolved, including the
+  real hazard: two validators and two repository maps in one repository. Neither can
+  promote anything — both fail closed and assert only documentation facts — but the
+  duplication is a review question, not a merge question.
+
+Whether this proposal, the other lane's, or a reconciliation of the two becomes the
+workspace is the owner's decision. This is a proposal on a branch, not a replacement of
+anything.
 
 ## What this repository does not establish
 

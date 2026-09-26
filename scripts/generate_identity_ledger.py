@@ -30,6 +30,15 @@ SUBJECTS = [
     ("query-", "integration/public-src-20260926", "portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json",
      "downstream gate stub bundle, refreshed to the Math- default tip"),
 ]
+# (ref, path, role) read out of THIS repository's own history, not a sibling checkout.
+# The workspace was created with a GitHub auto-init README stub; this branch replaces it.
+# The stub is recorded rather than silently dropped, and stays reachable at its commit.
+SELF_SUBJECTS = [
+    ("fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1", "README.md",
+     "auto-init stub present when the repository was created (SUPERSEDED by this branch, "
+     "still reachable at that commit)"),
+]
+
 # Math- gate artifacts, at the default tip the stubs pin
 GATE = "frontiers/downstream_gate_20260925"
 GATE_FILES = ["README.md", "SCOPE.md", "hard_gate.py", "test_hard_gate.py",
@@ -61,6 +70,9 @@ def main() -> int:
         d = ws / repo
         got = ident(d, ref, path) if d.is_dir() else None
         (rows if got else missing).append((repo, ref, path, role, got))
+    for ref, path, role in SELF_SUBJECTS:
+        got = ident(ROOT, ref, path)
+        (rows if got else missing).append(("universal-law-workspace", ref, path, role, got))
     mathdir = ws / "Math-"
     for f in GATE_FILES:
         p = f"{GATE}/{f}"
@@ -94,7 +106,7 @@ def main() -> int:
         out.append("| repository | ref | path | role |\n|---|---|---|---|\n")
         for repo, ref, path, role, _ in missing:
             out.append(f"| `{repo}` | `{ref}` | `{path}` | {role} |\n")
-    out.append("\n## The one identity that changed, and why it is recorded rather than restored\n")
+    out.append("\n## The two identities that changed, and why they are recorded rather than restored\n")
     out.append("`query-/research_query.py` appears twice above. On `main` it is the canonical "
                "implementation; on the src-migration line it is a compatibility wrapper, so its "
                "bytes differ. The pre-migration workflow asserted the old byte count inline and "
@@ -102,6 +114,11 @@ def main() -> int:
                "the old count would be false, so both identities are on record and the current one "
                "is pinned by a test. `trial/federation/replay.py` pins the superseded bytes at an "
                "immutable commit and is unaffected.\n")
+    out.append("\n`universal-law-workspace/README.md` is the second. The repository was created "
+               "with a 25-byte GitHub auto-init stub and this branch replaces it with the map. The "
+               "stub is not deleted: `fcd1d01ed87b…` is a parent of this branch, so "
+               "`git show fcd1d01:README.md` returns those bytes verbatim. `CONFLICT_LEDGER.md` C5 "
+               "records why it was replaced rather than kept at a second path.\n")
     pathlib.Path(a.out).write_text("".join(out), encoding="utf-8")
     print(f"IDENTITY_LEDGER.md written: {len(rows)} computed rows, {len(missing)} uncomputed")
     return 1 if missing else 0

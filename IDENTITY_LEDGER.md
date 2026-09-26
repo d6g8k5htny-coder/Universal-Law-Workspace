@@ -14,6 +14,7 @@ If a future revision does vendor bytes, every copied file must gain a row here w
 | `query-` | `integration/public-src-20260926` | `research_query.py` | 541 | `b49d32fed78ee78f688fee8e…` | `0a89183d0499…` | compatibility wrapper (CURRENT identity) |
 | `query-` | `main` | `research_query.py` | 5577 | `54105dcd723e71b19263afc8…` | `c2dd46a24ed9…` | canonical implementation (SUPERSEDED identity) |
 | `query-` | `integration/public-src-20260926` | `portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json` | 4180 | `a88c7982053b60108fe19a84…` | `2bd2dec9d2c0…` | downstream gate stub bundle, refreshed to the Math- default tip |
+| `universal-law-workspace` | `fcd1d01ed87b…` | `README.md` | 25 | `d17ad4a96b30b8965cfde2dc…` | `b4bb1f6da58b…` | auto-init stub present when the repository was created (SUPERSEDED by this branch, still reachable at that commit) |
 | `Math-` | `10e1f191c7d9…` | `frontiers/downstream_gate_20260925/README.md` | 3559 | `574ed537cf8992bb3f86fae1…` | `7f07316b733a…` | downstream hard-gate artifact pinned by query-'s stub bundle |
 | `Math-` | `10e1f191c7d9…` | `frontiers/downstream_gate_20260925/SCOPE.md` | 2218 | `c7b5bb0ec34f53395b96ae24…` | `ed8c56a88c48…` | downstream hard-gate artifact pinned by query-'s stub bundle |
 | `Math-` | `10e1f191c7d9…` | `frontiers/downstream_gate_20260925/hard_gate.py` | 26557 | `1954723d143a3d68cbf3834b…` | `52ec0030579a…` | downstream hard-gate artifact pinned by query-'s stub bundle |
@@ -22,5 +23,7 @@ If a future revision does vendor bytes, every copied file must gain a row here w
 | `Math-` | `10e1f191c7d9…` | `frontiers/downstream_gate_20260925/run_validation.py` | 7517 | `2f71b34d5a241402e26c0e00…` | `d0607468b92f…` | downstream hard-gate artifact pinned by query-'s stub bundle |
 | `Math-` | `10e1f191c7d9…` | `frontiers/downstream_gate_20260925/GRAPH.json` | 15375 | `065e6a756060097bcef35055…` | `23a6759eb0e8…` | downstream hard-gate artifact pinned by query-'s stub bundle |
 
-## The one identity that changed, and why it is recorded rather than restored
+## The two identities that changed, and why they are recorded rather than restored
 `query-/research_query.py` appears twice above. On `main` it is the canonical implementation; on the src-migration line it is a compatibility wrapper, so its bytes differ. The pre-migration workflow asserted the old byte count inline and that assertion was deleted in the same change that invalidated it. Re-asserting the old count would be false, so both identities are on record and the current one is pinned by a test. `trial/federation/replay.py` pins the superseded bytes at an immutable commit and is unaffected.
+
+`universal-law-workspace/README.md` is the second. The repository was created with a 25-byte GitHub auto-init stub and this branch replaces it with the map. The stub is not deleted: `fcd1d01ed87b…` is a parent of this branch, so `git show fcd1d01:README.md` returns those bytes verbatim. `CONFLICT_LEDGER.md` C5 records why it was replaced rather than kept at a second path.

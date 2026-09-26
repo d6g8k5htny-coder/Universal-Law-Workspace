@@ -6,64 +6,267 @@
   "owner": "d6g8k5htny-coder",
   "as_of_utc": "2026-09-26",
   "excluded_repositories": [
-    {"name": "sandbox", "visibility": "private", "reason": "Private. Out of scope by instruction; never cloned, read, copied or referenced by content in this repository."}
+    {
+      "name": "sandbox",
+      "visibility": "private",
+      "reason": "Private. Out of scope by instruction; never cloned, read, copied or referenced by content in this repository."
+    }
   ],
   "packages": [
-    {"name": "main", "default_branch": "main", "default_tip": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8",
-     "role": "q0 / SIDE24 research program: registers, claim graph, engine, drive source map, checkers"},
-    {"name": "Math-", "default_branch": "main", "default_tip": "10e1f191c7d9f2755ca971ddbba87874d2475619",
-     "role": "mathematical frontiers, coefficients, downstream hard gate; 21 of the 22 public catalog artifacts live here"},
-    {"name": "query-", "default_branch": "main", "default_tip": "a61656fc7cbe704f5b874e1cae08637fb914227f",
-     "role": "read-only exact-source lookup CLI and portable stub verifier"},
-    {"name": "trial", "default_branch": "main", "default_tip": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6",
-     "role": "cross-repository federation controls and bounded public replay"},
-    {"name": "governance-", "default_branch": "main", "default_tip": "7476e29c65ce82d23e0b39e7f7d98741a875a8ff",
-     "role": "operator protocols and governance records"},
-    {"name": "meta-framework", "default_branch": "main", "default_tip": "14f6836e7ccf6a463ef6da745602debfea4d15ee",
-     "role": "the curated public catalog (registry.json, 22 artifacts)"},
-    {"name": "google-drive", "default_branch": "main", "default_tip": "ea55c6e76edb31c48da5ce5aa0c3761d3ee49146",
-     "role": "Drive-side public surface; source of 1 of the 22 catalog artifacts"}
+    {
+      "name": "main",
+      "default_branch": "main",
+      "default_tip": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8",
+      "role": "q0 / SIDE24 research program: registers, claim graph, engine, drive source map, checkers"
+    },
+    {
+      "name": "Math-",
+      "default_branch": "main",
+      "default_tip": "10e1f191c7d9f2755ca971ddbba87874d2475619",
+      "role": "mathematical frontiers, coefficients, downstream hard gate; 21 of the 22 public catalog artifacts live here"
+    },
+    {
+      "name": "query-",
+      "default_branch": "main",
+      "default_tip": "a61656fc7cbe704f5b874e1cae08637fb914227f",
+      "role": "read-only exact-source lookup CLI and portable stub verifier"
+    },
+    {
+      "name": "trial",
+      "default_branch": "main",
+      "default_tip": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6",
+      "role": "cross-repository federation controls and bounded public replay"
+    },
+    {
+      "name": "governance-",
+      "default_branch": "main",
+      "default_tip": "7476e29c65ce82d23e0b39e7f7d98741a875a8ff",
+      "role": "operator protocols and governance records"
+    },
+    {
+      "name": "meta-framework",
+      "default_branch": "main",
+      "default_tip": "14f6836e7ccf6a463ef6da745602debfea4d15ee",
+      "role": "the curated public catalog (registry.json, 22 artifacts)"
+    },
+    {
+      "name": "google-drive",
+      "default_branch": "main",
+      "default_tip": "ea55c6e76edb31c48da5ce5aa0c3761d3ee49146",
+      "role": "Drive-side public surface; source of 1 of the 22 catalog artifacts"
+    }
   ],
   "named_branches": [
-    {"repo": "main", "branch": "main", "sha": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8", "kind": "default", "pr": null,
-     "why": "Public reviewed tip. This is the submodule pin for repos/main."},
-    {"repo": "main", "branch": "chatgpt/drive-github-hardening-20260919", "sha": "cd66a655d0a922a7dcc1ffe8a28be62a43d7151d", "kind": "research-tree", "pr": null,
-     "why": "The active research tree. Included BY NAME and explicitly NOT presented as default main. It is not the reviewed tip and this repository does not treat it as one."},
-    {"repo": "main", "branch": "claude/github-chatgpt-xxw5kp", "sha": "67de1a2111da5720fd868c12168d8945b304b717", "kind": "open-pr", "pr": 21,
-     "why": "Listed. Architectural admission attestations and salvaged H3 review artifacts."},
-    {"repo": "main", "branch": "chatgpt/sard-g-execution-repair-20260925", "sha": "a1fc9581291b6f81c76c903c96a13955b51f8d54", "kind": "open-pr", "pr": 122,
-     "why": "Listed. SARD-G repair: countable open charts and endpoint-support localization."},
-    {"repo": "main", "branch": "cursor/intermediate-scale-bridge-ab2f", "sha": "674f88cd60fdcae590b7b56699600bc3dd80b8a3", "kind": "open-pr", "pr": 128,
-     "why": "Listed. D5 intermediate-scale envelope between fixed annulus and fixed remote."},
-    {"repo": "main", "branch": "claude/firewalls-fail-closed", "sha": "1db16d1f59f4ef5821eccf996a6e6ea1afe3458b", "kind": "open-pr", "pr": 134,
-     "why": "Listed. Claim-graph firewalls converted to fail closed; gating CI green."},
-    {"repo": "query-", "branch": "main", "sha": "a61656fc7cbe704f5b874e1cae08637fb914227f", "kind": "default", "pr": null,
-     "why": "Public reviewed tip. NOTE: this tip has NO src/ tree; the src tree is the proposal below."},
-    {"repo": "query-", "branch": "chatgpt/src-migration-20260925", "sha": "f186847dbe32d57f9f4561107c947b153f656264", "kind": "open-pr", "pr": 13,
-     "why": "Listed. Publishes the canonical universal_law_query src package with compatibility wrappers."},
-    {"repo": "query-", "branch": "copilot/fix-github-actions-job", "sha": "99372d3c9e7e0c810e08746f676acbaabdb25941", "kind": "open-pr", "pr": 14,
-     "why": "Listed. Refreshes the downstream gate stub identities that were failing CI as TIP_DRIFT. Based on PR 13's branch, not on main."},
-    {"repo": "query-", "branch": "integration/public-src-20260926", "sha": "6c8389bf8566dc3280f8cfdd3197a0fc9cfd7a61", "kind": "open-pr", "pr": 16,
-     "why": "PR 13 fast-forwarded onto PR 14 plus the federation identity control the pair was missing. This is the branch that actually satisfies Part A. CI success."},
-    {"repo": "Math-", "branch": "main", "sha": "10e1f191c7d9f2755ca971ddbba87874d2475619", "kind": "default", "pr": null,
-     "why": "Public reviewed tip. The downstream gate stub pins in query- are refreshed against exactly this commit."},
-    {"repo": "Math-", "branch": "chatgpt/pin-micro-covariance-20260926", "sha": "ad27c6b8802167ae8798221a9fb8ba3365162b63", "kind": "open-pr", "pr": 60, "why": "Listed."},
-    {"repo": "Math-", "branch": "chatgpt/lifetime-parent-congruence-erratum-20260926", "sha": "d573b99d8792f3d5146c952737a4ba446a549e6f", "kind": "open-pr", "pr": 64, "why": "Listed."},
-    {"repo": "Math-", "branch": "cursor/d5-pin-microdisk-c059", "sha": "ae45d35192c2b601c7962e0b16b282ad9e98a400", "kind": "open-pr", "pr": 69, "why": "Listed."},
-    {"repo": "Math-", "branch": "cursor/proof-custody-repair-8e33", "sha": "b39e9ff7764635e4075cf53b0c22c4c5f25a61e7", "kind": "open-pr", "pr": 70, "why": "Listed."},
-    {"repo": "trial", "branch": "main", "sha": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6", "kind": "default", "pr": null, "why": "Public reviewed tip."},
-    {"repo": "governance-", "branch": "main", "sha": "7476e29c65ce82d23e0b39e7f7d98741a875a8ff", "kind": "default", "pr": null, "why": "Public reviewed tip."},
-    {"repo": "meta-framework", "branch": "main", "sha": "14f6836e7ccf6a463ef6da745602debfea4d15ee", "kind": "default", "pr": null, "why": "Public reviewed tip."},
-    {"repo": "google-drive", "branch": "main", "sha": "ea55c6e76edb31c48da5ce5aa0c3761d3ee49146", "kind": "default", "pr": null, "why": "Public reviewed tip."}
+    {
+      "repo": "main",
+      "branch": "main",
+      "sha": "99f8c2b7db3c530bf554ff90fdef89cd57fc29d8",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip. This is the submodule pin for repos/main."
+    },
+    {
+      "repo": "main",
+      "branch": "chatgpt/drive-github-hardening-20260919",
+      "sha": "cd66a655d0a922a7dcc1ffe8a28be62a43d7151d",
+      "kind": "research-tree",
+      "pr": null,
+      "why": "The active research tree. Included BY NAME and explicitly NOT presented as default main. It is not the reviewed tip and this repository does not treat it as one."
+    },
+    {
+      "repo": "main",
+      "branch": "claude/github-chatgpt-xxw5kp",
+      "sha": "67de1a2111da5720fd868c12168d8945b304b717",
+      "kind": "open-pr",
+      "pr": 21,
+      "why": "Listed. Architectural admission attestations and salvaged H3 review artifacts."
+    },
+    {
+      "repo": "main",
+      "branch": "chatgpt/sard-g-execution-repair-20260925",
+      "sha": "a1fc9581291b6f81c76c903c96a13955b51f8d54",
+      "kind": "open-pr",
+      "pr": 122,
+      "why": "Listed. SARD-G repair: countable open charts and endpoint-support localization."
+    },
+    {
+      "repo": "main",
+      "branch": "cursor/intermediate-scale-bridge-ab2f",
+      "sha": "674f88cd60fdcae590b7b56699600bc3dd80b8a3",
+      "kind": "open-pr",
+      "pr": 128,
+      "why": "Listed. D5 intermediate-scale envelope between fixed annulus and fixed remote."
+    },
+    {
+      "repo": "main",
+      "branch": "claude/firewalls-fail-closed",
+      "sha": "1db16d1f59f4ef5821eccf996a6e6ea1afe3458b",
+      "kind": "open-pr",
+      "pr": 134,
+      "why": "Listed. Claim-graph firewalls converted to fail closed; gating CI green."
+    },
+    {
+      "repo": "query-",
+      "branch": "main",
+      "sha": "a61656fc7cbe704f5b874e1cae08637fb914227f",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip. NOTE: this tip has NO src/ tree; the src tree is the proposal below."
+    },
+    {
+      "repo": "query-",
+      "branch": "chatgpt/src-migration-20260925",
+      "sha": "f186847dbe32d57f9f4561107c947b153f656264",
+      "kind": "open-pr",
+      "pr": 13,
+      "why": "Listed. Publishes the canonical universal_law_query src package with compatibility wrappers."
+    },
+    {
+      "repo": "query-",
+      "branch": "copilot/fix-github-actions-job",
+      "sha": "99372d3c9e7e0c810e08746f676acbaabdb25941",
+      "kind": "open-pr",
+      "pr": 14,
+      "why": "Listed. Refreshes the downstream gate stub identities that were failing CI as TIP_DRIFT. Based on PR 13's branch, not on main."
+    },
+    {
+      "repo": "query-",
+      "branch": "integration/public-src-20260926",
+      "sha": "6c8389bf8566dc3280f8cfdd3197a0fc9cfd7a61",
+      "kind": "open-pr",
+      "pr": 16,
+      "why": "PR 13 fast-forwarded onto PR 14 plus the federation identity control the pair was missing. This is the branch that actually satisfies Part A. CI success."
+    },
+    {
+      "repo": "Math-",
+      "branch": "main",
+      "sha": "10e1f191c7d9f2755ca971ddbba87874d2475619",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip. The downstream gate stub pins in query- are refreshed against exactly this commit."
+    },
+    {
+      "repo": "Math-",
+      "branch": "chatgpt/pin-micro-covariance-20260926",
+      "sha": "ad27c6b8802167ae8798221a9fb8ba3365162b63",
+      "kind": "open-pr",
+      "pr": 60,
+      "why": "Listed."
+    },
+    {
+      "repo": "Math-",
+      "branch": "chatgpt/lifetime-parent-congruence-erratum-20260926",
+      "sha": "d573b99d8792f3d5146c952737a4ba446a549e6f",
+      "kind": "open-pr",
+      "pr": 64,
+      "why": "Listed."
+    },
+    {
+      "repo": "Math-",
+      "branch": "cursor/d5-pin-microdisk-c059",
+      "sha": "ae45d35192c2b601c7962e0b16b282ad9e98a400",
+      "kind": "open-pr",
+      "pr": 69,
+      "why": "Listed."
+    },
+    {
+      "repo": "Math-",
+      "branch": "cursor/proof-custody-repair-8e33",
+      "sha": "b39e9ff7764635e4075cf53b0c22c4c5f25a61e7",
+      "kind": "open-pr",
+      "pr": 70,
+      "why": "Listed."
+    },
+    {
+      "repo": "trial",
+      "branch": "main",
+      "sha": "ff373ea56dfdbe99d83701c20c5e083a984b9bb6",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip."
+    },
+    {
+      "repo": "governance-",
+      "branch": "main",
+      "sha": "7476e29c65ce82d23e0b39e7f7d98741a875a8ff",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip."
+    },
+    {
+      "repo": "meta-framework",
+      "branch": "main",
+      "sha": "14f6836e7ccf6a463ef6da745602debfea4d15ee",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip."
+    },
+    {
+      "repo": "google-drive",
+      "branch": "main",
+      "sha": "ea55c6e76edb31c48da5ce5aa0c3761d3ee49146",
+      "kind": "default",
+      "pr": null,
+      "why": "Public reviewed tip."
+    }
   ],
   "deliberately_not_imported": [
-    {"repo": "main", "branch": "claude/interval-docs-errata", "sha": "a20e4cf255aaef9ecd86e2470d7df3e9ed45a801", "pr": 135,
-     "why_not": "Open, and green, but NOT on the instructed include list, and it touches documentation and interval controls rather than src or publication. Recorded here so the omission is a decision, not an oversight."},
-    {"repo": "main", "branch": "claude/noncertifying-label-enforcement", "sha": "aadcddae3c8cff5eb67b0a5f965734afd92d436f", "pr": 136,
-     "why_not": "Open, but NOT on the instructed include list; it enforces a float-labelling rule rather than touching src or publication. Recorded as a decision."},
-    {"repo": "query-", "branch": "cursor/peer-handoff-meta6-3c3cf11-2393", "sha": null, "pr": 12,
-     "why_not": "Open, and it ALSO refreshes downstream gate stubs on base main -- overlapping work with PR 14. Not on the include list. Flagged in CONFLICT_LEDGER.md rather than imported, because importing both refresh routes would require picking a winner."},
-    {"repo": "Math-", "branch": null, "sha": null, "pr": null,
-     "why_not": "Math- has 21 open PRs; only the four listed (60, 64, 69, 70) are imported. The remaining 17 are not stale-branch noise to be swept in, and the instruction is explicit that every stale remote-tracking branch stays out."}
-  ]
+    {
+      "repo": "main",
+      "branch": "claude/interval-docs-errata",
+      "sha": "a20e4cf255aaef9ecd86e2470d7df3e9ed45a801",
+      "pr": 135,
+      "why_not": "Open, and green, but NOT on the instructed include list, and it touches documentation and interval controls rather than src or publication. Recorded here so the omission is a decision, not an oversight."
+    },
+    {
+      "repo": "main",
+      "branch": "claude/noncertifying-label-enforcement",
+      "sha": "aadcddae3c8cff5eb67b0a5f965734afd92d436f",
+      "pr": 136,
+      "why_not": "Open, but NOT on the instructed include list; it enforces a float-labelling rule rather than touching src or publication. Recorded as a decision."
+    },
+    {
+      "repo": "query-",
+      "branch": "cursor/peer-handoff-meta6-3c3cf11-2393",
+      "sha": null,
+      "pr": 12,
+      "why_not": "Open, and it ALSO refreshes downstream gate stubs on base main -- overlapping work with PR 14. Not on the include list. Flagged in CONFLICT_LEDGER.md rather than imported, because importing both refresh routes would require picking a winner."
+    },
+    {
+      "repo": "Math-",
+      "branch": null,
+      "sha": null,
+      "pr": null,
+      "why_not": "Math- has 21 open PRs; only the four listed (60, 64, 69, 70) are imported. The remaining 17 are not stale-branch noise to be swept in, and the instruction is explicit that every stale remote-tracking branch stays out."
+    }
+  ],
+  "host_repository": {
+    "name": "universal-law-workspace",
+    "url": "https://github.com/d6g8k5htny-coder/universal-law-workspace",
+    "created_utc": "2026-09-26",
+    "root_commit": "fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1",
+    "coordination_issue": 1,
+    "note": "This repository is NOT one of the seven mapped packages. It is the host. Its own refs are recorded here so a second bootstrap lane is visible rather than discovered by collision.",
+    "refs": [
+      {
+        "branch": "main",
+        "sha": "fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1",
+        "kind": "default",
+        "why": "The repository-creation commit, made by the owner. Left exactly as it is: this proposal descends from it by an ordinary merge and does not replace it."
+      },
+      {
+        "branch": "chatgpt/federation-bootstrap-20260926",
+        "sha": "fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1",
+        "kind": "other lane",
+        "why": "The second bootstrap lane named in issue #1. At the time this manifest was written it holds no work beyond the root commit -- same sha as main. Not touched, not merged, not rebased. See CONFLICT_LEDGER.md C5."
+      },
+      {
+        "branch": "claude/public-workspace-proposal-20260926",
+        "sha": null,
+        "resolves_to": "HEAD",
+        "kind": "this proposal",
+        "why": "This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit."
+      }
+    ]
+  }
 }
