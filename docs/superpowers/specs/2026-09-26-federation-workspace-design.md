@@ -7,13 +7,13 @@
 
 ## Goal
 
-Create a small federation/control surface above the existing Universal Law repositories so humans and models can discover where work belongs, record exact observed source identities, and run structural conformance checks without introducing another scientific-status authority.
+Create a small federation/control surface above the existing Universal Law repositories so humans and models can discover where work belongs, record exact observed source identities, and run structural conformance checks without introducing another scientific-status or repository-role authority.
 
 ## Context
 
-The existing program is deliberately federated. `main` is the public/integration surface; `Math-` carries proofs, calculations, and existing downstream gate artifacts; `meta-framework` carries artifact routing/byte identities; `query-` is read-only lookup; `google-drive` carries selected replicas; `trial` carries cross-repository engineering tests; `governance-` carries working practices; and `sandbox` is noncanonical experimentation.
+The existing program is deliberately federated. `main` is the public/integration surface; `Math-` carries proofs, calculations, and existing downstream gate artifacts; `meta-framework` carries artifact routing/byte identities and the existing machine repository-role record; `query-` is read-only lookup; `google-drive` carries selected replicas; `trial` carries cross-repository engineering tests; `governance-` carries working practices; and `sandbox` is noncanonical experimentation.
 
-The prior cross-repository design review identified the primary architectural failure mode: duplicating promotion/status authority in a new package or repository. This design makes that failure mechanically harder.
+The prior cross-repository design review identified two related failure modes: duplicating promotion/status authority and duplicating the machine repository-role/identity record. This design makes both failures mechanically harder.
 
 ## Authority boundary
 
@@ -26,9 +26,11 @@ This repository owns only:
 
 It never owns or writes mathematical status, grade, classification, controlling/terminal state, review disposition, lemma closure, prize closure, promotion permission, or independence credit.
 
+It also never authors machine role metadata for the pre-existing repositories. That remains in `meta-framework/registry.json`.
+
 The bootstrap consumes four observed external objects:
 
-- `meta-framework/registry.json` for artifact routing and byte identities;
+- `meta-framework/registry.json` for the sole machine repository-role record, artifact routing, and byte identities;
 - `main:architecture/scientific_state/v1/AUTHORITY_MAP.json` on the currently active hardening branch for ownership boundaries;
 - `Math-/frontiers/downstream_gate_20260925/GRAPH.json` for the existing downstream gate surface;
 - `Math-/claims/LANDING_CLAIMS.json` for the existing landing projection.
@@ -39,7 +41,7 @@ Their git blob SHAs are observations, not transfers of ownership.
 
 ### `workspace/repositories.json`
 
-A small, hand-readable federation manifest. It lists repository roles and exact observed git blob identities for the canonical inputs above.
+A small, hand-readable federation manifest. Its repository entries contain identity only. Repository roles are intentionally absent and must be read from the pinned `repository_registry` source. The manifest also records exact observed git blob identities for the canonical inputs above.
 
 The manifest carries `scientific_status_authority: false` and `scientific_effect: NONE`.
 
@@ -49,11 +51,12 @@ A standard-library fail-closed structural checker. It rejects:
 
 - changing the workspace into a scientific-status authority;
 - adding scientific-state fields anywhere else in the manifest;
+- adding repository-role metadata to the workspace manifest;
 - removing a required repository;
 - silently adding an unreviewed repository;
 - duplicate repository rows;
-- unpinned canonical inputs;
-- loss of the explicit Federation role for this repository.
+- canonical inputs whose source repository is outside the federation;
+- unpinned canonical inputs.
 
 It does not call GitHub and cannot certify mathematics.
 
@@ -65,11 +68,11 @@ The test suite exercises the positive manifest plus negative controls for each l
 
 External authority records → human-reviewed observed blob pins in this repository → local structural checker → navigation/conformance result.
 
-There is no reverse edge from this repository into scientific status.
+There is no reverse edge from this repository into scientific status or canonical role ownership.
 
 ## Error handling
 
-The checker exits nonzero on malformed JSON, missing required data, forbidden state keys, topology drift, or an authority-boundary violation. It prints the failures explicitly. Unknown repositories fail until the contract is intentionally amended.
+The checker exits nonzero on malformed JSON, missing required data, forbidden state keys, duplicate role metadata, topology drift, an out-of-federation source, or an authority-boundary violation. It prints the failures explicitly. Unknown repositories fail until the contract is intentionally amended.
 
 ## Scope exclusions
 
@@ -81,6 +84,7 @@ This bootstrap does not:
 - mutate Drive;
 - add a promotion engine;
 - create automated cross-repository writes;
+- create a second machine repository-role registry;
 - assert that any mathematical claim is proved, reviewed, controlling, or closed.
 
 ## Next reviewed slices
