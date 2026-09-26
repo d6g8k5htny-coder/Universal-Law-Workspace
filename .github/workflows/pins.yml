@@ -1,0 +1,23 @@
+name: pins
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify-pins:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Never initialise submodules here: repos/sandbox is private and
+          # opt-in (update = none), and the checker only needs the gitlinks
+          # in the HEAD tree, not the submodule contents.
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify pins against tree, .gitmodules and remotes
+        run: python3 tools/verify_pins.py --network
+      - name: Negative controls
+        run: python3 -m unittest discover -s tests -v
