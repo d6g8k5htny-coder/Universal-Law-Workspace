@@ -242,7 +242,7 @@
   ],
   "host_repository": {
     "name": "universal-law-workspace",
-    "url": "https://github.com/d6g8k5htny-coder/universal-law-workspace",
+    "url": "https://github.com/d6g8k5htny-coder/Universal-Law-Workspace",
     "created_utc": "2026-09-26",
     "root_commit": "fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1",
     "coordination_issue": 1,
@@ -267,6 +267,7 @@
         "kind": "this proposal",
         "why": "This branch. Its sha is not written here because a manifest cannot contain the hash of the commit that contains it; the verifier resolves HEAD instead and checks that HEAD descends from root_commit."
       }
-    ]
+    ],
+    "url_note": "Canonical casing as GitHub serves it. The all-lowercase spelling redirects, and git reports \"This repository moved\" when pushed to it, so the exact name is recorded here."
   }
 }

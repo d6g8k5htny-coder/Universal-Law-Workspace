@@ -53,7 +53,7 @@ their exact SHAs.
 ## Clone it
 
 ```bash
-git clone --recurse-submodules https://github.com/d6g8k5htny-coder/universal-law-workspace
+git clone --recurse-submodules https://github.com/d6g8k5htny-coder/Universal-Law-Workspace
 cd universal-law-workspace
 ```
 
@@ -125,7 +125,7 @@ it runs against PR #16's ref rather than the pinned default — see `BRANCH_MAP.
 
 ```bash
 python3 scripts/verify_workspace.py              # refuses if the map misdescribes itself
-python3 -m unittest discover -s tests -v         # 25 negative controls, standard library only
+python3 -m unittest discover -s tests -v         # 26 negative controls, standard library only
 python3 scripts/generate_ledgers.py              # BRANCH_MAP.md must come back unchanged
 ```
 
@@ -135,12 +135,14 @@ appeared; no **tracked** file carries a credential, a private relay address or a
 of the excluded private package; every named ref has a 40-hex SHA and a stated reason;
 `BRANCH_MAP.md` carries every recorded SHA **and** branch name; the host repository's own
 refs — including the other bootstrap lane's — are recorded and mapped; `HEAD` descends
-from the owner's root commit; and a run that compared fewer than thirty things is a
-failure rather than a pass.
+from the owner's root commit; and every category — packages, named refs, omissions, host
+refs, scanned files — must be non-empty, so a run that checked nothing in one of them is
+a failure for that category rather than a pass.
 
 The controls in `tests/` are the deliverable, not decoration. Each one weakens exactly one
-of those facts and asserts the verifier then **refuses**. Writing them found three real
-defects in the verifier they were written for:
+of those facts and asserts the verifier then **refuses**. Writing them found four real
+defects in the verifier they were written for — two of them fail-open, meaning the checker
+reported success on a tree it was supposed to refuse:
 
 1. it scanned raw disk rather than tracked files, so compiled `__pycache__` bytecode —
    ignored, untracked, in no clone — failed the tree, because Python folds `'a' + 'b'` at
@@ -149,7 +151,12 @@ defects in the verifier they were written for:
 2. it compared SHAs but not branch names, so when two refs shared a SHA a ref could vanish
    from `BRANCH_MAP.md` while a sibling row kept the check satisfied — the failure mode
    that would have hidden the other lane's branch;
-3. the harness's own `git mktree` and `git hash-object --stdin` inherited the runner's
+3. its vacuity floor was a single total, `compared < 30`, and a single total is propped
+   up by growth in an unrelated category: adding two files to the tree lifted the
+   tracked-file scan's contribution over the constant on its own, and the control that
+   empties the entire manifest silently stopped failing. Each category now carries its own
+   floor, with the total kept only as a coarse backstop behind them;
+4. the harness's own `git mktree` and `git hash-object --stdin` inherited the runner's
    standard input and blocked forever instead of failing, so the suite hung rather than
    reported.
 
@@ -171,7 +178,7 @@ those; `BRANCH_MAP.md` is generated from it so a SHA is never retyped.
 
 ## Two lanes are bootstrapping this repository
 
-[Issue #1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1) divides
+[Issue #1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1) divides
 the bootstrap between two lanes and assigns the repository map, the validator, the
 negative controls and CI to the other one. This branch built a map and a validator
 before that issue existed, so the slices overlap. Nothing was resolved by pushing first:

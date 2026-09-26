@@ -263,6 +263,26 @@ class WorkspaceControls(unittest.TestCase):
         self.write_manifest(m)
         self.assertRefuses('VACUOUS RUN')
 
+    def test_each_emptied_category_trips_its_own_floor(self) -> None:
+        """One total floor is not enough, and this control is why.
+
+        The floor here used to be a flat `compared < 30`. Adding two files to the tree
+        lifted the tracked-file scan's contribution over that constant on its own, and
+        emptying the entire manifest stopped being refused -- the aggregate hid it. Each
+        category now carries its own floor, and each is checked separately below.
+        """
+        for key in ('packages', 'named_branches', 'deliberately_not_imported'):
+            with self.subTest(category=key):
+                m = self.manifest()
+                m[key] = []
+                self.write_manifest(m)
+                self.assertRefuses('VACUOUS RUN')
+        with self.subTest(category='host_repository.refs'):
+            m = self.manifest()
+            m['host_repository']['refs'] = []
+            self.write_manifest(m)
+            self.assertRefuses('VACUOUS RUN')
+
 
 if __name__ == '__main__':
     unittest.main()

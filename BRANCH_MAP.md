@@ -80,7 +80,7 @@ An omission recorded is a decision; an omission unrecorded is an oversight. Thes
 ## This repository's own refs (the host, not a mapped package)
 `universal-law-workspace` is where this map lives. This repository is NOT one of the seven mapped packages. It is the host. Its own refs are recorded here so a second bootstrap lane is visible rather than discovered by collision.
 
-Root commit `fcd1d01ed87b…`, created 2026-09-26; coordination issue [#1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1).
+Root commit `fcd1d01ed87b…`, created 2026-09-26; coordination issue [#1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1).
 
 | ref | kind | sha | why |
 |---|---|---|---|

@@ -16,7 +16,9 @@ Checks, in order:
      and appears in BRANCH_MAP.md;
   8. HEAD descends from the host repository's recorded root commit -- a branch that
      replaced the owner's history instead of building on it fails here;
-  9. a vacuity floor -- a run that compared nothing is a failure, not a pass.
+  9. a vacuity floor per category -- an empty package list, ref list, omission list, host
+     ref list or file scan is a failure for that category, not a pass, because one total
+     can be propped up by growth in an unrelated category.
 
 A pass is a documentation-consistency fact. It verifies no mathematics, accepts no
 theorem and moves no status. Scientific effect: NONE.
@@ -176,10 +178,24 @@ def main() -> int:
                                 f"{anc.stderr.strip() or 'no message'}). A check that cannot run "
                                 f"is not a check that passed.")
 
+    # A vacuity floor PER CATEGORY, not one total. A single total is defeated by growth
+    # somewhere unrelated: this file's floor was a flat `compared < 30`, and when two files
+    # were added to the tree the tracked-file scan alone lifted the total back over it, so
+    # the control that empties the whole manifest stopped failing and nothing said so. A
+    # category cannot cover for another category.
+    for empty, what in ((not declared, 'no packages declared'),
+                        (not m['named_branches'], 'no named refs recorded'),
+                        (not m['deliberately_not_imported'], 'no omissions recorded'),
+                        (host is not None and not host.get('refs'),
+                         'the host repository has no recorded refs'),
+                        (not tracked, 'no tracked files scanned')):
+        if empty:
+            problems.append(f'VACUOUS RUN: {what}. A run that checked nothing in a category '
+                            f'is not a pass for that category; the exit code would look the '
+                            f'same if that part of the manifest had been deleted.')
     if compared < 30:
-        problems.append(f'VACUOUS RUN: only {compared} comparisons made. A run that checked '
-                        f'almost nothing is not a pass; the exit code would look the same if '
-                        f'the manifest had been emptied.')
+        problems.append(f'VACUOUS RUN: only {compared} comparisons in total. This is a coarse '
+                        f'backstop behind the per-category floors above, not the main guard.')
 
     for p in problems:
         print(p)

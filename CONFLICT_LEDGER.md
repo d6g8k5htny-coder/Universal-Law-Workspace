@@ -55,7 +55,7 @@ these rows moves a theorem, lemma, prize or claim status.
 
 | | |
 |---|---|
-| tree A | `chatgpt/federation-bootstrap-20260926` @ `fcd1d01ed87b…` — the lane described in [issue #1](https://github.com/d6g8k5htny-coder/universal-law-workspace/issues/1): federation contract/spec, repository map, validator, negative controls, CI |
+| tree A | `chatgpt/federation-bootstrap-20260926` @ `fcd1d01ed87b…` — the lane described in [issue #1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1): federation contract/spec, repository map, validator, negative controls, CI |
 | tree B | `claude/public-workspace-proposal-20260926` — this branch: `WORKSPACE.json` (repository map), `scripts/verify_workspace.py` (validator + vacuity floor), seven submodule gitlinks, four ledgers |
 | disagreement | **scope overlap, not yet byte overlap.** Issue #1 assigns the map / validator / CI slice to lane A. Lane B built a map and a validator before the issue existed. As of this commit tree A holds *no work beyond the root commit* — `chatgpt/federation-bootstrap-20260926` and `main` are the same SHA — so there is nothing of lane A's to conflict with yet. |
 | the one concrete byte difference | `README.md`. The repository was created with a 25-byte auto-init stub (`# Universal-Law-Workspace`, no trailing newline, sha256 `d17ad4a96b30b8965cfde2dc976f42d7…`, blob `b4bb1f6da58b…`). This branch replaces it with the map README. The stub bytes are **not deleted**: `fcd1d01ed87b…` is a parent of this branch's merge commit, so `git show fcd1d01:README.md` returns them verbatim forever, and the row is in `IDENTITY_LEDGER.md`. |
