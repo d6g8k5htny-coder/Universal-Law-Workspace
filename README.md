@@ -2,11 +2,11 @@
 
 **Federation, conformance, and reproducibility surface for the Universal Law research program.**
 
-This repository is the system-level front door for a multi-repository mathematical research workspace. It exists to make the repository topology, source identities, agent routing, and engineering checks easy to inspect without creating another scientific source of truth.
+This repository is the system-level front door for a multi-repository mathematical research workspace. It exists to make repository topology, source identities, agent routing, and engineering checks easy to inspect without creating another scientific source of truth.
 
 ## What this repository owns
 
-- workspace navigation and repository-role documentation;
+- workspace navigation and links to the canonical repository-role registry;
 - observed, byte-addressed pointers to canonical cross-repository control inputs;
 - structural conformance checks for the federation contract;
 - reproducibility/workspace snapshots added in later reviewed changes;
@@ -16,23 +16,23 @@ This repository is the system-level front door for a multi-repository mathematic
 
 It does **not** decide theorem correctness, claim grade, terminal classification, review disposition, lemma closure, independence credit, or promotion. Green CI, a hash match, a merge, or model agreement is not mathematical acceptance.
 
-The current machine-readable boundary is [workspace/repositories.json](workspace/repositories.json). Its validator deliberately rejects scientific-state fields so this repository cannot silently grow into a second promotion engine.
+It also does not own the machine repository-role map. Roles for the pre-existing federation are authored in `meta-framework/registry.json`; the workspace manifest deliberately lists repository identities only.
 
-## Repository map
+The current machine-readable boundary is [workspace/repositories.json](workspace/repositories.json). Its validator rejects scientific-state fields and duplicate machine role metadata so this repository cannot silently grow into a second promotion or role-authority engine.
 
-| Repository | Role |
-|---|---|
-| [main](https://github.com/d6g8k5htny-coder/main) | Research campaign, public reading path, reviews, discussion, and integration |
-| [Math-](https://github.com/d6g8k5htny-coder/Math-) | Candidate proofs, mathematical programs, reproducible enclosures, and existing downstream gate surfaces |
-| [meta-framework](https://github.com/d6g8k5htny-coder/meta-framework) | Machine-readable artifact routing and byte identities |
-| [query-](https://github.com/d6g8k5htny-coder/query-) | Read-only exact-key lookup and local artifact verification |
-| [google-drive](https://github.com/d6g8k5htny-coder/google-drive) | Selected public Drive replicas with source custody |
-| [trial](https://github.com/d6g8k5htny-coder/trial) | Cross-repository engineering integration tests |
-| [governance-](https://github.com/d6g8k5htny-coder/governance-) | Cross-repository working practices |
-| [sandbox](https://github.com/d6g8k5htny-coder/sandbox) | Private exploratory experiments outside canonical public routing |
-| **Universal-Law-Workspace** | Federation navigation, conformance, snapshots, and agent routing |
+## Federation set
 
-Role prose here is navigation. Canonical identity/status ownership remains in the referenced repositories; see the observed source pins in the manifest rather than treating this table as a status register.
+- [main](https://github.com/d6g8k5htny-coder/main)
+- [Math-](https://github.com/d6g8k5htny-coder/Math-)
+- [meta-framework](https://github.com/d6g8k5htny-coder/meta-framework)
+- [query-](https://github.com/d6g8k5htny-coder/query-)
+- [google-drive](https://github.com/d6g8k5htny-coder/google-drive)
+- [trial](https://github.com/d6g8k5htny-coder/trial)
+- [governance-](https://github.com/d6g8k5htny-coder/governance-)
+- [sandbox](https://github.com/d6g8k5htny-coder/sandbox)
+- **Universal-Law-Workspace**
+
+For machine repository roles and public/private routing metadata, consult the pinned `repository_registry` source in the workspace manifest rather than copying its fields here.
 
 ## Verify the bootstrap
 
