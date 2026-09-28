@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 260" role="img" aria-labelledby="banner-title banner-desc">
+<title id="banner-title">Universal Law — Mathematics, Evidence, Verification</title>
+<desc id="banner-desc">Navy, field blue and restrained gold research identity. Claims should carry their evidence. The contour motif is decorative, not a computed result.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#13243b"/></linearGradient></defs>
+<rect width="1280" height="260" rx="16" fill="url(#bg)"/>
+<path d="M28 2 H1252" stroke="#e9c675" stroke-width="3"/>
+<path d="M48 213 H746" stroke="#334960" stroke-width="1"/>
+<text x="48" y="61" fill="#78c1ff" font-family="Arial, sans-serif" font-size="15" letter-spacing="4">MATHEMATICS · EVIDENCE · VERIFICATION</text>
+<text x="46" y="134" fill="#eff5fd" font-family="Georgia, serif" font-size="61" letter-spacing="1">UNIVERSAL LAW</text>
+<text x="49" y="179" fill="#e9c675" font-family="Arial, sans-serif" font-size="23">Claims should carry their evidence.</text>
+<text x="49" y="241" fill="#b0c2d6" font-family="Arial, sans-serif" font-size="14" letter-spacing="1">EXACT SOURCE  /  REPRODUCIBLE WORK  /  EXPLICIT SCOPE</text>
+<g fill="none" stroke="#78c1ff" stroke-width="1.3" opacity=".7">
+<ellipse cx="1043" cy="185" rx="159" ry="38"/><ellipse cx="1043" cy="185" rx="128" ry="29"/><ellipse cx="1043" cy="185" rx="97" ry="20"/><ellipse cx="1043" cy="185" rx="65" ry="12"/>
+<path d="M872 158 C918 158 913 93 943 93 S994 168 1037 166 S1107 104 1135 104 S1162 158 1203 158"/>
+</g>
+<path d="M872 158 C944 158 966 135 996 69 S1034 23 1043 23 S1077 62 1097 113 S1143 158 1203 158" fill="none" stroke="#e9c675" stroke-width="2.6"/>
+<path d="M1043 23 V185" stroke="#e9c675" stroke-width="1.2" stroke-dasharray="3 6"/>
+<circle cx="1043" cy="185" r="4" fill="#e9c675"/>
+</svg>
