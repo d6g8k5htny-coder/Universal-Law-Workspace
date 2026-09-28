@@ -4,6 +4,35 @@
 
 The **only public front door is [d6g8k5htny-coder/main](https://github.com/d6g8k5htny-coder/main)**. This repository is deliberately narrower: it maps the repository set, pins observed cross-repository control inputs, and runs fail-closed structural checks. It is not a second research home and it is not a scientific-status authority.
 
+
+## Start with the map
+
+```text
+                         main
+                  PUBLIC FRONT DOOR
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+        Math-          query-      meta-framework
+     PROOF VAULT       LOOKUP          CATALOG
+          │              │              │
+          └──────────────┼──────────────┘
+                         ▼
+              CUSTODY / CONFORMANCE
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+        google-drive    trial      governance-
+          custody    integration    protocols
+
+        sandbox = bounded experimentation
+        this repo = federation map + pinned topology
+```
+
+**New here?** Read [main](https://github.com/d6g8k5htny-coder/main) first.  
+**Reading mathematics?** Go to [Math-](https://github.com/d6g8k5htny-coder/Math-).  
+**Looking for an exact artifact?** Use [query-](https://github.com/d6g8k5htny-coder/query-).
+
 ## What this repository owns
 
 - the supporting federation map;
