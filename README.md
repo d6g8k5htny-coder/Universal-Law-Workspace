@@ -1,4 +1,4 @@
-[![Universal Law — mathematics, evidence and verification](https://raw.githubusercontent.com/d6g8k5htny-coder/main/6168a1efc42dc6eabae3ce91623d6e16d3c92fd6/docs/site/brand/banner.svg)](https://d6g8k5htny-coder.github.io/main/site/)
+[![Universal Law — mathematics, evidence and verification](.github/brand-banner.svg)](https://d6g8k5htny-coder.github.io/main/site/)
 
 # Universal Law Workspace
 
