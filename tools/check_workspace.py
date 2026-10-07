@@ -45,6 +45,22 @@ FORBIDDEN_STATE_KEYS = {
 BLOB_RE = re.compile(r"^[0-9a-f]{40}$")
 
 
+class DuplicateJSONMemberError(ValueError):
+    """A decoded JSON object repeats a member name."""
+
+
+def _unique_json_members(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Build one object without discarding repeated decoded member names."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            # Keep arbitrary names on one printable diagnostic line.
+            name = json.dumps(key, ensure_ascii=True)
+            raise DuplicateJSONMemberError(f"duplicate JSON member: {name}")
+        result[key] = value
+    return result
+
+
 def _walk_forbidden_keys(value: Any, path: str = "$") -> list[str]:
     problems: list[str] = []
     if isinstance(value, dict):
@@ -164,8 +180,10 @@ def main(argv: list[str] | None = None) -> int:
     root = Path(__file__).resolve().parents[1]
     path = Path(args[0]) if args else root / "workspace" / "repositories.json"
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        data = json.loads(
+            path.read_text(encoding="utf-8"), object_pairs_hook=_unique_json_members
+        )
+    except (OSError, json.JSONDecodeError, DuplicateJSONMemberError) as exc:
         print(f"problem: cannot read manifest {path}: {exc}")
         print("repositories=0 canonical_inputs=0 problems=1")
         return 1
