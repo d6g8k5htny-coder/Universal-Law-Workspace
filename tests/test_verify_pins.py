@@ -195,6 +195,90 @@ class VerifyPinsControls(unittest.TestCase):
         self.assertEqual(found, expected)
 
 
+class VerifyPinsDuplicateJSONControls(unittest.TestCase):
+    """Raw JSON must remain unambiguous before any Git or remote work."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory(prefix="ulw-json-test-")
+        self.addCleanup(self._tmp.cleanup)
+        self.root = self._tmp.name
+        self.pins = build_fixture(self.root, *consistent_parts())
+        with open(self.pins, encoding="utf-8") as fh:
+            self.canonical = fh.read()
+
+    def assert_duplicate_rejected(self, raw, key):
+        with open(self.pins, "w", encoding="utf-8") as fh:
+            fh.write(raw)
+        for mode in ((), ("-O",)):
+            with self.subTest(child_python_args=mode):
+                proc = run_checker(self.root, self.pins,
+                                   python_args=("-E",) + mode)
+                self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+                self.assertEqual(proc.stderr, "")
+                self.assertIn("duplicate JSON member", proc.stdout)
+                self.assertIn(key, proc.stdout)
+                self.assertNotIn("verify_pins: OK", proc.stdout)
+
+    def test_conflicting_pin_and_flags_rejected_in_both_orders(self):
+        for key, good, bad in (("pinned_sha", SHA_A, SHA_C),
+                               ("public", True, False),
+                               ("opt_in", False, True)):
+            needle = json.dumps(key) + ": " + json.dumps(good)
+            for first, second in ((bad, good), (good, bad)):
+                with self.subTest(key=key, first=first):
+                    duplicate = (json.dumps(key) + ": " + json.dumps(first)
+                                 + ", " + json.dumps(key) + ": "
+                                 + json.dumps(second))
+                    raw = self.canonical.replace(needle, duplicate, 1)
+                    self.assert_duplicate_rejected(raw, key)
+
+    def test_duplicate_root_members_rejected_in_both_orders(self):
+        for key, bad in (("schema", '"other"'), ("repos", "[]")):
+            member = json.dumps(key) + ": " + bad
+            for raw in ("{" + member + ", " + self.canonical[1:],
+                        self.canonical[:-1] + ", " + member + "}"):
+                with self.subTest(key=key, raw=raw):
+                    self.assert_duplicate_rejected(raw, key)
+
+    def test_escaped_equivalent_member_rejected_in_both_orders(self):
+        needle = '"pinned_sha": ' + json.dumps(SHA_A)
+        good = needle
+        bad = r'"pinned\u005fsha": ' + json.dumps(SHA_C)
+        for pair in (bad + ", " + good, good + ", " + bad):
+            self.assert_duplicate_rejected(
+                self.canonical.replace(needle, pair, 1), "pinned_sha")
+
+    def test_identical_duplicate_is_still_ambiguous(self):
+        member = '"pinned_sha": ' + json.dumps(SHA_A)
+        self.assert_duplicate_rejected(
+            self.canonical.replace(member, member + ", " + member, 1),
+            "pinned_sha")
+
+    def test_duplicate_in_nested_object_is_rejected(self):
+        for pair in ('"source": 1, "source": 2',
+                     '"source": 2, "source": 1'):
+            raw = self.canonical[:-1] + ', "metadata": {"extra": {' + pair + '}}}'
+            self.assert_duplicate_rejected(raw, "source")
+
+    def test_duplicate_rejection_precedes_git_even_with_network_requested(self):
+        raw = '{"repos": [], ' + self.canonical[1:]
+        with open(self.pins, "w", encoding="utf-8") as fh:
+            fh.write(raw)
+        # No Git can start under this PATH. A parser rejection must still
+        # win, including when --network would otherwise fetch public pins.
+        for mode in ((), ("-O",)):
+            with self.subTest(child_python_args=mode):
+                proc = subprocess.run(
+                    [sys.executable, "-E"] + list(mode) + [CHECKER,
+                     "--repo", self.root, "--pins", self.pins, "--network"],
+                    capture_output=True, text=True,
+                    env=dict(os.environ, PATH=""))
+                self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+                self.assertEqual(proc.stderr, "")
+                self.assertIn("duplicate JSON member", proc.stdout)
+                self.assertNotIn("info:", proc.stdout)
+
+
 class VerifyPinsNetworkControls(unittest.TestCase):
     """Exercise the full CLI with disposable local remotes, without network."""
 
