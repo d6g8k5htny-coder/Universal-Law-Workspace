@@ -45,7 +45,8 @@ def unique_json_object(pairs):
     result = {}
     for key, value in pairs:
         if key in result:
-            raise ValueError("pins.json: duplicate JSON member %r" % key)
+            # Keep the refusal printable even when stdout uses ASCII.
+            raise ValueError("pins.json: duplicate JSON member %s" % ascii(key))
         result[key] = value
     return result
 

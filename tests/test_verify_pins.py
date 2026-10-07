@@ -278,6 +278,40 @@ class VerifyPinsDuplicateJSONControls(unittest.TestCase):
                 self.assertIn("duplicate JSON member", proc.stdout)
                 self.assertNotIn("info:", proc.stdout)
 
+    def test_duplicate_diagnostics_are_ascii_safe_before_git(self):
+        cases = (
+            ('{"schema":1,"schema":2}', "'schema'"),
+            ('{"é":1,"\\u00e9":2}', "'\\xe9'"),
+            ('{"\\u00e9":1,"é":2}', "'\\xe9'"),
+            ('{"metadata":[{"😀":1,"\\ud83d\\ude00":2}]}',
+             "'\\U0001f600'"),
+            ('{"line\\nend":1,"line\\nend":2}', "'line\\nend'"),
+            ('{"\\ud800":1,"\\ud800":2}', "'\\ud800'"),
+        )
+        for raw, displayed_key in cases:
+            with open(self.pins, "w", encoding="utf-8") as fh:
+                fh.write(raw)
+            for encoding in ("ascii", "utf-8"):
+                for mode in ((), ("-O",)):
+                    with self.subTest(raw=raw, encoding=encoding, mode=mode):
+                        env = dict(os.environ, PATH="",
+                                   PYTHONIOENCODING=encoding + ":strict")
+                        for name in ("PYTHONHOME", "PYTHONPATH",
+                                     "PYTHONOPTIMIZE"):
+                            env.pop(name, None)
+                        # Do not use -E: it would ignore the encoding being
+                        # tested. No Git can run, even with --network set.
+                        proc = subprocess.run(
+                            [sys.executable] + list(mode) + [CHECKER,
+                             "--repo", self.root, "--pins", self.pins,
+                             "--network"], capture_output=True, env=env)
+                        self.assertEqual(proc.returncode, 1)
+                        self.assertEqual(proc.stderr, b"")
+                        expected = ("FAIL: pins.json: duplicate JSON member "
+                                    + displayed_key + "\nverify_pins: FAIL "
+                                    "(1 error(s) across 0 pin(s))\n")
+                        self.assertEqual(proc.stdout, expected.encode("ascii"))
+
 
 class VerifyPinsNetworkControls(unittest.TestCase):
     """Exercise the full CLI with disposable local remotes, without network."""
