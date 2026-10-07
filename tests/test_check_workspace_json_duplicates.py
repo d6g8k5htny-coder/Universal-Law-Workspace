@@ -13,6 +13,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKER = ROOT / "tools" / "check_workspace.py"
@@ -53,7 +54,9 @@ def run_raw(raw: str, *, default_path: bool = False):
                               text=True, encoding="utf-8", timeout=30,
                               check=False)
         after = path.read_bytes()
-        return proc, str(path), before, after
+        # The default comes from the resolved script path; explicit args do not.
+        reported_path = path.resolve() if default_path else path
+        return proc, str(reported_path), before, after
 
 
 class JSONDuplicateControls(unittest.TestCase):
@@ -165,6 +168,34 @@ class JSONDuplicateControls(unittest.TestCase):
     def test_default_path_also_uses_duplicate_rejection(self):
         self.assert_duplicate(manifest_with_members('"probe":0,"probe":1'),
                               "probe", default_path=True)
+
+    def test_symlinked_temp_root_preserves_both_path_contracts(self):
+        # Reproduce /var -> /private/var on any host supporting directory links.
+        with tempfile.TemporaryDirectory(prefix="bq27-alias-") as tmp:
+            real = Path(tmp).resolve() / "real"
+            alias = Path(tmp).resolve() / "alias"
+            real.mkdir()
+            try:
+                alias.symlink_to(real, target_is_directory=True)
+            except (OSError, NotImplementedError) as exc:
+                self.skipTest(f"directory symlink unavailable: {exc}")
+            self.assertNotEqual(alias, alias.resolve())
+            self.assertEqual(alias.resolve(), real)
+            # Only the test's temporary-root selection is substituted. The
+            # unmodified checker still executes in a real child process.
+            with mock.patch.object(tempfile, "tempdir", str(alias)):
+                for default in (False, True):
+                    with self.subTest(default=default):
+                        self.assert_duplicate(
+                            manifest_with_members('"probe":0,"probe":1'),
+                            "probe", default_path=default)
+                        proc, _, before, after = run_raw(
+                            MANIFEST.read_text(encoding="utf-8"),
+                            default_path=default)
+                        self.assertEqual(
+                            (proc.returncode, proc.stdout, proc.stderr),
+                            (0, GOOD_OUTPUT, ""))
+                        self.assertEqual(before, after)
 
     def test_nonduplicate_malformed_inputs_keep_their_refusal_interface(self):
         for raw in ("null", "[]", "true", '"text"', "4"):
