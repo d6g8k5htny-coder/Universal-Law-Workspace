@@ -40,9 +40,19 @@ def run_git(args, cwd=None, check=True):
     return proc
 
 
+def unique_json_object(pairs):
+    """Reject ambiguous members after JSON has decoded key escapes."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("pins.json: duplicate JSON member %r" % key)
+        result[key] = value
+    return result
+
+
 def load_pins(pins_path):
     with open(pins_path, "r", encoding="utf-8") as fh:
-        doc = json.load(fh)
+        doc = json.load(fh, object_pairs_hook=unique_json_object)
     errors = []
     if doc.get("schema") != SCHEMA:
         errors.append("pins.json: schema is %r, expected %r"
