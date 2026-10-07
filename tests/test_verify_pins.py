@@ -25,13 +25,13 @@ SHA_C = "3333333333333333333333333333333333333333"
 def git(args, cwd):
     env = dict(os.environ, GIT_CONFIG_GLOBAL=os.devnull,
                GIT_CONFIG_SYSTEM=os.devnull, GIT_TERMINAL_PROMPT="0")
-    subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@x",
+    return subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@x",
                     "-c", "commit.gpgsign=false"] + list(args),
                    cwd=cwd, check=True, capture_output=True, text=True, env=env)
 
 
-def run_checker(repo, pins=None, extra=()):
-    cmd = [sys.executable, CHECKER, "--repo", repo]
+def run_checker(repo, pins=None, extra=(), python_args=()):
+    cmd = [sys.executable] + list(python_args) + [CHECKER, "--repo", repo]
     if pins is not None:
         cmd += ["--pins", pins]
     cmd += list(extra)
@@ -193,6 +193,99 @@ class VerifyPinsControls(unittest.TestCase):
             expected.add(e["pinned_sha"])
         found = set(re.findall(r"\b[0-9a-f]{40}\b", readme))
         self.assertEqual(found, expected)
+
+
+class VerifyPinsNetworkControls(unittest.TestCase):
+    """Exercise the full CLI with disposable local remotes, without network."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory(prefix="ulw-network-test-")
+        self.addCleanup(self._tmp.cleanup)
+        self.root = self._tmp.name
+
+    def build_network_fixture(self, state):
+        remotes = {}
+        for name in ("healthy", "middle"):
+            remote = os.path.join(self.root, name)
+            git(["init", "-q", "-b", "main", remote], cwd=self.root)
+            git(["commit", "-q", "--allow-empty", "-m", "fixture"], cwd=remote)
+            sha = git(["rev-parse", "HEAD"], cwd=remote).stdout.strip()
+            remotes[name] = (remote, sha)
+        middle, pinned = remotes["middle"]
+        if state in ("empty", "other_default"):
+            git(["branch", "-m", "archive"], cwd=middle)
+        if state in ("empty", "unborn_default"):
+            git(["symbolic-ref", "HEAD", "refs/heads/missing"], cwd=middle)
+        if state == "different_tip":
+            git(["commit", "-q", "--allow-empty", "-m", "later"], cwd=middle)
+        lookup = git(["ls-remote", "--symref", middle, "HEAD",
+                      "refs/heads/main"], cwd=self.root).stdout
+        if state == "empty":
+            self.assertEqual(lookup, "", "fixture must return zero-byte lookup")
+        tip = (git(["rev-parse", "refs/heads/main"], cwd=middle).stdout.strip()
+               if state == "different_tip" else pinned)
+        entries = []
+        for name in ("a", "b", "c"):
+            remote, sha = remotes["middle" if name == "b" else "healthy"]
+            item = entry(name, sha)
+            item["url"] = remote
+            entries.append(item)
+        private = entry("private", SHA_C, opt_in=True, public=False)
+        private["url"] = os.path.join(self.root, "must-not-open")
+        entries.append(private)
+        modules = {e["path"]: {"url": e["url"], "branch": "main"}
+                   for e in entries}
+        modules[private["path"]]["update"] = "none"
+        repo = os.path.join(self.root, "workspace")
+        os.mkdir(repo)
+        pins = build_fixture(repo, {e["path"]: e["pinned_sha"] for e in entries},
+                             modules, entries)
+        return repo, pins, pinned, tip
+
+    def assert_network_output(self, fixture, middle_lines):
+        repo, pins, _, _ = fixture
+        expected = ["info: repos/a: pin equals remote main tip"]
+        expected += ["info: repos/b: " + line for line in middle_lines]
+        expected += ["info: repos/c: pin equals remote main tip",
+                     "info: repos/private: not public; network check skipped",
+                     "verify_pins: OK (4 pin(s) agree with tree and .gitmodules; "
+                     "remotes checked)"]
+        for mode in ((), ("-O",)):
+            with self.subTest(child_python_args=mode):
+                # -E makes each child's mode independent of PYTHONOPTIMIZE.
+                proc = run_checker(repo, pins, extra=("--network",),
+                                   python_args=("-E",) + mode)
+                self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+                self.assertEqual(proc.stderr, "")
+                self.assertEqual(proc.stdout, "\n".join(expected) + "\n")
+
+    def test_empty_remote_lookup_reports_unknown_configured_tip(self):
+        fixture = self.build_network_fixture("empty")
+        self.assert_network_output(fixture, [
+            "pin exists on remote; configured branch main tip unknown "
+            "(informational)"])
+
+    def test_observed_default_mismatch_retained_when_configured_tip_unknown(self):
+        fixture = self.build_network_fixture("other_default")
+        self.assert_network_output(fixture, [
+            "remote default branch is refs/heads/archive, pins say main",
+            "pin exists on remote; configured branch main tip unknown "
+            "(informational)"])
+
+    def test_unobserved_default_does_not_hide_known_configured_tip(self):
+        fixture = self.build_network_fixture("unborn_default")
+        self.assert_network_output(fixture, ["pin equals remote main tip"])
+
+    def test_known_equal_tip_output_is_unchanged(self):
+        fixture = self.build_network_fixture("equal_tip")
+        self.assert_network_output(fixture, ["pin equals remote main tip"])
+
+    def test_known_differing_tip_output_is_unchanged(self):
+        fixture = self.build_network_fixture("different_tip")
+        _, _, pinned, tip = fixture
+        self.assertNotEqual(pinned, tip)
+        self.assert_network_output(fixture, [
+            "pin %s is behind tip %s of main (informational)" % (pinned, tip)])
 
 
 if __name__ == "__main__":

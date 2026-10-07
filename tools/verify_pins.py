@@ -200,11 +200,14 @@ def check_network(repos):
                 elif "\t" in line:
                     tsha, ref = line.split("\t", 1)
                     tips[ref] = tsha
-            if default_ref != "refs/heads/" + branch:
+            if default_ref is not None and default_ref != "refs/heads/" + branch:
                 info.append("%s: remote default branch is %s, pins say %s"
                             % (path, default_ref, branch))
             tip = tips.get("refs/heads/" + branch)
-            if tip == sha:
+            if tip is None:
+                info.append("%s: pin exists on remote; configured branch %s "
+                            "tip unknown (informational)" % (path, branch))
+            elif tip == sha:
                 info.append("%s: pin equals remote %s tip" % (path, branch))
             else:
                 info.append("%s: pin %s is behind tip %s of %s (informational)"
