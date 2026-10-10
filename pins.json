@@ -1,13 +1,13 @@
 {
   "schema": "ulw.pins.v1",
-  "generated_utc": "2026-09-26T15:32:52Z",
+  "generated_utc": "2026-10-10T20:30:00Z",
   "repos": [
     {
       "name": "main",
       "path": "repos/main",
       "url": "https://github.com/d6g8k5htny-coder/main.git",
       "default_branch": "main",
-      "pinned_sha": "b120e705654a773ac4ba04c324e5f85087e61ab4",
+      "pinned_sha": "6e11abfb1dc4e424e5b17d0c957157ee7389cf8a",
       "public": true,
       "opt_in": false,
       "note": "default tip at generation time"
@@ -17,7 +17,7 @@
       "path": "repos/Math-",
       "url": "https://github.com/d6g8k5htny-coder/Math-.git",
       "default_branch": "main",
-      "pinned_sha": "10e1f191c7d9f2755ca971ddbba87874d2475619",
+      "pinned_sha": "6c020d6a72936632f2055122e71a7818a4ff497e",
       "public": true,
       "opt_in": false,
       "note": "default tip at generation time"
@@ -27,7 +27,7 @@
       "path": "repos/meta-framework",
       "url": "https://github.com/d6g8k5htny-coder/meta-framework.git",
       "default_branch": "main",
-      "pinned_sha": "14f6836e7ccf6a463ef6da745602debfea4d15ee",
+      "pinned_sha": "91fe211c5ba1f78a96c5e652f9d9e23630b54bb4",
       "public": true,
       "opt_in": false,
       "note": "default tip at generation time"
@@ -37,7 +37,7 @@
       "path": "repos/query-",
       "url": "https://github.com/d6g8k5htny-coder/query-.git",
       "default_branch": "main",
-      "pinned_sha": "76e1ca09a4838f84f20e28daa51eb024c0781dc1",
+      "pinned_sha": "30ed5be6d9cee6f06f4f97453371713815c03f51",
       "public": true,
       "opt_in": false,
       "note": "pinned by owner instruction"
@@ -47,7 +47,7 @@
       "path": "repos/google-drive",
       "url": "https://github.com/d6g8k5htny-coder/google-drive.git",
       "default_branch": "main",
-      "pinned_sha": "ea55c6e76edb31c48da5ce5aa0c3761d3ee49146",
+      "pinned_sha": "ad08584b3ea9d533af10113e85169f471fa8ec93",
       "public": true,
       "opt_in": false,
       "note": "default tip at generation time"
@@ -57,17 +57,17 @@
       "path": "repos/trial",
       "url": "https://github.com/d6g8k5htny-coder/trial.git",
       "default_branch": "main",
-      "pinned_sha": "f6c8a854bf083ccc737983dbfbf9195a6f8b75b3",
+      "pinned_sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
       "public": true,
       "opt_in": false,
-      "note": "default tip at generation time; trial was being pushed to during the import (457fee93e28f, f33b633dcfe3, 6a4065e867dd were earlier tips) and was re-measured immediately before commit"
+      "note": "default tip at generation time"
     },
     {
       "name": "governance-",
       "path": "repos/governance-",
       "url": "https://github.com/d6g8k5htny-coder/governance-.git",
       "default_branch": "main",
-      "pinned_sha": "7476e29c65ce82d23e0b39e7f7d98741a875a8ff",
+      "pinned_sha": "ac3cd70128340d639cdd50ae66ee7c1365a54950",
       "public": true,
       "opt_in": false,
       "note": "default tip at generation time"
@@ -77,7 +77,7 @@
       "path": "repos/sandbox",
       "url": "https://github.com/d6g8k5htny-coder/sandbox.git",
       "default_branch": "main",
-      "pinned_sha": "ea66efb6074b529adc5a09b2feb8a1e106a1520b",
+      "pinned_sha": "dce04a4174835107126ab4f36c199a2dc320f964",
       "public": true,
       "opt_in": true,
       "note": "opt-in (update = none); was private when first measured, made public 2026-09-26T15:19:20Z during the import; opt-in kept pending owner confirmation"
