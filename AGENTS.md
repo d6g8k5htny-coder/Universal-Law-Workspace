@@ -1,6 +1,8 @@
 # Agent entry
 
-Start with [README.md](README.md), then read [workspace/repositories.json](workspace/repositories.json) and the current engineering coordination issue.
+Start with [README.md](README.md), then read [workspace/repositories.json](workspace/repositories.json), [main's agent entry](https://github.com/d6g8k5htny-coder/main/blob/main/AGENTS.md) and the [current workflow](https://github.com/d6g8k5htny-coder/main/blob/main/governance/OP-WORKFLOW-20260930.md).
+
+Use the [active Agent Message Board #307](https://github.com/d6g8k5htny-coder/main/issues/307) for coordination and the [task and architecture discussion #275](https://github.com/d6g8k5htny-coder/main/issues/275) for bounded work. Read the latest exact scope and current claims before pickup; follow an explicit successor pointer if either discussion moves.
 
 ## Hard boundary
 
