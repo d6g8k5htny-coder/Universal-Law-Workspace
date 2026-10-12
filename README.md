@@ -83,8 +83,12 @@ where they are and keep their own status records.
 | governance- | `repos/governance-` | main | [7476e29c65ce82d23e0b39e7f7d98741a875a8ff](https://github.com/d6g8k5htny-coder/governance-/commit/7476e29c65ce82d23e0b39e7f7d98741a875a8ff) | default tip at generation time |
 | sandbox | `repos/sandbox` | main | [ea66efb6074b529adc5a09b2feb8a1e106a1520b](https://github.com/d6g8k5htny-coder/sandbox/commit/ea66efb6074b529adc5a09b2feb8a1e106a1520b) | opt-in (`update = none`); made public 2026-09-26 during the import, see below |
 
-`pins.json` is the authoritative list; this table is a rendering of it.
-`tools/verify_pins.py` checks that the two agree with the committed gitlinks.
+`pins.json` is the authoritative list; this table is a manually maintained
+rendering of it. Keep the matching table row synchronized whenever a pin changes.
+`tools/verify_pins.py` checks `pins.json` against the committed `HEAD` gitlinks
+and `.gitmodules`; it does not read or validate this README table. With
+`--network`, it also checks that public pinned commits exist on their remotes.
+The test suite separately checks this README's full commit links and SHA set.
 
 ## Cloning
 
@@ -124,14 +128,26 @@ from `.gitmodules` and sets `opt_in` to `false` in `pins.json`.
 
 ## Updating a pin
 
-Open a pull request that moves the gitlink and the matching `pins.json` entry
-together:
+Start from a clean working tree on an isolated branch. Move the gitlink and
+the matching `pins.json` entry together, manually update the table above, then
+commit the local candidate before checking it (replace the placeholders):
 
 ```sh
 git update-index --add --cacheinfo 160000,<full-sha>,repos/<name>
 # edit pins.json: pinned_sha for repos/<name>
+# update the matching README table row to the same full SHA
+git add pins.json README.md
+git diff --cached --check
+git diff --cached --submodule=short
+git commit -m "Update <name> pin"
 python3 tools/verify_pins.py --network
 ```
+
+Review the staged diff before committing. The checker reads gitlinks from
+`HEAD`, not the index, so checking before the commit would compare the edited
+`pins.json` with the old committed gitlink. Run verification from the clean
+candidate checkout; a local commit does not push or merge anything. After the
+checks pass, open the candidate pull request for review.
 
 CI (`.github/workflows/pins.yml`) runs the same checker: the gitlink, `.gitmodules`
 and `pins.json` must agree exactly (full SHA, never a prefix), and for public
