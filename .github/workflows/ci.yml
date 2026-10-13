@@ -20,4 +20,8 @@ jobs:
       - name: Validate federation manifest
         run: python3 tools/check_workspace.py
       - name: Run contract tests
-        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee "$RUNNER_TEMP/discovery.log"
+          grep -Eq '^Ran [1-9][0-9]* tests? in ' "$RUNNER_TEMP/discovery.log" || { echo "::error::unittest discovery collected 0 tests or returned no count"; exit 1; }

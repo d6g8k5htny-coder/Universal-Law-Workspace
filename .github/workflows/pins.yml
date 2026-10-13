@@ -24,4 +24,8 @@ jobs:
       - name: Verify pins against tree, .gitmodules and remotes
         run: python3 tools/verify_pins.py --network
       - name: Negative controls
-        run: python3 -m unittest discover -s tests -v
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -v 2>&1 | tee "$RUNNER_TEMP/discovery.log"
+          grep -Eq '^Ran [1-9][0-9]* tests? in ' "$RUNNER_TEMP/discovery.log" || { echo "::error::unittest discovery collected 0 tests or returned no count"; exit 1; }
