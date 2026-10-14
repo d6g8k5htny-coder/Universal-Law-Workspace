@@ -54,6 +54,8 @@ def unique_json_object(pairs):
 def load_pins(pins_path):
     with open(pins_path, "r", encoding="utf-8") as fh:
         doc = json.load(fh, object_pairs_hook=unique_json_object)
+    if not isinstance(doc, dict):
+        raise ValueError("pins.json: root must be an object")
     errors = []
     if doc.get("schema") != SCHEMA:
         errors.append("pins.json: schema is %r, expected %r"
@@ -66,6 +68,9 @@ def load_pins(pins_path):
                 "public", "opt_in", "note")
     seen_paths = set()
     for i, entry in enumerate(repos):
+        if not isinstance(entry, dict):
+            errors.append("pins.json: entry %d must be an object" % i)
+            continue
         for key in required:
             if key not in entry:
                 errors.append("pins.json: entry %d missing %r" % (i, key))
@@ -78,6 +83,9 @@ def load_pins(pins_path):
                 errors.append("pins.json: %s: %r must be a boolean"
                               % (entry.get("path"), key))
         path = entry.get("path")
+        if not isinstance(path, str) or not path:
+            errors.append("pins.json: entry %d: 'path' must be a non-empty string" % i)
+            continue
         if path in seen_paths:
             errors.append("pins.json: duplicate path %r" % path)
         seen_paths.add(path)
