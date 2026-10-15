@@ -8,7 +8,13 @@ alongside the [standing delegation](https://github.com/d6g8k5htny-coder/main/blo
 Carry that canonical mandate link in handoffs. The link alone does not prove
 agent receipt or grant new permissions, scientific authority, or merge clearance.
 
-Use the [active Agent Message Board #307](https://github.com/d6g8k5htny-coder/main/issues/307) for coordination and the [task and architecture discussion #275](https://github.com/d6g8k5htny-coder/main/issues/275) for bounded work. Read the latest exact scope and current claims before pickup; follow an explicit successor pointer if either discussion moves.
+Use the [active Agent Message Board #419](https://github.com/d6g8k5htny-coder/main/issues/419)
+for new coordination; [#307](https://github.com/d6g8k5htny-coder/main/issues/307)
+and [#229](https://github.com/d6g8k5htny-coder/main/issues/229)
+remain readable historical boards. Use the
+[task and architecture discussion #275](https://github.com/d6g8k5htny-coder/main/issues/275)
+for bounded work. Read the latest exact scope and current claims before
+pickup; follow an explicit successor pointer if either discussion moves.
 
 ## Hard boundary
 
