@@ -54,10 +54,10 @@ The machine-readable boundary is [workspace/repositories.json](workspace/reposit
 - [Math-](https://github.com/d6g8k5htny-coder/Math-)
 - [meta-framework](https://github.com/d6g8k5htny-coder/meta-framework)
 - [query-](https://github.com/d6g8k5htny-coder/query-)
-- [google-drive](https://github.com/d6g8k5htny-coder/google-drive)
-- [trial](https://github.com/d6g8k5htny-coder/trial)
+- [google-drive](https://github.com/d6g8k5htny-coder/google-drive) (archived)
+- [trial](https://github.com/d6g8k5htny-coder/trial) (archived)
 - [governance-](https://github.com/d6g8k5htny-coder/governance-)
-- [sandbox](https://github.com/d6g8k5htny-coder/sandbox)
+- [sandbox](https://github.com/d6g8k5htny-coder/sandbox) (archived)
 - **Universal-Law-Workspace**
 
 For canonical repository roles and public/private routing metadata, consult the pinned `repository_registry` source in [workspace/repositories.json](workspace/repositories.json).
@@ -78,10 +78,10 @@ where they are and keep their own status records.
 | Math- | `repos/Math-` | main | [10e1f191c7d9f2755ca971ddbba87874d2475619](https://github.com/d6g8k5htny-coder/Math-/commit/10e1f191c7d9f2755ca971ddbba87874d2475619) | default tip at generation time |
 | meta-framework | `repos/meta-framework` | main | [14f6836e7ccf6a463ef6da745602debfea4d15ee](https://github.com/d6g8k5htny-coder/meta-framework/commit/14f6836e7ccf6a463ef6da745602debfea4d15ee) | default tip at generation time |
 | query- | `repos/query-` | main | [76e1ca09a4838f84f20e28daa51eb024c0781dc1](https://github.com/d6g8k5htny-coder/query-/commit/76e1ca09a4838f84f20e28daa51eb024c0781dc1) | pinned by owner instruction |
-| google-drive | `repos/google-drive` | main | [ea55c6e76edb31c48da5ce5aa0c3761d3ee49146](https://github.com/d6g8k5htny-coder/google-drive/commit/ea55c6e76edb31c48da5ce5aa0c3761d3ee49146) | default tip at generation time |
-| trial | `repos/trial` | main | [f6c8a854bf083ccc737983dbfbf9195a6f8b75b3](https://github.com/d6g8k5htny-coder/trial/commit/f6c8a854bf083ccc737983dbfbf9195a6f8b75b3) | default tip at generation time; under active push during the import, re-measured immediately before commit |
+| google-drive | `repos/google-drive` | main | [ea55c6e76edb31c48da5ce5aa0c3761d3ee49146](https://github.com/d6g8k5htny-coder/google-drive/commit/ea55c6e76edb31c48da5ce5aa0c3761d3ee49146) (archived) | default tip at generation time |
+| trial | `repos/trial` | main | [f6c8a854bf083ccc737983dbfbf9195a6f8b75b3](https://github.com/d6g8k5htny-coder/trial/commit/f6c8a854bf083ccc737983dbfbf9195a6f8b75b3) (archived) | default tip at generation time; under active push during the import, re-measured immediately before commit |
 | governance- | `repos/governance-` | main | [7476e29c65ce82d23e0b39e7f7d98741a875a8ff](https://github.com/d6g8k5htny-coder/governance-/commit/7476e29c65ce82d23e0b39e7f7d98741a875a8ff) | default tip at generation time |
-| sandbox | `repos/sandbox` | main | [ea66efb6074b529adc5a09b2feb8a1e106a1520b](https://github.com/d6g8k5htny-coder/sandbox/commit/ea66efb6074b529adc5a09b2feb8a1e106a1520b) | opt-in (`update = none`); made public 2026-09-26 during the import, see below |
+| sandbox | `repos/sandbox` | main | [ea66efb6074b529adc5a09b2feb8a1e106a1520b](https://github.com/d6g8k5htny-coder/sandbox/commit/ea66efb6074b529adc5a09b2feb8a1e106a1520b) (archived) | opt-in (`update = none`); made public 2026-09-26 during the import, see below |
 
 `pins.json` is the authoritative list; this table is a manually maintained
 rendering of it. Keep the matching table row synchronized whenever a pin changes.
