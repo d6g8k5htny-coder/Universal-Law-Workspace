@@ -28,10 +28,24 @@ SCHEMA = "ulw.pins.v1"
 FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
 
 
+# Match the bounded repository-selection exclusion policy in query- PR #41.
+# Deliberately preserve unrelated Git config and other caller variables.
+_REPOSITORY_ENV_NAMES = frozenset((
+    "GIT_DIR", "GIT_WORK_TREE", "GIT_IMPLICIT_WORK_TREE", "GIT_COMMON_DIR",
+    "GIT_INDEX_FILE", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
+    "GIT_REPLACE_REF_BASE", "GIT_GRAFT_FILE", "GIT_SHALLOW_FILE", "GIT_PREFIX",
+))
+
+
+def _git_env():
+    return {name: value for name, value in os.environ.items()
+            if name not in _REPOSITORY_ENV_NAMES}
+
+
 def run_git(args, cwd=None, check=True):
     proc = subprocess.run(
         ["git"] + list(args), cwd=cwd, capture_output=True, text=True,
-        env=dict(os.environ, GIT_TERMINAL_PROMPT="0"),
+        env=dict(_git_env(), GIT_TERMINAL_PROMPT="0", GIT_NO_REPLACE_OBJECTS="1"),
     )
     if check and proc.returncode != 0:
         raise RuntimeError(
