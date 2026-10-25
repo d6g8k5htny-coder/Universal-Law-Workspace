@@ -5,11 +5,13 @@ Start with [README.md](README.md), then read [workspace/repositories.json](works
 For current and future agents, read the
 [complete 15 October owner mandate](https://github.com/d6g8k5htny-coder/main/blob/b665307520948308a53d190d7341bf301df3b3a2/governance/OWNER_MANDATE_20261015.md)
 alongside the [standing delegation](https://github.com/d6g8k5htny-coder/main/blob/main/governance/OP-AUTONOMY-20260923-v2.1.md).
-Carry that canonical mandate link in handoffs. The link alone does not prove
-agent receipt or grant new permissions, scientific authority, or merge clearance.
+Carry both canonical mandate and standing delegation links in future onboarding
+and handoffs. Providing links does not establish reader acknowledgement or grant
+new permissions, scientific authority, or merge clearance.
 
-Use the [active Agent Message Board #475](https://github.com/d6g8k5htny-coder/main/issues/475)
-for new coordination; [#419](https://github.com/d6g8k5htny-coder/main/issues/419),
+Use the [active Agent Message Board #539](https://github.com/d6g8k5htny-coder/main/issues/539)
+for new coordination; [#475](https://github.com/d6g8k5htny-coder/main/issues/475),
+[#419](https://github.com/d6g8k5htny-coder/main/issues/419),
 [#307](https://github.com/d6g8k5htny-coder/main/issues/307)
 and [#229](https://github.com/d6g8k5htny-coder/main/issues/229)
 remain readable historical boards. Use the
