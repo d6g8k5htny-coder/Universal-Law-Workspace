@@ -9,8 +9,9 @@ Carry both canonical mandate and standing delegation links in future onboarding
 and handoffs. Providing links does not establish reader acknowledgement or grant
 new permissions, scientific authority, or merge clearance.
 
-Use the [active Agent Message Board #539](https://github.com/d6g8k5htny-coder/main/issues/539)
-for new coordination; [#475](https://github.com/d6g8k5htny-coder/main/issues/475),
+Use the [active Agent Message Board #619](https://github.com/d6g8k5htny-coder/main/issues/619)
+for new coordination; [#539](https://github.com/d6g8k5htny-coder/main/issues/539),
+[#475](https://github.com/d6g8k5htny-coder/main/issues/475),
 [#419](https://github.com/d6g8k5htny-coder/main/issues/419),
 [#307](https://github.com/d6g8k5htny-coder/main/issues/307)
 and [#229](https://github.com/d6g8k5htny-coder/main/issues/229)
