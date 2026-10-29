@@ -176,9 +176,9 @@ class StrictPinHarnessControls(unittest.TestCase):
                     with tempfile.TemporaryDirectory() as folder:
                         event = Path(folder) / "event.json"
                         nonce = secrets.token_hex(16)
-                        process = self.report(1, "info: repos/a: " + observed + "\\n"
-                            + "FAIL: repos/a: independent guard refused\\n"
-                            + "verify_pins: FAIL (1 error(s) across 1 pin(s))\\n")
+                        process = self.report(1, "info: repos/a: " + observed + "\n"
+                            + "FAIL: repos/a: independent guard refused\n"
+                            + "verify_pins: FAIL (1 error(s) across 1 pin(s))\n")
                         process.cbz_protocol = pin_protocol(process)
                         case = StrictCurrentPinTests(method)
                         with patch.dict(os.environ, {"CBZ_PIN_EVENT": str(event),
