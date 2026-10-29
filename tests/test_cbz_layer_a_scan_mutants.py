@@ -7,9 +7,12 @@ mutant through $CBZ_LAYER_A_SCAN and must FAIL. A surviving mutant means the
 suite cannot tell a broken auditor from a sound one, so this test fails.
 
 Every replacement must match the scanner source exactly once, so the harness
-cannot silently drift out of sync with the code it mutates.
+cannot silently drift out of sync with the code it mutates. A mutant counts as
+killed only when the suite loaded and ran, and at least one test failed or
+errored; a suite that could not even be imported proves nothing.
 """
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -60,6 +63,12 @@ def run_suite(scanner_path):
                           cwd=WORKSPACE, env=env, capture_output=True, text=True, timeout=600)
 
 
+def killed(r):
+    out = r.stdout + r.stderr
+    return (r.returncode != 0 and re.search(r"^Ran [1-9][0-9]* tests?", out, re.M) is not None
+            and "FAILED (" in out and "Failed to import test module" not in out)
+
+
 class ScannerMutants(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -80,7 +89,7 @@ class ScannerMutants(unittest.TestCase):
                     with open(path, "w", encoding="utf-8") as fh:
                         fh.write(self.source.replace(old, new))
                     r = run_suite(path)
-                    if r.returncode == 0:
+                    if not killed(r):
                         survivors.append(name)
         self.assertEqual(survivors, [], f"surviving mutants: {survivors}")
         self.assertGreaterEqual(len(MUTANTS), 26)

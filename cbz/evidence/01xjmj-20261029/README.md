@@ -183,10 +183,14 @@ Sorted by the number of non-division signals.
 Self-verification (A8):
 
 ```sh
-python3 -B -m unittest tests.test_cbz_a3_float_census   # 18 behavioural + 15-mutant self-test
+python3 -B -m unittest tests.test_cbz_a3_float_census   # 18 behavioural, harness control, 15 mutants
 ```
 
 Every mutant (each signal, the exact-math list, interval-layer detection, the `MIXED`
-class, the fail-closed exit and git mode) must be killed, or the suite fails. This census
+class, the fail-closed exit and git mode) must be killed, or the suite fails. Both
+mutation harnesses count a mutant as killed only if the suite loaded, ran and reported a
+failing test; a suite that cannot import the tool is a survivor, not a kill. The census
+harness also runs an unmutated copy through the same path and requires it to pass,
+following Claude017's harness-control rule (main#684/6503454483). This census
 does not replace review. A `FLOAT_SIGNAL` file is certification-relevant only if a
 certificate depends on it.

@@ -6,6 +6,8 @@ test below points it at mutated copies), else from tools/cbz/.
 import importlib.util
 import json
 import os
+import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -172,8 +174,29 @@ MUTANTS = [
 ]
 
 
+def run_suite(tool_path):
+    env = dict(os.environ, CBZ_A3_CENSUS=tool_path, PYTHONDONTWRITEBYTECODE="1")
+    return subprocess.run([sys.executable, "-B", "-m", "unittest", "tests.test_cbz_a3_float_census"],
+                          cwd=WORKSPACE, env=env, capture_output=True, text=True, timeout=600)
+
+
+def killed(r):
+    # killed only when the suite loaded, ran, and a test failed or errored
+    out = r.stdout + r.stderr
+    return (r.returncode != 0 and re.search(r"^Ran [1-9][0-9]* tests?", out, re.M) is not None
+            and "FAILED (" in out and "Failed to import test module" not in out)
+
+
+@unittest.skipIf(os.environ.get("CBZ_A3_CENSUS"), "mutant run: do not recurse")
 class SelfMutation(unittest.TestCase):
-    @unittest.skipIf(os.environ.get("CBZ_A3_CENSUS"), "mutant run: do not recurse")
+    def test_harness_control_unmutated_copy_passes(self):
+        # without this control, a harness that cannot load the tool would "kill" every mutant
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "control.py")
+            shutil.copyfile(REAL, path)
+            r = run_suite(path)
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
     def test_every_mutant_is_killed(self):
         with open(REAL, encoding="utf-8") as fh:
             src = fh.read()
@@ -184,10 +207,7 @@ class SelfMutation(unittest.TestCase):
                 path = os.path.join(d, f"m{i:02d}.py")
                 with open(path, "w", encoding="utf-8") as fh:
                     fh.write(src.replace(old, new))
-                env = dict(os.environ, CBZ_A3_CENSUS=path)
-                r = subprocess.run([sys.executable, "-B", "-m", "unittest", "tests.test_cbz_a3_float_census"],
-                                   cwd=WORKSPACE, env=env, capture_output=True, text=True, timeout=600)
-                if r.returncode == 0:
+                if not killed(run_suite(path)):
                     survivors.append(name)
         self.assertEqual(survivors, [])
 
