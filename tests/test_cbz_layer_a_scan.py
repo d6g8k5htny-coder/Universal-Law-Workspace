@@ -53,10 +53,26 @@ class ViolationTokens(unittest.TestCase):
             "def x := mkConst ``sorryAx": [(1, 20, "sorryAx", "violation")],
             "def x := Lean.Elab.admitGoal": [(1, 10, "admitGoal", "violation")],
             "def x := Lean.Meta.mkSorry": [(1, 10, "mkSorry", "violation")],
+            "def x := Environment.addDeclWithoutChecking": [(1, 10, "addDeclWithoutChecking", "violation")],
         }
         for src, want in cases.items():
             with self.subTest(src=src):
                 self.assertEqual(hits(src), want)
+
+    def test_native_decide_options(self):
+        # `decide +native` and `native := true` evaluate by the compiler (ofReduceBool)
+        self.assertEqual(hits("example : 2 = 2 := by decide +native"), [(1, 31, "native", "violation")])
+        self.assertEqual(hits("example : 2 = 2 := by decide + native"), [(1, 32, "native", "violation")])
+        self.assertEqual(hits("example : P := by decide (config := { native := true })"),
+                         [(1, 39, "native", "violation")])
+        self.assertEqual(hits("example : P := by decide (config := {native:=true})"),
+                         [(1, 38, "native", "violation")])
+        self.assertEqual(hits("example : 2 = 2 := by decide +kernel"), [])
+        self.assertEqual(hits("example : P := by decide (config := { native := false })"), [])
+        self.assertEqual(hits("def native := 1 ; def y := native + 1"), [])
+        self.assertEqual(hits("def y := native"), [])
+        # safe direction: arithmetic on an identifier named native is also flagged
+        self.assertEqual(hits("def y := x + native"), [(1, 14, "native", "violation")])
 
     def test_review_tokens(self):
         self.assertEqual(hits("def f (x : Float) := x"), [(1, 12, "Float", "review")])
@@ -130,9 +146,55 @@ class NotCode(unittest.TestCase):
         self.assertEqual(hits("#print axioms foo"), [])
         self.assertEqual(hits("def x := Foo.sorry ; def y := Bar.axiom"), [])
 
-    def test_escaped_identifiers(self):
+    def test_escaped_keyword_names_are_identifiers(self):
+        # «sorry» is an identifier named sorry, never the sorry term or tactic
         self.assertEqual(hits("def «sorry» := 1 ; def x := «axiom»"), [])
-        self.assertEqual(hits("def x := Lean.«ofReduceBool»"), [])
+        self.assertEqual(hits("def «Float» := 1"), [])
+
+    def test_escaped_constant_names_are_the_same_constants(self):
+        # «x» and x are the same name component, so these are real uses
+        self.assertEqual(hits("def x := Lean.«ofReduceBool»"), [(1, 10, "ofReduceBool", "violation")])
+        self.assertEqual(hits("def x : False := «sorryAx» False"), [(1, 18, "sorryAx", "violation")])
+        self.assertEqual(hits("def x := Lean.«trustCompiler».foo"), [])
+        self.assertEqual(hits("@[«implemented_by» g] def f := 1"), [(1, 3, "implemented_by", "review")])
+        # a dot inside «» is part of one component, not a namespace separator
+        self.assertEqual(hits("def x := «Lean.ofReduceBool»"), [])
+
+
+class FailClosed(unittest.TestCase):
+    def errors(self, text):
+        return [(f["line"], f["col"], f["kind"], f["severity"]) for f in M.scan_text(text, "P/M.lean")
+                if f["severity"] == "error"]
+
+    def test_unterminated_constructs_are_errors(self):
+        cases = {
+            'def s := "open\ntheorem t : False := sorry': (1, 10, "unterminated_string"),
+            "/- open\ntheorem t : False := sorry": (1, 1, "unterminated_comment"),
+            "/- a /- b -/ still open\n": (1, 1, "unterminated_comment"),
+            'def s := r#"open\nsorry': (1, 10, "unterminated_raw_string"),
+            'def s := s!"{': (1, 10, "unterminated_interpolated_string"),
+            'def s := s!"abc': (1, 10, "unterminated_interpolated_string"),
+            "def x := «open\nsorry": (1, 10, "unterminated_escaped_name"),
+            "def x := Foo.«open": (1, 14, "unterminated_escaped_name"),
+        }
+        for src, (ln, cl, kind) in cases.items():
+            with self.subTest(src=src):
+                self.assertEqual(self.errors(src), [(ln, cl, kind, "error")])
+
+    def test_terminated_constructs_are_not_errors(self):
+        for src in ['def s := "a"', "/- a /- b -/ c -/", 'def s := r#"a"#', 'def s := s!"{x} {y}"',
+                    "def x := «a b»", "-- unterminated \" in a comment", "def c := '\"'"]:
+            with self.subTest(src=src):
+                self.assertEqual(self.errors(src), [])
+
+    def test_lex_error_fails_the_run(self):
+        with tempfile.TemporaryDirectory() as d:
+            with open(os.path.join(d, "A.lean"), "w", encoding="utf-8") as fh:
+                fh.write('def s := "never closed\n')
+            r = cli([d])
+            self.assertEqual(r.returncode, 1)
+            self.assertIn("A.lean:1:10: A unterminated_string (production)", r.stdout)
+            self.assertEqual(json.loads(r.stdout.strip().splitlines()[-1])["errors"], 1)
 
 
 class Context(unittest.TestCase):

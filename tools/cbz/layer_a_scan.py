@@ -9,7 +9,9 @@ What it certifies, exactly:
     A1 placeholders : sorry, admit, sorryAx, admitGoal, mkSorry
     A2 trust holes  : axiom (declaration keyword), native_decide,
                       ofReduceBool, ofReduceNat, trustCompiler,
-                      skipKernelTC (kernel-check bypass option)
+                      skipKernelTC (kernel-check bypass option),
+                      addDeclWithoutChecking, and the ``decide`` options
+                      ``+native`` / ``native := true``
   review tokens (reported, never gate-failing on their own)
     A3 float        : Float, Float32
     A2 compiled code: unsafe, implemented_by, extern
@@ -18,7 +20,15 @@ What it certifies, exactly:
   ``sorry``/``admit``/``axiom``/``native_decide``/``Float``/``Float32``/
   ``unsafe``/``stop`` match only as a whole undotted identifier; the other
   violation tokens also match as the last component of a dotted name
-  (``Lean.ofReduceBool``, ``debug.skipKernelTC``).
+  (``Lean.ofReduceBool``, ``debug.skipKernelTC``), including an escaped
+  component (``Lean.«ofReduceBool»`` and ``«sorryAx»`` name the same
+  constants). An escaped keyword such as ``«sorry»`` is an ordinary
+  identifier, not the keyword, and is not flagged.
+
+Fail-closed: a string, block comment, raw string, interpolated string or
+``«`` name left unterminated at end of file is reported as an ``error``
+finding, which fails the run like a violation, because the rest of the
+file cannot be lexed reliably.
 
 What it does NOT certify:
   * That a file compiles, or that no placeholder arises through
@@ -31,7 +41,7 @@ Lexing follows Lean 4: ``--`` line comments; nested ``/- -/`` block comments
 (including ``/--`` and ``/-!``); ``"..."`` strings with backslash escapes;
 interpolated strings (``s!"..{code}.."``, ``m!``, ``f!``) whose ``{}``
 regions are lexed as code; raw strings ``r"..."`` / ``r#"..."#``; char
-literals; and ``«...»`` escaped identifiers (never flagged).
+literals; and ``«...»`` escaped identifiers.
 
 Standard library only. No floating point is used in any decision.
 
@@ -68,6 +78,7 @@ VIOLATION_COMPONENT = {
     "ofReduceNat": "A2",
     "trustCompiler": "A2",
     "skipKernelTC": "A2",
+    "addDeclWithoutChecking": "A2",
 }
 REVIEW_EXACT = {
     "Float": "A3",
@@ -81,6 +92,10 @@ REVIEW_COMPONENT = {
 LINE_START_REVIEW = {"stop": "A1"}
 
 INTERP_PREFIXES = {"s!", "m!", "f!"}
+# ``decide +native`` and ``native := true`` select compiler evaluation, i.e.
+# ofReduceBool. ``native`` after a ``+`` is flagged even with a space between
+# (safe direction: ``x + native`` is a false positive, never a miss).
+_NATIVE_TRUE = re.compile(r"\s*:=\s*true(?![A-Za-z0-9_'!?])")
 _EXCLUDED_LETTERS = {"λ", "Π", "Σ"}
 _CHAR_LIT = re.compile(r"'(?:\\(?:u\{[0-9a-fA-F]+\}|x[0-9a-fA-F]{2}|.)|[^\\'\n])'")
 
@@ -114,11 +129,14 @@ def _id_rest(ch: str) -> bool:
         or _is_letter(ch) or _is_subscript(ch)
 
 
-def lex_tokens(text: str):
-    """Yield (name, line, col, line_start) for every code identifier.
+def lex_tokens(text: str, errors: list | None = None):
+    """Yield (name, line, col, line_start, plus_before, follow) per code identifier.
 
     ``name`` is the full dotted identifier text; an escaped ``«...»``
-    component is replaced by ``\x00`` so it never matches a keyword.
+    component becomes ``\x00`` plus its text (inner dots as ``\x01``), so it
+    matches constant names but never a keyword. ``plus_before`` says the
+    identifier follows a ``+`` on its line; ``follow`` is the text after it.
+    Unterminated constructs are appended to ``errors`` as (line, col, kind).
 
     Modes are kept on an explicit stack: a ``code`` frame (with a brace
     depth when it is an interpolation region) or an ``istr`` frame (the body
@@ -130,6 +148,8 @@ def lex_tokens(text: str):
     col = 1
     line_has_token = False
     stack: list[list] = [["code", None]]
+    if errors is None:
+        errors = []
 
     def advance(k: int):
         nonlocal i, line, col, line_has_token
@@ -151,10 +171,12 @@ def lex_tokens(text: str):
             if text[i] == "«":
                 j = text.find("»", i + 1)
                 if j < 0:
+                    errors.append((line, col, "unterminated_escaped_name"))
                     advance(n - i)
                     return
+                inner = text[i + 1:j]
                 advance(j + 1 - i)
-                parts.append("\x00")
+                parts.append("\x00" + inner.replace(".", "\x01"))
             else:
                 s2 = i
                 while i < n and _id_rest(text[i]):
@@ -182,6 +204,7 @@ def lex_tokens(text: str):
                 advance(1)
             continue
         if c == "/" and text.startswith("/-", i):
+            start = (line, col)
             depth = 0
             while i < n:
                 if text.startswith("/-", i):
@@ -194,6 +217,8 @@ def lex_tokens(text: str):
                         break
                 else:
                     advance(1)
+            if depth:
+                errors.append(start + ("unterminated_comment",))
             continue
         if frame[1] is not None and c == "{":
             frame[1] += 1
@@ -207,7 +232,9 @@ def lex_tokens(text: str):
                 frame[1] -= 1
             continue
         if c == '"':
+            start = (line, col)
             advance(1)
+            closed = False
             while i < n:
                 cc = text[i]
                 if cc == "\\":
@@ -215,7 +242,10 @@ def lex_tokens(text: str):
                     continue
                 advance(1)
                 if cc == '"':
+                    closed = True
                     break
+            if not closed:
+                errors.append(start + ("unterminated_string",))
             line_has_token = True
             continue
         if c == "'":
@@ -227,13 +257,15 @@ def lex_tokens(text: str):
             start_line, start_col, start_first = line, col, not line_has_token
             j = text.find("»", i + 1)
             if j < 0:
+                errors.append((line, col, "unterminated_escaped_name"))
                 advance(n - i)
                 break
+            inner = text[i + 1:j]
             advance(j + 1 - i)
-            parts = ["\x00"]
+            parts = ["\x00" + inner.replace(".", "\x01")]
             read_ident_tail(parts)
             line_has_token = True
-            yield ".".join(parts), start_line, start_col, start_first
+            yield ".".join(parts), start_line, start_col, start_first, False, text[i:i + 40]
             continue
         if _id_start(c):
             start_line, start_col, start_first = line, col, not line_has_token
@@ -248,19 +280,24 @@ def lex_tokens(text: str):
                 if k < n and text[k] == '"':
                     close = '"' + "#" * (k - i)
                     end = text.find(close, k + 1)
+                    if end < 0:
+                        errors.append((start_line, start_col, "unterminated_raw_string"))
                     end = n if end < 0 else end + len(close)
                     advance(end - i)
                     line_has_token = True
                     continue
             if word in INTERP_PREFIXES and i < n and text[i] == '"':
                 advance(1)
-                stack.append(["istr"])
+                stack.append(["istr", start_line, start_col])
                 line_has_token = True
                 continue
             parts = [word]
             read_ident_tail(parts)
             line_has_token = True
-            yield ".".join(parts), start_line, start_col, start_first
+            k = s - 1
+            while k >= 0 and text[k] in " \t":
+                k -= 1
+            yield ".".join(parts), start_line, start_col, start_first, k >= 0 and text[k] == "+", text[i:i + 40]
             continue
         if c.isdigit():
             while i < n and (text[i].isalnum() or text[i] in "._"):
@@ -270,12 +307,25 @@ def lex_tokens(text: str):
         if not c.isspace():
             line_has_token = True
         advance(1)
+    for frame in stack:
+        if frame[0] == "istr":
+            errors.append((frame[1], frame[2], "unterminated_interpolated_string"))
+            break
 
 
-def classify_token(name: str, line_start: bool):
+def classify_token(name: str, line_start: bool, plus_before: bool = False, follow: str = ""):
     """Return (kind, layer, severity) or None."""
-    if "\x00" in name.split(".")[-1]:
+    last = name.split(".")[-1]
+    if last.startswith("\x00"):
+        # escaped component: the same constant name, never a keyword
+        last = last[1:]
+        if last in VIOLATION_COMPONENT:
+            return last, VIOLATION_COMPONENT[last], "violation"
+        if last in REVIEW_COMPONENT:
+            return last, REVIEW_COMPONENT[last], "review"
         return None
+    if name == "native" and (plus_before or _NATIVE_TRUE.match(follow)):
+        return "native", "A2", "violation"
     if "." not in name:
         if name in VIOLATION_EXACT:
             return name, VIOLATION_EXACT[name], "violation"
@@ -283,7 +333,6 @@ def classify_token(name: str, line_start: bool):
             return name, REVIEW_EXACT[name], "review"
         if line_start and name in LINE_START_REVIEW:
             return name, LINE_START_REVIEW[name], "review"
-    last = name.split(".")[-1]
     if last in VIOLATION_COMPONENT:
         return last, VIOLATION_COMPONENT[last], "violation"
     if last in REVIEW_COMPONENT:
@@ -307,12 +356,16 @@ def context_of(path: str) -> str:
 def scan_text(text: str, path: str, blob: str | None = None) -> list[dict]:
     out = []
     ctx = context_of(path)
-    for name, ln, cl, first in lex_tokens(text):
-        r = classify_token(name, first)
-        if r is None:
-            continue
-        kind, layer, sev = r
-        f = {"path": path, "line": ln, "col": cl, "token": name, "kind": kind,
+    errors: list = []
+    found = []
+    for name, ln, cl, first, plus, follow in lex_tokens(text, errors):
+        r = classify_token(name, first, plus, follow)
+        if r is not None:
+            found.append((ln, cl, name.replace("\x00", "«").replace("\x01", "."), r))
+    for ln, cl, kind in errors:
+        found.append((ln, cl, "", (kind, "A", "error")))
+    for ln, cl, token, (kind, layer, sev) in sorted(found, key=lambda x: (x[0], x[1])):
+        f = {"path": path, "line": ln, "col": cl, "token": token, "kind": kind,
              "layer": layer, "severity": sev, "context": ctx}
         if blob:
             f["blob"] = blob
@@ -401,10 +454,11 @@ def main(argv=None) -> int:
         print(f"layer_a_scan: error: {exc}", file=sys.stderr)
         return 2
     fail_ctx = None if args.fail_on == "all" else set(args.fail_on.split(","))
-    failing = [f for f in findings if f["severity"] == "violation"
+    failing = [f for f in findings if f["severity"] in ("violation", "error")
                and (fail_ctx is None or f["context"] in fail_ctx)]
     summary = {"files": files, "findings": len(findings),
                "violations": sum(f["severity"] == "violation" for f in findings),
+               "errors": sum(f["severity"] == "error" for f in findings),
                "failing": len(failing), "undecodable": undecodable}
     if args.json:
         with open(args.json, "w", encoding="utf-8") as fh:

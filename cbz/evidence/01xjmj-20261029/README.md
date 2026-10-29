@@ -15,6 +15,7 @@ Observed: 2026-10-29, about 17:05Z, from full (non-shallow) fetches.
 | `layer_a_tip_scan.json` | Scanner summary per repository at its default tip |
 | `layer_a_branch_scan.json` | Scanner summary for every remote branch of `main` (318) and `Math-` (149) |
 | `branch_classes.json` | Every non-default remote branch of all nine repositories: tip SHA, last commit date, class |
+| `layer_a_rescan_hardened.json` | The hardened scanner re-run on the same branch tips plus the current `main` and `Math-` tips: per-repository totals |
 | `a3_float_census.json` | Layer A3 float-use census per repository at its default tip: class counts and the triage-first list |
 
 Branch classes: `MERGED_NO_PR` (tip is an ancestor of the default branch, not an open-PR
@@ -44,7 +45,7 @@ Full SHAs are in the JSON files.
 2. **Three `main` branches carry violation tokens, all in session-recovery scratch**:
    - `claude/determined-bardeen-mrqy4y` (8 tokens, `recovery/session_015wNj8…/scratch/inv/*.lean`);
    - `claude/nice-maxwell-7i7ok0` (6, `recovery/session_017Mi3hx…/increment2/local_lean_evidence/math_formal_partial_gate/{sorry,native,custom_imported}.lean`, which are deliberate negative-control fixtures, plus `scratch/v15/Joint.lean`);
-   - `claude/recovery-01cz-20261013` (63, mostly `Reject{Sorry,NativeDecide,CustomAxiom}.lean` negative-control fixtures).
+   - `claude/recovery-01cz-20261013` (67 tokens, 63 of them in production-classified paths, mostly `Reject{Sorry,NativeDecide,CustomAxiom}.lean` negative-control fixtures).
 
    None of these is on a default branch. Any archive or quarantine of these refs should
    record that their Lean files are scratch or negative controls, never closed proofs.
@@ -70,13 +71,39 @@ Purpose: a lexical Layer A pre-check (gate G1 complement) that scans any directo
 any git tree (`--git REPO --rev REV`, read from object storage, no checkout), so one
 session with access can cover every repository and every branch.
 
-It certifies exactly this: no code token (outside comments, strings, char literals and
-`«»` names) among `sorry`, `admit`, `sorryAx`, `admitGoal`, `mkSorry`, `axiom`,
-`native_decide`, `ofReduceBool`, `ofReduceNat`, `trustCompiler`, `skipKernelTC`.
-`Float`, `Float32`, `unsafe`, `implemented_by`, `extern` and line-initial `stop` are
-reported for review. It does not certify compilation or the absence of placeholders
-produced by metaprogramming without those tokens; kernel/axiom gates G2–G4 are
-authoritative for that. Undecodable files fail closed.
+It certifies exactly this. There is no code token (outside comments, strings and char
+literals) among `sorry`, `admit`, `sorryAx`, `admitGoal`, `mkSorry`, `axiom`,
+`native_decide`, `ofReduceBool`, `ofReduceNat`, `trustCompiler`, `skipKernelTC` and
+`addDeclWithoutChecking`, and no `decide` option `+native` or `native := true`.
+
+- **Escaped names.** An escaped component is the same name, so `Lean.«ofReduceBool»`
+  and `«sorryAx»` are violations. An escaped keyword such as `«sorry»` is an ordinary
+  identifier and is not flagged.
+- **Review only.** `Float`, `Float32`, `unsafe`, `implemented_by`, `extern` and a
+  line-initial `stop` are reported for review.
+- **Fail closed.** Undecodable files fail the run. So do strings, block comments, raw
+  strings, interpolated strings and `«` names left unterminated at end of file, which are
+  reported as `error` findings.
+- **Not certified.** It does not certify compilation, or the absence of placeholders
+  produced by metaprogramming without those tokens. Kernel and axiom gates G2–G4 are
+  authoritative for that.
+
+**Policy differences from 014K's specification** (main#684/6503596060), stated so that
+whoever merges the scanners can choose deliberately:
+- a name literal such as `` `sorry `` or ``` ``sorryAx ``` is flagged here (the safe
+  direction, since metaprogramming builds placeholders from such names), where 014K
+  treats it as data;
+- `«sorry»` and `Foo.sorry` are clean here, because they name identifiers that are not
+  the `sorry` term, where 014K flags them;
+- `native` after a `+` is flagged even with a space between, so `x + native` would be a
+  false positive. Neither `main` nor `Math-` has a bare `native` identifier.
+
+Apart from these, all 48 of 014K's inputs give the expected result, including the
+fail-closed cases. The hardened scanner was re-run on every default tip and every branch
+recorded in `layer_a_branch_scan.json`: 467 branch tips, 8,107 file scans, 0 lex errors.
+The violation counts are unchanged (Math- 0, main 81, all on the three recovery branches
+above). The current tips main `81acc060` and Math- `74565f01` are also clean
+(`layer_a_rescan_hardened.json`).
 
 Run:
 
@@ -88,8 +115,8 @@ python3 -I tools/cbz/layer_a_scan.py path/to/dir --fail-on production
 Self-verification (gate G0):
 
 ```sh
-python3 -B -m unittest tests.test_cbz_layer_a_scan          # 23 behavioural tests
-python3 -B -m unittest tests.test_cbz_layer_a_scan_mutants  # 26 mutants, all must be killed
+python3 -B -m unittest tests.test_cbz_layer_a_scan          # 28 behavioural tests
+python3 -B -m unittest tests.test_cbz_layer_a_scan_mutants  # 39 mutants, all must be killed
 ```
 
 Both were observed passing at this commit, in normal and `-O` mode, on CPython 3.13.16.
