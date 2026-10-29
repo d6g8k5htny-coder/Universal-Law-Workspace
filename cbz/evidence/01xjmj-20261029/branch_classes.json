@@ -1,0 +1,1590 @@
+{
+ "Math-": {
+  "branches": [
+   {
+    "branch": "agent12/verifier-c7-01",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-22",
+    "sha": "5b3cc75d1585a00ee1420a556af5b77748c418fa"
+   },
+   {
+    "branch": "agent8/c299-c7-replacement-20261022",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-22",
+    "sha": "91811388ef2e20cc30a1c418e866b185a253a186"
+   },
+   {
+    "branch": "agents/paper1-license-citation",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-01",
+    "sha": "124c37d9218120245098df453cf88d3e54b8c9ca"
+   },
+   {
+    "branch": "archive/math421-20261011-pr416",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "2f52c7a3ca78a28b881ca1701c825088bce55338"
+   },
+   {
+    "branch": "archive/math421-20261011-pr417",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "0534882563e3076e7b1534549d4133a555f14a9c"
+   },
+   {
+    "branch": "archive/math421-20261011-pr418",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "81919c6c7e661b8d35e4d155204bce4f6df18638"
+   },
+   {
+    "branch": "archive/math421-20261011-pr420",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "d7f2cdf5fbad679bdaa9c003e482b6e805ec58bf"
+   },
+   {
+    "branch": "benjamin/d5-collar-nonauthor-20260928b",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-28",
+    "sha": "2cc93a030785a1e0a7bd0a2cbd51ef62b8e1ad19"
+   },
+   {
+    "branch": "chatgpt/ac1-f1-synthetic-controls-20261007-gp",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-08",
+    "sha": "8177f47bbb66b7cc0dca430941832740a5480dee"
+   },
+   {
+    "branch": "chatgpt/bq11-import-profile-20261007-f81c",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "a7971bb02f762762e7fe07a66ad215e143eb582f"
+   },
+   {
+    "branch": "chatgpt/cap-i4-adapter-envelope-20261005",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "adc9e1dcef7c5004f66c3fc7bd3450b06543a27e"
+   },
+   {
+    "branch": "chatgpt/cap-i4-angular-formal-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "778805dbe6635f82488098b478739a0ed4026130"
+   },
+   {
+    "branch": "chatgpt/cap-i4-chamber-bridge-20261006-r21",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "93a1917004bc9b19c5d3c41062cb7d72a692a918"
+   },
+   {
+    "branch": "chatgpt/cap-i4-clipped-integral-20261006-r17",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "f4fe483fe7fbe74193536855f9c81813418783ee"
+   },
+   {
+    "branch": "chatgpt/cap-i4-d3-moment8-20261005",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "e02ba4747eb0e214c36ed0f44023737e72c08fec"
+   },
+   {
+    "branch": "chatgpt/cap-i4-depth-kernel-20261006-r16",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "189f4efe86414a94082e612f20d2b8986a1949d8"
+   },
+   {
+    "branch": "chatgpt/cap-i4-entry-volume-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "c0e73e383791dc90fd5d21016a23fc9544f0cf9b"
+   },
+   {
+    "branch": "chatgpt/cap-i4-evidence-r2-20261005",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "970891d0fe26863d6c4cf4ec3cda12713cd3809a"
+   },
+   {
+    "branch": "chatgpt/cap-i4-gaussian-envelope-20261006-r18",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "582a19ba6bee943819bf807e1e9fac3672b5985f"
+   },
+   {
+    "branch": "chatgpt/cap-i4-independent-20261006-r15",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "fb767a09b745fc80fc087c64b1f642e884c13148"
+   },
+   {
+    "branch": "chatgpt/cap-i4-inner-integration-20261006-r19",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "d37a99f3c9bb91fa8f8e18b76d02c85888de6f47"
+   },
+   {
+    "branch": "chatgpt/cap-i4-linear-formal-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "61c949d636a4313582f80ee441731be3d496734c"
+   },
+   {
+    "branch": "chatgpt/cap-i4-matrix-formal-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "baab921de153ab189f9f6d4529566584727d4a43"
+   },
+   {
+    "branch": "chatgpt/cap-i4-outer-composition-20261006-r20",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "76e307707e8fc37d4264210da86915e6ba0be81a"
+   },
+   {
+    "branch": "chatgpt/cap-i4-polar-formal-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "035e14017267fe15276fdccf1758618ca7f96b45"
+   },
+   {
+    "branch": "chatgpt/cap-i4-product-transport-20261006-r14",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "64d3b9294e8d9c612db646a33815248bf05089f5"
+   },
+   {
+    "branch": "chatgpt/cap-i4-proposal-diagnostic-20261006-r12",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "f58dc11eec08327a920cdd6f99da276178437405"
+   },
+   {
+    "branch": "chatgpt/cap-i4-residual-law-20261006-r22",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "67818d305c0b607e8968342bdbc9936f9c19fe43"
+   },
+   {
+    "branch": "chatgpt/cap-i4-source-bridge-20261005",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "f4079f65a3e5e95c9993e51ac5995a54344d4130"
+   },
+   {
+    "branch": "chatgpt/cap-i4-spectral-assembly-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "d6b4a3722b7c73369fdf8056509005d0a2ec7df2"
+   },
+   {
+    "branch": "chatgpt/collision-mechanism-transfer-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "d06a562dc7717894b75c3adf2528ecf9ea743c73"
+   },
+   {
+    "branch": "chatgpt/contact-kernel-tail-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "90e0743a51913c9811bd7ecb9641b1567fa29da8"
+   },
+   {
+    "branch": "chatgpt/contact-small-gap-20260925-oa",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "ef312fed26cd406120c5b6c0a0d442f13538b408"
+   },
+   {
+    "branch": "chatgpt/cusp-contract-characterization-20261006-rfgate",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "b05b0ddc6f982ee68e73b5d1d5e7317e1c1acb69"
+   },
+   {
+    "branch": "chatgpt/d1-borel-kac-rice-amend-20260925",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "1a3afa272e5733bf7d829f6f88f041ac282c6434"
+   },
+   {
+    "branch": "chatgpt/d1-section9-borel-repair-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "694b7ff3047dd8e52817b1432d40c99ea0135a08"
+   },
+   {
+    "branch": "chatgpt/d5-annulus-bridge-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "dedc69e1b786f7ad148e6b66718277f4145c99cd"
+   },
+   {
+    "branch": "chatgpt/d5-finite-r-hermite-repair-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "e93eade078cac2e8b14aa39d402a3043b7cdb1c7"
+   },
+   {
+    "branch": "chatgpt/d5-graph-regional-update-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "a385339b1095b3737b371baba33bfca27cb0fb2a"
+   },
+   {
+    "branch": "chatgpt/d5-inner-axial-density-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "b420099b2440da3a8ba62f7000feacc9fc88069b"
+   },
+   {
+    "branch": "chatgpt/d5-pin-compatibility-review-20260925",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "e707da6f1451c08a7ca3fcd393ee4f2b4d636dcc"
+   },
+   {
+    "branch": "chatgpt/d5-thin-tube-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "2804dc1db27ef3b1fdef6bb350b486162692cc4a"
+   },
+   {
+    "branch": "chatgpt/downstream-boundary-review-20260925",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "32b80ee085dc6a40113d1e46e333cda50d57ba21"
+   },
+   {
+    "branch": "chatgpt/fail-closed-claim-audit-20260925",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "dac4793d2d0690459f02c529a97b9e2e17ca72d8"
+   },
+   {
+    "branch": "chatgpt/fail-closed-claim-audit-20260925-v2",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "7785bc82eb0ada3f25ea2be5513a147378f22e8a"
+   },
+   {
+    "branch": "chatgpt/federation-coefficient-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "e329fba1e927a12dbb4f0d1556f85f39284d17a9"
+   },
+   {
+    "branch": "chatgpt/fold-affine-bridge-20261006-f81c",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-06",
+    "sha": "1038336f92a482b60c7d89fe3024c941281663d3"
+   },
+   {
+    "branch": "chatgpt/full-price-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "f9938338f92590108b163ec96901038d84b70bb9"
+   },
+   {
+    "branch": "chatgpt/gate-refuted-union-hotfix-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "7f48d01a9517d986ed71413c86f9ac224ede6ee1"
+   },
+   {
+    "branch": "chatgpt/integrate-reviewed-collision-package-20260925",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "596e8098bec751e16d0caa56ca15ca20052b38f3"
+   },
+   {
+    "branch": "chatgpt/landing-claim-manifest-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "e23e7c7d1875b3d87420deb338b6c3df500be06c"
+   },
+   {
+    "branch": "chatgpt/legacy-fixture-signing-20261006-r11",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "8194e1035be8610d28268dd8422a71f1caec47d5"
+   },
+   {
+    "branch": "chatgpt/legacy-json-refresh-20261006-r9",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "18afecd9e505167b6eb1d9457b17ed9aacee6677"
+   },
+   {
+    "branch": "chatgpt/legacy-json-repair-20261006-r8",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "06e81fd1013a370f41dca1896904023c55f197f7"
+   },
+   {
+    "branch": "chatgpt/legacy-parser-plus-20261006-r13",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "df8b11c03149d3995a0addd8b2fb8a03c2b32f62"
+   },
+   {
+    "branch": "chatgpt/legacy-signing-isolation-20261006-r12",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "977b4e4732b83fa8efe6fb19e87278049ae253e8"
+   },
+   {
+    "branch": "chatgpt/legacy-trigger-coverage-20261006-r6",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "39b2f8f2c813e94a9c3a122866ce49ae512e19c4"
+   },
+   {
+    "branch": "chatgpt/legacy-tty-followon-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "b5c8fe833548a671e4eae9764c15b47acbc5aee4"
+   },
+   {
+    "branch": "chatgpt/lifetime-parent-imports-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "c0a9b3a1bc71b5f0d8ab8cac04c907be18001e46"
+   },
+   {
+    "branch": "chatgpt/lm006-coefficient-refine-4096-20261006-r22",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-06",
+    "sha": "497dcca37abd18464a6b33cf32ce2e3263054323"
+   },
+   {
+    "branch": "chatgpt/lm006-oned-certificate-ci-20261006-b91e",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "8fe14358a1ee5d7ef7d7e20520391f62f432fe04"
+   },
+   {
+    "branch": "chatgpt/lm006-oned-replay-20261006-b91e",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-06",
+    "sha": "089d87ace030e755511a04735c42c1f91911d4c1"
+   },
+   {
+    "branch": "chatgpt/lm006-regression-rate-20261006",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "39c10a4bb6a670b12aed47c13cba43f846b61baa"
+   },
+   {
+    "branch": "chatgpt/math-gate-identity-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "95c733ee6f9bfe9548a63fc4776990633e50538c"
+   },
+   {
+    "branch": "chatgpt/nav-verdict-word-start-20261006-r10",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "902660f3c6277bef9659022466c13ec80279268e"
+   },
+   {
+    "branch": "chatgpt/navigation-citation-identity-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "29ca89339b7cb347695f668ea6b5a229e605070b"
+   },
+   {
+    "branch": "chatgpt/navigation-corpus-observation-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "c0e66c167d56e27833c87160e5e95cd196720a1f"
+   },
+   {
+    "branch": "chatgpt/navigation-price-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "1dfd49e84c577c2c7505ec45770d58a2de27f3cc"
+   },
+   {
+    "branch": "chatgpt/navigation-reviewed-stack-preparation-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "7028efbabe6c20228aa775911be789acdc44adfa"
+   },
+   {
+    "branch": "chatgpt/navigation-verdict-boundaries-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "76a763e256dd1a6a1e64dc161bb3fa9ec962e0e6"
+   },
+   {
+    "branch": "chatgpt/navigation-verdict-boundary-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "ef156190f20bd1252bf95d4aad37410301864496"
+   },
+   {
+    "branch": "chatgpt/never-merge-formal-negative-20260927",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "fae3ee8c349e2064149b1f0a4295669b9099cd93"
+   },
+   {
+    "branch": "chatgpt/p15-reviewed-manifest-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "423d4d97b907629198d3bff6dbbea0a2258b20c5"
+   },
+   {
+    "branch": "chatgpt/p15-smt-pilot-20260925-1918",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "0ae7e8fdf5d359f80cf6a3dcd614120f7aa9a19c"
+   },
+   {
+    "branch": "chatgpt/pr334-native-contract-support-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "2861c0570c28c46af79f8399c132b6d9f86e9742"
+   },
+   {
+    "branch": "chatgpt/pr8-own-node-eligibility-fix",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "77d52bec2e70cd116cb6598d305498300f671364"
+   },
+   {
+    "branch": "chatgpt/proof-availability-audit-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "703e94744a7205d438c2df690ca62d5688812480"
+   },
+   {
+    "branch": "chatgpt/proof-index-20260925-v2",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "965011dbb301fb541f28f7ff9a8d2aea36c9db1d"
+   },
+   {
+    "branch": "chatgpt/public-imports-pointer-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "29b5cf9039b1fe0bf8f384692627adb3c8636ddb"
+   },
+   {
+    "branch": "chatgpt/qs-raw-child-evidence-20261006-r9",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "680bec8cacda901d303f39f5c1254eb17b5cee50"
+   },
+   {
+    "branch": "chatgpt/qs340-inventory-amendment-support-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "be64661ab7f0da3fa6757c1ddd8271113e7df787"
+   },
+   {
+    "branch": "chatgpt/remote-window-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "191ea7d541a486736ba7bbddfd4eac25a6c4567b"
+   },
+   {
+    "branch": "chatgpt/retrospective-round10-20261005",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "dcea9187293a68eccecb7ee09e2dc7ae2960bb9b"
+   },
+   {
+    "branch": "chatgpt/rf-gate-helper-replay-22393e7b-20261006-r8",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "3ab51620df9f095a77bb8aa92886428f6cb633ab"
+   },
+   {
+    "branch": "chatgpt/rf-gate-incorporation-rehearsal-20261006-r9",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "501b08d315ed86dff9683cb39d00d185ed6f520b"
+   },
+   {
+    "branch": "chatgpt/soft-fold-protocol-20261006",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-06",
+    "sha": "fedd0056c18093e8862b7f6ac2860dc04f8133b9"
+   },
+   {
+    "branch": "chatgpt/third-order-protocol-20261006-37bd-r4",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-06",
+    "sha": "9b3387bdc1cd4e1afc29916d7d7c3f9d922af722"
+   },
+   {
+    "branch": "chatgpt/three-fronts-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "9b5fb7fa0ce3271afb4168dbada4893a53eaf307"
+   },
+   {
+    "branch": "chatgpt/transition-integrity-v2-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "8c4c946a85b68383b56efe1b52e7053b11d9470a"
+   },
+   {
+    "branch": "chatgpt/two-scale-custody-postmerge-repair-20260929",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-29",
+    "sha": "bf00963e9c058d8015a76db866d4c03c61243dd5"
+   },
+   {
+    "branch": "claude/dd-model-d-enclosure-wip-20261013",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-13",
+    "sha": "b4bcf1f4f5c9614efee6caf6bcf49bcb01f24343"
+   },
+   {
+    "branch": "claude/determined-bardeen-mrqy4y",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "22393e7ba3c24b6af57e9c0709bdf4f911583a65"
+   },
+   {
+    "branch": "claude/determined-bardeen-mrqy4y-c8-wrappers",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-28",
+    "sha": "8dca89cfbfe773570d9ee96d0f53e8aac3825016"
+   },
+   {
+    "branch": "claude/round4-triage-table-20261011",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "43a975ec711f2f6a78d23b43d1fc835cdb741ff5"
+   },
+   {
+    "branch": "codex/all-frame-gaussian-rates-20261028",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-28",
+    "sha": "5a30296bfc6c9c886d483c87e80e2eb2d9ea047d"
+   },
+   {
+    "branch": "codex/c291-literal-lifetime-field-20261018",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-17",
+    "sha": "db43694c9f9dbff2987e2e3c0a1260b5c48310ec"
+   },
+   {
+    "branch": "codex/c293-morse-finite-critical-20261018",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-22",
+    "sha": "35a7d76869aad52d7508d58bc589eeb0ddc18bbb"
+   },
+   {
+    "branch": "codex/c294-critical-level-attainment-20261020",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-24",
+    "sha": "dbc3a80afd1ac82c13a0390af7913f9986858467"
+   },
+   {
+    "branch": "codex/c299-critical-ridge-20261020",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-20",
+    "sha": "deccada38a1510fb8330bc205890ba6e98527818"
+   },
+   {
+    "branch": "codex/c299-timeout-test-adoption-20261024",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-24",
+    "sha": "d65e4425e32f62678d4899a0488f137c9918d7ae"
+   },
+   {
+    "branch": "codex/c301-c291-static-workspace-20261024",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-24",
+    "sha": "ee5f0356259b626970ac2170f77763b9828a04f9"
+   },
+   {
+    "branch": "codex/compact-cutoff-baseline-20261009-root01a11cbf",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "06bac48e476c825323a74efb7e80cdb5ad9e9bb6"
+   },
+   {
+    "branch": "codex/compact-cutoff-controls-final-repair-20261011-root01a11cbf",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-11",
+    "sha": "5fb3a52ebfbdb73a37f743d9ab960560979f3b20"
+   },
+   {
+    "branch": "codex/compact-cutoff-controls-repair-20261011-root01a11cbf",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "128d96fbe39425519a30e48ce2efc7406041a61e"
+   },
+   {
+    "branch": "codex/compact-cutoff-proof-20261010-root01a11cbf",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "bb3c92e3226827c9aa1d8746226efaf758e06e2c"
+   },
+   {
+    "branch": "codex/compact-cutoff-proof-repair-20261011-root01a11cbf",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "f7832c870cf31d4239a3a7d67b557e69029a1be1"
+   },
+   {
+    "branch": "codex/compact-cutoff-proper-partial-control-20261011-root01a11cbf",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "25a4b611368063807ac9201aea80461ffe8583d2"
+   },
+   {
+    "branch": "codex/compact-cutoff-proper-partial-repair-20261011-root01a11cbf",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-11",
+    "sha": "1a7fc4be83043f2e313927019db85fff61eeac3f"
+   },
+   {
+    "branch": "codex/cubic-curvature-20261026",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-28",
+    "sha": "a9846b96b5bdbdf7037a09425869ed54f8530f69"
+   },
+   {
+    "branch": "codex/elder-cusp-parity-protocol-20261020",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-23",
+    "sha": "f7fbd8cf44c29103297f29220ab49fcf64b5df3a"
+   },
+   {
+    "branch": "codex/essential-gaussian-rate-20261028",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-28",
+    "sha": "de872d97fa54eb11c0834b8f532543222900d165"
+   },
+   {
+    "branch": "codex/essential-sharp-asymptotics-20261028",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-28",
+    "sha": "fc5ecb67f4a9d6cfb1dec066499ca2daa1147b3b"
+   },
+   {
+    "branch": "codex/gaussian-lifetime-limit-completion-20261029",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-29",
+    "sha": "fdddc7e6b1fd584fa566beaccedd64d177104d10"
+   },
+   {
+    "branch": "codex/gaussian-lifetime-tail-20261028",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-28",
+    "sha": "223293d9d26a7a4158026a4225523e8a683a8794"
+   },
+   {
+    "branch": "codex/pr409-current-source-b4a66e52",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-09",
+    "sha": "0606005294a0b0df2d2adefb5ab3e938ee4706a2"
+   },
+   {
+    "branch": "codex/quotient-closed-superlevel-lpc-adapter-20261020",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-20",
+    "sha": "c5cdf6e938c92c91669782073e3f14e0067fc6a1"
+   },
+   {
+    "branch": "codex/quotient-closed-superlevel-lpc-adapter-20261020-r2",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-20",
+    "sha": "0b6cdcacaa62ff76b3e45142f32afe02f7beb5a0"
+   },
+   {
+    "branch": "codex/quotient-closed-superlevel-lpc-adapter-20261022-r3",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-22",
+    "sha": "03d98cce28be89affc9d4a76d12916a92b71bca0"
+   },
+   {
+    "branch": "codex/source-admission-graph-package-20261020",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-20",
+    "sha": "1016973a1f311114b814eef060707ab642bc29e8"
+   },
+   {
+    "branch": "codex/source-smooth-realization-20261013-root01a11cbf",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-13",
+    "sha": "1f38a851595bc0664b543aeb59b462817ca3b8f9"
+   },
+   {
+    "branch": "copilot/add-license-citation-files",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-01",
+    "sha": "75ccc0f6092abca5eab0283bb53a494bad61b5cd"
+   },
+   {
+    "branch": "cursor/cross-repo-proof-custody-7eca",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "e14d41101ddd7fc8e8ef2ed296a288d1cdd70191"
+   },
+   {
+    "branch": "cursor/d2-cumulative-confirm-870a",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "f5e859495b24761cd65c4fe63d9b3a8264debd4e"
+   },
+   {
+    "branch": "cursor/d2-cumulative-correction-review-5dce",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "9a740b53bba445e9cb7140a04729ba5e16594904"
+   },
+   {
+    "branch": "cursor/d5-chart-graph-node-91fa",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "707e2daac34656d6583e3612b04ff2170989f412"
+   },
+   {
+    "branch": "cursor/d5-chart-j0-on-hotfix-91fa",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "84115d7d9953ef4e3727edd4ed3277bb16653eb2"
+   },
+   {
+    "branch": "cursor/d5-pin-microdisk-c059",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "ae45d35192c2b601c7962e0b16b282ad9e98a400"
+   },
+   {
+    "branch": "cursor/downstream-hard-gate-91fa",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "5887a2f8aaf121760362e6e90f9974f1e0078bc5"
+   },
+   {
+    "branch": "cursor/formal-verification-layer-ae3b",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "a6637061fd7fade60ad2bba2a16a38df8034270c"
+   },
+   {
+    "branch": "cursor/lemma-theorem-registers-f339",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "79a791a1f810dad5e695113fb0fa4d537d4d71ee"
+   },
+   {
+    "branch": "cursor/moment-generality-alignment-cdd1",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-05",
+    "sha": "4551c3321943bcbbc679fb34a990523361734290"
+   },
+   {
+    "branch": "cursor/nonauthor-hermite-axial-review-5dce",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "3c82293188802777ff278ab61d2901749dd15fb3"
+   },
+   {
+    "branch": "cursor/p15-full-price-review-55ed",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "cab2db513b71761c36f8f60175395f02b7593fb7"
+   },
+   {
+    "branch": "cursor/pr25-contact-kernel-review-b00c",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "8373c3a7b9d8e5aebc69465d09fa7fcad437e8a5"
+   },
+   {
+    "branch": "cursor/pr25-typed-transfer-review-bebc",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "189628119f65d845e270759e1b2b1e84ddb4cfe3"
+   },
+   {
+    "branch": "cursor/pr28-annulus-nonauthor-review-bed2",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "bebb77ae9fe3b22c425a979b780fc99a72c8e761"
+   },
+   {
+    "branch": "cursor/pr69-pin-microdisk-review-4f5c",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "eb8bf7a58ec89d63868d8e281e709844b0ded47b"
+   },
+   {
+    "branch": "cursor/proof-custody-repair-8e33",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "44901b5c17bdaddaf2fc8444aaf9b1d7a38b5f3d"
+   },
+   {
+    "branch": "cursor/rn-mesoscopic-chart-j0-91fa",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "84b64e1bb8f01142888aed1f87dd44c1a5814462"
+   },
+   {
+    "branch": "custody/proof-index-erratum-pointer-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "d8f55054270532f2f95ae7cc7f5c613643d47e13"
+   },
+   {
+    "branch": "grok/congruence-erratum-on-default-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "bebe09d2f62e7cbff8a7eb4d8e588fc3acb068a4"
+   },
+   {
+    "branch": "grok/required-math-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "66e39d1894d5c11bb5930b76692b5d0c71939efd"
+   },
+   {
+    "branch": "grokbot-agent12/steward-source-refresh-01",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-07",
+    "sha": "bee7fd0b64121c452d5cc40c75e99a71ae8e2613"
+   },
+   {
+    "branch": "grokbot/local-path-map-20261015",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-15",
+    "sha": "5497685a50c47b05bd3703c9dc295ded1de2f867"
+   },
+   {
+    "branch": "harper/d5-contact-kernel-tail-review-20260928",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-28",
+    "sha": "098ec981992d6d4bfbcac56012cb74bacace8e06"
+   },
+   {
+    "branch": "inventable/purpose-readme-seed",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "484811c5a2c00ab8113dae4a4392bd9f908f6d39"
+   },
+   {
+    "branch": "support/navigation-336-344-353-on-08f86862-20261006",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-06",
+    "sha": "e1fc0e8cf135e751e79e4d9af2387b491461e266"
+   },
+   {
+    "branch": "xai/outsider-directions-note-20260930",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-30",
+    "sha": "3e0a91b69892b9717564c592e7a966492a81566a"
+   }
+  ],
+  "default": "8151f592918a845bf19eb8eafaf8444540a32734"
+ },
+ "Universal-Law-Workspace": {
+  "branches": [
+   {
+    "branch": "chatgpt/federation-bootstrap-20260926",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "79e4b3963aac64d568be7438f56e05e0fb6ad63c"
+   },
+   {
+    "branch": "claude/public-workspace-proposal-20260926",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "96e00590448541f0989a42e899fb5adc764868af"
+   },
+   {
+    "branch": "grok/pins-update-20261010",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-10",
+    "sha": "4e200757a697107794b0951d26d0f42c8088fe30"
+   },
+   {
+    "branch": "import/curated-tree-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "fcd1d01ed87b2d9c3bda7a9d13e64bb65ff4b0b1"
+   },
+   {
+    "branch": "import/submodules-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "1fc8758c5b773722239629a60d5125f893dbccf7"
+   }
+  ],
+  "default": "45a80ab01504936b46d035c2de1f92c73ed273de"
+ },
+ "d6g8k5htny-coder": {
+  "branches": [
+   {
+    "branch": "chatgpt/navy-gold-profile-20260927",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "4bca99b12ad424df18fd0adb34b51cf6ea8b6fb2"
+   },
+   {
+    "branch": "codex/profile-public-entry-20260930",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-30",
+    "sha": "e5521ff89d7bf3a549c336548e96e81c0af592af"
+   },
+   {
+    "branch": "cursor/route-agents-board-619-4a28",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-26",
+    "sha": "cf13cd073dfcb8bc2f3d331428da7fd333040591"
+   }
+  ],
+  "default": "eb98251e9c56ce8a5bf7c2cd9f48e05fe6fc6d42"
+ },
+ "governance-": {
+  "branches": [
+   {
+    "branch": "chatgpt/archsys-active-board-route-20261015",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "6f8c5be8834a6d98097576f2c568af45b0dbc10b"
+   },
+   {
+    "branch": "chatgpt/board307-routing-20261008",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-08",
+    "sha": "33e8a6acc2f27382f20c6e4edd56c4d48d1903ed"
+   },
+   {
+    "branch": "chatgpt/c146-readme-current-entry-20261007",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "a31ebb326fd439ee6a70114e3e5359feae27e3f7"
+   },
+   {
+    "branch": "chatgpt/federation-coefficient-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "edf1e64f91d5c1d040e035880a60563dc6cb12da"
+   },
+   {
+    "branch": "chatgpt/gtw-6195765034-trial-routing",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "320d991ed2b1f4b5800ae79b0f75f6ca75dadb3f"
+   },
+   {
+    "branch": "chatgpt/lease-input-types-20261015-6195569812",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "682efad1a56b3fc0e17ced93d14431d61ff5267f"
+   },
+   {
+    "branch": "chatgpt/meta-gov-mandate-entry-20261015-6199423937",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "5d2ae4de7aa32f5e7ee7bf3e68edaf1eef316a49"
+   },
+   {
+    "branch": "chatgpt/public-readme-cleanup-20260927",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "51fca7ed99e30f8009244a7150d3c378562c7df0"
+   },
+   {
+    "branch": "chatgpt/review-topology-v1-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "6da327b520574ba88de27e70c6456e55326d5dbe"
+   },
+   {
+    "branch": "claude/determined-bardeen-mrqy4y",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-21",
+    "sha": "a7a24f02f9d19293778cc0f688fe658e3dbc5802"
+   },
+   {
+    "branch": "claude/drive-audit-github-migration-rrglpp",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-25",
+    "sha": "435693e07138c9214b0d25105a227150215176d4"
+   },
+   {
+    "branch": "claude/formal-deployment-records-20260928",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-28",
+    "sha": "b8b38b3af759d160cd9614b48c33b0ddaf584df8"
+   },
+   {
+    "branch": "claude/governance-docs-watcher-95-20260928",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-28",
+    "sha": "9f8823c269852ce5e403914bf869ee1fe671583e"
+   },
+   {
+    "branch": "claude/owner-stop-cursor-20260927",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "964195f946a3071c50c84dfe5b04121135b6f94a"
+   },
+   {
+    "branch": "codex/mandate-readme-board419-20261015",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "3aeaf05a291c32723b1baaca173a54e1918d6e2f"
+   },
+   {
+    "branch": "codex/refresh-privacy-pointer-20261011",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "b00f2644ef14c48b1fa9832d784d614fd4ff907c"
+   },
+   {
+    "branch": "cursor/board-619-pointer-matrix-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "1931b604d5cc30b7539f4e4dbbc1c01fe17809e0"
+   },
+   {
+    "branch": "cursor/board-619-residual-links-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "b70db9d8d957183177284a585a2c085922159d9c"
+   },
+   {
+    "branch": "cursor/coord-crawl-wake-20261026-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "8c5cbddac8ff1e417238218b043d51fddce4d363"
+   },
+   {
+    "branch": "cursor/followup-638-tip-lpw-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "9806a96e7a9d12480ea79d1bbe3790b78e4b9504"
+   },
+   {
+    "branch": "cursor/lease-watch-continuation-ab08",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "e25b16a8c2b67ca31a24826ebe109431f3895e08"
+   },
+   {
+    "branch": "cursor/lease-watch-followthrough-ab08",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "e9c4c9b4e072a9529d7e63e8090e5951d20701fd"
+   },
+   {
+    "branch": "cursor/lease-watch-pulse-ab08",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "f81feaac01369c5607f044059d0a0a240123b744"
+   },
+   {
+    "branch": "cursor/main638-eng-review-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "688b257c4e77f73f1f6ed08e33eab8cb15e6c76c"
+   },
+   {
+    "branch": "cursor/math512-eng-review-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "686d958f9562d109810320f07b165b7937f4467f"
+   },
+   {
+    "branch": "cursor/math512-process-breach-note-eed8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "f8a46cb60c9be5a0f25bc2ac20426e5881c8d18f"
+   },
+   {
+    "branch": "cursor/process-packet-scope-ab08",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "264fa8dbf79e614a9aa8a1fff44fd136cbe51e0b"
+   },
+   {
+    "branch": "docs/qualify-current-json-snapshot",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "ec8fe1c6faefa7d9619586fdb20ceaf8e5c4b221"
+   },
+   {
+    "branch": "docs/review-topology-current-precedence-20261012",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-12",
+    "sha": "a497454cbe7abcfe8e04cc620ef8f2941550023c"
+   },
+   {
+    "branch": "fix/lease-checker-overlap",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "fb4db98610a1e2f853340d61afb304a2c9cede5b"
+   },
+   {
+    "branch": "gtw/governance-readme-mandate-20261015-6200469837",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "62d250990750b2fb56bd5d61eab7c6553751ec9d"
+   },
+   {
+    "branch": "gtw/lease-ci-20261015-6196870796",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "d197ede7cf5996ccd36515a6dafc3498b660be7c"
+   },
+   {
+    "branch": "harper-h01-delete-owner-stop",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "99b5a7718f7e68ff7af456ce92e46dfe684060ce"
+   },
+   {
+    "branch": "inventable/purpose-readme-seed",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "1e0eb73b1a636ccfaabf34296394d53fb994197c"
+   },
+   {
+    "branch": "remove-owner-stop-20261007",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "a8bf6883ceed2c5a52da5a6a7de8549d0afe184a"
+   }
+  ],
+  "default": "e396002aa19158f9fcca27eaf33a5da38b1ed313"
+ },
+ "meta-framework": {
+  "branches": [
+   {
+    "branch": "architecture/meta-framework-stop-alignment-20261007",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "2d9193be712882767dd58b1b0da86168ed1c9f1d"
+   },
+   {
+    "branch": "chatgpt/c146-conformance-readme-20261007",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "19d9ab2b7ac9e824ed8189ea407f75cbf29f28b0"
+   },
+   {
+    "branch": "chatgpt/closed-queue-nav-20260928",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "4001f09f1b2e1bdc00853f88ff115e35e8bf7a82"
+   },
+   {
+    "branch": "chatgpt/federation-coefficient-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "149b1287929ee1aa8b5e4418dfb5a8c44646201b"
+   },
+   {
+    "branch": "chatgpt/full-price-catalog-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "bca1488e6a80aab5c61f1b29850c43644e8fcabe"
+   },
+   {
+    "branch": "chatgpt/gtw-meta-trial-routing-20261015-6200549568",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "e1ca5293fe1337c7cc4391455edc58d001de4c4e"
+   },
+   {
+    "branch": "chatgpt/meta-agent-board419-20261015-6201558220",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "40f5fe5aae87129ddaa99b389b886608429dfa07"
+   },
+   {
+    "branch": "chatgpt/meta-artifact-repository-types-20261011",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "77cb3ea9830e4167172db2f847f9a65f2f670437"
+   },
+   {
+    "branch": "chatgpt/meta-contract-nul-20261014-6175652935",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-14",
+    "sha": "60e69a87fac05b1ea3a9e8d54d6ceb97ed5c166a"
+   },
+   {
+    "branch": "chatgpt/meta-contracts-push-main-20261011",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "361d8f11365323af74d555fe741320aa795c6352"
+   },
+   {
+    "branch": "chatgpt/meta-enum-type-refusals-20261008",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "4afeb0b8d5211e5611b6a9f5f1c3f83b55398a30"
+   },
+   {
+    "branch": "chatgpt/meta-json-duplicates-20261008",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "bf373685a1f46f1613899bc4cc271cbe43aae204"
+   },
+   {
+    "branch": "chatgpt/meta-mandate-entry-20261015-6198347695",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "6e61c79b0e92d8ce71d26a20b3b6791ab72de238"
+   },
+   {
+    "branch": "chatgpt/meta-readme-board419-20261015-6202194286",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "4786aa3e0a468d2ab0853c1331e0ee7423244da8"
+   },
+   {
+    "branch": "chatgpt/meta-registry-root-refusal-20261007",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "f01f007b7d399715b89f6b38d4b08f7e26d8d041"
+   },
+   {
+    "branch": "chatgpt/meta15-exact-hex-types-20261012",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-12",
+    "sha": "eefb5f10aeabe2134064b144fadd620033bffd35"
+   },
+   {
+    "branch": "chatgpt/navigation-price-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "f31957cc9291daef869d0a2de0ef2c0dd816c712"
+   },
+   {
+    "branch": "chatgpt/navy-gold-readme-20260927",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "32a0980aea04bc54a4ff5c813460eda58f1e5a83"
+   },
+   {
+    "branch": "chatgpt/remote-window-catalog-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "4f652bf8c47f892bceb5df24ccea9546850f7f01"
+   },
+   {
+    "branch": "chatgpt/rtw-meta-delegation-onboard-20261015-6204291992",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "374586d843b0a1587439a163bbb06f6a7201904d"
+   },
+   {
+    "branch": "chatgpt/source-contracts-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "edab95fab137cd68b9a9b53a8e4e7cfb1b895a2e"
+   },
+   {
+    "branch": "ci/contracts-push-trigger",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "f59ce895790d511d0321774d4d7a707c01f0bac4"
+   },
+   {
+    "branch": "claude/determined-bardeen-mrqy4y",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-21",
+    "sha": "fc94f3875a6796524a456aeddcc228f7110f74b9"
+   },
+   {
+    "branch": "claude/drive-audit-github-migration-rrglpp",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "aa41439a681761d9c7389fbaf5b39ec9af60813d"
+   },
+   {
+    "branch": "claude/meta15-conformance-doc-current-20261013",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-13",
+    "sha": "f93700d7410873aebbe9321c623aa5de7c38c263"
+   },
+   {
+    "branch": "claude/meta15-contract-compatibility-20261012",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-12",
+    "sha": "2f2cf7f669f62f7efe1239909f2de88236f08d2e"
+   },
+   {
+    "branch": "claude/owner-stop-cursor-20260927",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "cad5885b7f760b9d4aa725dae900926ee01740c2"
+   },
+   {
+    "branch": "codex/meta-catalog-guidance-20261012",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-12",
+    "sha": "9146a9dfe73e15dcc3bb13dcf858820465b22fae"
+   },
+   {
+    "branch": "codex/meta-current-routing-labels-20261012",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "6eca9c170f0f97e9e36e002898e0de2a3d0578f3"
+   },
+   {
+    "branch": "codex/meta-lookup-only-quickstart-20261012",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-11",
+    "sha": "1d7835412ece0bcad46c862415c2e6ceed73a836"
+   },
+   {
+    "branch": "cursor/catalog-drive-parents-5cb8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "4068da728e860df7fc1a65d9f4ee1326be1444b9"
+   },
+   {
+    "branch": "cursor/catalog-math-pr53-5cb8",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "6a49d31511f69a249155c11ac4c966f97e636886"
+   },
+   {
+    "branch": "cursor/formal-verification-layer-af9f",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "c4a36be01a02c36694b9e93c64cd080ec6575242"
+   },
+   {
+    "branch": "cursor/public-face-navigation-9aa7",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "217bf5617f339ba8dba1b9e21b58e2fc3f44b1b2"
+   },
+   {
+    "branch": "cursor/w8f-w8d-controls-ci",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-08",
+    "sha": "73d3044f905e8889d27b001c9207972ad4876761"
+   },
+   {
+    "branch": "gpt6/meta15-long-major-overflow-20261013",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-12",
+    "sha": "dd05eb56349c16a2af7e8998093f045868867f24"
+   },
+   {
+    "branch": "grok-h01-delete-stop-20261007",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "f063d9dcab51302aaaef6666245cac9cf2307548"
+   },
+   {
+    "branch": "grok/c179-w1v-discovery-01",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-08",
+    "sha": "81c6ac4cb5661a8152e57420eda8db2fbe9a75ad"
+   },
+   {
+    "branch": "grokbot/agent11-readme-archived-20261015",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-15",
+    "sha": "78c85423a9375acf8b08b044f9c9e2cba8dd9d18"
+   },
+   {
+    "branch": "harper/c179-discovery-guard-20261009",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-09",
+    "sha": "e92072f897095bc392ad12ed9e54028b35a07b63"
+   },
+   {
+    "branch": "inventable/purpose-readme-seed",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "d681c6e8a5a0e0d813e420e17eaf61f12c52733e"
+   },
+   {
+    "branch": "lucas-h01-stop-gone",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-27",
+    "sha": "f063d9dcab51302aaaef6666245cac9cf2307548"
+   },
+   {
+    "branch": "research/meta-d1-source-ref-repair-20261023",
+    "class": "MERGED_NO_PR",
+    "date": "2026-10-21",
+    "sha": "fa610d66058ecf435393f87c827cc8d5e06bba54"
+   }
+  ],
+  "default": "c70e1984477ae1752e93a060fac8bf0486c0ce73"
+ },
+ "openclaw-custodian-validation": {
+  "branches": [
+   {
+    "branch": "custodian-native-review-validation",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-03",
+    "sha": "e4e1cdb32923f00118843420bddaca56f1af9d74"
+   }
+  ],
+  "default": "83e0ba034aa3999d12554c1583732573ec09e8da"
+ },
+ "query-": {
+  "branches": [
+   {
+    "branch": "chatgpt/align-query-agent-entry-20261007",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-07",
+    "sha": "8f487e283d30e31779297b953315e70fa47f0707"
+   },
+   {
+    "branch": "chatgpt/federation-coefficient-20260924",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "8e201316d17cf4ff3c679e1e9906d4b016ac6730"
+   },
+   {
+    "branch": "chatgpt/math-required-check-tip-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "f7cba6e1e5b4e31c4fcfa75451e2fe4b47f339d8"
+   },
+   {
+    "branch": "chatgpt/public-math-tip-20260926",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "bbb829312c096d6767c4bb862382d5ee92aa9dd3"
+   },
+   {
+    "branch": "chatgpt/src-migration-20260925",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "f186847dbe32d57f9f4561107c947b153f656264"
+   },
+   {
+    "branch": "ci/w1v-02-empty-discovery-guard",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-08",
+    "sha": "166df48584acdab90e35f2a2a24add3c9831a248"
+   },
+   {
+    "branch": "ci/w1v-02-reject-empty-discovery",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-08",
+    "sha": "36265873bb890631f2f4411edeaac9b854587eac"
+   },
+   {
+    "branch": "copilot/fix-github-actions-job",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "bf4cf288c2801dbdb0a65c8600bdf5660581ec9a"
+   },
+   {
+    "branch": "cursor/board-route-619-3c54",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "2bf1c35a271613581373bf7d2603eeeb303d9dcc"
+   },
+   {
+    "branch": "cursor/downstream-gate-stubs-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "fff0ae200acbfae9f58bd9e6ee0ad199ccdb8be8"
+   },
+   {
+    "branch": "cursor/peer-handoff-meta6-3c3cf11-2393",
+    "class": "MERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "43c9fc91271b63f3ac3dea653d7ea0383fd1673d"
+   },
+   {
+    "branch": "cursor/peer-handoff-meta6-7ffa5c6-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "d67eb0090b48861669f0c663579145ae10d1cc9a"
+   },
+   {
+    "branch": "cursor/peer-handoff-meta6-e2259d4-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "391d53444551554e40ab108ec8083c9e16b1e9d3"
+   },
+   {
+    "branch": "cursor/peer-handoff-meta6-f890782-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "0d4ed1e45f25c53ab1eeb058a8945c6b591d6373"
+   },
+   {
+    "branch": "cursor/peer-handoff-meta6-verify-8cda",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "30d95b8ff08b5cbb289c2d4cb05498d6329ecd88"
+   },
+   {
+    "branch": "cursor/refresh-gate-stubs-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "a1470eaa3264a08855fb79b38ece43eb4ca9f82d"
+   },
+   {
+    "branch": "cursor/rn-lookup-local-tests-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "9a19988c62d8c8be8880dfa9e2244db4b68d1f84"
+   },
+   {
+    "branch": "cursor/tip-drift-gate-check-2393",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-25",
+    "sha": "7fa7807e8937780d02bb332fd7cd3007f55a8247"
+   },
+   {
+    "branch": "harper/c179-discovery-guard-20261009",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-09",
+    "sha": "50c08a1550feb064df80c5c217997e7429b63342"
+   },
+   {
+    "branch": "integration/public-src-20260926",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-26",
+    "sha": "6c8389bf8566dc3280f8cfdd3197a0fc9cfd7a61"
+   },
+   {
+    "branch": "inventable/purpose-readme-seed",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-09-24",
+    "sha": "c0b1cea7bdae85ee307acff64f412d14019fc87f"
+   }
+  ],
+  "default": "fb4c457b5861dc49696fd0a8e11c7c405056c05f"
+ },
+ "research-hosted-qualification": {
+  "branches": [
+   {
+    "branch": "cursor/main-pr-crawl-board-a901",
+    "class": "UNMERGED_NO_PR",
+    "date": "2026-10-26",
+    "sha": "85c57ab0b8e53a92cae1cf64df18e86492982594"
+   },
+   {
+    "branch": "cursor/pr-assist-board-evidence-7ffb",
+    "class": "OPEN_PR_HEAD",
+    "date": "2026-10-26",
+    "sha": "58e680f8d52f80aa1cdbb2c1bf6ef0326a1665a9"
+   }
+  ],
+  "default": "03b6530ced1024aef21aaf2bcc48be8fafa7b873"
+ }
+}
