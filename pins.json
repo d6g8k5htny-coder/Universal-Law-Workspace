@@ -7,10 +7,10 @@
       "path": "repos/main",
       "url": "https://github.com/d6g8k5htny-coder/main.git",
       "default_branch": "main",
-      "pinned_sha": "4ef1867175dbe1072a54a02e95f80c4e2c70a4ff",
+      "pinned_sha": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time; refreshed after Main governance merge; previous workspace pin 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff"
     },
     {
       "name": "Math-",

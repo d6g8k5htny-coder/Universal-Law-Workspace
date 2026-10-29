@@ -26,8 +26,11 @@ records this workspace contribution and does not replace their shared record.
 - Hosted runs 40918510771 and 40918511097 on Workspace commit `e347db7`
   failed: the published Git tree accidentally contained an extra gitlink
   `repos/Universal-Law-Workspace` absent from the tested local candidate.
-  The correction removes that gitlink; hosted verification of the corrected
-  tree is still required. See `evidence/hosted_validation_20261029.json`.
+  The correction removed that gitlink. The corrected contract run passed;
+  its pin run rejected Main drift after Main advanced. See
+  `evidence/hosted_validation_20261029.json` for exact run identities.
+- The Main gitlink was subsequently refreshed to `81acc060` after that drift.
+  Run the current hosted checks to establish the state of that newer commit.
 
 ## Remaining
 

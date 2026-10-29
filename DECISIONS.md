@@ -63,6 +63,12 @@ workspace is being assessed; it is not yet CBZ-0.
   status and evidence describe its own contribution; they are not a competing
   declaration of federation closure. Reversible: yes.
 
+- 2026-10-29 UTC · Phase 1 · C · After the unintended gitlink was removed,
+  workspace contract run 40918788940 passed on `66019e4`; pin run
+  40918789181 rejected Main's advance to `81acc060`. Refreshed the Main
+  gitlink, pin and README reference to the observed tip. This is a new source
+  cut, not proof of ongoing or atomic federation currency. Reversible: yes.
+
 ## Execution checklist
 
 1. Add end-to-end local-Git tests showing equal tips pass and each failure
