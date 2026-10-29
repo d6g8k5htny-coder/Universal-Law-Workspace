@@ -38,6 +38,12 @@ records this workspace contribution and does not replace their shared record.
   pin run rejected a newer meta-framework tip. This candidate refreshes that
   pin and adds canonical-input identity checks; its hosted result must be
   observed on the actual candidate commit.
+- Query's seven-row downstream bundle remains pinned to Math- `6c020d6a`;
+  the seven recorded files match their declared sizes and SHA-256 hashes and
+  have the same Git blob identities at Math- `8151f592`. The commits are
+  different, so this observation does not change the historical snapshot or
+  prove all transitive pins current. See
+  `evidence/query_snapshot_identity_20261029.json`.
 
 ## Remaining
 

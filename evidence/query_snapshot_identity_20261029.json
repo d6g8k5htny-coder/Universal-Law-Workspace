@@ -1,0 +1,84 @@
+{
+  "observed_utc": "2026-10-29T17:26:53.322Z",
+  "query_commit": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+  "bundle_path": "portable/CANDIDATE_DOWNSTREAM_GATE_STUBS.json",
+  "bundle_git_blob": "90904799fb6f5353e4857c563f9f329aca3b2a43",
+  "recorded_math_commit": "6c020d6a72936632f2055122e71a7818a4ff497e",
+  "observed_math_commit": "8151f592918a845bf19eb8eafaf8444540a32734",
+  "tree_responses_truncated": false,
+  "method": "Fetched each recorded Math source as UTF-8, independently recomputed byte count, SHA-256 and Git blob SHA-1, and compared nontruncated source trees at both Math commits.",
+  "result": "All seven recorded source files match their declared lengths and SHA-256 hashes. Each has the same Git blob identity at the recorded and observed Math commits; the commit identities still differ.",
+  "boundary": "Byte equivalence does not rewrite the recorded historical snapshot, establish general transitive pin consistency, imply atomic currentness, or change mathematical or graph status.",
+  "rows": [
+    {
+      "key": "downstream-hard-gate",
+      "path": "frontiers/downstream_gate_20260925/README.md",
+      "bytes": 4025,
+      "recorded_sha256": "13fc1accebebd6017f34b0e5473bf6338f2604948c25a002051b5f0620fc327a",
+      "recomputed_sha256": "13fc1accebebd6017f34b0e5473bf6338f2604948c25a002051b5f0620fc327a",
+      "recorded_commit_git_blob": "6ff49b966ab41dc4db771d48e547cc60da11764f",
+      "observed_current_git_blob": "6ff49b966ab41dc4db771d48e547cc60da11764f",
+      "match": true
+    },
+    {
+      "key": "downstream-hard-gate-scope",
+      "path": "frontiers/downstream_gate_20260925/SCOPE.md",
+      "bytes": 2218,
+      "recorded_sha256": "c7b5bb0ec34f53395b96ae24edceb3b5b0a3451caf7df6205b924d40e9e9fd84",
+      "recomputed_sha256": "c7b5bb0ec34f53395b96ae24edceb3b5b0a3451caf7df6205b924d40e9e9fd84",
+      "recorded_commit_git_blob": "ed8c56a88c483cdda3138a99e217ab3518c6f5d3",
+      "observed_current_git_blob": "ed8c56a88c483cdda3138a99e217ab3518c6f5d3",
+      "match": true
+    },
+    {
+      "key": "downstream-hard-gate-code",
+      "path": "frontiers/downstream_gate_20260925/hard_gate.py",
+      "bytes": 26735,
+      "recorded_sha256": "a78f3e25f3b0cfe113e618a4c31a7a25d7f22af638c46dec1ecba221fa333ac8",
+      "recomputed_sha256": "a78f3e25f3b0cfe113e618a4c31a7a25d7f22af638c46dec1ecba221fa333ac8",
+      "recorded_commit_git_blob": "3a334f11e4bf1792cf843474aa6c3013c51893a2",
+      "observed_current_git_blob": "3a334f11e4bf1792cf843474aa6c3013c51893a2",
+      "match": true
+    },
+    {
+      "key": "downstream-hard-gate-tests",
+      "path": "frontiers/downstream_gate_20260925/test_hard_gate.py",
+      "bytes": 23161,
+      "recorded_sha256": "c444e6c347da680aff5bef7f43900e45d52a0cc45081fb7b4def45266d97aac1",
+      "recomputed_sha256": "c444e6c347da680aff5bef7f43900e45d52a0cc45081fb7b4def45266d97aac1",
+      "recorded_commit_git_blob": "0c8263e960ad18fe095c52de4a7c8c9e2094bd59",
+      "observed_current_git_blob": "0c8263e960ad18fe095c52de4a7c8c9e2094bd59",
+      "match": true
+    },
+    {
+      "key": "downstream-hard-gate-output",
+      "path": "frontiers/downstream_gate_20260925/RESULTS.json",
+      "bytes": 7095,
+      "recorded_sha256": "0b95624e08e3eff7ca386a68534960b89ef63b10312ad5120159c0e29961264a",
+      "recomputed_sha256": "0b95624e08e3eff7ca386a68534960b89ef63b10312ad5120159c0e29961264a",
+      "recorded_commit_git_blob": "657594914d07f34b03513ffea42bd071fa1ba59f",
+      "observed_current_git_blob": "657594914d07f34b03513ffea42bd071fa1ba59f",
+      "match": true
+    },
+    {
+      "key": "downstream-hard-gate-replay",
+      "path": "frontiers/downstream_gate_20260925/run_validation.py",
+      "bytes": 10466,
+      "recorded_sha256": "6b5aa2361e8ce75ce4fc2e76a6386ebdc15e18de567471edefdd8a250f05b59a",
+      "recomputed_sha256": "6b5aa2361e8ce75ce4fc2e76a6386ebdc15e18de567471edefdd8a250f05b59a",
+      "recorded_commit_git_blob": "937a91a88483839393d2695576c28bc292dd9075",
+      "observed_current_git_blob": "937a91a88483839393d2695576c28bc292dd9075",
+      "match": true
+    },
+    {
+      "key": "downstream-hard-gate-graph",
+      "path": "frontiers/downstream_gate_20260925/GRAPH.json",
+      "bytes": 38753,
+      "recorded_sha256": "8822e9618678321a342d69cd0b8ae6552de1b5d578c331de5072b2892ee9dd09",
+      "recomputed_sha256": "8822e9618678321a342d69cd0b8ae6552de1b5d578c331de5072b2892ee9dd09",
+      "recorded_commit_git_blob": "220b56867f24c5ef6f55a3cce70490e9777cf3af",
+      "observed_current_git_blob": "220b56867f24c5ef6f55a3cce70490e9777cf3af",
+      "match": true
+    }
+  ]
+}

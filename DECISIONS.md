@@ -96,6 +96,13 @@ workspace is being assessed; it is not yet CBZ-0.
   ancestry. A real-Git control with a newer explicit ref exposed the incorrect
   label. Report "separate-ref" instead; the authority map's historical context
   remains a separately documented source fact. Reversible: yes.
+- 2026-10-29 UTC · Phase 1 · C · Query's downstream bundle records Math-
+  `6c020d6a` rather than the observed `8151f592` gitlink. All seven recorded
+  byte counts and SHA-256 values were recomputed and match, and their source
+  blobs are unchanged at the newer cut. Preserve the declared snapshot rather
+  than rewriting its commit identity on byte equality alone. This is scoped
+  evidence, not an atomic federation or mathematical-acceptance claim.
+  Reversible: yes; evidence: `evidence/query_snapshot_identity_20261029.json`.
 
 ## Execution checklist
 
