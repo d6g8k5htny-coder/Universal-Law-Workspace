@@ -103,6 +103,12 @@ workspace is being assessed; it is not yet CBZ-0.
   than rewriting its commit identity on byte equality alone. This is scoped
   evidence, not an atomic federation or mathematical-acceptance claim.
   Reversible: yes; evidence: `evidence/query_snapshot_identity_20261029.json`.
+- 2026-10-29 UTC · Phase 1 · C · Independently checked three further distinct
+  query replay rows at their recorded Math commits and at the observed Math
+  tip. Recorded lengths and SHA-256 values match and each Git blob is
+  unchanged; the standalone RN entry has the same identity as one row. Keep
+  each declared commit, without promoting scientific status. Reversible: yes;
+  evidence: `evidence/query_replay_identity_20261029.json`.
 
 ## Execution checklist
 

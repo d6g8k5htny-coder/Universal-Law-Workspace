@@ -44,6 +44,10 @@ records this workspace contribution and does not replace their shared record.
   different, so this observation does not change the historical snapshot or
   prove all transitive pins current. See
   `evidence/query_snapshot_identity_20261029.json`.
+- Three other query replay rows also match their recorded byte identities and
+  the observed Math blobs; the standalone RN row duplicates one of them.
+  Their separate historical commits remain unchanged. See
+  `evidence/query_replay_identity_20261029.json`.
 
 ## Remaining
 
