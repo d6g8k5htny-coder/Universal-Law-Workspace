@@ -36,5 +36,31 @@
     "old": "4ef1867175dbe1072a54a02e95f80c4e2c70a4ff",
     "observed_tip": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
     "scope": "sequential remote observation; verify published refresh independently"
+  },
+  "subsequent_workspace_commit": "a4b016820329afc1787d9c191572b05cd88236ac",
+  "subsequent_workspace_runs": [
+    {
+      "workflow": "federation-contract",
+      "run": 40919434954,
+      "conclusion": "success"
+    },
+    {
+      "workflow": "pins",
+      "run": 40919435108,
+      "job": 123608335648,
+      "conclusion": "failure",
+      "reason": "strict check detected meta-framework tip 0f5894f81a5462c10ee5ec8f8109f466e712e47e while pin remained c70e1984477ae1752e93a060fac8bf0486c0ce73; negative controls skipped"
+    }
+  ],
+  "proposed_meta_framework_pin_refresh": {
+    "old": "c70e1984477ae1752e93a060fac8bf0486c0ce73",
+    "observed_tip": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+    "registry_blob": "f8cc09cd3d7c842e85fc1193b4620bc9f3063116",
+    "scope": "sequential source observation; verify published candidate independently"
+  },
+  "proposed_governance_pin_refresh": {
+    "old": "e396002aa19158f9fcca27eaf33a5da38b1ed313",
+    "observed_tip": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+    "scope": "sequential observation while federation work continued; recheck the final candidate"
   }
 }

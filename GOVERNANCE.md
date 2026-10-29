@@ -56,8 +56,85 @@ No current record grants a theorem or an unexecuted gate a passing result.
 contract. It does not check the remote contents of canonical inputs or certify
 scientific claims. Its existing tests are included in the full suite.
 
+### `tools/verify_canonical_inputs.py`
+
+- Purpose: fetch the exact source commits in the workspace map and compare
+  every canonical input's regular-file Git blob identity to its recorded blob.
+  An input with no explicit `ref` is bound to that repository's gitlink pin;
+  a different, explicit full commit is reported as a separate ref without
+  inferring ancestry or age. It checks the
+  workspace manifest, pin file and `.gitmodules` against one committed HEAD,
+  rechecks them after the fetch, and fails on missing or unlisted sources.
+- Run: `python3 tools/verify_canonical_inputs.py`. Network access to the
+  configured public GitHub repositories is required. The pin workflow runs it
+  after `python3 tools/verify_pins.py --require-current`.
+- Self-verification: run the commands below. The controls use real disposable
+  Git repositories; the mutation test checks 13 named weakened implementations
+  and rejects stale mutants.
+
+  ```sh
+  python3 -m unittest discover -s tests -p 'test_verify_canonical_inputs*.py' -v
+  python3 -O -m unittest discover -s tests -p 'test_verify_canonical_inputs*.py' -v
+  ```
+- Limits: this checks byte identities, not semantic correctness, mathematical
+  status or all transitive cross-repository dependencies. It does not itself
+  check current remote tips, nor provide an atomic federation snapshot; the
+  separate strict pin check reports the sequential tip observations.
+
 ## Decision record
 
 Use `DECISIONS.md` for Phase 1 observations and subsequent source changes. No
 previous test is removed to obtain a passing result. A real failing test or
 incomplete audit remains visible until fixed or precisely isolated.
+
+
+### Canonical checker mutation evidence
+
+The canonical-input checker retains all 13 behavioral source mutations. Its
+controls now emit a fresh per-run nonce, exact test method and intended policy
+bypass only after a valid checker result. Checker children do not receive the
+observation path or nonce. An outer assertion failure alone earns no mutation
+credit. Silent exits, traceback crashes, unrelated refusal diagnostics, missing
+or stale observations, wrong test names and zero-test runs fail qualification.
+Four actual mutations of the evidence classifier must themselves be rejected.
+Run the existing normal and optimized canonical-control commands above, or the
+full repository suite in both modes; the contract workflow now runs both modes.
+The tool is bounded source-identity engineering and certifies no mathematics.
+
+An actual hosted regression at d4ae729871d17332f9adc705cc55e082897bc5ed
+ran 107 tests and failed exactly the newly added silent-exit adverse control
+(run 40942797333, job 123690270511). That RED evidence is preserved. The
+repair at 8397f29669ba213dcc6e678dd9f8015033f1e5af then passed 110 tests
+in each of normal and optimized Python (run 40943291131/job 123691959826),
+including all 13 canonical source mutants, four classifier mutants and the
+15 retained strict pin mutants. Its tested PR merge has exactly the same Git
+tree as that head. Exact source identities and raw job logs are preserved in
+`evidence/canonical-harness/`. Current pins failed separately on Main and
+Math drift. No current federation pin or CBZ gate is asserted by this change.
+
+Raw hosted logs under `evidence/canonical-harness/hosted-*-job.log` retain their
+exact bytes via scoped Git attributes; this does not relax source formatting.
+
+
+### Strict-pin mutation evidence and `tests/pin_mutation_receipts.py`
+
+The retained strict-pin mutation harness had the same outer-failure-only
+weakness. Its source is repaired without changing `tools/verify_pins.py`
+or deleting any of the fifteen mutants or existing assertions. The test-owned
+helper validates the checker result protocol and requires a fresh nonce,
+exact method and intended policy outcome before a failure earns mutation
+credit. The two special outcomes are unverified-source remote contact and
+an unsupported ancestry label; all other scored cases require actual
+acceptance of an invalid source. Checker children receive neither observation
+path nor nonce. Four actual classifier source mutations and five real adverse
+checker behaviors test the evidence boundary itself.
+
+Run `python3 -m unittest discover -s tests -p 'test_verify_pins_mutations.py' -v`
+and its `python3 -O` equivalent, then the full suite in both modes. The
+strict-RED source is 0f0f7f4bf5cec63caaaed16894e9196c1e296e9b; its hosted
+contract run 40945946596 was queued at this source update, so no hosted RED
+result is invented. Automatic review 4417369636 independently corroborated
+the deterministic silent-crash failure. Qualification of the repaired source
+is pending actual execution. Maintenance owner: none; self-contained tests.
+This tool serves G6/A8 and supports G7; it certifies no mathematics or current
+remote pin agreement.

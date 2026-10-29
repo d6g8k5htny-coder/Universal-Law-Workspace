@@ -13,6 +13,7 @@ import tempfile
 import unittest
 
 from test_verify_pins import CHECKER, build_fixture, entry, git, run_checker
+from pin_mutation_receipts import pin_protocol, record_event
 
 
 class StrictCurrentPinTests(unittest.TestCase):
@@ -39,9 +40,24 @@ class StrictCurrentPinTests(unittest.TestCase):
         flags = ["-E"] + (["-O"] if sys.flags.optimize else [])
         cmd = [sys.executable] + flags + [CHECKER, "--repo", str(self.workspace),
                "--pins", self.pins, "--require-current"]
-        return subprocess.run(cmd, capture_output=True, text=True, env=env)
+        child_env = dict(os.environ if env is None else env)
+        child_env.pop("CBZ_PIN_EVENT", None)
+        child_env.pop("CBZ_PIN_NONCE", None)
+        process = subprocess.run(cmd, capture_output=True, text=True, env=child_env)
+        process.cbz_protocol = pin_protocol(process)
+        return process
 
     def assert_refused(self, process, reason):
+        # A second independent guard can still refuse after the specific
+        # guard under test has incorrectly demoted its failure to information.
+        demotion_tests = {"test_missing_default_branch_is_rejected",
+                          "test_missing_configured_branch_is_rejected"}
+        demoted = any(line.startswith("info: repos/a: ") and reason in line
+                      for line in process.stdout.splitlines())
+        if self._testMethodName in demotion_tests and demoted:
+            record_event(self, "expected-policy-demoted")
+        elif process.cbz_protocol == "accepted":
+            record_event(self)
         self.assertNotEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("FAIL:", process.stdout)
         self.assertTrue(any(line.startswith("FAIL: repos/a: ") and reason in line
@@ -76,6 +92,8 @@ class StrictCurrentPinTests(unittest.TestCase):
         flags = ("-E",) + (("-O",) if sys.flags.optimize else ())
         process = run_checker(str(self.workspace), self.pins, extra=("--network",),
                               python_args=flags)
+        if pin_protocol(process) == "accepted" and "is behind tip" in process.stdout:
+            record_event(self, "unsupported-ancestry-claim")
         self.assertEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("differs from tip", process.stdout)
         self.assertNotIn("is behind tip", process.stdout)
@@ -134,6 +152,8 @@ class StrictCurrentPinTests(unittest.TestCase):
         marker = self.root / "lookup-started"
         env["CBZ_MARKER"] = str(marker)
         process = self.run_strict(env)
+        if marker.exists():
+            record_event(self, "unverified-source-contact")
         self.assertNotEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("committed pins.json", process.stdout)
         self.assertFalse(marker.exists(), "invalid source unexpectedly contacted the remote")
@@ -146,6 +166,8 @@ class StrictCurrentPinTests(unittest.TestCase):
         path.unlink()
         path.symlink_to(copy)
         process = self.run_strict()
+        if process.cbz_protocol == "accepted":
+            record_event(self)
         self.assertNotEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("working .gitmodules is a symlink", process.stdout)
 
@@ -174,6 +196,8 @@ class StrictCurrentPinTests(unittest.TestCase):
         env = self.git_shim(body)
         env["CBZ_TARGET_WS"] = str(self.workspace)
         process = self.run_strict(env)
+        if process.cbz_protocol == "accepted":
+            record_event(self)
         self.assertNotEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("HEAD changed", process.stdout)
 
@@ -183,6 +207,8 @@ class StrictCurrentPinTests(unittest.TestCase):
         env = self.git_shim(body)
         env["CBZ_TARGET_WS"] = str(self.workspace)
         process = self.run_strict(env)
+        if process.cbz_protocol == "accepted":
+            record_event(self)
         self.assertNotEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("committed pins.json", process.stdout)
 

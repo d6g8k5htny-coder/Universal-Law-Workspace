@@ -1,0 +1,193 @@
+﻿2026-10-29T19:47:55.0656963Z Current runner version: '2.338.0'
+2026-10-29T19:47:55.0676931Z ##[group]Runner Image Provisioner
+2026-10-29T19:47:55.0677530Z Hosted Compute Agent
+2026-10-29T19:47:55.0677899Z Version: 20261021.618
+2026-10-29T19:47:55.0678378Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-29T19:47:55.0678898Z Build Date: 2026-10-21T00:45:21Z
+2026-10-29T19:47:55.0679343Z Worker ID: {068e1041-96c0-43ea-a290-efbc4aeb0a13}
+2026-10-29T19:47:55.0679796Z Region: westus3
+2026-10-29T19:47:55.0680147Z Cloud: Azure
+2026-10-29T19:47:55.0680562Z ##[endgroup]
+2026-10-29T19:47:55.0681382Z ##[group]Operating System
+2026-10-29T19:47:55.0681752Z Ubuntu
+2026-10-29T19:47:55.0682139Z 24.04.5
+2026-10-29T19:47:55.0682464Z LTS
+2026-10-29T19:47:55.0682813Z ##[endgroup]
+2026-10-29T19:47:55.0683237Z ##[group]Runner Image
+2026-10-29T19:47:55.0683595Z Image: ubuntu-24.04
+2026-10-29T19:47:55.0683996Z Version: 20261025.353.1
+2026-10-29T19:47:55.0684795Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-29T19:47:55.0685792Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-10-29T19:47:55.0686643Z ##[endgroup]
+2026-10-29T19:47:55.0687391Z ##[group]GITHUB_TOKEN Permissions
+2026-10-29T19:47:55.0688728Z Contents: read
+2026-10-29T19:47:55.0689197Z Metadata: read
+2026-10-29T19:47:55.0689551Z ##[endgroup]
+2026-10-29T19:47:55.0691062Z Secret source: Actions
+2026-10-29T19:47:55.0691660Z Cache mode: write
+2026-10-29T19:47:55.0692171Z Prepare workflow directory
+2026-10-29T19:47:55.0921441Z Prepare all required actions
+2026-10-29T19:47:55.0955293Z Getting action download info
+2026-10-29T19:47:55.3867518Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-29T19:47:55.4879023Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-29T19:47:55.6622344Z Complete job name: verify-pins
+2026-10-29T19:47:55.7181306Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-29T19:47:55.7181818Z with:
+2026-10-29T19:47:55.7182053Z   submodules: false
+2026-10-29T19:47:55.7182352Z   repository: d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:55.7184607Z   token: ***
+2026-10-29T19:47:55.7184842Z   ssh-strict: true
+2026-10-29T19:47:55.7185085Z   ssh-user: git
+2026-10-29T19:47:55.7185330Z   persist-credentials: true
+2026-10-29T19:47:55.7185596Z   clean: true
+2026-10-29T19:47:55.7185846Z   sparse-checkout-cone-mode: true
+2026-10-29T19:47:55.7186267Z   fetch-depth: 1
+2026-10-29T19:47:55.7186508Z   fetch-tags: false
+2026-10-29T19:47:55.7186752Z   show-progress: true
+2026-10-29T19:47:55.7187002Z   lfs: false
+2026-10-29T19:47:55.7187237Z   set-safe-directory: true
+2026-10-29T19:47:55.7187518Z   allow-unsafe-pr-checkout: false
+2026-10-29T19:47:55.7187879Z ##[endgroup]
+2026-10-29T19:47:55.9535085Z Syncing repository: d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:55.9536846Z ##[group]Getting Git version info
+2026-10-29T19:47:55.9537407Z Working directory is '/home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace'
+2026-10-29T19:47:55.9538208Z [command]/usr/bin/git version
+2026-10-29T19:47:55.9606662Z git version 2.56.0
+2026-10-29T19:47:55.9621848Z ##[endgroup]
+2026-10-29T19:47:55.9632802Z Temporarily overriding HOME='/home/runner/work/_temp/b39544d4-b7c9-45c0-be0c-fe148ccff092' before making global git config changes
+2026-10-29T19:47:55.9634207Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T19:47:55.9636927Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace
+2026-10-29T19:47:55.9690120Z Deleting the contents of '/home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace'
+2026-10-29T19:47:55.9695357Z ##[group]Initializing the repository
+2026-10-29T19:47:55.9699010Z [command]/usr/bin/git init /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace
+2026-10-29T19:47:55.9792116Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-29T19:47:55.9793179Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-29T19:47:55.9794150Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-29T19:47:55.9794925Z hint: call:
+2026-10-29T19:47:55.9795316Z hint:
+2026-10-29T19:47:55.9795845Z hint: 	git config --global init.defaultBranch <name>
+2026-10-29T19:47:55.9796598Z hint:
+2026-10-29T19:47:55.9797189Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-29T19:47:55.9798160Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-29T19:47:55.9798928Z hint:
+2026-10-29T19:47:55.9799351Z hint: 	git branch -m <name>
+2026-10-29T19:47:55.9799837Z hint:
+2026-10-29T19:47:55.9800556Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-29T19:47:55.9804403Z Initialized empty Git repository in /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace/.git/
+2026-10-29T19:47:55.9814256Z [command]/usr/bin/git remote add origin https://github.com/d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:55.9861580Z ##[endgroup]
+2026-10-29T19:47:55.9865214Z ##[group]Disabling automatic garbage collection
+2026-10-29T19:47:55.9865917Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-29T19:47:55.9895344Z ##[endgroup]
+2026-10-29T19:47:55.9896068Z ##[group]Setting up auth
+2026-10-29T19:47:55.9901369Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T19:47:55.9941378Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T19:47:56.0286987Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T19:47:56.0324088Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T19:47:56.0555331Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T19:47:56.0592068Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T19:47:56.0782228Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-29T19:47:56.0824111Z ##[endgroup]
+2026-10-29T19:47:56.0824858Z ##[group]Fetching the repository
+2026-10-29T19:47:56.0834679Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10f9d4e8ecb98ad1e7abcced3b548160d6c6106c:refs/remotes/pull/31/merge
+2026-10-29T19:47:56.6224761Z From https://github.com/d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:56.6225550Z  * [new ref]         10f9d4e8ecb98ad1e7abcced3b548160d6c6106c -> pull/31/merge
+2026-10-29T19:47:56.6227707Z ##[endgroup]
+2026-10-29T19:47:56.6228352Z ##[group]Determining the checkout info
+2026-10-29T19:47:56.6229832Z ##[endgroup]
+2026-10-29T19:47:56.6234067Z [command]/usr/bin/git sparse-checkout disable
+2026-10-29T19:47:56.6289687Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-29T19:47:56.6331345Z ##[group]Checking out the ref
+2026-10-29T19:47:56.6334350Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/31/merge
+2026-10-29T19:47:56.6412221Z Note: switching to 'refs/remotes/pull/31/merge'.
+2026-10-29T19:47:56.6412645Z 
+2026-10-29T19:47:56.6412870Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-29T19:47:56.6413397Z changes and commit them, and you can discard any commits you make in this
+2026-10-29T19:47:56.6414225Z state without impacting any branches by switching back to a branch.
+2026-10-29T19:47:56.6414855Z 
+2026-10-29T19:47:56.6415068Z If you want to create a new branch to retain commits you create, you may
+2026-10-29T19:47:56.6415555Z do so (now or later) by using -c with the switch command. Example:
+2026-10-29T19:47:56.6415833Z 
+2026-10-29T19:47:56.6415967Z   git switch -c <new-branch-name>
+2026-10-29T19:47:56.6416334Z 
+2026-10-29T19:47:56.6416469Z Or undo this operation with:
+2026-10-29T19:47:56.6416651Z 
+2026-10-29T19:47:56.6416765Z   git switch -
+2026-10-29T19:47:56.6416909Z 
+2026-10-29T19:47:56.6417145Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-29T19:47:56.6417603Z 
+2026-10-29T19:47:56.6418203Z HEAD is now at 10f9d4e Merge 8397f29669ba213dcc6e678dd9f8015033f1e5af into a4b016820329afc1787d9c191572b05cd88236ac
+2026-10-29T19:47:56.6421270Z ##[endgroup]
+2026-10-29T19:47:56.6467008Z [command]/usr/bin/git log -1 --format=%H
+2026-10-29T19:47:56.6498128Z 10f9d4e8ecb98ad1e7abcced3b548160d6c6106c
+2026-10-29T19:47:56.6788140Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-29T19:47:56.6788654Z with:
+2026-10-29T19:47:56.6788931Z   python-version: 3.11
+2026-10-29T19:47:56.6789215Z   check-latest: false
+2026-10-29T19:47:56.6791777Z   token: ***
+2026-10-29T19:47:56.6792045Z   update-environment: true
+2026-10-29T19:47:56.6792347Z   allow-prereleases: false
+2026-10-29T19:47:56.6792636Z   freethreaded: false
+2026-10-29T19:47:56.6792911Z ##[endgroup]
+2026-10-29T19:47:56.7756982Z ##[group]Installed versions
+2026-10-29T19:47:56.7826832Z (node:2088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-29T19:47:56.7828081Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-29T19:47:56.7828815Z Successfully set up CPython (3.11.17)
+2026-10-29T19:47:56.7829614Z ##[endgroup]
+2026-10-29T19:47:56.7982760Z ##[group]Run python3 tools/verify_pins.py --network
+2026-10-29T19:47:56.7983355Z [36;1mpython3 tools/verify_pins.py --network[0m
+2026-10-29T19:47:56.8018894Z shell: /usr/bin/bash -e {0}
+2026-10-29T19:47:56.8019502Z env:
+2026-10-29T19:47:56.8020024Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.8020873Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-29T19:47:56.8021673Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.8022399Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.8023147Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.8023905Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-29T19:47:56.8024546Z ##[endgroup]
+2026-10-29T19:48:07.9607932Z info: repos/main: pin 81acc060341e8a31cc4cd4f9523ef71fb6c06175 differs from tip c93cec70223281492709ff74ca84fed5dc6e40e8 of main (informational)
+2026-10-29T19:48:07.9609138Z info: repos/Math-: pin 8151f592918a845bf19eb8eafaf8444540a32734 differs from tip e877242cf68fb24c605066f16dd07f513ee75a1d of main (informational)
+2026-10-29T19:48:07.9609841Z info: repos/meta-framework: pin equals remote main tip
+2026-10-29T19:48:07.9610222Z info: repos/query-: pin equals remote main tip
+2026-10-29T19:48:07.9610586Z info: repos/google-drive: pin equals remote main tip
+2026-10-29T19:48:07.9611012Z info: repos/trial: pin equals remote main tip
+2026-10-29T19:48:07.9611399Z info: repos/governance-: pin equals remote main tip
+2026-10-29T19:48:07.9611770Z info: repos/sandbox: pin equals remote main tip
+2026-10-29T19:48:07.9612083Z verify_pins: OK (8 pin(s) agree with tree and .gitmodules; remotes checked)
+2026-10-29T19:48:07.9700609Z ##[group]Run python3 tools/verify_pins.py --require-current
+2026-10-29T19:48:07.9700920Z [36;1mpython3 tools/verify_pins.py --require-current[0m
+2026-10-29T19:48:07.9718417Z shell: /usr/bin/bash -e {0}
+2026-10-29T19:48:07.9718589Z env:
+2026-10-29T19:48:07.9718770Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:48:07.9719058Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-29T19:48:07.9719497Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:48:07.9719747Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:48:07.9719999Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:48:07.9720242Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-29T19:48:07.9720458Z ##[endgroup]
+2026-10-29T19:48:18.8262422Z info: repos/meta-framework: pin equals remote default main tip
+2026-10-29T19:48:18.8262945Z info: repos/query-: pin equals remote default main tip
+2026-10-29T19:48:18.8263303Z info: repos/google-drive: pin equals remote default main tip
+2026-10-29T19:48:18.8263807Z info: repos/trial: pin equals remote default main tip
+2026-10-29T19:48:18.8264166Z info: repos/governance-: pin equals remote default main tip
+2026-10-29T19:48:18.8264550Z info: repos/sandbox: pin equals remote default main tip
+2026-10-29T19:48:18.8265197Z FAIL: repos/main: pin 81acc060341e8a31cc4cd4f9523ef71fb6c06175 does not match remote main tip c93cec70223281492709ff74ca84fed5dc6e40e8
+2026-10-29T19:48:18.8266053Z FAIL: repos/Math-: pin 8151f592918a845bf19eb8eafaf8444540a32734 does not match remote main tip e877242cf68fb24c605066f16dd07f513ee75a1d
+2026-10-29T19:48:18.8266764Z verify_pins: FAIL (2 error(s) across 8 pin(s))
+2026-10-29T19:48:18.8324794Z ##[error]Process completed with exit code 1.
+2026-10-29T19:48:18.8428203Z Post job cleanup.
+2026-10-29T19:48:18.9043573Z [command]/usr/bin/git version
+2026-10-29T19:48:18.9069418Z git version 2.56.0
+2026-10-29T19:48:18.9097734Z Temporarily overriding HOME='/home/runner/work/_temp/14e1a75c-af29-4369-9b3c-355b4300bdf2' before making global git config changes
+2026-10-29T19:48:18.9098440Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T19:48:18.9102302Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace
+2026-10-29T19:48:18.9143861Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T19:48:18.9178849Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T19:48:18.9404453Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T19:48:18.9433229Z http.https://github.com/.extraheader
+2026-10-29T19:48:18.9442699Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-29T19:48:18.9476592Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T19:48:18.9749890Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T19:48:18.9790395Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T19:48:19.0134652Z Cleaning up orphan processes
+2026-10-29T19:48:19.0406768Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

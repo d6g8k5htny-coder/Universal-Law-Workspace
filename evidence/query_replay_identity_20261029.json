@@ -1,0 +1,47 @@
+{
+  "observed_utc": "2026-10-29T17:28:52.923Z",
+  "query_commit": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+  "observed_math_commit": "8151f592918a845bf19eb8eafaf8444540a32734",
+  "bundle_path": "portable/CANDIDATE_PUBLIC_REPLAY_STUBS.json",
+  "bundle_git_blob": "cc546d7672893be11edd9cda525b15d902eed817",
+  "standalone_path": "portable/RN_FIXED_REMOTE_REPLAY_STUB.json",
+  "standalone_git_blob": "d981be79ef894c8670fda417f68a976a88fb4aab",
+  "standalone_same_identity_as_bundle_key": "rn-fixed-remote-window-replay",
+  "method": "Independently recomputed byte length, SHA-256 and Git blob SHA-1 from each exact recorded source, then compared the corresponding entries in the nontruncated observed Math tree.",
+  "boundary": "Historical records retain their own commit identities. Matching files do not prove all transitive pins, scientific acceptance or atomic currentness.",
+  "rows": [
+    {
+      "key": "rn-fixed-remote-window-replay",
+      "path": "frontiers/remote_window_20260924/run_validation.py",
+      "recorded_commit": "191ea7d541a486736ba7bbddfd4eac25a6c4567b",
+      "bytes": 4052,
+      "recorded_sha256": "d97037ed8117f01aef0ca74b8c0155a8c2228069f57439c0690b94bde5423972",
+      "recomputed_sha256": "d97037ed8117f01aef0ca74b8c0155a8c2228069f57439c0690b94bde5423972",
+      "recorded_git_blob": "549fd0c9fa22e3e9ccef0f90972a18750e4091c5",
+      "current_git_blob": "549fd0c9fa22e3e9ccef0f90972a18750e4091c5",
+      "match": true
+    },
+    {
+      "key": "p15-price-budget-replay",
+      "path": "frontiers/price_budget_20260924/run_validation.py",
+      "recorded_commit": "1dfd49e84c577c2c7505ec45770d58a2de27f3cc",
+      "bytes": 3503,
+      "recorded_sha256": "58afe343befa8f306f6c3478576193d7b904d35ef3d86eb3ba80b8ec43a2214e",
+      "recomputed_sha256": "58afe343befa8f306f6c3478576193d7b904d35ef3d86eb3ba80b8ec43a2214e",
+      "recorded_git_blob": "420a19d0de85aff53effc0cc3ca189f36625123b",
+      "current_git_blob": "420a19d0de85aff53effc0cc3ca189f36625123b",
+      "match": true
+    },
+    {
+      "key": "three-fronts-replay",
+      "path": "frontiers/three_fronts_20260924/run_validation.py",
+      "recorded_commit": "8a13ee977530899daf8165b25a087a2badf6a941",
+      "bytes": 4389,
+      "recorded_sha256": "1aaa4fefaa63e2d10f507de1905fd1719183aaf26a0f9c1a0bfb632549ebf259",
+      "recomputed_sha256": "1aaa4fefaa63e2d10f507de1905fd1719183aaf26a0f9c1a0bfb632549ebf259",
+      "recorded_git_blob": "f8de598c65ec28c35f782e762bbae0055056d147",
+      "current_git_blob": "f8de598c65ec28c35f782e762bbae0055056d147",
+      "match": true
+    }
+  ]
+}
