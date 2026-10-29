@@ -109,6 +109,14 @@ workspace is being assessed; it is not yet CBZ-0.
   unchanged; the standalone RN entry has the same identity as one row. Keep
   each declared commit, without promoting scientific status. Reversible: yes;
   evidence: `evidence/query_replay_identity_20261029.json`.
+- 2026-10-29 UTC · Phase 1 · B · Replaced this repository's legacy agent entry
+  with the owner-directed CBZ entry and created repository-local status,
+  baseline, governance, inventory and decision surfaces. They describe an
+  incomplete workspace contribution, not federation closure. The previous
+  agent entry and all other predecessor files remain recoverable from Workspace
+  commit `45a80ab01504936b46d035c2de1f92c73ed273de`; federation-wide integration
+  and shared status remain with the active main#684 coordinator. Reversible:
+  yes.
 
 ## Execution checklist
 
