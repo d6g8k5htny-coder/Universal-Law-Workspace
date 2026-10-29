@@ -68,6 +68,29 @@ workspace is being assessed; it is not yet CBZ-0.
   40918789181 rejected Main's advance to `81acc060`. Refreshed the Main
   gitlink, pin and README reference to the observed tip. This is a new source
   cut, not proof of ongoing or atomic federation currency. Reversible: yes.
+- 2026-10-29 UTC · Phase 1 · C · Hosted pin run 40919435108 on `a4b0168`
+  rejected a later meta-framework tip `0f5894f8`; the contract run passed.
+  Refresh the meta-framework pin and README to that observed commit. The
+  registry blob there is unchanged. Preserve the failed run, and require a
+  fresh hosted check rather than assuming concurrent repositories are stable.
+  Reversible: yes.
+- 2026-10-29 UTC · Phase 1 · B · Add `tools/verify_canonical_inputs.py` and
+  real-Git and mutation controls for the source-blob identity gap. Record it
+  in the tool registry and run it after strict tip verification. Explicit
+  historical refs remain distinguished from current gitlink inputs; no
+  semantic or mathematical acceptance is inferred. Reversible: yes.
+- 2026-10-29 UTC · Phase 1 · C · A separate hosted formal-core run at Math-
+  `8151f592` passed its Lean build, then timed out in `leanchecker` after
+  900 seconds. Axiom audit, compiled inventory, executable controls and a
+  success receipt were not obtained. Record the scope and retain the failure;
+  the federation integrator is already investigating recheck resources in
+  main#684. Reversible: yes.
+
+- 2026-10-29 UTC · Phase 1 · C · While the canonical-input candidate was
+  tested, governance- advanced from `e396002a` to `1b62ca2f`. Refresh its
+  candidate gitlink, pin and README reference as another sequential source
+  observation. Other agents' work remains active; the final integration must
+  recheck all tips rather than infer global stability. Reversible: yes.
 
 ## Execution checklist
 

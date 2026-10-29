@@ -56,6 +56,30 @@ No current record grants a theorem or an unexecuted gate a passing result.
 contract. It does not check the remote contents of canonical inputs or certify
 scientific claims. Its existing tests are included in the full suite.
 
+### `tools/verify_canonical_inputs.py`
+
+- Purpose: fetch the exact source commits in the workspace map and compare
+  every canonical input's regular-file Git blob identity to its recorded blob.
+  An input with no explicit `ref` is bound to that repository's gitlink pin;
+  a different, explicit full commit is reported as historical. It checks the
+  workspace manifest, pin file and `.gitmodules` against one committed HEAD,
+  rechecks them after the fetch, and fails on missing or unlisted sources.
+- Run: `python3 tools/verify_canonical_inputs.py`. Network access to the
+  configured public GitHub repositories is required. The pin workflow runs it
+  after `python3 tools/verify_pins.py --require-current`.
+- Self-verification: run the commands below. The controls use real disposable
+  Git repositories; the mutation test checks 12 named weakened implementations
+  and rejects stale mutants.
+
+  ```sh
+  python3 -m unittest discover -s tests -p 'test_verify_canonical_inputs*.py' -v
+  python3 -O -m unittest discover -s tests -p 'test_verify_canonical_inputs*.py' -v
+  ```
+- Limits: this checks byte identities, not semantic correctness, mathematical
+  status or all transitive cross-repository dependencies. It does not itself
+  check current remote tips, nor provide an atomic federation snapshot; the
+  separate strict pin check reports the sequential tip observations.
+
 ## Decision record
 
 Use `DECISIONS.md` for Phase 1 observations and subsequent source changes. No

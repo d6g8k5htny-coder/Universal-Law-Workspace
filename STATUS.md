@@ -17,6 +17,10 @@ records this workspace contribution and does not replace their shared record.
 - At the inspected Math- source, the formal-core source identity check and
   244 Python tests passed in each of normal and optimized modes. This is not a
   Lean build, kernel recheck, complete axiom audit or proof acceptance.
+- A separate hosted run at Math- `8151f592` completed the formal-core Lean
+  build, then failed when its kernel recheck timed out after 900 seconds. The
+  subsequent axiom audit, compiled inventory, executable controls and success
+  receipt were not produced. This does not establish the formal gate.
 - The strict current-tip pin checker candidate passed the complete workspace
   suite of 84 tests in each of normal and optimized Python on the reconstructed
   local candidate. The suite detected all 15 named pin-checker mutations in
@@ -30,7 +34,10 @@ records this workspace contribution and does not replace their shared record.
   its pin run rejected Main drift after Main advanced. See
   `evidence/hosted_validation_20261029.json` for exact run identities.
 - The Main gitlink was subsequently refreshed to `81acc060` after that drift.
-  Run the current hosted checks to establish the state of that newer commit.
+  On that newer commit `a4b0168`, the contract run passed, while the strict
+  pin run rejected a newer meta-framework tip. This candidate refreshes that
+  pin and adds canonical-input identity checks; its hosted result must be
+  observed on the actual candidate commit.
 
 ## Remaining
 
@@ -48,6 +55,7 @@ python3 tools/check_workspace.py
 python3 tools/verify_pins.py
 python3 tools/verify_pins.py --network
 python3 tools/verify_pins.py --require-current
+python3 tools/verify_canonical_inputs.py
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 python3 -O -m unittest discover -s tests -p 'test_*.py' -v
 ```

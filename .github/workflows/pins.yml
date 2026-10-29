@@ -25,6 +25,8 @@ jobs:
         run: python3 tools/verify_pins.py --network
       - name: Require current, committed federation pins
         run: python3 tools/verify_pins.py --require-current
+      - name: Verify canonical input identities at pinned sources
+        run: python3 tools/verify_canonical_inputs.py
       - name: Negative controls
         shell: bash
         run: |

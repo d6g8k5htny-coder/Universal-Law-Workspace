@@ -27,10 +27,10 @@
       "path": "repos/meta-framework",
       "url": "https://github.com/d6g8k5htny-coder/meta-framework.git",
       "default_branch": "main",
-      "pinned_sha": "c70e1984477ae1752e93a060fac8bf0486c0ce73",
+      "pinned_sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 14f6836e7ccf6a463ef6da745602debfea4d15ee. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 14f6836e7ccf6a463ef6da745602debfea4d15ee. Original note: default tip at generation time; refreshed after upstream replica-fixture repair; previous workspace pin c70e1984477ae1752e93a060fac8bf0486c0ce73"
     },
     {
       "name": "query-",
@@ -67,10 +67,10 @@
       "path": "repos/governance-",
       "url": "https://github.com/d6g8k5htny-coder/governance-.git",
       "default_branch": "main",
-      "pinned_sha": "e396002aa19158f9fcca27eaf33a5da38b1ed313",
+      "pinned_sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 7476e29c65ce82d23e0b39e7f7d98741a875a8ff. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 7476e29c65ce82d23e0b39e7f7d98741a875a8ff. Original note: default tip at generation time; refreshed after governance source moved; previous workspace pin e396002aa19158f9fcca27eaf33a5da38b1ed313"
     },
     {
       "name": "sandbox",
