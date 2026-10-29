@@ -91,6 +91,11 @@ workspace is being assessed; it is not yet CBZ-0.
   candidate gitlink, pin and README reference as another sequential source
   observation. Other agents' work remains active; the final integration must
   recheck all tips rather than infer global stability. Reversible: yes.
+- 2026-10-29 UTC · Phase 1 · B · The source check originally called every
+  explicit ref differing from the gitlink "historical" without testing
+  ancestry. A real-Git control with a newer explicit ref exposed the incorrect
+  label. Report "separate-ref" instead; the authority map's historical context
+  remains a separately documented source fact. Reversible: yes.
 
 ## Execution checklist
 

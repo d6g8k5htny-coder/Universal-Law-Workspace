@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Verify canonical input blob identities at the workspace's pinned sources.
 
-Current inputs are checked at their repository gitlink pin. An explicit full
-commit ref is checked as a historical source and is never called current.
+Inputs without an explicit ref are checked at their repository gitlink pin.
+A different explicit full commit is reported as a separately pinned source;
+this tool does not establish its ancestry or whether it is older.
 Remote default-tip currency is a separate check: run verify_pins.py
 --require-current. This tool does not evaluate the meaning of the source.
 """
@@ -118,7 +119,7 @@ def source_specs(doc, pins):
         if not full_sha(ref):
             raise ValueError("canonical input %s ref must be an immutable full SHA" % key)
         specs.append((key, name, remote_map[name]["url"], path, ref, blob,
-                      "historical" if "ref" in item and ref != remote_map[name]["pinned_sha"] else "pinned"))
+                      "separate-ref" if "ref" in item and ref != remote_map[name]["pinned_sha"] else "pinned"))
     return specs
 
 

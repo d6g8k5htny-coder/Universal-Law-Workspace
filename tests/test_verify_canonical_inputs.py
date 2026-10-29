@@ -99,8 +99,18 @@ class CanonicalInputControls(unittest.TestCase):
     def test_current_and_explicit_historical_sources_pass(self):
         proc = self.check()
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
-        self.assertIn("historical", proc.stdout.lower())
+        self.assertIn("OK: historical: separate-ref ", proc.stdout)
         self.assertIn("2 canonical", proc.stdout.lower())
+
+    def test_explicit_newer_commit_is_not_called_historical(self):
+        self.pins["repos"][0]["pinned_sha"] = self.old
+        self.doc["canonical_inputs"]["current"]["observed_blob"] = self.old_blob
+        self.doc["canonical_inputs"]["historical"]["ref"] = self.tip
+        self.doc["canonical_inputs"]["historical"]["observed_blob"] = self.blob
+        self.save_commit(gitlink=self.old)
+        proc = self.check()
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("OK: historical: separate-ref ", proc.stdout)
 
     def test_wrong_current_blob_fails(self):
         self.doc["canonical_inputs"]["current"]["observed_blob"] = self.old_blob

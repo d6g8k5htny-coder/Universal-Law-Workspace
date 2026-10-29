@@ -33,6 +33,8 @@ MUTANTS = [
      "errors.extend([])", "test_gitlink_mismatch_fails"),
     ("historical-source", 'ref = item.get("ref", remote_map[name]["pinned_sha"])',
      'ref = remote_map[name]["pinned_sha"]', "test_current_and_explicit_historical_sources_pass"),
+    ("unsupported-history-label", '"separate-ref" if "ref" in item',
+     '"historical" if "ref" in item', "test_explicit_newer_commit_is_not_called_historical"),
     ("fetched-commit", "if got != commit:", "if False:",
      "test_fetched_commit_identity_mismatch_fails"),
     ("moving-head", "if end_head != head:", "if False:",

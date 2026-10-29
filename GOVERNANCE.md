@@ -61,14 +61,15 @@ scientific claims. Its existing tests are included in the full suite.
 - Purpose: fetch the exact source commits in the workspace map and compare
   every canonical input's regular-file Git blob identity to its recorded blob.
   An input with no explicit `ref` is bound to that repository's gitlink pin;
-  a different, explicit full commit is reported as historical. It checks the
+  a different, explicit full commit is reported as a separate ref without
+  inferring ancestry or age. It checks the
   workspace manifest, pin file and `.gitmodules` against one committed HEAD,
   rechecks them after the fetch, and fails on missing or unlisted sources.
 - Run: `python3 tools/verify_canonical_inputs.py`. Network access to the
   configured public GitHub repositories is required. The pin workflow runs it
   after `python3 tools/verify_pins.py --require-current`.
 - Self-verification: run the commands below. The controls use real disposable
-  Git repositories; the mutation test checks 12 named weakened implementations
+  Git repositories; the mutation test checks 13 named weakened implementations
   and rejects stale mutants.
 
   ```sh
