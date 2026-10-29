@@ -91,5 +91,10 @@ crash as a killed mutation. A real hosted adverse control at
 job 123690270511). The repair retains all 13 checker mutants and adds
 control-owned, per-run intended-bypass observations plus four classifier
 source mutations. Both normal and optimized modes are now in the contract
-workflow. Qualification of this repair is pending its actual hosted run;
-strict current pins remain a separate gate and may reject repository drift.
+workflow. At exact source head `8397f29669ba213dcc6e678dd9f8015033f1e5af`, hosted run
+40943291131/job 123691959826 passed all 110 tests in both modes, including all
+13 canonical source mutants, four classifier source mutants and the retained
+15 strict pin mutants. The tested PR merge and head have identical Git trees.
+See `evidence/canonical-harness/OBSERVATION.json` and the retained raw logs.
+Strict pins failed separately at that head because Main and Math had advanced;
+this component success is not current G7 or CBZ-0.

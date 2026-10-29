@@ -1,0 +1,420 @@
+﻿2026-10-29T19:47:54.7325159Z Current runner version: '2.338.0'
+2026-10-29T19:47:54.7343564Z ##[group]Runner Image Provisioner
+2026-10-29T19:47:54.7344104Z Hosted Compute Agent
+2026-10-29T19:47:54.7344555Z Version: 20261021.618
+2026-10-29T19:47:54.7344923Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-29T19:47:54.7345407Z Build Date: 2026-10-21T00:45:21Z
+2026-10-29T19:47:54.7345834Z Worker ID: {e2be3c61-2764-47cc-8247-483ab9009c55}
+2026-10-29T19:47:54.7346253Z Region: southcentralus
+2026-10-29T19:47:54.7346634Z Cloud: Azure
+2026-10-29T19:47:54.7346960Z ##[endgroup]
+2026-10-29T19:47:54.7348071Z ##[group]Operating System
+2026-10-29T19:47:54.7348491Z Ubuntu
+2026-10-29T19:47:54.7348805Z 26.04.1
+2026-10-29T19:47:54.7349174Z LTS
+2026-10-29T19:47:54.7349485Z ##[endgroup]
+2026-10-29T19:47:54.7349835Z ##[group]Runner Image
+2026-10-29T19:47:54.7350227Z Image: ubuntu-26.04
+2026-10-29T19:47:54.7350572Z Version: 20261025.179.1
+2026-10-29T19:47:54.7351373Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-29T19:47:54.7352262Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+2026-10-29T19:47:54.7352859Z ##[endgroup]
+2026-10-29T19:47:54.7353522Z ##[group]GITHUB_TOKEN Permissions
+2026-10-29T19:47:54.7354798Z Contents: read
+2026-10-29T19:47:54.7355174Z Metadata: read
+2026-10-29T19:47:54.7355553Z ##[endgroup]
+2026-10-29T19:47:54.7356871Z Secret source: Actions
+2026-10-29T19:47:54.7357457Z Cache mode: write
+2026-10-29T19:47:54.7358081Z Prepare workflow directory
+2026-10-29T19:47:54.7585068Z Prepare all required actions
+2026-10-29T19:47:54.7627043Z Getting action download info
+2026-10-29T19:47:55.0055101Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-29T19:47:55.0940323Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-29T19:47:55.2340924Z Complete job name: verify
+2026-10-29T19:47:55.2875700Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-29T19:47:55.2876227Z with:
+2026-10-29T19:47:55.2876517Z   repository: d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:55.2878918Z   token: ***
+2026-10-29T19:47:55.2879161Z   ssh-strict: true
+2026-10-29T19:47:55.2879415Z   ssh-user: git
+2026-10-29T19:47:55.2879675Z   persist-credentials: true
+2026-10-29T19:47:55.2879947Z   clean: true
+2026-10-29T19:47:55.2880203Z   sparse-checkout-cone-mode: true
+2026-10-29T19:47:55.2880505Z   fetch-depth: 1
+2026-10-29T19:47:55.2880754Z   fetch-tags: false
+2026-10-29T19:47:55.2881002Z   show-progress: true
+2026-10-29T19:47:55.2881254Z   lfs: false
+2026-10-29T19:47:55.2881490Z   submodules: false
+2026-10-29T19:47:55.2881746Z   set-safe-directory: true
+2026-10-29T19:47:55.2882030Z   allow-unsafe-pr-checkout: false
+2026-10-29T19:47:55.2882401Z ##[endgroup]
+2026-10-29T19:47:55.4864550Z Syncing repository: d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:55.4866058Z ##[group]Getting Git version info
+2026-10-29T19:47:55.4866822Z Working directory is '/home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace'
+2026-10-29T19:47:55.4867959Z [command]/usr/bin/git version
+2026-10-29T19:47:55.4877837Z git version 2.56.0
+2026-10-29T19:47:55.4891337Z ##[endgroup]
+2026-10-29T19:47:55.4902149Z Temporarily overriding HOME='/home/runner/work/_temp/f4094893-6e98-4b57-b80e-8700f5c926f0' before making global git config changes
+2026-10-29T19:47:55.4903439Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T19:47:55.4905668Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace
+2026-10-29T19:47:55.4970138Z Deleting the contents of '/home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace'
+2026-10-29T19:47:55.4972411Z ##[group]Initializing the repository
+2026-10-29T19:47:55.4976215Z [command]/usr/bin/git init /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace
+2026-10-29T19:47:55.5064056Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-29T19:47:55.5065036Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-29T19:47:55.5065849Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-29T19:47:55.5066511Z hint: call:
+2026-10-29T19:47:55.5066878Z hint:
+2026-10-29T19:47:55.5067355Z hint: 	git config --global init.defaultBranch <name>
+2026-10-29T19:47:55.5068024Z hint:
+2026-10-29T19:47:55.5068530Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-29T19:47:55.5069400Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-29T19:47:55.5070083Z hint:
+2026-10-29T19:47:55.5070445Z hint: 	git branch -m <name>
+2026-10-29T19:47:55.5070870Z hint:
+2026-10-29T19:47:55.5071438Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-29T19:47:55.5074265Z Initialized empty Git repository in /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace/.git/
+2026-10-29T19:47:55.5083995Z [command]/usr/bin/git remote add origin https://github.com/d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:55.5132352Z ##[endgroup]
+2026-10-29T19:47:55.5132817Z ##[group]Disabling automatic garbage collection
+2026-10-29T19:47:55.5135844Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-29T19:47:55.5167607Z ##[endgroup]
+2026-10-29T19:47:55.5168205Z ##[group]Setting up auth
+2026-10-29T19:47:55.5173752Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T19:47:55.5204165Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T19:47:55.5579445Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T19:47:55.5608536Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T19:47:55.5834256Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T19:47:55.5864403Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T19:47:55.6084089Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-29T19:47:55.6119087Z ##[endgroup]
+2026-10-29T19:47:55.6119799Z ##[group]Fetching the repository
+2026-10-29T19:47:55.6126132Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +10f9d4e8ecb98ad1e7abcced3b548160d6c6106c:refs/remotes/pull/31/merge
+2026-10-29T19:47:56.0458077Z From https://github.com/d6g8k5htny-coder/Universal-Law-Workspace
+2026-10-29T19:47:56.0459183Z  * [new ref]         10f9d4e8ecb98ad1e7abcced3b548160d6c6106c -> pull/31/merge
+2026-10-29T19:47:56.0462212Z ##[endgroup]
+2026-10-29T19:47:56.0462892Z ##[group]Determining the checkout info
+2026-10-29T19:47:56.0464707Z ##[endgroup]
+2026-10-29T19:47:56.0469445Z [command]/usr/bin/git sparse-checkout disable
+2026-10-29T19:47:56.0515454Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-29T19:47:56.0548318Z ##[group]Checking out the ref
+2026-10-29T19:47:56.0551402Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/31/merge
+2026-10-29T19:47:56.0622238Z Note: switching to 'refs/remotes/pull/31/merge'.
+2026-10-29T19:47:56.0622636Z 
+2026-10-29T19:47:56.0622886Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-29T19:47:56.0623384Z changes and commit them, and you can discard any commits you make in this
+2026-10-29T19:47:56.0623933Z state without impacting any branches by switching back to a branch.
+2026-10-29T19:47:56.0624447Z 
+2026-10-29T19:47:56.0624644Z If you want to create a new branch to retain commits you create, you may
+2026-10-29T19:47:56.0625126Z do so (now or later) by using -c with the switch command. Example:
+2026-10-29T19:47:56.0625392Z 
+2026-10-29T19:47:56.0625520Z   git switch -c <new-branch-name>
+2026-10-29T19:47:56.0625803Z 
+2026-10-29T19:47:56.0625954Z Or undo this operation with:
+2026-10-29T19:47:56.0626124Z 
+2026-10-29T19:47:56.0626235Z   git switch -
+2026-10-29T19:47:56.0626371Z 
+2026-10-29T19:47:56.0626597Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-29T19:47:56.0626906Z 
+2026-10-29T19:47:56.0627242Z HEAD is now at 10f9d4e Merge 8397f29669ba213dcc6e678dd9f8015033f1e5af into a4b016820329afc1787d9c191572b05cd88236ac
+2026-10-29T19:47:56.0631740Z ##[endgroup]
+2026-10-29T19:47:56.0664305Z [command]/usr/bin/git log -1 --format=%H
+2026-10-29T19:47:56.0684246Z 10f9d4e8ecb98ad1e7abcced3b548160d6c6106c
+2026-10-29T19:47:56.0895126Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-29T19:47:56.0895560Z with:
+2026-10-29T19:47:56.0895798Z   python-version: 3.11
+2026-10-29T19:47:56.0896061Z   check-latest: false
+2026-10-29T19:47:56.0898214Z   token: ***
+2026-10-29T19:47:56.0898461Z   update-environment: true
+2026-10-29T19:47:56.0898739Z   allow-prereleases: false
+2026-10-29T19:47:56.0899009Z   freethreaded: false
+2026-10-29T19:47:56.0899260Z ##[endgroup]
+2026-10-29T19:47:56.1838546Z ##[group]Installed versions
+2026-10-29T19:47:56.1909961Z (node:2143) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-29T19:47:56.1911111Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-29T19:47:56.1911765Z Successfully set up CPython (3.11.17)
+2026-10-29T19:47:56.1919083Z ##[endgroup]
+2026-10-29T19:47:56.2075565Z ##[group]Run python3 tools/check_workspace.py
+2026-10-29T19:47:56.2076219Z [36;1mpython3 tools/check_workspace.py[0m
+2026-10-29T19:47:56.2115119Z shell: /usr/bin/bash -e {0}
+2026-10-29T19:47:56.2115616Z env:
+2026-10-29T19:47:56.2116070Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2116870Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-29T19:47:56.2117573Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2118376Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2119033Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2119683Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-29T19:47:56.2120230Z ##[endgroup]
+2026-10-29T19:47:56.2649215Z repositories=9 canonical_inputs=4 problems=0
+2026-10-29T19:47:56.2723065Z ##[group]Run set -euo pipefail
+2026-10-29T19:47:56.2723424Z [36;1mset -euo pipefail[0m
+2026-10-29T19:47:56.2723895Z [36;1mpython3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee "$RUNNER_TEMP/discovery.log"[0m
+2026-10-29T19:47:56.2724709Z [36;1mgrep -Eq '^Ran [1-9][0-9]* tests? in ' "$RUNNER_TEMP/discovery.log" || { echo "::error::unittest discovery collected 0 tests or returned no count"; exit 1; }[0m
+2026-10-29T19:47:56.2725560Z [36;1mpython3 -O -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee "$RUNNER_TEMP/discovery-optimized.log"[0m
+2026-10-29T19:47:56.2726463Z [36;1mgrep -Eq '^Ran [1-9][0-9]* tests? in ' "$RUNNER_TEMP/discovery-optimized.log" || { echo "::error::optimized unittest discovery collected 0 tests or returned no count"; exit 1; }[0m
+2026-10-29T19:47:56.2755706Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-29T19:47:56.2756063Z env:
+2026-10-29T19:47:56.2756385Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2756828Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+2026-10-29T19:47:56.2757274Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2757673Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2758353Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+2026-10-29T19:47:56.2758761Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+2026-10-29T19:47:56.2759115Z ##[endgroup]
+2026-10-29T19:47:56.4818759Z test_canonical_manifest_explicit_and_default_path_pass (test_check_workspace_json_duplicates.JSONDuplicateControls.test_canonical_manifest_explicit_and_default_path_pass) ... ok
+2026-10-29T19:47:56.5199661Z test_conflicting_root_authority_is_rejected_in_both_orders (test_check_workspace_json_duplicates.JSONDuplicateControls.test_conflicting_root_authority_is_rejected_in_both_orders) ... ok
+2026-10-29T19:47:56.6289472Z test_conflicting_source_members_are_rejected_in_both_orders (test_check_workspace_json_duplicates.JSONDuplicateControls.test_conflicting_source_members_are_rejected_in_both_orders) ... ok
+2026-10-29T19:47:56.6492816Z test_default_path_also_uses_duplicate_rejection (test_check_workspace_json_duplicates.JSONDuplicateControls.test_default_path_also_uses_duplicate_rejection) ... ok
+2026-10-29T19:47:56.7092649Z test_duplicates_in_nested_objects_and_arrays_are_rejected (test_check_workspace_json_duplicates.JSONDuplicateControls.test_duplicates_in_nested_objects_and_arrays_are_rejected) ... ok
+2026-10-29T19:47:56.8327106Z test_equal_valued_members_are_not_silently_coalesced (test_check_workspace_json_duplicates.JSONDuplicateControls.test_equal_valued_members_are_not_silently_coalesced) ... ok
+2026-10-29T19:47:56.9498867Z test_escaped_equivalent_and_unusual_names_are_rejected_safely (test_check_workspace_json_duplicates.JSONDuplicateControls.test_escaped_equivalent_and_unusual_names_are_rejected_safely) ... ok
+2026-10-29T19:47:57.0760786Z test_nonduplicate_malformed_inputs_keep_their_refusal_interface (test_check_workspace_json_duplicates.JSONDuplicateControls.test_nonduplicate_malformed_inputs_keep_their_refusal_interface) ... ok
+2026-10-29T19:47:57.0954729Z test_repeated_canonical_input_objects_are_rejected (test_check_workspace_json_duplicates.JSONDuplicateControls.test_repeated_canonical_input_objects_are_rejected) ... ok
+2026-10-29T19:47:57.1793214Z test_repeated_names_in_distinct_objects_and_string_text_are_valid (test_check_workspace_json_duplicates.JSONDuplicateControls.test_repeated_names_in_distinct_objects_and_string_text_are_valid) ... ok
+2026-10-29T19:47:57.2213788Z test_repository_entry_members_are_rejected (test_check_workspace_json_duplicates.JSONDuplicateControls.test_repository_entry_members_are_rejected) ... ok
+2026-10-29T19:47:57.3070066Z test_symlinked_temp_root_preserves_both_path_contracts (test_check_workspace_json_duplicates.JSONDuplicateControls.test_symlinked_temp_root_preserves_both_path_contracts) ... ok
+2026-10-29T19:47:57.3084795Z test_authority_asserted_away_from_the_checked_field_is_refused (test_check_workspace_root_keys.RootKeyControls.test_authority_asserted_away_from_the_checked_field_is_refused) ... ok
+2026-10-29T19:47:57.3087195Z test_authority_false_away_from_the_checked_field_is_still_refused_as_unsupported_or_passes (test_check_workspace_root_keys.RootKeyControls.test_authority_false_away_from_the_checked_field_is_still_refused_as_unsupported_or_passes) ... ok
+2026-10-29T19:47:57.3088757Z test_committed_manifest_passes (test_check_workspace_root_keys.RootKeyControls.test_committed_manifest_passes) ... ok
+2026-10-29T19:47:57.3095671Z test_every_forbidden_key_is_refused_at_the_root (test_check_workspace_root_keys.RootKeyControls.test_every_forbidden_key_is_refused_at_the_root) ... ok
+2026-10-29T19:47:57.3097652Z test_lemma_closed_and_promotion_permission_together_are_refused (test_check_workspace_root_keys.RootKeyControls.test_lemma_closed_and_promotion_permission_together_are_refused) ... ok
+2026-10-29T19:47:57.3099562Z test_nested_forbidden_key_is_still_refused (test_check_workspace_root_keys.RootKeyControls.test_nested_forbidden_key_is_still_refused) ... ok
+2026-10-29T19:47:57.4443209Z test_current_and_explicit_historical_sources_pass (test_verify_canonical_inputs.CanonicalInputControls.test_current_and_explicit_historical_sources_pass) ... ok
+2026-10-29T19:47:57.5376167Z test_dirty_pins_manifest_fails (test_verify_canonical_inputs.CanonicalInputControls.test_dirty_pins_manifest_fails) ... ok
+2026-10-29T19:47:57.6192704Z test_dirty_workspace_manifest_fails (test_verify_canonical_inputs.CanonicalInputControls.test_dirty_workspace_manifest_fails) ... ok
+2026-10-29T19:47:57.7114349Z test_duplicate_manifest_members_fail (test_verify_canonical_inputs.CanonicalInputControls.test_duplicate_manifest_members_fail) ... ok
+2026-10-29T19:47:57.8049253Z test_empty_canonical_inputs_fails (test_verify_canonical_inputs.CanonicalInputControls.test_empty_canonical_inputs_fails) ... ok
+2026-10-29T19:47:57.9385611Z test_explicit_newer_commit_is_not_called_historical (test_verify_canonical_inputs.CanonicalInputControls.test_explicit_newer_commit_is_not_called_historical) ... ok
+2026-10-29T19:47:58.0459729Z test_fetched_commit_identity_mismatch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_fetched_commit_identity_mismatch_fails) ... ok
+2026-10-29T19:47:58.1559994Z test_gitlink_mismatch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_gitlink_mismatch_fails) ... ok
+2026-10-29T19:47:58.2422651Z test_gitmodules_change_fails (test_verify_canonical_inputs.CanonicalInputControls.test_gitmodules_change_fails) ... ok
+2026-10-29T19:47:58.3201957Z test_identical_symlinked_workspace_manifest_fails (test_verify_canonical_inputs.CanonicalInputControls.test_identical_symlinked_workspace_manifest_fails) ... ok
+2026-10-29T19:47:58.4486815Z test_manifest_change_during_fetch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_manifest_change_during_fetch_fails) ... ok
+2026-10-29T19:47:58.5613523Z test_missing_path_fails (test_verify_canonical_inputs.CanonicalInputControls.test_missing_path_fails) ... ok
+2026-10-29T19:47:58.6532918Z test_mutable_historical_ref_fails (test_verify_canonical_inputs.CanonicalInputControls.test_mutable_historical_ref_fails) ... ok
+2026-10-29T19:47:58.7574491Z test_nonpublic_source_cannot_be_skipped (test_verify_canonical_inputs.CanonicalInputControls.test_nonpublic_source_cannot_be_skipped) ... ok
+2026-10-29T19:47:58.8641383Z test_pinned_repository_must_be_listed_in_workspace (test_verify_canonical_inputs.CanonicalInputControls.test_pinned_repository_must_be_listed_in_workspace) ... ok
+2026-10-29T19:47:59.0067371Z test_symlinked_source_is_not_accepted_as_a_blob (test_verify_canonical_inputs.CanonicalInputControls.test_symlinked_source_is_not_accepted_as_a_blob) ... ok
+2026-10-29T19:47:59.1067714Z test_unavailable_remote_fails (test_verify_canonical_inputs.CanonicalInputControls.test_unavailable_remote_fails) ... ok
+2026-10-29T19:47:59.2221445Z test_unfetchable_historical_commit_fails (test_verify_canonical_inputs.CanonicalInputControls.test_unfetchable_historical_commit_fails) ... ok
+2026-10-29T19:47:59.3117801Z test_unmapped_repository_fails (test_verify_canonical_inputs.CanonicalInputControls.test_unmapped_repository_fails) ... ok
+2026-10-29T19:47:59.4425976Z test_workspace_head_change_during_fetch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_workspace_head_change_during_fetch_fails) ... ok
+2026-10-29T19:47:59.5464218Z test_wrong_current_blob_fails (test_verify_canonical_inputs.CanonicalInputControls.test_wrong_current_blob_fails) ... ok
+2026-10-29T19:48:00.0590956Z test_actual_silent_checker_exit_is_not_a_mutation_kill (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_actual_silent_checker_exit_is_not_a_mutation_kill) ... ok
+2026-10-29T19:48:00.0612468Z test_checker_result_protocol_has_positive_and_crash_controls (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_checker_result_protocol_has_positive_and_crash_controls) ... ok
+2026-10-29T19:48:00.0614501Z test_exact_named_control_event_and_assertion_are_required (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_exact_named_control_event_and_assertion_are_required) ... ok
+2026-10-29T19:48:00.0640674Z test_four_actual_harness_source_mutants_are_rejected (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_four_actual_harness_source_mutants_are_rejected) ... ok
+2026-10-29T19:48:05.0932909Z test_all_named_guard_mutations_are_detected (test_verify_canonical_inputs_mutations.CanonicalMutationControls.test_all_named_guard_mutations_are_detected) ... ok
+2026-10-29T19:48:05.0933474Z test_committed_real_tree_passes (test_verify_pins.VerifyPinsControls.test_committed_real_tree_passes)
+2026-10-29T19:48:05.1230965Z The real workspace (parent of this tests/ directory) must pass ... ok
+2026-10-29T19:48:05.1231367Z test_consistent_fixture_passes (test_verify_pins.VerifyPinsControls.test_consistent_fixture_passes)
+2026-10-29T19:48:05.1687133Z The fixture builder itself yields a passing workspace, so the ... ok
+2026-10-29T19:48:05.1687557Z test_flags_redirect_the_checker (test_verify_pins.VerifyPinsControls.test_flags_redirect_the_checker)
+2026-10-29T19:48:05.2343999Z --pins pointing at a file that disagrees with an otherwise-good ... ok
+2026-10-29T19:48:05.2780447Z test_gitlink_sha_differs_from_pins_fails (test_verify_pins.VerifyPinsControls.test_gitlink_sha_differs_from_pins_fails) ... ok
+2026-10-29T19:48:05.3163054Z test_missing_gitlink_fails (test_verify_pins.VerifyPinsControls.test_missing_gitlink_fails) ... ok
+2026-10-29T19:48:05.3618706Z test_opt_in_without_update_none_fails (test_verify_pins.VerifyPinsControls.test_opt_in_without_update_none_fails) ... ok
+2026-10-29T19:48:05.4011226Z test_prefix_match_is_not_accepted (test_verify_pins.VerifyPinsControls.test_prefix_match_is_not_accepted) ... ok
+2026-10-29T19:48:05.4011709Z test_readme_table_renders_pins_json (test_verify_pins.VerifyPinsControls.test_readme_table_renders_pins_json)
+2026-10-29T19:48:05.4017073Z README's table is a rendering of pins.json: every pinned SHA must ... ok
+2026-10-29T19:48:05.4424570Z test_unlisted_gitlink_fails (test_verify_pins.VerifyPinsControls.test_unlisted_gitlink_fails) ... ok
+2026-10-29T19:48:05.4826209Z test_update_none_without_opt_in_fails (test_verify_pins.VerifyPinsControls.test_update_none_without_opt_in_fails) ... ok
+2026-10-29T19:48:05.5201036Z test_url_or_branch_mismatch_fails (test_verify_pins.VerifyPinsControls.test_url_or_branch_mismatch_fails) ... ok
+2026-10-29T19:48:06.7437479Z test_conflicting_pin_and_flags_rejected_in_both_orders (test_verify_pins.VerifyPinsDuplicateJSONControls.test_conflicting_pin_and_flags_rejected_in_both_orders) ... ok
+2026-10-29T19:48:07.3405330Z test_duplicate_diagnostics_are_ascii_safe_before_git (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_diagnostics_are_ascii_safe_before_git) ... ok
+2026-10-29T19:48:07.4532188Z test_duplicate_in_nested_object_is_rejected (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_in_nested_object_is_rejected) ... ok
+2026-10-29T19:48:07.5128893Z test_duplicate_rejection_precedes_git_even_with_network_requested (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_rejection_precedes_git_even_with_network_requested) ... ok
+2026-10-29T19:48:07.7209060Z test_duplicate_root_members_rejected_in_both_orders (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_root_members_rejected_in_both_orders) ... ok
+2026-10-29T19:48:07.8305278Z test_escaped_equivalent_member_rejected_in_both_orders (test_verify_pins.VerifyPinsDuplicateJSONControls.test_escaped_equivalent_member_rejected_in_both_orders) ... ok
+2026-10-29T19:48:07.8946430Z test_identical_duplicate_is_still_ambiguous (test_verify_pins.VerifyPinsDuplicateJSONControls.test_identical_duplicate_is_still_ambiguous) ... ok
+2026-10-29T19:48:08.0936234Z test_empty_remote_lookup_reports_unknown_configured_tip (test_verify_pins.VerifyPinsNetworkControls.test_empty_remote_lookup_reports_unknown_configured_tip) ... ok
+2026-10-29T19:48:08.3065268Z test_known_differing_tip_output_is_unchanged (test_verify_pins.VerifyPinsNetworkControls.test_known_differing_tip_output_is_unchanged) ... ok
+2026-10-29T19:48:08.5024696Z test_known_equal_tip_output_is_unchanged (test_verify_pins.VerifyPinsNetworkControls.test_known_equal_tip_output_is_unchanged) ... ok
+2026-10-29T19:48:08.7000501Z test_observed_default_mismatch_retained_when_configured_tip_unknown (test_verify_pins.VerifyPinsNetworkControls.test_observed_default_mismatch_retained_when_configured_tip_unknown) ... ok
+2026-10-29T19:48:08.9021768Z test_unobserved_default_does_not_hide_known_configured_tip (test_verify_pins.VerifyPinsNetworkControls.test_unobserved_default_does_not_hide_known_configured_tip) ... ok
+2026-10-29T19:48:08.9286882Z test_git_failure_is_reported (test_verify_pins.VerifyPinsShapeControls.test_git_failure_is_reported) ... ok
+2026-10-29T19:48:09.1303637Z test_gitmodules_defects_fail (test_verify_pins.VerifyPinsShapeControls.test_gitmodules_defects_fail) ... ok
+2026-10-29T19:48:09.3974654Z test_pins_shape_defects_fail (test_verify_pins.VerifyPinsShapeControls.test_pins_shape_defects_fail) ... ok
+2026-10-29T19:48:09.4773135Z test_clean_valid_and_mismatched_checkout (test_verify_pins_git_integrity.GitIntegrityControls.test_clean_valid_and_mismatched_checkout) ... ok
+2026-10-29T19:48:09.5306995Z test_combined_git_routing_overrides_cannot_select_foreign_head (test_verify_pins_git_integrity.GitIntegrityControls.test_combined_git_routing_overrides_cannot_select_foreign_head) ... ok
+2026-10-29T19:48:09.6133746Z test_inherited_git_dir_cannot_select_foreign_head (test_verify_pins_git_integrity.GitIntegrityControls.test_inherited_git_dir_cannot_select_foreign_head) ... ok
+2026-10-29T19:48:09.7241142Z test_local_replace_ref_cannot_substitute_committed_head_tree (test_verify_pins_git_integrity.GitIntegrityControls.test_local_replace_ref_cannot_substitute_committed_head_tree) ... ok
+2026-10-29T19:48:09.8587419Z test_offline_network_mode_rejects_foreign_git_dir_without_side_effect (test_verify_pins_git_integrity.GitIntegrityControls.test_offline_network_mode_rejects_foreign_git_dir_without_side_effect) ... ok
+2026-10-29T19:48:09.9420521Z test_offline_network_valid_selected_checkout_ignores_foreign_dir (test_verify_pins_git_integrity.GitIntegrityControls.test_offline_network_valid_selected_checkout_ignores_foreign_dir) ... ok
+2026-10-29T19:48:10.1058541Z test_existing_refusals_remain_handled (test_verify_pins_input_types.PinInputTypeTests.test_existing_refusals_remain_handled) ... ok
+2026-10-29T19:48:10.1073508Z test_mixed_bad_entries_retain_later_diagnostics_and_do_not_reach_git (test_verify_pins_input_types.PinInputTypeTests.test_mixed_bad_entries_retain_later_diagnostics_and_do_not_reach_git) ... ok
+2026-10-29T19:48:10.2490758Z test_nonobject_entries_are_handled (test_verify_pins_input_types.PinInputTypeTests.test_nonobject_entries_are_handled) ... ok
+2026-10-29T19:48:10.3879621Z test_nonobject_roots_are_handled (test_verify_pins_input_types.PinInputTypeTests.test_nonobject_roots_are_handled) ... ok
+2026-10-29T19:48:10.5517797Z test_nonstring_or_empty_paths_are_handled (test_verify_pins_input_types.PinInputTypeTests.test_nonstring_or_empty_paths_are_handled) ... ok
+2026-10-29T19:48:10.5526165Z test_unexpected_programming_error_is_not_hidden (test_verify_pins_input_types.PinInputTypeTests.test_unexpected_programming_error_is_not_hidden) ... ok
+2026-10-29T19:48:10.6208206Z test_valid_local_git_tree_and_wrong_pin_control (test_verify_pins_input_types.PinInputTypeTests.test_valid_local_git_tree_and_wrong_pin_control) ... ok
+2026-10-29T19:48:10.6212625Z test_valid_manifest_and_input_bytes_are_preserved (test_verify_pins_input_types.PinInputTypeTests.test_valid_manifest_and_input_bytes_are_preserved) ... ok
+2026-10-29T19:48:12.5147312Z test_all_named_guard_removals_are_detected (test_verify_pins_mutations.StrictPinMutationControls.test_all_named_guard_removals_are_detected) ... ok
+2026-10-29T19:48:12.5998702Z test_duplicate_branch_advertisement_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_duplicate_branch_advertisement_is_rejected) ... ok
+2026-10-29T19:48:12.6739716Z test_failed_remote_tip_lookup_is_rejected_after_successful_fetch (test_verify_pins_strict.StrictCurrentPinTests.test_failed_remote_tip_lookup_is_rejected_after_successful_fetch) ... ok
+2026-10-29T19:48:12.7512164Z test_inconsistent_head_and_branch_advertisement_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_inconsistent_head_and_branch_advertisement_is_rejected) ... ok
+2026-10-29T19:48:12.8141205Z test_initial_manifest_mismatch_does_not_start_remote_lookup (test_verify_pins_strict.StrictCurrentPinTests.test_initial_manifest_mismatch_does_not_start_remote_lookup) ... ok
+2026-10-29T19:48:12.8968821Z test_legacy_tip_difference_does_not_claim_ancestry (test_verify_pins_strict.StrictCurrentPinTests.test_legacy_tip_difference_does_not_claim_ancestry) ... ok
+2026-10-29T19:48:13.0206906Z test_matching_public_default_and_branch_are_accepted (test_verify_pins_strict.StrictCurrentPinTests.test_matching_public_default_and_branch_are_accepted) ... ok
+2026-10-29T19:48:13.1013759Z test_missing_configured_branch_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_missing_configured_branch_is_rejected) ... ok
+2026-10-29T19:48:13.1792573Z test_missing_default_branch_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_missing_default_branch_is_rejected) ... ok
+2026-10-29T19:48:13.2579713Z test_missing_head_commit_is_rejected_even_when_branch_tip_matches (test_verify_pins_strict.StrictCurrentPinTests.test_missing_head_commit_is_rejected_even_when_branch_tip_matches) ... ok
+2026-10-29T19:48:13.3818886Z test_newer_remote_tip_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_newer_remote_tip_is_rejected) ... ok
+2026-10-29T19:48:13.4615145Z test_pin_manifest_change_during_lookup_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_pin_manifest_change_during_lookup_is_rejected) ... ok
+2026-10-29T19:48:13.5162678Z test_skipped_nonpublic_repository_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_skipped_nonpublic_repository_is_rejected) ... ok
+2026-10-29T19:48:13.5749384Z test_symlinked_gitmodules_is_rejected_even_with_identical_bytes (test_verify_pins_strict.StrictCurrentPinTests.test_symlinked_gitmodules_is_rejected_even_with_identical_bytes) ... ok
+2026-10-29T19:48:13.6344058Z test_working_gitmodules_cannot_mask_committed_mismatch (test_verify_pins_strict.StrictCurrentPinTests.test_working_gitmodules_cannot_mask_committed_mismatch) ... ok
+2026-10-29T19:48:13.6955284Z test_working_pins_cannot_mask_a_different_committed_manifest (test_verify_pins_strict.StrictCurrentPinTests.test_working_pins_cannot_mask_a_different_committed_manifest) ... ok
+2026-10-29T19:48:13.7755370Z test_workspace_head_change_during_lookup_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_workspace_head_change_during_lookup_is_rejected) ... ok
+2026-10-29T19:48:13.8469464Z test_wrong_default_branch_is_rejected_even_when_pin_matches_main (test_verify_pins_strict.StrictCurrentPinTests.test_wrong_default_branch_is_rejected_even_when_pin_matches_main) ... ok
+2026-10-29T19:48:13.8659449Z test_canonical_input_repository_must_be_in_federation (test_workspace_contract.WorkspaceContractTests.test_canonical_input_repository_must_be_in_federation) ... ok
+2026-10-29T19:48:13.8853470Z test_canonical_input_requires_observed_blob (test_workspace_contract.WorkspaceContractTests.test_canonical_input_requires_observed_blob) ... ok
+2026-10-29T19:48:13.9054779Z test_committed_manifest_passes_and_does_not_duplicate_role_registry (test_workspace_contract.WorkspaceContractTests.test_committed_manifest_passes_and_does_not_duplicate_role_registry) ... ok
+2026-10-29T19:48:13.9249711Z test_duplicate_repository_is_rejected (test_workspace_contract.WorkspaceContractTests.test_duplicate_repository_is_rejected) ... ok
+2026-10-29T19:48:13.9442404Z test_forbidden_status_field_is_rejected_anywhere (test_workspace_contract.WorkspaceContractTests.test_forbidden_status_field_is_rejected_anywhere) ... ok
+2026-10-29T19:48:13.9645500Z test_repository_role_metadata_is_rejected (test_workspace_contract.WorkspaceContractTests.test_repository_role_metadata_is_rejected) ... ok
+2026-10-29T19:48:13.9840732Z test_required_repository_cannot_disappear (test_workspace_contract.WorkspaceContractTests.test_required_repository_cannot_disappear) ... ok
+2026-10-29T19:48:14.0039656Z test_status_authority_must_stay_false (test_workspace_contract.WorkspaceContractTests.test_status_authority_must_stay_false) ... ok
+2026-10-29T19:48:14.0058387Z 
+2026-10-29T19:48:14.0058541Z ----------------------------------------------------------------------
+2026-10-29T19:48:14.0059037Z Ran 110 tests in 17.562s
+2026-10-29T19:48:14.0059135Z 
+2026-10-29T19:48:14.0059189Z OK
+2026-10-29T19:48:15.5844545Z test_canonical_manifest_explicit_and_default_path_pass (test_check_workspace_json_duplicates.JSONDuplicateControls.test_canonical_manifest_explicit_and_default_path_pass) ... ok
+2026-10-29T19:48:15.6239546Z test_conflicting_root_authority_is_rejected_in_both_orders (test_check_workspace_json_duplicates.JSONDuplicateControls.test_conflicting_root_authority_is_rejected_in_both_orders) ... ok
+2026-10-29T19:48:15.7391138Z test_conflicting_source_members_are_rejected_in_both_orders (test_check_workspace_json_duplicates.JSONDuplicateControls.test_conflicting_source_members_are_rejected_in_both_orders) ... ok
+2026-10-29T19:48:15.7596075Z test_default_path_also_uses_duplicate_rejection (test_check_workspace_json_duplicates.JSONDuplicateControls.test_default_path_also_uses_duplicate_rejection) ... ok
+2026-10-29T19:48:15.8162353Z test_duplicates_in_nested_objects_and_arrays_are_rejected (test_check_workspace_json_duplicates.JSONDuplicateControls.test_duplicates_in_nested_objects_and_arrays_are_rejected) ... ok
+2026-10-29T19:48:15.9343250Z test_equal_valued_members_are_not_silently_coalesced (test_check_workspace_json_duplicates.JSONDuplicateControls.test_equal_valued_members_are_not_silently_coalesced) ... ok
+2026-10-29T19:48:16.0529897Z test_escaped_equivalent_and_unusual_names_are_rejected_safely (test_check_workspace_json_duplicates.JSONDuplicateControls.test_escaped_equivalent_and_unusual_names_are_rejected_safely) ... ok
+2026-10-29T19:48:16.1652300Z test_nonduplicate_malformed_inputs_keep_their_refusal_interface (test_check_workspace_json_duplicates.JSONDuplicateControls.test_nonduplicate_malformed_inputs_keep_their_refusal_interface) ... ok
+2026-10-29T19:48:16.1887173Z test_repeated_canonical_input_objects_are_rejected (test_check_workspace_json_duplicates.JSONDuplicateControls.test_repeated_canonical_input_objects_are_rejected) ... ok
+2026-10-29T19:48:16.3015691Z test_repeated_names_in_distinct_objects_and_string_text_are_valid (test_check_workspace_json_duplicates.JSONDuplicateControls.test_repeated_names_in_distinct_objects_and_string_text_are_valid) ... ok
+2026-10-29T19:48:16.3439518Z test_repository_entry_members_are_rejected (test_check_workspace_json_duplicates.JSONDuplicateControls.test_repository_entry_members_are_rejected) ... ok
+2026-10-29T19:48:16.4251096Z test_symlinked_temp_root_preserves_both_path_contracts (test_check_workspace_json_duplicates.JSONDuplicateControls.test_symlinked_temp_root_preserves_both_path_contracts) ... ok
+2026-10-29T19:48:16.4266222Z test_authority_asserted_away_from_the_checked_field_is_refused (test_check_workspace_root_keys.RootKeyControls.test_authority_asserted_away_from_the_checked_field_is_refused) ... ok
+2026-10-29T19:48:16.4269462Z test_authority_false_away_from_the_checked_field_is_still_refused_as_unsupported_or_passes (test_check_workspace_root_keys.RootKeyControls.test_authority_false_away_from_the_checked_field_is_still_refused_as_unsupported_or_passes) ... ok
+2026-10-29T19:48:16.4271391Z test_committed_manifest_passes (test_check_workspace_root_keys.RootKeyControls.test_committed_manifest_passes) ... ok
+2026-10-29T19:48:16.4278224Z test_every_forbidden_key_is_refused_at_the_root (test_check_workspace_root_keys.RootKeyControls.test_every_forbidden_key_is_refused_at_the_root) ... ok
+2026-10-29T19:48:16.4280337Z test_lemma_closed_and_promotion_permission_together_are_refused (test_check_workspace_root_keys.RootKeyControls.test_lemma_closed_and_promotion_permission_together_are_refused) ... ok
+2026-10-29T19:48:16.4282096Z test_nested_forbidden_key_is_still_refused (test_check_workspace_root_keys.RootKeyControls.test_nested_forbidden_key_is_still_refused) ... ok
+2026-10-29T19:48:16.5508104Z test_current_and_explicit_historical_sources_pass (test_verify_canonical_inputs.CanonicalInputControls.test_current_and_explicit_historical_sources_pass) ... ok
+2026-10-29T19:48:16.6229949Z test_dirty_pins_manifest_fails (test_verify_canonical_inputs.CanonicalInputControls.test_dirty_pins_manifest_fails) ... ok
+2026-10-29T19:48:16.7019975Z test_dirty_workspace_manifest_fails (test_verify_canonical_inputs.CanonicalInputControls.test_dirty_workspace_manifest_fails) ... ok
+2026-10-29T19:48:16.7967568Z test_duplicate_manifest_members_fail (test_verify_canonical_inputs.CanonicalInputControls.test_duplicate_manifest_members_fail) ... ok
+2026-10-29T19:48:16.8894548Z test_empty_canonical_inputs_fails (test_verify_canonical_inputs.CanonicalInputControls.test_empty_canonical_inputs_fails) ... ok
+2026-10-29T19:48:17.0175645Z test_explicit_newer_commit_is_not_called_historical (test_verify_canonical_inputs.CanonicalInputControls.test_explicit_newer_commit_is_not_called_historical) ... ok
+2026-10-29T19:48:17.1176981Z test_fetched_commit_identity_mismatch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_fetched_commit_identity_mismatch_fails) ... ok
+2026-10-29T19:48:17.2185694Z test_gitlink_mismatch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_gitlink_mismatch_fails) ... ok
+2026-10-29T19:48:17.3044257Z test_gitmodules_change_fails (test_verify_canonical_inputs.CanonicalInputControls.test_gitmodules_change_fails) ... ok
+2026-10-29T19:48:17.3907805Z test_identical_symlinked_workspace_manifest_fails (test_verify_canonical_inputs.CanonicalInputControls.test_identical_symlinked_workspace_manifest_fails) ... ok
+2026-10-29T19:48:17.5192153Z test_manifest_change_during_fetch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_manifest_change_during_fetch_fails) ... ok
+2026-10-29T19:48:17.6379328Z test_missing_path_fails (test_verify_canonical_inputs.CanonicalInputControls.test_missing_path_fails) ... ok
+2026-10-29T19:48:17.7291101Z test_mutable_historical_ref_fails (test_verify_canonical_inputs.CanonicalInputControls.test_mutable_historical_ref_fails) ... ok
+2026-10-29T19:48:17.8359507Z test_nonpublic_source_cannot_be_skipped (test_verify_canonical_inputs.CanonicalInputControls.test_nonpublic_source_cannot_be_skipped) ... ok
+2026-10-29T19:48:17.9291141Z test_pinned_repository_must_be_listed_in_workspace (test_verify_canonical_inputs.CanonicalInputControls.test_pinned_repository_must_be_listed_in_workspace) ... ok
+2026-10-29T19:48:18.0675191Z test_symlinked_source_is_not_accepted_as_a_blob (test_verify_canonical_inputs.CanonicalInputControls.test_symlinked_source_is_not_accepted_as_a_blob) ... ok
+2026-10-29T19:48:18.1573922Z test_unavailable_remote_fails (test_verify_canonical_inputs.CanonicalInputControls.test_unavailable_remote_fails) ... ok
+2026-10-29T19:48:18.2773341Z test_unfetchable_historical_commit_fails (test_verify_canonical_inputs.CanonicalInputControls.test_unfetchable_historical_commit_fails) ... ok
+2026-10-29T19:48:18.3693457Z test_unmapped_repository_fails (test_verify_canonical_inputs.CanonicalInputControls.test_unmapped_repository_fails) ... ok
+2026-10-29T19:48:18.5084398Z test_workspace_head_change_during_fetch_fails (test_verify_canonical_inputs.CanonicalInputControls.test_workspace_head_change_during_fetch_fails) ... ok
+2026-10-29T19:48:18.6190495Z test_wrong_current_blob_fails (test_verify_canonical_inputs.CanonicalInputControls.test_wrong_current_blob_fails) ... ok
+2026-10-29T19:48:19.1669658Z test_actual_silent_checker_exit_is_not_a_mutation_kill (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_actual_silent_checker_exit_is_not_a_mutation_kill) ... ok
+2026-10-29T19:48:19.1691160Z test_checker_result_protocol_has_positive_and_crash_controls (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_checker_result_protocol_has_positive_and_crash_controls) ... ok
+2026-10-29T19:48:19.1693042Z test_exact_named_control_event_and_assertion_are_required (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_exact_named_control_event_and_assertion_are_required) ... ok
+2026-10-29T19:48:19.1718791Z test_four_actual_harness_source_mutants_are_rejected (test_verify_canonical_inputs_mutations.CanonicalHarnessControls.test_four_actual_harness_source_mutants_are_rejected) ... ok
+2026-10-29T19:48:23.8057528Z test_all_named_guard_mutations_are_detected (test_verify_canonical_inputs_mutations.CanonicalMutationControls.test_all_named_guard_mutations_are_detected) ... ok
+2026-10-29T19:48:23.8058485Z test_committed_real_tree_passes (test_verify_pins.VerifyPinsControls.test_committed_real_tree_passes)
+2026-10-29T19:48:23.8337576Z The real workspace (parent of this tests/ directory) must pass ... ok
+2026-10-29T19:48:23.8338155Z test_consistent_fixture_passes (test_verify_pins.VerifyPinsControls.test_consistent_fixture_passes)
+2026-10-29T19:48:23.8732459Z The fixture builder itself yields a passing workspace, so the ... ok
+2026-10-29T19:48:23.8733019Z test_flags_redirect_the_checker (test_verify_pins.VerifyPinsControls.test_flags_redirect_the_checker)
+2026-10-29T19:48:23.9395507Z --pins pointing at a file that disagrees with an otherwise-good ... ok
+2026-10-29T19:48:23.9832926Z test_gitlink_sha_differs_from_pins_fails (test_verify_pins.VerifyPinsControls.test_gitlink_sha_differs_from_pins_fails) ... ok
+2026-10-29T19:48:24.0227979Z test_missing_gitlink_fails (test_verify_pins.VerifyPinsControls.test_missing_gitlink_fails) ... ok
+2026-10-29T19:48:24.0624414Z test_opt_in_without_update_none_fails (test_verify_pins.VerifyPinsControls.test_opt_in_without_update_none_fails) ... ok
+2026-10-29T19:48:24.1043253Z test_prefix_match_is_not_accepted (test_verify_pins.VerifyPinsControls.test_prefix_match_is_not_accepted) ... ok
+2026-10-29T19:48:24.1043752Z test_readme_table_renders_pins_json (test_verify_pins.VerifyPinsControls.test_readme_table_renders_pins_json)
+2026-10-29T19:48:24.1047623Z README's table is a rendering of pins.json: every pinned SHA must ... ok
+2026-10-29T19:48:24.1459471Z test_unlisted_gitlink_fails (test_verify_pins.VerifyPinsControls.test_unlisted_gitlink_fails) ... ok
+2026-10-29T19:48:24.1854897Z test_update_none_without_opt_in_fails (test_verify_pins.VerifyPinsControls.test_update_none_without_opt_in_fails) ... ok
+2026-10-29T19:48:24.2237175Z test_url_or_branch_mismatch_fails (test_verify_pins.VerifyPinsControls.test_url_or_branch_mismatch_fails) ... ok
+2026-10-29T19:48:24.5709827Z test_conflicting_pin_and_flags_rejected_in_both_orders (test_verify_pins.VerifyPinsDuplicateJSONControls.test_conflicting_pin_and_flags_rejected_in_both_orders) ... ok
+2026-10-29T19:48:25.1547822Z test_duplicate_diagnostics_are_ascii_safe_before_git (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_diagnostics_are_ascii_safe_before_git) ... ok
+2026-10-29T19:48:25.2718184Z test_duplicate_in_nested_object_is_rejected (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_in_nested_object_is_rejected) ... ok
+2026-10-29T19:48:25.3338468Z test_duplicate_rejection_precedes_git_even_with_network_requested (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_rejection_precedes_git_even_with_network_requested) ... ok
+2026-10-29T19:48:25.5343766Z test_duplicate_root_members_rejected_in_both_orders (test_verify_pins.VerifyPinsDuplicateJSONControls.test_duplicate_root_members_rejected_in_both_orders) ... ok
+2026-10-29T19:48:25.6421780Z test_escaped_equivalent_member_rejected_in_both_orders (test_verify_pins.VerifyPinsDuplicateJSONControls.test_escaped_equivalent_member_rejected_in_both_orders) ... ok
+2026-10-29T19:48:25.7034189Z test_identical_duplicate_is_still_ambiguous (test_verify_pins.VerifyPinsDuplicateJSONControls.test_identical_duplicate_is_still_ambiguous) ... ok
+2026-10-29T19:48:25.9024415Z test_empty_remote_lookup_reports_unknown_configured_tip (test_verify_pins.VerifyPinsNetworkControls.test_empty_remote_lookup_reports_unknown_configured_tip) ... ok
+2026-10-29T19:48:26.1046277Z test_known_differing_tip_output_is_unchanged (test_verify_pins.VerifyPinsNetworkControls.test_known_differing_tip_output_is_unchanged) ... ok
+2026-10-29T19:48:26.3066013Z test_known_equal_tip_output_is_unchanged (test_verify_pins.VerifyPinsNetworkControls.test_known_equal_tip_output_is_unchanged) ... ok
+2026-10-29T19:48:26.5049402Z test_observed_default_mismatch_retained_when_configured_tip_unknown (test_verify_pins.VerifyPinsNetworkControls.test_observed_default_mismatch_retained_when_configured_tip_unknown) ... ok
+2026-10-29T19:48:26.7232514Z test_unobserved_default_does_not_hide_known_configured_tip (test_verify_pins.VerifyPinsNetworkControls.test_unobserved_default_does_not_hide_known_configured_tip) ... ok
+2026-10-29T19:48:26.7488745Z test_git_failure_is_reported (test_verify_pins.VerifyPinsShapeControls.test_git_failure_is_reported) ... ok
+2026-10-29T19:48:26.9481148Z test_gitmodules_defects_fail (test_verify_pins.VerifyPinsShapeControls.test_gitmodules_defects_fail) ... ok
+2026-10-29T19:48:27.2168967Z test_pins_shape_defects_fail (test_verify_pins.VerifyPinsShapeControls.test_pins_shape_defects_fail) ... ok
+2026-10-29T19:48:27.2935490Z test_clean_valid_and_mismatched_checkout (test_verify_pins_git_integrity.GitIntegrityControls.test_clean_valid_and_mismatched_checkout) ... ok
+2026-10-29T19:48:27.3462733Z test_combined_git_routing_overrides_cannot_select_foreign_head (test_verify_pins_git_integrity.GitIntegrityControls.test_combined_git_routing_overrides_cannot_select_foreign_head) ... ok
+2026-10-29T19:48:27.4224450Z test_inherited_git_dir_cannot_select_foreign_head (test_verify_pins_git_integrity.GitIntegrityControls.test_inherited_git_dir_cannot_select_foreign_head) ... ok
+2026-10-29T19:48:27.5259436Z test_local_replace_ref_cannot_substitute_committed_head_tree (test_verify_pins_git_integrity.GitIntegrityControls.test_local_replace_ref_cannot_substitute_committed_head_tree) ... ok
+2026-10-29T19:48:27.6643664Z test_offline_network_mode_rejects_foreign_git_dir_without_side_effect (test_verify_pins_git_integrity.GitIntegrityControls.test_offline_network_mode_rejects_foreign_git_dir_without_side_effect) ... ok
+2026-10-29T19:48:27.7681696Z test_offline_network_valid_selected_checkout_ignores_foreign_dir (test_verify_pins_git_integrity.GitIntegrityControls.test_offline_network_valid_selected_checkout_ignores_foreign_dir) ... ok
+2026-10-29T19:48:27.9472567Z test_existing_refusals_remain_handled (test_verify_pins_input_types.PinInputTypeTests.test_existing_refusals_remain_handled) ... ok
+2026-10-29T19:48:27.9485004Z test_mixed_bad_entries_retain_later_diagnostics_and_do_not_reach_git (test_verify_pins_input_types.PinInputTypeTests.test_mixed_bad_entries_retain_later_diagnostics_and_do_not_reach_git) ... ok
+2026-10-29T19:48:28.0953841Z test_nonobject_entries_are_handled (test_verify_pins_input_types.PinInputTypeTests.test_nonobject_entries_are_handled) ... ok
+2026-10-29T19:48:28.2462408Z test_nonobject_roots_are_handled (test_verify_pins_input_types.PinInputTypeTests.test_nonobject_roots_are_handled) ... ok
+2026-10-29T19:48:28.4188508Z test_nonstring_or_empty_paths_are_handled (test_verify_pins_input_types.PinInputTypeTests.test_nonstring_or_empty_paths_are_handled) ... ok
+2026-10-29T19:48:28.4197074Z test_unexpected_programming_error_is_not_hidden (test_verify_pins_input_types.PinInputTypeTests.test_unexpected_programming_error_is_not_hidden) ... ok
+2026-10-29T19:48:28.4898025Z test_valid_local_git_tree_and_wrong_pin_control (test_verify_pins_input_types.PinInputTypeTests.test_valid_local_git_tree_and_wrong_pin_control) ... ok
+2026-10-29T19:48:28.4902133Z test_valid_manifest_and_input_bytes_are_preserved (test_verify_pins_input_types.PinInputTypeTests.test_valid_manifest_and_input_bytes_are_preserved) ... ok
+2026-10-29T19:48:30.4295437Z test_all_named_guard_removals_are_detected (test_verify_pins_mutations.StrictPinMutationControls.test_all_named_guard_removals_are_detected) ... ok
+2026-10-29T19:48:30.5098308Z test_duplicate_branch_advertisement_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_duplicate_branch_advertisement_is_rejected) ... ok
+2026-10-29T19:48:30.5890736Z test_failed_remote_tip_lookup_is_rejected_after_successful_fetch (test_verify_pins_strict.StrictCurrentPinTests.test_failed_remote_tip_lookup_is_rejected_after_successful_fetch) ... ok
+2026-10-29T19:48:30.6679379Z test_inconsistent_head_and_branch_advertisement_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_inconsistent_head_and_branch_advertisement_is_rejected) ... ok
+2026-10-29T19:48:30.7280696Z test_initial_manifest_mismatch_does_not_start_remote_lookup (test_verify_pins_strict.StrictCurrentPinTests.test_initial_manifest_mismatch_does_not_start_remote_lookup) ... ok
+2026-10-29T19:48:30.8092697Z test_legacy_tip_difference_does_not_claim_ancestry (test_verify_pins_strict.StrictCurrentPinTests.test_legacy_tip_difference_does_not_claim_ancestry) ... ok
+2026-10-29T19:48:30.8923263Z test_matching_public_default_and_branch_are_accepted (test_verify_pins_strict.StrictCurrentPinTests.test_matching_public_default_and_branch_are_accepted) ... ok
+2026-10-29T19:48:30.9664764Z test_missing_configured_branch_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_missing_configured_branch_is_rejected) ... ok
+2026-10-29T19:48:31.0406137Z test_missing_default_branch_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_missing_default_branch_is_rejected) ... ok
+2026-10-29T19:48:31.1162631Z test_missing_head_commit_is_rejected_even_when_branch_tip_matches (test_verify_pins_strict.StrictCurrentPinTests.test_missing_head_commit_is_rejected_even_when_branch_tip_matches) ... ok
+2026-10-29T19:48:31.2362257Z test_newer_remote_tip_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_newer_remote_tip_is_rejected) ... ok
+2026-10-29T19:48:31.3135351Z test_pin_manifest_change_during_lookup_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_pin_manifest_change_during_lookup_is_rejected) ... ok
+2026-10-29T19:48:31.3684749Z test_skipped_nonpublic_repository_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_skipped_nonpublic_repository_is_rejected) ... ok
+2026-10-29T19:48:31.4209874Z test_symlinked_gitmodules_is_rejected_even_with_identical_bytes (test_verify_pins_strict.StrictCurrentPinTests.test_symlinked_gitmodules_is_rejected_even_with_identical_bytes) ... ok
+2026-10-29T19:48:31.4800895Z test_working_gitmodules_cannot_mask_committed_mismatch (test_verify_pins_strict.StrictCurrentPinTests.test_working_gitmodules_cannot_mask_committed_mismatch) ... ok
+2026-10-29T19:48:31.5403783Z test_working_pins_cannot_mask_a_different_committed_manifest (test_verify_pins_strict.StrictCurrentPinTests.test_working_pins_cannot_mask_a_different_committed_manifest) ... ok
+2026-10-29T19:48:31.6212796Z test_workspace_head_change_during_lookup_is_rejected (test_verify_pins_strict.StrictCurrentPinTests.test_workspace_head_change_during_lookup_is_rejected) ... ok
+2026-10-29T19:48:31.7004229Z test_wrong_default_branch_is_rejected_even_when_pin_matches_main (test_verify_pins_strict.StrictCurrentPinTests.test_wrong_default_branch_is_rejected_even_when_pin_matches_main) ... ok
+2026-10-29T19:48:31.7203869Z test_canonical_input_repository_must_be_in_federation (test_workspace_contract.WorkspaceContractTests.test_canonical_input_repository_must_be_in_federation) ... ok
+2026-10-29T19:48:31.7395006Z test_canonical_input_requires_observed_blob (test_workspace_contract.WorkspaceContractTests.test_canonical_input_requires_observed_blob) ... ok
+2026-10-29T19:48:31.7591741Z test_committed_manifest_passes_and_does_not_duplicate_role_registry (test_workspace_contract.WorkspaceContractTests.test_committed_manifest_passes_and_does_not_duplicate_role_registry) ... ok
+2026-10-29T19:48:31.7784273Z test_duplicate_repository_is_rejected (test_workspace_contract.WorkspaceContractTests.test_duplicate_repository_is_rejected) ... ok
+2026-10-29T19:48:31.7981519Z test_forbidden_status_field_is_rejected_anywhere (test_workspace_contract.WorkspaceContractTests.test_forbidden_status_field_is_rejected_anywhere) ... ok
+2026-10-29T19:48:31.8180924Z test_repository_role_metadata_is_rejected (test_workspace_contract.WorkspaceContractTests.test_repository_role_metadata_is_rejected) ... ok
+2026-10-29T19:48:31.8370212Z test_required_repository_cannot_disappear (test_workspace_contract.WorkspaceContractTests.test_required_repository_cannot_disappear) ... ok
+2026-10-29T19:48:31.8565385Z test_status_authority_must_stay_false (test_workspace_contract.WorkspaceContractTests.test_status_authority_must_stay_false) ... ok
+2026-10-29T19:48:31.8565924Z 
+2026-10-29T19:48:31.8566064Z ----------------------------------------------------------------------
+2026-10-29T19:48:31.8566365Z Ran 110 tests in 16.312s
+2026-10-29T19:48:31.8566487Z 
+2026-10-29T19:48:31.8566570Z OK
+2026-10-29T19:48:31.8806926Z Post job cleanup.
+2026-10-29T19:48:31.9636997Z (node:12444) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-29T19:48:31.9637455Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-29T19:48:31.9793867Z Post job cleanup.
+2026-10-29T19:48:32.0407130Z [command]/usr/bin/git version
+2026-10-29T19:48:32.0450899Z git version 2.56.0
+2026-10-29T19:48:32.0475504Z Temporarily overriding HOME='/home/runner/work/_temp/4083a673-d013-4cbf-bbff-23117cd68722' before making global git config changes
+2026-10-29T19:48:32.0476371Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T19:48:32.0479848Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Universal-Law-Workspace/Universal-Law-Workspace
+2026-10-29T19:48:32.0528504Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T19:48:32.0563873Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T19:48:32.0816450Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T19:48:32.0843180Z http.https://github.com/.extraheader
+2026-10-29T19:48:32.0852290Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-29T19:48:32.0892725Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T19:48:32.1133055Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T19:48:32.1161015Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T19:48:32.1515899Z Cleaning up orphan processes
+2026-10-29T19:48:32.1784307Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

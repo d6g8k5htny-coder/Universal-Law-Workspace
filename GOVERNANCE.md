@@ -103,6 +103,14 @@ The tool is bounded source-identity engineering and certifies no mathematics.
 
 An actual hosted regression at d4ae729871d17332f9adc705cc55e082897bc5ed
 ran 107 tests and failed exactly the newly added silent-exit adverse control
-(run 40942797333, job 123690270511). That RED evidence is preserved. This
-repair candidate still requires its own observed hosted result. No current
-federation pin or CBZ gate is asserted by this change.
+(run 40942797333, job 123690270511). That RED evidence is preserved. The
+repair at 8397f29669ba213dcc6e678dd9f8015033f1e5af then passed 110 tests
+in each of normal and optimized Python (run 40943291131/job 123691959826),
+including all 13 canonical source mutants, four classifier mutants and the
+15 retained strict pin mutants. Its tested PR merge has exactly the same Git
+tree as that head. Exact source identities and raw job logs are preserved in
+`evidence/canonical-harness/`. Current pins failed separately on Main and
+Math drift. No current federation pin or CBZ gate is asserted by this change.
+
+Raw hosted logs under `evidence/canonical-harness/hosted-*-job.log` retain their
+exact bytes via scoped Git attributes; this does not relax source formatting.

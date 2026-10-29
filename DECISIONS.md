@@ -144,3 +144,17 @@ workspace is being assessed; it is not yet CBZ-0.
   EAGAIN; native Git data APIs and hosted execution provide a source-bound
   verification route. Reversible: yes; source history and hosted logs retain
   the RED state. Pin drift remains a separate observed failure.
+
+
+- 2026-10-29 20:01:45 UTC · Phase 3 · A/C · Observed hosted contract success
+  on canonical harness repair 8397f29669ba213dcc6e678dd9f8015033f1e5af:
+  run 40943291131/job 123691959826 passed 110 tests in each Python mode,
+  including every retained checker mutation and four classifier source
+  mutations. Native Git data confirms tested PR merge
+  10f9d4e8ecb98ad1e7abcced3b548160d6c6106c and source head share tree
+  85d96123ab4800268ad9858a010e139cd825ad22. Preserve complete RED, GREEN
+  and pin-drift job logs plus exact observation JSON. Scoped raw-log Git
+  attributes preserve evidence bytes without relaxing source formatting.
+  Current pins remain RED on Main and Math drift (40943291189/job123691960126).
+  No mathematical or federation-baseline promotion. Reversible: yes;
+  evidence: evidence/canonical-harness/OBSERVATION.json.
