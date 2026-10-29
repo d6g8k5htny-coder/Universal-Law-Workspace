@@ -8,26 +8,26 @@
     "repository_registry": {
       "repository": "d6g8k5htny-coder/meta-framework",
       "path": "registry.json",
-      "observed_blob": "b41f43da5a05e33be032ead5a6c0b3b0e18de80e",
+      "observed_blob": "f8cc09cd3d7c842e85fc1193b4620bc9f3063116",
       "meaning": "sole machine source for existing repository roles plus artifact routing and byte identities; not claim status"
     },
     "scientific_authority_map": {
       "repository": "d6g8k5htny-coder/main",
-      "ref": "chatgpt/drive-github-hardening-20260919",
+      "ref": "a01c72f1937875b94bfd78e183a6dbbdb2b04da4",
       "path": "architecture/scientific_state/v1/AUTHORITY_MAP.json",
       "observed_blob": "fb0e8c2275cf66dc686064f1476e99b7b3653bea",
-      "meaning": "ownership map for scientific-state fields; workspace consumes but never rewrites it"
+      "meaning": "historical source on a non-default branch; absent at the observed Main tip; not evidence of current authority"
     },
     "downstream_gate": {
       "repository": "d6g8k5htny-coder/Math-",
       "path": "frontiers/downstream_gate_20260925/GRAPH.json",
-      "observed_blob": "23a6759eb0e8aca9de1da9bb5410cdb0621542d8",
+      "observed_blob": "220b56867f24c5ef6f55a3cce70490e9777cf3af",
       "meaning": "existing downstream classification/control surface; workspace does not duplicate it"
     },
     "landing_claims": {
       "repository": "d6g8k5htny-coder/Math-",
       "path": "claims/LANDING_CLAIMS.json",
-      "observed_blob": "1e178c2d948bab4de696c6b66724dd7a37fb34f1",
+      "observed_blob": "a8719fcd73b07378742d36f112259d09b67fe8c2",
       "meaning": "public landing projection; not a promotion engine"
     }
   },

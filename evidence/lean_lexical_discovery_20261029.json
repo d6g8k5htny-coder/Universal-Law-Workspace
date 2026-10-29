@@ -1,0 +1,160 @@
+{
+  "source_commits": {
+    "main": "4ef1867175dbe1072a54a02e95f80c4e2c70a4ff",
+    "Math-": "8151f592918a845bf19eb8eafaf8444540a32734"
+  },
+  "file_count": 166,
+  "method": "rg lexical search; unverified discovery, not a Lean parser or Layer A auditor",
+  "limitations": [
+    "Comments, strings, proof terms and negative controls are not classified here.",
+    "Does not inspect hidden elaborated declarations or axioms, non-Lean proof artifacts, other branches or other repositories.",
+    "No zero-hit result is a scientific certification."
+  ],
+  "matches": {
+    "sorry": [
+      {
+        "path": "Math-/specifications/lean_statement_proofs_20261011/SpecificationProofs/Side24Elementary.lean",
+        "line": 18,
+        "excerpt": "`#print axioms`, see the run receipt). No `sorry`, `native_decide`, `decide` on `\u211d`, or custom"
+      },
+      {
+        "path": "Math-/specifications/lean_statement_proofs_20261011/SpecificationProofs/RNProbability.lean",
+        "line": 19,
+        "excerpt": "`#print axioms`, see the run receipt). No `sorry`, `native_decide`, `decide` on `\u211d`, or custom"
+      },
+      {
+        "path": "Math-/specifications/lean_statement_proofs_20261011/SpecificationProofs/P15Elementary.lean",
+        "line": 16,
+        "excerpt": "`#print axioms`, see the run receipt). No `sorry`, `native_decide`, `decide` on `\u211d`, or custom"
+      },
+      {
+        "path": "main/formal/UniversalLaw/Side24/Ledger.lean",
+        "line": 11,
+        "excerpt": "No `sorry`, no `native_decide`, no axioms (the `--run-lean` receipt records the"
+      }
+    ],
+    "admit": [
+      {
+        "path": "Math-/frontiers/compact_morse_elder_adapter_20261018/inputs/C291/inputs/Lifetime.lean",
+        "line": 395,
+        "excerpt": "Anchor: \"These densities admit versions with\""
+      },
+      {
+        "path": "Math-/frontiers/compact_morse_elder_adapter_20261018/inputs/C291/inputs/Lifetime.lean",
+        "line": 490,
+        "excerpt": "elder lifetime densities admit versions `\u03bdc`, `\u03bde` with `\u03bdc(\u2113) ~ c_{B,K} \u2113^(-1/3)`,"
+      },
+      {
+        "path": "Math-/frontiers/compact_morse_elder_adapter_20261018/inputs/C291/inputs/Lifetime.lean",
+        "line": 535,
+        "excerpt": "heights, all positive gap marks, all separations; essential global maximum excluded) admit"
+      },
+      {
+        "path": "Math-/frontiers/compact_morse_elder_adapter_20261018/inputs/Math-/specifications/lean_statements_20261010/Specifications/Field.lean",
+        "line": 367,
+        "excerpt": "Anchor: \"These densities admit versions with\""
+      },
+      {
+        "path": "Math-/frontiers/regular_superlevel_geometry_20261020/project/Lifetime.lean",
+        "line": 395,
+        "excerpt": "Anchor: \"These densities admit versions with\""
+      },
+      {
+        "path": "Math-/frontiers/regular_superlevel_geometry_20261020/project/Lifetime.lean",
+        "line": 490,
+        "excerpt": "elder lifetime densities admit versions `\u03bdc`, `\u03bde` with `\u03bdc(\u2113) ~ c_{B,K} \u2113^(-1/3)`,"
+      },
+      {
+        "path": "Math-/frontiers/regular_superlevel_geometry_20261020/project/Lifetime.lean",
+        "line": 535,
+        "excerpt": "heights, all positive gap marks, all separations; essential global maximum excluded) admit"
+      },
+      {
+        "path": "Math-/frontiers/source_lifetime_realization_20261017/inputs/Lifetime.lean",
+        "line": 395,
+        "excerpt": "Anchor: \"These densities admit versions with\""
+      },
+      {
+        "path": "Math-/frontiers/source_lifetime_realization_20261017/inputs/Lifetime.lean",
+        "line": 490,
+        "excerpt": "elder lifetime densities admit versions `\u03bdc`, `\u03bde` with `\u03bdc(\u2113) ~ c_{B,K} \u2113^(-1/3)`,"
+      },
+      {
+        "path": "Math-/frontiers/source_lifetime_realization_20261017/inputs/Lifetime.lean",
+        "line": 535,
+        "excerpt": "heights, all positive gap marks, all separations; essential global maximum excluded) admit"
+      },
+      {
+        "path": "Math-/specifications/lean_statements_20261010/Specifications/Lifetime.lean",
+        "line": 395,
+        "excerpt": "Anchor: \"These densities admit versions with\""
+      },
+      {
+        "path": "Math-/specifications/lean_statements_20261010/Specifications/Lifetime.lean",
+        "line": 490,
+        "excerpt": "elder lifetime densities admit versions `\u03bdc`, `\u03bde` with `\u03bdc(\u2113) ~ c_{B,K} \u2113^(-1/3)`,"
+      },
+      {
+        "path": "Math-/specifications/lean_statements_20261010/Specifications/Lifetime.lean",
+        "line": 535,
+        "excerpt": "heights, all positive gap marks, all separations; essential global maximum excluded) admit"
+      },
+      {
+        "path": "Math-/specifications/lean_statements_20261010/Specifications/Field.lean",
+        "line": 367,
+        "excerpt": "Anchor: \"These densities admit versions with\""
+      }
+    ],
+    "axiom": [
+      {
+        "path": "Math-/frontiers/regular_superlevel_geometry_20261020/project/RegularSuperlevelAxiomAudit.lean",
+        "line": 39,
+        "excerpt": "throwError \"forbidden transitive axiom {ax} in {name}\""
+      },
+      {
+        "path": "Math-/frontiers/source_lifetime_realization_20261017/SourceLifetimeAxiomAudit.lean",
+        "line": 10,
+        "excerpt": "The emitted report is kernel/axiom evidence only after actual successful execution."
+      },
+      {
+        "path": "Math-/frontiers/source_lifetime_realization_20261017/SourceLifetimeAxiomAudit.lean",
+        "line": 48,
+        "excerpt": "throwError \"forbidden transitive axiom {ax} in {name}\""
+      },
+      {
+        "path": "Math-/frontiers/source_smooth_realization_20261011/SourceSmoothAxiomAudit.lean",
+        "line": 39,
+        "excerpt": "throwError \"forbidden transitive axiom {ax} in {name}\""
+      },
+      {
+        "path": "Math-/companions/torus_filtration_20261011/OrdinaryH0Controls.lean",
+        "line": 37,
+        "excerpt": "compatibility field or axiom states a naturality, merger or separation fact."
+      }
+    ],
+    "native_decide": [
+      {
+        "path": "Math-/specifications/lean_statement_proofs_20261011/SpecificationProofs/Side24Elementary.lean",
+        "line": 18,
+        "excerpt": "`#print axioms`, see the run receipt). No `sorry`, `native_decide`, `decide` on `\u211d`, or custom"
+      },
+      {
+        "path": "Math-/specifications/lean_statement_proofs_20261011/SpecificationProofs/P15Elementary.lean",
+        "line": 16,
+        "excerpt": "`#print axioms`, see the run receipt). No `sorry`, `native_decide`, `decide` on `\u211d`, or custom"
+      },
+      {
+        "path": "Math-/specifications/lean_statement_proofs_20261011/SpecificationProofs/RNProbability.lean",
+        "line": 19,
+        "excerpt": "`#print axioms`, see the run receipt). No `sorry`, `native_decide`, `decide` on `\u211d`, or custom"
+      },
+      {
+        "path": "main/formal/UniversalLaw/Side24/Ledger.lean",
+        "line": 11,
+        "excerpt": "No `sorry`, no `native_decide`, no axioms (the `--run-lean` receipt records the"
+      }
+    ],
+    "Float": [],
+    "unsafe": []
+  }
+}

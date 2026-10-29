@@ -9,7 +9,12 @@ Checks, for every entry in pins.json:
   (c) with --network, for public entries: the pinned commit can be fetched
       from the remote (git fetch --depth 1 <url> <sha> into a temporary bare
       repository), and an informational line says whether the remote default
-      tip still equals the pin ("behind tip" is reported, not failed).
+      tip still equals the pin (a difference is reported, not failed).
+  (d) with --require-current, require the remote checks and reject any skipped
+      repository, failed/ambiguous lookup, unknown or mismatched default branch,
+      disagreement between advertised HEAD and branch, or non-current pin.
+      Bind the checked metadata and gitlinks to one committed workspace HEAD,
+      and recheck both the HEAD and metadata after remote observations.
 Also fails if the HEAD tree contains a gitlink that pins.json does not list.
 
 Prints a one-line summary and exits nonzero on failure. Standard library only.
@@ -106,9 +111,9 @@ def load_pins(pins_path):
     return repos, errors
 
 
-def head_gitlinks(repo):
-    """Map path -> sha for every mode-160000 entry in the HEAD tree."""
-    out = run_git(["ls-tree", "-r", "-z", "HEAD"], cwd=repo).stdout
+def head_gitlinks(repo, ref="HEAD"):
+    """Map path -> sha for every mode-160000 entry in the selected tree."""
+    out = run_git(["ls-tree", "-r", "-z", ref], cwd=repo).stdout
     links = {}
     for rec in out.split("\0"):
         if not rec:
@@ -148,9 +153,9 @@ def read_gitmodules(repo):
     return by_path, errors
 
 
-def check_tree_and_modules(repo, repos):
+def check_tree_and_modules(repo, repos, ref="HEAD"):
     errors = []
-    links = head_gitlinks(repo)
+    links = head_gitlinks(repo, ref)
     modules, merrors = read_gitmodules(repo)
     errors.extend(merrors)
     listed = set()
@@ -194,8 +199,31 @@ def check_tree_and_modules(repo, repos):
     return errors
 
 
-def check_network(repos):
-    """(c) Pinned commits of public entries are fetchable; report tip drift."""
+def check_committed_inputs(repo, pins_path, commit):
+    """Require the input bytes to match both metadata files in the given commit."""
+    errors = []
+    for path, committed_name in ((pins_path, "pins.json"),
+                                 (os.path.join(repo, ".gitmodules"), ".gitmodules")):
+        if os.path.islink(path):
+            errors.append("working %s is a symlink" % committed_name)
+            continue
+        proc = subprocess.run(
+            ["git", "show", commit + ":" + committed_name], cwd=repo,
+            capture_output=True,
+            env=dict(_git_env(), GIT_TERMINAL_PROMPT="0", GIT_NO_REPLACE_OBJECTS="1"),
+        )
+        if proc.returncode != 0:
+            errors.append("cannot read committed " + committed_name)
+            continue
+        with open(path, "rb") as fh:
+            if fh.read() != proc.stdout:
+                errors.append("working %s differs from committed %s" %
+                              (committed_name, committed_name))
+    return errors
+
+
+def check_network(repos, require_current=False):
+    """Check public pins; optionally require a complete current-tip observation."""
     errors = []
     info = []
     with tempfile.TemporaryDirectory(prefix="ulw-pins-") as tmp:
@@ -203,7 +231,10 @@ def check_network(repos):
             path, url, sha = entry["path"], entry["url"], entry["pinned_sha"]
             branch = entry["default_branch"]
             if not entry.get("public"):
-                info.append("%s: not public; network check skipped" % path)
+                if require_current:
+                    errors.append("%s: not public; currentness was not checked" % path)
+                else:
+                    info.append("%s: not public; network check skipped" % path)
                 continue
             bare = os.path.join(tmp, path.replace("/", "_") + ".git")
             run_git(["init", "-q", "--bare", bare])
@@ -222,8 +253,45 @@ def check_network(repos):
             proc = run_git(["ls-remote", "--symref", url, "HEAD",
                             "refs/heads/" + branch], check=False)
             if proc.returncode != 0:
-                info.append("%s: pin exists on remote; ls-remote failed: %s"
-                            % (path, proc.stderr.strip()))
+                message = "%s: pin exists on remote; ls-remote failed: %s" % (
+                    path, proc.stderr.strip())
+                (errors if require_current else info).append(message)
+                continue
+            if require_current:
+                defaults, heads, branch_tips = [], [], []
+                ref = "refs/heads/" + branch
+                for line in proc.stdout.splitlines():
+                    if "\t" not in line:
+                        continue
+                    value, name = line.split("\t", 1)
+                    if name == "HEAD" and value.startswith("ref: "):
+                        defaults.append(value[len("ref: "):])
+                    elif name == "HEAD":
+                        heads.append(value)
+                    elif name == ref:
+                        branch_tips.append(value)
+                if len(defaults) > 1 or len(heads) > 1 or len(branch_tips) > 1:
+                    errors.append("%s: duplicate remote HEAD or branch advertisement" % path)
+                    continue
+                if not defaults:
+                    errors.append("%s: remote default branch is unknown" % path)
+                elif defaults[0] != ref:
+                    errors.append("%s: remote default branch %s does not match %s" %
+                                  (path, defaults[0], ref))
+                if not heads or not FULL_SHA.fullmatch(heads[0]):
+                    errors.append("%s: remote HEAD commit is missing or malformed" % path)
+                if not branch_tips or not FULL_SHA.fullmatch(branch_tips[0]):
+                    errors.append("%s: configured branch %s tip is missing or malformed" %
+                                  (path, branch))
+                if heads and branch_tips and heads[0] != branch_tips[0]:
+                    errors.append("%s: remote HEAD and configured branch disagree" % path)
+                if branch_tips and branch_tips[0] != sha:
+                    errors.append("%s: pin %s does not match remote %s tip %s" %
+                                  (path, sha, branch, branch_tips[0]))
+                if (len(defaults) == len(heads) == len(branch_tips) == 1
+                        and defaults[0] == ref and heads[0] == branch_tips[0] == sha
+                        and FULL_SHA.fullmatch(sha)):
+                    info.append("%s: pin equals remote default %s tip" % (path, branch))
                 continue
             default_ref = None
             tips = {}
@@ -243,7 +311,7 @@ def check_network(repos):
             elif tip == sha:
                 info.append("%s: pin equals remote %s tip" % (path, branch))
             else:
-                info.append("%s: pin %s is behind tip %s of %s (informational)"
+                info.append("%s: pin %s differs from tip %s of %s (informational)"
                             % (path, sha, tip, branch))
     return errors, info
 
@@ -256,6 +324,8 @@ def main(argv=None):
                         help="pins.json to read (default: <repo>/pins.json)")
     parser.add_argument("--network", action="store_true",
                         help="also verify pinned commits exist on remotes")
+    parser.add_argument("--require-current", action="store_true",
+                        help="require each pin to match an observed remote default tip; implies --network")
     args = parser.parse_args(argv)
     repo = os.path.abspath(args.repo)
     pins_path = os.path.abspath(args.pins or os.path.join(repo, "pins.json"))
@@ -265,12 +335,25 @@ def main(argv=None):
         repos, perrors = load_pins(pins_path)
         errors.extend(perrors)
         if not perrors:
-            errors.extend(check_tree_and_modules(repo, repos))
-            if args.network:
-                nerrors, info = check_network(repos)
+            commit = None
+            if args.require_current:
+                commit = run_git(["rev-parse", "--verify", "HEAD^{commit}"], cwd=repo).stdout.strip()
+                if not FULL_SHA.fullmatch(commit):
+                    raise ValueError("workspace HEAD is not a full commit SHA")
+                initial_input_errors = check_committed_inputs(repo, pins_path, commit)
+                errors.extend(initial_input_errors)
+            errors.extend(check_tree_and_modules(repo, repos, ref=commit or "HEAD"))
+            if (args.network or args.require_current) and not (args.require_current and errors):
+                nerrors, info = check_network(repos, require_current=True) if args.require_current else check_network(repos)
                 errors.extend(nerrors)
                 for line in info:
                     print("info: " + line)
+            if args.require_current:
+                final_commit = run_git(["rev-parse", "--verify", "HEAD^{commit}"], cwd=repo).stdout.strip()
+                if final_commit != commit:
+                    errors.append("workspace HEAD changed during verification")
+                final_input_errors = check_committed_inputs(repo, pins_path, commit)
+                errors.extend(final_input_errors)
     except (OSError, RuntimeError, ValueError) as exc:
         errors.append(str(exc))
         repos = []
@@ -283,7 +366,8 @@ def main(argv=None):
               % (len(errors), n))
         return 1
     print("verify_pins: OK (%d pin(s) agree with tree and .gitmodules%s)"
-          % (n, "; remotes checked" if args.network else ""))
+          % (n, "; remotes checked; current tips required" if args.require_current
+             else "; remotes checked" if args.network else ""))
     return 0
 
 

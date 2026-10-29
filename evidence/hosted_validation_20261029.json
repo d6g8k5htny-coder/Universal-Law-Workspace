@@ -1,0 +1,40 @@
+{
+  "published_commit": "e347db7729c845dcb57646586d04fb34e6db7cfc",
+  "failed_runs": [
+    {
+      "workflow": "pins",
+      "run": 40918510771,
+      "job": 123605085838,
+      "failure": "The legacy remote pin check rejected the unexpected repos/Universal-Law-Workspace gitlink; the strict step and negative controls were skipped."
+    },
+    {
+      "workflow": "federation-contract",
+      "run": 40918511097,
+      "job": 123605086639,
+      "failure": "The existing committed-real-tree control rejected the same unexpected gitlink."
+    }
+  ],
+  "cause": "The tree assembly source included the workspace HEAD alongside eight expected submodule heads; the initial readback asserted expected entries but did not reject additional entries.",
+  "correction": "Remove the unlisted gitlink and compare all non-tree leaves, modes and object IDs to the tested candidate before publishing. Rerun hosted jobs on the corrected commit.",
+  "corrected_commit": "66019e4772f6803a866ac3de658fb44e3cdd3e7d",
+  "corrected_runs": [
+    {
+      "workflow": "federation-contract",
+      "run": 40918788940,
+      "job": 123606064857,
+      "conclusion": "success"
+    },
+    {
+      "workflow": "pins",
+      "run": 40918789181,
+      "job": 123606065578,
+      "conclusion": "failure",
+      "reason": "strict check detected Main tip 81acc060341e8a31cc4cd4f9523ef71fb6c06175 while pin remained 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff; negative controls skipped"
+    }
+  ],
+  "subsequent_main_pin_refresh": {
+    "old": "4ef1867175dbe1072a54a02e95f80c4e2c70a4ff",
+    "observed_tip": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
+    "scope": "sequential remote observation; verify published refresh independently"
+  }
+}
