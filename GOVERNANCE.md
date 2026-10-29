@@ -86,3 +86,23 @@ scientific claims. Its existing tests are included in the full suite.
 Use `DECISIONS.md` for Phase 1 observations and subsequent source changes. No
 previous test is removed to obtain a passing result. A real failing test or
 incomplete audit remains visible until fixed or precisely isolated.
+
+
+### Canonical checker mutation evidence
+
+The canonical-input checker retains all 13 behavioral source mutations. Its
+controls now emit a fresh per-run nonce, exact test method and intended policy
+bypass only after a valid checker result. Checker children do not receive the
+observation path or nonce. An outer assertion failure alone earns no mutation
+credit. Silent exits, traceback crashes, unrelated refusal diagnostics, missing
+or stale observations, wrong test names and zero-test runs fail qualification.
+Four actual mutations of the evidence classifier must themselves be rejected.
+Run the existing normal and optimized canonical-control commands above, or the
+full repository suite in both modes; the contract workflow now runs both modes.
+The tool is bounded source-identity engineering and certifies no mathematics.
+
+An actual hosted regression at d4ae729871d17332f9adc705cc55e082897bc5ed
+ran 107 tests and failed exactly the newly added silent-exit adverse control
+(run 40942797333, job 123690270511). That RED evidence is preserved. This
+repair candidate still requires its own observed hosted result. No current
+federation pin or CBZ gate is asserted by this change.

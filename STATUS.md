@@ -80,3 +80,16 @@ has been asserted here. No quarantines were created by this initial stage.
 Layer A: no sorry/admit closures, unverified axiom injection, floating-point
 certification, weakened mathematical bounds or silently disabled failing
 tests; disclose vacuity; report actual verification and auditor limitations.
+
+
+## Canonical-checker evidence repair
+
+The original canonical-input mutation harness could count a silent checker
+crash as a killed mutation. A real hosted adverse control at
+`d4ae729871d17332f9adc705cc55e082897bc5ed` demonstrated that defect:
+107 tests ran, with exactly that adverse control failing (run 40942797333,
+job 123690270511). The repair retains all 13 checker mutants and adds
+control-owned, per-run intended-bypass observations plus four classifier
+source mutations. Both normal and optimized modes are now in the contract
+workflow. Qualification of this repair is pending its actual hosted run;
+strict current pins remain a separate gate and may reject repository drift.

@@ -131,3 +131,16 @@ workspace is being assessed; it is not yet CBZ-0.
    authority map before any remote pin update; refresh all refs at publication.
 5. Publish only verified source changes and exact observed inventory; do not
    claim final CBZ gates from synthetic source snapshots or historical results.
+
+
+- 2026-10-29 19:47:31 UTC · Phase 3 · A/B · Reproduced the canonical mutation
+  harness false-kill finding with a real inner checker exit 86. Exact RED
+  d4ae729871d17332f9adc705cc55e082897bc5ed ran 107 hosted tests, with one
+  intended failure (run 40942797333/job 123690270511). Preserve every original
+  behavioral mutant and repair the evidence classifier using test-owned,
+  fresh nonce-bound intended-bypass observations, result-protocol controls
+  and four actual classifier source mutations. Add optimized execution to
+  the existing contract workflow. Local subprocess creation was failing with
+  EAGAIN; native Git data APIs and hosted execution provide a source-bound
+  verification route. Reversible: yes; source history and hosted logs retain
+  the RED state. Pin drift remains a separate observed failure.

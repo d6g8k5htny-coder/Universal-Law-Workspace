@@ -17,6 +17,29 @@ def git(cwd, *args):
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.strip()
 
 
+def record_event(case, event):
+    path = os.environ.get("CBZ_CANONICAL_EVENT")
+    if path is None:
+        return
+    nonce = os.environ.get("CBZ_CANONICAL_NONCE")
+    if nonce is None:
+        raise RuntimeError("mutation observation has no run identity")
+    Path(path).write_text(json.dumps({"test": case._testMethodName, "event": event, "nonce": nonce}))
+
+
+def checker_protocol(proc):
+    output = proc.stdout + proc.stderr
+    if "Traceback (most recent call last)" in output or "SyntaxError:" in output:
+        raise RuntimeError("checker crashed rather than reporting a result")
+    if proc.returncode == 0 and any(
+            line.startswith("verify_canonical_inputs: OK (") for line in proc.stdout.splitlines()):
+        return "accepted"
+    if proc.returncode == 1 and any(
+            line.startswith("FAIL: ") and line[6:] for line in proc.stdout.splitlines()):
+        return "refused"
+    raise RuntimeError("unexpected checker exit or missing result diagnostic")
+
+
 class CanonicalInputControls(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="canonical-input-control-")
@@ -86,10 +109,18 @@ class CanonicalInputControls(unittest.TestCase):
 
     def check(self, env=None):
         flags = ["-O"] if sys.flags.optimize else []
-        return subprocess.run([sys.executable, *flags, str(CHECKER), "--workspace", str(self.workspace)],
-                              env=env or self.env, text=True, capture_output=True)
+        child_env = dict(env or self.env)
+        # Only the trusted test control records a mutation observation.
+        child_env.pop("CBZ_CANONICAL_EVENT", None)
+        child_env.pop("CBZ_CANONICAL_NONCE", None)
+        proc = subprocess.run([sys.executable, *flags, str(CHECKER), "--workspace", str(self.workspace)],
+                              env=child_env, text=True, capture_output=True)
+        proc.cbz_protocol = checker_protocol(proc)
+        return proc
 
     def rejected(self, proc, diagnostic):
+        if proc.cbz_protocol == "accepted":
+            record_event(self, "invalid-source-accepted")
         self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
         failures = [line for line in (proc.stdout + proc.stderr).splitlines()
                     if line.startswith("FAIL: ")]
@@ -98,6 +129,9 @@ class CanonicalInputControls(unittest.TestCase):
 
     def test_current_and_explicit_historical_sources_pass(self):
         proc = self.check()
+        if (proc.cbz_protocol == "refused" and
+                any(line.startswith("FAIL: historical: source blob ") for line in proc.stdout.splitlines())):
+            record_event(self, "historical-source-ignored")
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
         self.assertIn("OK: historical: separate-ref ", proc.stdout)
         self.assertIn("2 canonical", proc.stdout.lower())
@@ -109,6 +143,9 @@ class CanonicalInputControls(unittest.TestCase):
         self.doc["canonical_inputs"]["historical"]["observed_blob"] = self.blob
         self.save_commit(gitlink=self.old)
         proc = self.check()
+        if ("OK: historical: historical " in proc.stdout and
+                "OK: historical: separate-ref " not in proc.stdout):
+            record_event(self, "separate-ref-mislabeled")
         self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
         self.assertIn("OK: historical: separate-ref ", proc.stdout)
 
