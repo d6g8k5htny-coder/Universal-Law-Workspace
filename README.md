@@ -74,14 +74,14 @@ where they are and keep their own status records.
 
 | repository | path | default branch | pinned commit | note |
 |---|---|---|---|---|
-| main | `repos/main` | main | [b120e705654a773ac4ba04c324e5f85087e61ab4](https://github.com/d6g8k5htny-coder/main/commit/b120e705654a773ac4ba04c324e5f85087e61ab4) | default tip at generation time |
-| Math- | `repos/Math-` | main | [10e1f191c7d9f2755ca971ddbba87874d2475619](https://github.com/d6g8k5htny-coder/Math-/commit/10e1f191c7d9f2755ca971ddbba87874d2475619) | default tip at generation time |
-| meta-framework | `repos/meta-framework` | main | [14f6836e7ccf6a463ef6da745602debfea4d15ee](https://github.com/d6g8k5htny-coder/meta-framework/commit/14f6836e7ccf6a463ef6da745602debfea4d15ee) | default tip at generation time |
-| query- | `repos/query-` | main | [76e1ca09a4838f84f20e28daa51eb024c0781dc1](https://github.com/d6g8k5htny-coder/query-/commit/76e1ca09a4838f84f20e28daa51eb024c0781dc1) | pinned by owner instruction |
-| google-drive | `repos/google-drive` | main | [ea55c6e76edb31c48da5ce5aa0c3761d3ee49146](https://github.com/d6g8k5htny-coder/google-drive/commit/ea55c6e76edb31c48da5ce5aa0c3761d3ee49146) (archived) | default tip at generation time |
-| trial | `repos/trial` | main | [f6c8a854bf083ccc737983dbfbf9195a6f8b75b3](https://github.com/d6g8k5htny-coder/trial/commit/f6c8a854bf083ccc737983dbfbf9195a6f8b75b3) (archived) | default tip at generation time; under active push during the import, re-measured immediately before commit |
-| governance- | `repos/governance-` | main | [7476e29c65ce82d23e0b39e7f7d98741a875a8ff](https://github.com/d6g8k5htny-coder/governance-/commit/7476e29c65ce82d23e0b39e7f7d98741a875a8ff) | default tip at generation time |
-| sandbox | `repos/sandbox` | main | [ea66efb6074b529adc5a09b2feb8a1e106a1520b](https://github.com/d6g8k5htny-coder/sandbox/commit/ea66efb6074b529adc5a09b2feb8a1e106a1520b) (archived) | opt-in (`update = none`); made public 2026-09-26 during the import, see below |
+| main | `repos/main` | main | [4ef1867175dbe1072a54a02e95f80c4e2c70a4ff](https://github.com/d6g8k5htny-coder/main/commit/4ef1867175dbe1072a54a02e95f80c4e2c70a4ff) | default tip at generation time |
+| Math- | `repos/Math-` | main | [8151f592918a845bf19eb8eafaf8444540a32734](https://github.com/d6g8k5htny-coder/Math-/commit/8151f592918a845bf19eb8eafaf8444540a32734) | default tip at generation time |
+| meta-framework | `repos/meta-framework` | main | [c70e1984477ae1752e93a060fac8bf0486c0ce73](https://github.com/d6g8k5htny-coder/meta-framework/commit/c70e1984477ae1752e93a060fac8bf0486c0ce73) | default tip at generation time |
+| query- | `repos/query-` | main | [fb4c457b5861dc49696fd0a8e11c7c405056c05f](https://github.com/d6g8k5htny-coder/query-/commit/fb4c457b5861dc49696fd0a8e11c7c405056c05f) | default tip under CBZ directive; prior pin retained in history |
+| google-drive | `repos/google-drive` | main | [ad08584b3ea9d533af10113e85169f471fa8ec93](https://github.com/d6g8k5htny-coder/google-drive/commit/ad08584b3ea9d533af10113e85169f471fa8ec93) (archived) | default tip at generation time |
+| trial | `repos/trial` | main | [3738c859d519d2dbf1e388fe48fe0ae60c9487a3](https://github.com/d6g8k5htny-coder/trial/commit/3738c859d519d2dbf1e388fe48fe0ae60c9487a3) (archived) | observed default tip; original import history remains in pins.json |
+| governance- | `repos/governance-` | main | [e396002aa19158f9fcca27eaf33a5da38b1ed313](https://github.com/d6g8k5htny-coder/governance-/commit/e396002aa19158f9fcca27eaf33a5da38b1ed313) | default tip at generation time |
+| sandbox | `repos/sandbox` | main | [dce04a4174835107126ab4f36c199a2dc320f964](https://github.com/d6g8k5htny-coder/sandbox/commit/dce04a4174835107126ab4f36c199a2dc320f964) (archived) | opt-in (`update = none`); made public 2026-09-26 during the import, see below |
 
 `pins.json` is the authoritative list; this table is a manually maintained
 rendering of it. Keep the matching table row synchronized whenever a pin changes.
@@ -149,10 +149,20 @@ Review the staged diff before committing. The checker reads gitlinks from
 candidate checkout; a local commit does not push or merge anything. After the
 checks pass, open the candidate pull request for review.
 
-CI (`.github/workflows/pins.yml`) runs the same checker: the gitlink, `.gitmodules`
-and `pins.json` must agree exactly (full SHA, never a prefix), and for public
-entries the pinned commit must exist on the remote. A pin that is behind the
-remote default tip is reported, not rejected. The negative controls in
+CI (`.github/workflows/pins.yml`) runs the checker in two modes. The legacy
+`--network` mode requires full-SHA gitlink, `.gitmodules`, `pins.json` and
+remote-commit agreement while reporting tip differences. CI then runs the
+strict mode below; it rejects drift, missing or contradictory default/HEAD/branch
+evidence, lookup failures and skipped non-public repositories:
+
+```sh
+python3 tools/verify_pins.py --require-current
+```
+
+This strict mode implies remote checks. Its observations are sequential, not
+an atomic cross-repository snapshot, and it does not validate the four source
+blobs in `workspace/repositories.json` or prove mathematical claims. Remote
+network access is required. The negative controls in
 `tests/` show the checker fails when any of these is broken:
 
 ```sh
@@ -177,6 +187,7 @@ MIT, see [LICENSE](LICENSE). Cite via [CITATION.cff](CITATION.cff).
 ```sh
 python3 tools/check_workspace.py
 python3 tools/verify_pins.py --network
+python3 tools/verify_pins.py --require-current
 python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
@@ -186,6 +197,11 @@ verify mathematics.
 
 ## Collaboration
 
-For contributor work, read [main's agent entry](https://github.com/d6g8k5htny-coder/main/blob/main/AGENTS.md) and the [current workflow](https://github.com/d6g8k5htny-coder/main/blob/main/governance/OP-WORKFLOW-20260930.md). Use the [active Agent Message Board #619](https://github.com/d6g8k5htny-coder/main/issues/619) for NEW coordination; [#539](https://github.com/d6g8k5htny-coder/main/issues/539), [#475](https://github.com/d6g8k5htny-coder/main/issues/475), [#419](https://github.com/d6g8k5htny-coder/main/issues/419), [#307](https://github.com/d6g8k5htny-coder/main/issues/307) and [#229](https://github.com/d6g8k5htny-coder/main/issues/229) remain readable history and do not transfer, renew or release earlier claims. Keep [#275](https://github.com/d6g8k5htny-coder/main/issues/275) for task and architecture discussion. Read the latest exact scope and current claims before pickup; follow an explicit successor pointer if either discussion moves.
+For the current baseline mission, start with [STATUS.md](STATUS.md),
+[INVENTORY.md](INVENTORY.md) and [GOVERNANCE.md](GOVERNANCE.md). Historical
+project coordination remains in [board #619](https://github.com/d6g8k5htny-coder/main/issues/619),
+with architecture discussion at [#666](https://github.com/d6g8k5htny-coder/main/issues/666)
+and #275's residuals at [#669](https://github.com/d6g8k5htny-coder/main/issues/669).
+These links are sources of recorded work, not proof that an obligation is closed.
 
 The completed bootstrap record remains in [issue #1](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/issues/1). Keep this repository map-sized: no proof-body migration, no duplicate status database, and no attempt to flatten the research repositories into this tree.

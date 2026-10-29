@@ -403,7 +403,7 @@ class VerifyPinsNetworkControls(unittest.TestCase):
         _, _, pinned, tip = fixture
         self.assertNotEqual(pinned, tip)
         self.assert_network_output(fixture, [
-            "pin %s is behind tip %s of main (informational)" % (pinned, tip)])
+            "pin %s differs from tip %s of main (informational)" % (pinned, tip)])
 
 
 class VerifyPinsShapeControls(unittest.TestCase):

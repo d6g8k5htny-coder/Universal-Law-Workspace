@@ -1,0 +1,92 @@
+{
+  "recorded_at_utc": "2026-10-29T17:06:32.680939+00:00",
+  "source_base": "45a80ab01504936b46d035c2de1f92c73ed273de",
+  "tested_local_commit": "29acd94de89f6f67bb318020ddacb5c336cb433b",
+  "local_checkout": "synthetic reconstructed snapshot; submodules uninitialized",
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s tests -p test_*.py",
+      "exit_code": 0,
+      "tests": 84
+    },
+    {
+      "command": "python3 -B -O -m unittest discover -s tests -p test_*.py",
+      "exit_code": 0,
+      "tests": 84
+    },
+    {
+      "command": "python3 tools/check_workspace.py",
+      "exit_code": 0,
+      "result": "repositories=9 canonical_inputs=4 problems=0"
+    },
+    {
+      "command": "python3 tools/verify_pins.py",
+      "exit_code": 0,
+      "result": "8 pin(s) agree with tree and .gitmodules"
+    }
+  ],
+  "mutation_scope": {
+    "selected_mutants": 15,
+    "ordinary_and_optimized": "all detected by test_verify_pins_mutations.py",
+    "not_a_layer_a_audit": true
+  },
+  "math_formal_snapshot": {
+    "source_commit": "8151f592918a845bf19eb8eafaf8444540a32734",
+    "source_identity": "481653d73d00f64bf06fefbf24be994f60ebe5c54f826abf899461f6e6937066",
+    "python_tests_normal": 244,
+    "python_tests_optimized": 244,
+    "local_execute_exit_code": 1,
+    "reason": "lake unavailable"
+  },
+  "unobserved": [
+    "federation-wide tests",
+    "full Lean/kernel/axiom audit",
+    "actual workspace strict network check",
+    "cross-repo atomic snapshot",
+    "final CBZ-0 pass"
+  ],
+  "files": [
+    {
+      "path": "tools/verify_pins.py",
+      "sha256": "165c2056fa22fb82b8f1f6fcef0a0ac5349c934b6f7e5cf17533c767c8b7820e",
+      "git_blob": "b05916e54c34cffc95601b313bc1c154d99ccbcc",
+      "size_bytes": 17111
+    },
+    {
+      "path": "tests/test_verify_pins.py",
+      "sha256": "6f6f340a85f4ac42c5bc9578c57e5fd285ccae08450b9a0119823c35677d4318",
+      "git_blob": "05eed5e3c753bb62a9786435c9c731c363965a20",
+      "size_bytes": 24042
+    },
+    {
+      "path": "tests/test_verify_pins_strict.py",
+      "sha256": "2238ca75946751f15c75920c9afb42918d2fe7cae8363aaccdbee366463f6b84",
+      "git_blob": "53767765913955247498312ff3abb927919be184",
+      "size_bytes": 10338
+    },
+    {
+      "path": "tests/test_verify_pins_mutations.py",
+      "sha256": "b23acf02080f39a3833381c8dcde7fbb21098ae557bc61aa96c86eba13d74985",
+      "git_blob": "0d0cd90d23fd81305a87dce10eacc51e9e7e93eb",
+      "size_bytes": 5128
+    },
+    {
+      "path": ".github/workflows/pins.yml",
+      "sha256": "489aa3e4e545f0c43365ddd923b402c23c681c1092d7149b1e96c8159ab22992",
+      "git_blob": "1677c3e6f46494884f3a371c611b849d1a8113e4",
+      "size_bytes": 1219
+    },
+    {
+      "path": "pins.json",
+      "sha256": "e58ac39fcbb22a5313db9cb43fe4018d132eca6c45da0615ba6b18232689d732",
+      "git_blob": "944cd7b7c5f30c12a9bb3a82ec030b4b2e78cc2d",
+      "size_bytes": 3851
+    },
+    {
+      "path": "workspace/repositories.json",
+      "sha256": "4e2534a447a00fc2028eb6ad279ac92efb22ad70c68bda0a8cd659928c88030a",
+      "git_blob": "f37802195f139c7feee4472e09dc2c70533b2f64",
+      "size_bytes": 2185
+    }
+  ]
+}

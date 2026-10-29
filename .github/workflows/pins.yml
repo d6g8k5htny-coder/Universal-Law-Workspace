@@ -23,6 +23,8 @@ jobs:
           python-version: "3.11"
       - name: Verify pins against tree, .gitmodules and remotes
         run: python3 tools/verify_pins.py --network
+      - name: Require current, committed federation pins
+        run: python3 tools/verify_pins.py --require-current
       - name: Negative controls
         shell: bash
         run: |
