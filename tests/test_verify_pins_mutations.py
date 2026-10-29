@@ -11,6 +11,8 @@ import sys
 import tempfile
 import unittest
 
+from pin_mutation_receipts import intended_failure
+
 
 ROOT = Path(__file__).resolve().parents[1]
 TEST_CASE = "test_verify_pins_strict.StrictCurrentPinTests."
@@ -75,10 +77,25 @@ class StrictPinMutationControls(unittest.TestCase):
                         [sys.executable] + flags + ["-m", "unittest", "-v", TEST_CASE + test_name],
                         cwd=root / "tests", capture_output=True, text=True)
                     result = proc.stdout + proc.stderr
-                    self.assertEqual(proc.returncode, 1, name + " was not rejected:\n" + result)
-                    self.assertIn("FAIL: " + test_name, result)
-                    self.assertIn("FAILED (failures=1)", result)
-                    self.assertNotIn("ERROR:", result)
+                    self.assertTrue(intended_failure(proc, test_name, None, None),
+                                    name + " was not rejected:\n" + result)
+
+
+class StrictPinHarnessControls(unittest.TestCase):
+    def test_actual_silent_checker_exit_cannot_count_as_a_kill(self):
+        flags = ["-O"] if sys.flags.optimize else []
+        test = "test_skipped_nonpublic_repository_is_rejected"
+        with tempfile.TemporaryDirectory(prefix="strict-pin-silent-checker-") as folder:
+            root = Path(folder)
+            (root / "tools").mkdir()
+            (root / "tests").mkdir()
+            (root / "tools/verify_pins.py").write_text("raise SystemExit(86)\n")
+            for name in ("test_verify_pins.py", "test_verify_pins_strict.py"):
+                shutil.copyfile(ROOT / "tests" / name, root / "tests" / name)
+            process = subprocess.run([sys.executable, *flags, "-m", "unittest", "-v", TEST_CASE + test],
+                                     cwd=root / "tests", capture_output=True, text=True)
+        self.assertFalse(intended_failure(process, test, None, None),
+                         "silent inner strict-pin checker crash was counted as a mutation kill")
 
 
 if __name__ == "__main__":
