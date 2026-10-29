@@ -1,26 +1,26 @@
 {
   "schema": "ulw.pins.v1",
-  "generated_utc": "2026-10-29T17:01:02Z",
+  "generated_utc": "2026-10-29T22:20:00Z",
   "repos": [
     {
       "name": "main",
       "path": "repos/main",
       "url": "https://github.com/d6g8k5htny-coder/main.git",
       "default_branch": "main",
-      "pinned_sha": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
+      "pinned_sha": "1e2be44c69e08e47472041ac329e1b27f7dec793",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time; refreshed after Main governance merge; previous workspace pin 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin 81acc060341e8a31cc4cd4f9523ef71fb6c06175. Refreshed by Harper for CBZ-0."
     },
     {
       "name": "Math-",
       "path": "repos/Math-",
       "url": "https://github.com/d6g8k5htny-coder/Math-.git",
       "default_branch": "main",
-      "pinned_sha": "8151f592918a845bf19eb8eafaf8444540a32734",
+      "pinned_sha": "9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 10e1f191c7d9f2755ca971ddbba87874d2475619. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin 8151f592918a845bf19eb8eafaf8444540a32734. Refreshed by Harper for CBZ-0."
     },
     {
       "name": "meta-framework",
@@ -30,7 +30,7 @@
       "pinned_sha": "c70e1984477ae1752e93a060fac8bf0486c0ce73",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 14f6836e7ccf6a463ef6da745602debfea4d15ee. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin c70e1984477ae1752e93a060fac8bf0486c0ce73 (unchanged)."
     },
     {
       "name": "query-",
@@ -40,7 +40,7 @@
       "pinned_sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 76e1ca09a4838f84f20e28daa51eb024c0781dc1. Original note: pinned by owner instruction"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin fb4c457b5861dc49696fd0a8e11c7c405056c05f (unchanged)."
     },
     {
       "name": "google-drive",
@@ -50,7 +50,7 @@
       "pinned_sha": "ad08584b3ea9d533af10113e85169f471fa8ec93",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin ea55c6e76edb31c48da5ce5aa0c3761d3ee49146. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin ad08584b3ea9d533af10113e85169f471fa8ec93 (unchanged)."
     },
     {
       "name": "trial",
@@ -60,7 +60,7 @@
       "pinned_sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin f6c8a854bf083ccc737983dbfbf9195a6f8b75b3. Original note: default tip at generation time; trial was being pushed to during the import (457fee93e28f, f33b633dcfe3, 6a4065e867dd were earlier tips) and was re-measured immediately before commit"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin 3738c859d519d2dbf1e388fe48fe0ae60c9487a3 (unchanged)."
     },
     {
       "name": "governance-",
@@ -70,7 +70,7 @@
       "pinned_sha": "e396002aa19158f9fcca27eaf33a5da38b1ed313",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 7476e29c65ce82d23e0b39e7f7d98741a875a8ff. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin e396002aa19158f9fcca27eaf33a5da38b1ed313 (unchanged)."
     },
     {
       "name": "sandbox",
@@ -80,7 +80,7 @@
       "pinned_sha": "dce04a4174835107126ab4f36c199a2dc320f964",
       "public": true,
       "opt_in": true,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin ea66efb6074b529adc5a09b2feb8a1e106a1520b. Original note: opt-in (update = none); was private when first measured, made public 2026-09-26T15:19:20Z during the import; opt-in kept pending owner confirmation"
+      "note": "default tip observed 2026-10-29T22:20:00Z; previous pin dce04a4174835107126ab4f36c199a2dc320f964 (unchanged)."
     }
   ]
 }
