@@ -106,12 +106,24 @@ Follow-on review found the same false-kill class in the older strict-pin
 mutation harness. Its fifteen source mutants and all assertions are retained.
 A real silent-checker adverse control is preserved at
 `0f0f7f4bf5cec63caaaed16894e9196c1e296e9b`. The corresponding hosted run
-40945946596 was still queued when the repair was written; its result remains
-unobserved. Automatic review 4417369636 independently corroborated that the
-adverse control fails for the intended reason.
+40945946596/job 123701194251 subsequently ran 111 tests and failed exactly
+the silent-checker adverse control. Automatic review 4417369636 also
+corroborated that the adverse control fails for the intended reason.
 
-The repaired test-owned protocol and per-run observations, four classifier
-source mutations and five actual adverse checker behaviors now await their
-own hosted normal/optimized execution. Do not reuse the preceding 110-test
-canonical component result as qualification of these newer strict-harness
-bytes. Current cross-repository pins are still a separate unestablished gate.
+At source head `0ec778db868d2aef9cb172402a67c7ffd6c4d1de`, hosted
+run 40949547576/job 123713717737 passed 115 tests in each normal and optimized
+mode, including the retained strict-pin mutations and classifier controls.
+That is a source-cut component observation, not qualification of the newer
+pin candidate. Pin jobs at the prior head failed `--require-current` for
+Main and Math; no final cross-repository gate is established.
+
+## Non-atomic candidate pin refresh
+
+At 2026-10-29 21:45:28 UTC, eight public default branches were observed sequentially. The Main
+and Math gitlinks, pins.json entries and README table were refreshed to
+`1e2be44c69e08e47472041ac329e1b27f7dec793` and `9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966`, respectively; the other six already matched
+their observed tips. These observations are not an atomic federation snapshot.
+This candidate has not yet passed its own hosted test and current-pin checks;
+source heads may move while they run. Do not report final G7 or CBZ-0 from it.
+
+[Exact observation](evidence/cbz-pin-observation-20261029.json).

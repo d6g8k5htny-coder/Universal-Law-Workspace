@@ -1,26 +1,26 @@
 {
   "schema": "ulw.pins.v1",
-  "generated_utc": "2026-10-29T17:01:02Z",
+  "generated_utc": "2026-10-29T21:45:28Z",
   "repos": [
     {
       "name": "main",
       "path": "repos/main",
       "url": "https://github.com/d6g8k5htny-coder/main.git",
       "default_branch": "main",
-      "pinned_sha": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
+      "pinned_sha": "1e2be44c69e08e47472041ac329e1b27f7dec793",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time; refreshed after Main governance merge; previous workspace pin 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff"
+      "note": "default tip observed 2026-10-29T21:45:28Z; previous pin 81acc060341e8a31cc4cd4f9523ef71fb6c06175. Original note: default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time; refreshed after Main governance merge; previous workspace pin 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff"
     },
     {
       "name": "Math-",
       "path": "repos/Math-",
       "url": "https://github.com/d6g8k5htny-coder/Math-.git",
       "default_branch": "main",
-      "pinned_sha": "8151f592918a845bf19eb8eafaf8444540a32734",
+      "pinned_sha": "9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-10-29T17:01:02Z; previous pin 10e1f191c7d9f2755ca971ddbba87874d2475619. Original note: default tip at generation time"
+      "note": "default tip observed 2026-10-29T21:45:28Z; previous pin 8151f592918a845bf19eb8eafaf8444540a32734. Original note: default tip observed 2026-10-29T17:01:02Z; previous pin 10e1f191c7d9f2755ca971ddbba87874d2475619. Original note: default tip at generation time"
     },
     {
       "name": "meta-framework",

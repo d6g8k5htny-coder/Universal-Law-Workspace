@@ -74,8 +74,8 @@ where they are and keep their own status records.
 
 | repository | path | default branch | pinned commit | note |
 |---|---|---|---|---|
-| main | `repos/main` | main | [81acc060341e8a31cc4cd4f9523ef71fb6c06175](https://github.com/d6g8k5htny-coder/main/commit/81acc060341e8a31cc4cd4f9523ef71fb6c06175) | default tip at generation time |
-| Math- | `repos/Math-` | main | [8151f592918a845bf19eb8eafaf8444540a32734](https://github.com/d6g8k5htny-coder/Math-/commit/8151f592918a845bf19eb8eafaf8444540a32734) | default tip at generation time |
+| main | `repos/main` | main | [1e2be44c69e08e47472041ac329e1b27f7dec793](https://github.com/d6g8k5htny-coder/main/commit/1e2be44c69e08e47472041ac329e1b27f7dec793) | default tip at generation time |
+| Math- | `repos/Math-` | main | [9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966](https://github.com/d6g8k5htny-coder/Math-/commit/9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966) | default tip at generation time |
 | meta-framework | `repos/meta-framework` | main | [0f5894f81a5462c10ee5ec8f8109f466e712e47e](https://github.com/d6g8k5htny-coder/meta-framework/commit/0f5894f81a5462c10ee5ec8f8109f466e712e47e) | default tip at generation time |
 | query- | `repos/query-` | main | [fb4c457b5861dc49696fd0a8e11c7c405056c05f](https://github.com/d6g8k5htny-coder/query-/commit/fb4c457b5861dc49696fd0a8e11c7c405056c05f) | default tip under CBZ directive; prior pin retained in history |
 | google-drive | `repos/google-drive` | main | [ad08584b3ea9d533af10113e85169f471fa8ec93](https://github.com/d6g8k5htny-coder/google-drive/commit/ad08584b3ea9d533af10113e85169f471fa8ec93) (archived) | default tip at generation time |

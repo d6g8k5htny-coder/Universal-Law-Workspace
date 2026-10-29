@@ -173,3 +173,12 @@ workspace is being assessed; it is not yet CBZ-0.
   the deterministic failure. Continue to new-source hosted qualification
   rather than idle on local EAGAIN. Reversible: yes; evidence: source history
   and PR31 exact-source records. Existing production checkers and pins unchanged.
+
+
+- 2026-10-29 21:45:28 UTC · Phase 3 · B/C · Refresh the two stale Main and Math gitlinks,
+  matching pins.json entries and README commit links to their independently
+  observed default tips; preserve the other six pins, all checker/test bytes,
+  the actual strict-harness RED and historical 115-test-per-mode success.
+  Observation is sequential, not an atomic snapshot; current-head hosted tests,
+  pin verification and final G7 remain pending. Reversible: yes; evidence:
+  evidence/cbz-pin-observation-20261029.json.
