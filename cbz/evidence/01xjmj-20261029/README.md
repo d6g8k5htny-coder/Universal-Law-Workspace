@@ -15,6 +15,7 @@ Observed: 2026-10-29, about 17:05Z, from full (non-shallow) fetches.
 | `layer_a_tip_scan.json` | Scanner summary per repository at its default tip |
 | `layer_a_branch_scan.json` | Scanner summary for every remote branch of `main` (318) and `Math-` (149) |
 | `branch_classes.json` | Every non-default remote branch of all nine repositories: tip SHA, last commit date, class |
+| `a3_float_census.json` | Layer A3 float-use census per repository at its default tip: class counts and the triage-first list |
 
 Branch classes: `MERGED_NO_PR` (tip is an ancestor of the default branch, not an open-PR
 head), `UNMERGED_NO_PR`, `OPEN_PR_HEAD`. The class is the observation only; it is
@@ -101,3 +102,91 @@ cover overlapping ground. The canonical integrator decides which one `TOOLING.md
 admits. This one adds git-tree mode, interpolated and raw strings, char literals, `«»`
 names, and a token-drop mutation harness. Its test cases may be folded into the
 admitted scanner, and this tool deleted, if that is simpler.
+
+## Layer A3 float-use census
+
+Tool: `tools/cbz/a3_float_census.py` (standard library, AST-based, git-tree mode like the
+Lean scanner). A3 forbids floating-point *certification* of bounds. Whether a float
+certifies anything is a question about intent, so the tool is an inventory, not a
+verdict: per Python file it records every point where floating point can enter
+(float or complex literals, `float()`/`complex()`, `/` and `/=`, inexact `math`/`cmath`
+functions, numpy/scipy/mpmath/decimal/cmath imports) and the exact or interval
+machinery the file uses (fractions, sympy, python-flint, gmpy2, `mpmath.iv`,
+`math.nextafter`/`math.ulp`, or an `ia` interval module). Classes: `NO_FLOAT_SIGNAL`,
+`FLOAT_SIGNAL` (float signals and no exact or interval machinery), `MIXED`,
+`UNPARSEABLE` (fails closed, exit 1).
+
+| Repository | Tip | `.py` files | FLOAT_SIGNAL | MIXED | NO_FLOAT_SIGNAL | UNPARSEABLE |
+|---|---|---:|---:|---:|---:|---:|
+| main | `4ef18671` | 339 | 233 | 66 | 40 | 0 |
+| Math- | `8151f592` | 668 | 249 | 395 | 24 | 0 |
+| query- | `fb4c457b` | 28 | 24 | 0 | 4 | 0 |
+| meta-framework | `c70e1984` | 17 | 14 | 0 | 3 | 0 |
+| governance- | `e396002a` | 4 | 2 | 1 | 1 | 0 |
+| Universal-Law-Workspace | `45a80ab0` | 8 | 6 | 0 | 2 | 0 |
+
+The other three repositories have no Python files at their tips. Re-running the tool at
+the recorded revisions reproduces every count above.
+
+Triage-first rule (recorded in the JSON as `triage_first`): class `FLOAT_SIGNAL`, at least
+one signal other than `/`, and a path matching
+`(?i)(certif|enclos|bound|interval|verif|rigor|exact|proof|lemma|coefficient|constant)`.
+Sorted by the number of non-division signals.
+
+### Triage result
+
+1. **Math-: no A3 candidate.** All 11 triage-first files are controls, diagnostics,
+   tests or custody checks. None is a certificate:
+   - `frontiers/third_order_coefficient_20261001/c2_check.py` is "Controls". Its NOTE's
+     disposition is "FORMAL COEFFICIENT WITH NUMERICAL EVIDENCE" and its dependency
+     paragraph says "No numerical input is consumed". The `c2` values are certified by
+     the closed-form enclosures of merged Math-#223.
+   - `frontiers/cusp_coefficient_certified_20261001/controls.py` and
+     `frontiers/c2_exact_20261001/controls.py` are "Floating controls ... These are not
+     part of the certificate".
+   - `coefficients/d3_l4_anisotropic_20261005/source_crosscheck.py` is "diagnostic
+     arithmetic, not interval evidence. The certificate's error bounds do not come from
+     these comparisons".
+   - `.../test_replay_metadata.py` and the four other `test_*` hits are unit tests with
+     fixture floats.
+   - `verify_packet.py` and `imports/upper2d_h5_ledgers_20260926/verify.py` are custody
+     checks.
+
+   The certificate engines are `MIXED`. For example,
+   `frontiers/c8_elder_failure_coefficient_20261001/{certificate,boxes}.py` import a local
+   `ia.py` whose operations are "widened outward by one ulp (math.nextafter), so each
+   interval contains the exact real result". That is interval arithmetic, which A3
+   permits. `MIXED` is still a census class and not a proof that every float in such a
+   file is enclosed.
+2. **main: two history files are A3 quarantine-label candidates.**
+   - `history/carrier20_recovery_20260928/public_carriers/verify_wp_witness_v1.py`: 105
+     non-division signals. It uses numpy, mpmath at floating precision and `float()`, and
+     calls itself a certificate.
+   - `.../verify_thm023_v1_1_v1.py`: 47 non-division signals.
+
+   Neither is on a live verification path. The directory README already says these are
+   "historical research sources, NOT newly accepted theorems", and the one code reference
+   from live code (`experiments/h3_band_v2/h2/cov_exact.py`) is "consulted for
+   cross-checking only". Older ledgers still cite the first file as a certificate:
+   `KIMI-DER-025_wp_resolution.txt`, `CARRIER20_CUSTODY.json` and an incoming W3 bundle
+   report.
+
+   Proposed disposition for the canonical integrator: label both files "historical,
+   float-based, not an A3-admissible certificate" where they are cited, and do not delete
+   them (§9: no silent deletion).
+3. **query-, meta-framework and the Workspace** have one triage-first hit each, and each is
+   a test file (`tests/test_stub_verify_snapshot.py`,
+   `catalog_tests/test_w8d_verify_refusal_control.py`,
+   `tests/test_verify_pins_input_types.py`). None certifies a mathematical bound.
+   **governance-** has none.
+
+Self-verification (A8):
+
+```sh
+python3 -B -m unittest tests.test_cbz_a3_float_census   # 18 behavioural + 15-mutant self-test
+```
+
+Every mutant (each signal, the exact-math list, interval-layer detection, the `MIXED`
+class, the fail-closed exit and git mode) must be killed, or the suite fails. This census
+does not replace review. A `FLOAT_SIGNAL` file is certification-relevant only if a
+certificate depends on it.

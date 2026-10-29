@@ -1,0 +1,241 @@
+{
+ "Math-": {
+  "by_class": {
+   "FLOAT_SIGNAL": 249,
+   "MIXED": 395,
+   "NO_FLOAT_SIGNAL": 24
+  },
+  "files": 668,
+  "rev": "8151f592918a845bf19eb8eafaf8444540a32734",
+  "triage_first": [
+   {
+    "blob": "83ef5527d2cec96371fff9f90fdc9ea9f03d1367",
+    "counts": {
+     "float_call": 18,
+     "float_literal": 79,
+     "float_module": 1,
+     "math_float": 51,
+     "true_division": 94
+    },
+    "path": "frontiers/third_order_coefficient_20261001/c2_check.py",
+    "strong": 149,
+    "true_division": 94
+   },
+   {
+    "blob": "5e41d95cf30ab47581ad15e78577a80a9d7e5384",
+    "counts": {
+     "float_call": 3,
+     "float_literal": 66,
+     "math_float": 24,
+     "true_division": 38
+    },
+    "path": "frontiers/cusp_coefficient_certified_20261001/controls.py",
+    "strong": 93,
+    "true_division": 38
+   },
+   {
+    "blob": "1d2b05386f83c20debd145328c4887d9641d0ef6",
+    "counts": {
+     "float_call": 24,
+     "float_literal": 34,
+     "float_module": 1,
+     "math_float": 12,
+     "true_division": 36
+    },
+    "path": "frontiers/c2_exact_20261001/controls.py",
+    "strong": 71,
+    "true_division": 36
+   },
+   {
+    "blob": "f943d6a1f3f5faf7a708818b78d7e6c74174d49c",
+    "counts": {
+     "float_literal": 23
+    },
+    "path": "frontiers/c8_elder_failure_coefficient_20261001/test_replay_metadata.py",
+    "strong": 23,
+    "true_division": 0
+   },
+   {
+    "blob": "336196cf08c465ffe1e0ff2714eb33cd25a06d51",
+    "counts": {
+     "float_call": 3,
+     "float_literal": 7,
+     "float_module": 1,
+     "math_float": 7,
+     "true_division": 32
+    },
+    "path": "coefficients/d3_l4_anisotropic_20261005/source_crosscheck.py",
+    "strong": 18,
+    "true_division": 32
+   },
+   {
+    "blob": "6e6d5cead61153c6f829f43cdbc140142adf869e",
+    "counts": {
+     "float_literal": 3,
+     "true_division": 50
+    },
+    "path": "tests/test_lm006_sign_coefficient_replay.py",
+    "strong": 3,
+    "true_division": 50
+   },
+   {
+    "blob": "e597b179f3d116ae79e15c616f3b17b4f13630ea",
+    "counts": {
+     "float_call": 1,
+     "float_literal": 1,
+     "true_division": 30
+    },
+    "path": "frontiers/cluster_exponential_weight_20260930/test_verify_packet.py",
+    "strong": 2,
+    "true_division": 30
+   },
+   {
+    "blob": "fc774e8477f5f960276d45737b0e42677675a3b1",
+    "counts": {
+     "float_call": 2,
+     "true_division": 28
+    },
+    "path": "tests/test_proof_slice_check.py",
+    "strong": 2,
+    "true_division": 28
+   },
+   {
+    "blob": "70b540e53f9921885c62a2a09724d022fdadcadf",
+    "counts": {
+     "float_call": 1,
+     "true_division": 2
+    },
+    "path": "frontiers/cluster_exponential_weight_20260930/verify_packet.py",
+    "strong": 1,
+    "true_division": 2
+   },
+   {
+    "blob": "e9bbfc960aa3fb236f58224b58f88889234c3cd1",
+    "counts": {
+     "float_literal": 1,
+     "true_division": 12
+    },
+    "path": "frontiers/regular_superlevel_geometry_20261020/test_c297_hosted_verify.py",
+    "strong": 1,
+    "true_division": 12
+   },
+   {
+    "blob": "659c23184688fd4c5f84591c89cb056b9079933b",
+    "counts": {
+     "float_module": 1,
+     "true_division": 10
+    },
+    "path": "imports/upper2d_h5_ledgers_20260926/verify.py",
+    "strong": 1,
+    "true_division": 10
+   }
+  ]
+ },
+ "Universal-Law-Workspace": {
+  "by_class": {
+   "FLOAT_SIGNAL": 6,
+   "NO_FLOAT_SIGNAL": 2
+  },
+  "files": 8,
+  "rev": "45a80ab01504936b46d035c2de1f92c73ed273de",
+  "triage_first": [
+   {
+    "blob": "006521f6a346db7901edf409123bc3fd559d13a5",
+    "counts": {
+     "float_literal": 3,
+     "true_division": 5
+    },
+    "path": "tests/test_verify_pins_input_types.py",
+    "strong": 3,
+    "true_division": 5
+   }
+  ]
+ },
+ "governance-": {
+  "by_class": {
+   "FLOAT_SIGNAL": 2,
+   "MIXED": 1,
+   "NO_FLOAT_SIGNAL": 1
+  },
+  "files": 4,
+  "rev": "e396002aa19158f9fcca27eaf33a5da38b1ed313",
+  "triage_first": []
+ },
+ "main": {
+  "by_class": {
+   "FLOAT_SIGNAL": 233,
+   "MIXED": 66,
+   "NO_FLOAT_SIGNAL": 40
+  },
+  "files": 339,
+  "rev": "4ef1867175dbe1072a54a02e95f80c4e2c70a4ff",
+  "triage_first": [
+   {
+    "blob": "12fcaa10cb34f91adca710d31425c6ea910da39d",
+    "counts": {
+     "float_call": 41,
+     "float_literal": 49,
+     "float_module": 4,
+     "math_float": 11,
+     "true_division": 69
+    },
+    "path": "history/carrier20_recovery_20260928/public_carriers/verify_wp_witness_v1.py",
+    "strong": 105,
+    "true_division": 69
+   },
+   {
+    "blob": "3efcc660365cc785d7d5906be20a397cba9230ec",
+    "counts": {
+     "float_call": 16,
+     "float_literal": 16,
+     "float_module": 4,
+     "math_float": 11,
+     "true_division": 59
+    },
+    "path": "history/carrier20_recovery_20260928/public_carriers/verify_thm023_v1_1_v1.py",
+    "strong": 47,
+    "true_division": 59
+   }
+  ]
+ },
+ "meta-framework": {
+  "by_class": {
+   "FLOAT_SIGNAL": 14,
+   "NO_FLOAT_SIGNAL": 3
+  },
+  "files": 17,
+  "rev": "c70e1984477ae1752e93a060fac8bf0486c0ce73",
+  "triage_first": [
+   {
+    "blob": "da0d0d85c0d5a099f64cdb243f4605f1dabc6fbd",
+    "counts": {
+     "float_literal": 1,
+     "true_division": 23
+    },
+    "path": "catalog_tests/test_w8d_verify_refusal_control.py",
+    "strong": 1,
+    "true_division": 23
+   }
+  ]
+ },
+ "query-": {
+  "by_class": {
+   "FLOAT_SIGNAL": 24,
+   "NO_FLOAT_SIGNAL": 4
+  },
+  "files": 28,
+  "rev": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+  "triage_first": [
+   {
+    "blob": "715e375a151cc966906aa8b8969c220dcc68e8c7",
+    "counts": {
+     "float_literal": 1,
+     "true_division": 6
+    },
+    "path": "tests/test_stub_verify_snapshot.py",
+    "strong": 1,
+    "true_division": 6
+   }
+  ]
+ }
+}
