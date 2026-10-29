@@ -45,6 +45,28 @@ MUTANTS = [
 ]
 
 
+def intended_failure(result, test):
+    output = result.stdout + result.stderr
+    return (result.returncode != 0 and "FAILED (failures=1)" in output
+            and "ERROR:" not in output
+            and output.count("Traceback (most recent call last)") == 1)
+
+
+class CanonicalHarnessControls(unittest.TestCase):
+    def test_actual_silent_checker_exit_is_not_a_mutation_kill(self):
+        flags = ["-B"] + (["-O"] if sys.flags.optimize else [])
+        with tempfile.TemporaryDirectory(prefix="canonical-silent-crash-") as folder:
+            checker = Path(folder) / "verify_canonical_inputs.py"
+            checker.write_text("raise SystemExit(86)\n")
+            env = dict(os.environ, CBZ_CANONICAL_CHECKER=str(checker))
+            process = subprocess.run(
+                [sys.executable, *flags, str(CONTROLS),
+                 "CanonicalInputControls.test_wrong_current_blob_fails", "-q"],
+                env=env, text=True, capture_output=True)
+        self.assertFalse(intended_failure(process, "test_wrong_current_blob_fails"),
+                         "silent checker crash was incorrectly counted as a killed mutant")
+
+
 class CanonicalMutationControls(unittest.TestCase):
     def test_all_named_guard_mutations_are_detected(self):
         flags = ["-B"] + (["-O"] if sys.flags.optimize else [])
@@ -70,11 +92,8 @@ class CanonicalMutationControls(unittest.TestCase):
                          "CanonicalInputControls." + test, "-q"],
                         env=env, text=True, capture_output=True)
                     output = result.stdout + result.stderr
-                    self.assertNotEqual(result.returncode, 0, "surviving mutation " + label)
-                    self.assertIn("FAILED (failures=1)", output, output)
-                    self.assertNotIn("ERROR:", output, output)
-                    self.assertEqual(output.count("Traceback (most recent call last)"), 1,
-                                     "mutant crashed instead of being rejected:\n" + output)
+                    self.assertTrue(intended_failure(result, test),
+                                    "not an intended kill: " + label + "\n" + output)
 
 
 if __name__ == "__main__":
