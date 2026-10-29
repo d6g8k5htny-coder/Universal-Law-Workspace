@@ -5,6 +5,11 @@ Clean Baseline Zero is not established. The current discovery is recorded in
 `INVENTORY.md` and `INVENTORY.json`; it is incomplete and is not a full proof,
 branch-custody, workflow or local-worktree inventory.
 
+Federation coordination and integration are tracked in
+[`main#684`](https://github.com/d6g8k5htny-coder/main/issues/684) and
+[`main#685`](https://github.com/d6g8k5htny-coder/main/pull/685). This file
+records this workspace contribution and does not replace their shared record.
+
 ## Verified so far
 
 - A reconstructed snapshot of the pre-change workspace was checked locally:
@@ -18,6 +23,11 @@ branch-custody, workflow or local-worktree inventory.
   both modes. This is scoped engineering evidence, not a full Layer A audit.
   Current hosted/federation-wide gates must be run against the actual committed
   state before they can be reported green.
+- Hosted runs 40918510771 and 40918511097 on Workspace commit `e347db7`
+  failed: the published Git tree accidentally contained an extra gitlink
+  `repos/Universal-Law-Workspace` absent from the tested local candidate.
+  The correction removes that gitlink; hosted verification of the corrected
+  tree is still required. See `evidence/hosted_validation_20261029.json`.
 
 ## Remaining
 

@@ -49,6 +49,19 @@ workspace is being assessed; it is not yet CBZ-0.
   Structural map and offline gitlink checks also passed. This does not claim a
   remote G7 pass, an atomic federation snapshot or mathematical certification.
   Detailed commands and source hashes: `evidence/validation_20261029.json`.
+- 2026-10-29 UTC · Phase 1 · C · Workspace publication `e347db7` accidentally
+  included `repos/Universal-Law-Workspace` as a ninth gitlink: the assembly
+  input contained the workspace HEAD as well as the eight submodule tips.
+  The publication check verified expected entries but failed to reject extra
+  entries. Hosted pin and contract jobs failed on the unexpected link. Remove
+  it and require an exact recursive leaf-tree comparison against the tested
+  candidate before moving the ref. Retain both failed runs as evidence; do
+  not weaken either check. Reversible: yes.
+- 2026-10-29 UTC · Phase 1 · C · Align this workspace contribution with the
+  federation's active coordination in main#684 and main#685. Their integrator
+  owns federation-wide consolidation and peer assignments. This repository's
+  status and evidence describe its own contribution; they are not a competing
+  declaration of federation closure. Reversible: yes.
 
 ## Execution checklist
 

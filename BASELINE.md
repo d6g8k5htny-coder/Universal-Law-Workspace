@@ -17,9 +17,9 @@ Source cut used for this stage:
 | G2 axiom audit | Not established for the complete federation. |
 | G3 Lean build | Local formal-core execution failed because `lake` was absent; a separate hosted run is underway. |
 | G4 kernel audit | Not established for the complete federation. |
-| G5 full regression | Not run federation-wide. Workspace and Math- formal-core Python controls are scoped observations in STATUS.md. |
+| G5 full regression | Not run federation-wide. Workspace and Math- formal-core Python controls are scoped observations in STATUS.md. Workspace hosted contract run 40918511097 failed on an unexpected gitlink in commit `e347db7`; corrected-tree verification is pending. |
 | G6 mutation | Strict pin-checker mutations are bounded engineering controls, not a full Layer A mutation result. |
-| G7 pin sync | Candidate pins and three control blobs were rebound to a source cut; strict remote verification of the published candidate remains required. Historical authority source is separate. |
+| G7 pin sync | Candidate pins and three control blobs were rebound to a source cut. Workspace hosted pin run 40918510771 failed on an unexpected gitlink in commit `e347db7`, before strict remote verification; corrected-tree verification is pending. Historical authority source is separate. |
 | G8 status truth | Partial; several inventories and source-authority boundaries remain incomplete. |
 | G9 cold start | Not run. STATUS is not yet sufficient for a complete cold-start acceptance. |
 | G10 Git hygiene | Not met at discovery: many branches and open PRs remain. Other agents' worktrees and stashes were not observed. |
