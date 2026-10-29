@@ -14,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -163,6 +164,32 @@ class StrictPinHarnessControls(unittest.TestCase):
                      good.stdout.replace("FAIL: " + self.TEST, "FAIL: other"),
                      good.stdout + "SyntaxError: unrelated\n"):
             self.assertFalse(intended_failure(self.report(text=text), self.TEST, self.NONCE, self.event()))
+
+    def test_specific_demoted_reason_is_required_even_if_another_guard_refuses(self):
+        from test_verify_pins_strict import StrictCurrentPinTests
+        for method, reason in (
+            ("test_missing_default_branch_is_rejected", "remote default branch is unknown"),
+            ("test_missing_configured_branch_is_rejected", "configured branch main tip is missing"),
+        ):
+            for observed, expected in ((reason, True), ("unrelated diagnostic", False)):
+                with self.subTest(method=method, observed=observed):
+                    with tempfile.TemporaryDirectory() as folder:
+                        event = Path(folder) / "event.json"
+                        nonce = secrets.token_hex(16)
+                        process = self.report(1, "info: repos/a: " + observed + "\\n"
+                            + "FAIL: repos/a: independent guard refused\\n"
+                            + "verify_pins: FAIL (1 error(s) across 1 pin(s))\\n")
+                        process.cbz_protocol = pin_protocol(process)
+                        case = StrictCurrentPinTests(method)
+                        with patch.dict(os.environ, {"CBZ_PIN_EVENT": str(event),
+                                                     "CBZ_PIN_NONCE": nonce}):
+                            with self.assertRaises(AssertionError):
+                                case.assert_refused(process, reason)
+                        if expected:
+                            self.assertEqual(read_event(event), {"test": method,
+                                "event": "expected-policy-demoted", "nonce": nonce})
+                        else:
+                            self.assertFalse(event.exists())
 
     def test_pin_result_protocol_has_positive_and_crash_controls(self):
         self.assertEqual(pin_protocol(self.report(0, "verify_pins: OK (1 pin(s) agree)\n")), "accepted")

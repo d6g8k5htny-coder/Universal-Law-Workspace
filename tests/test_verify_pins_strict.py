@@ -48,7 +48,15 @@ class StrictCurrentPinTests(unittest.TestCase):
         return process
 
     def assert_refused(self, process, reason):
-        if process.cbz_protocol == "accepted":
+        # A second independent guard can still refuse after the specific
+        # guard under test has incorrectly demoted its failure to information.
+        demotion_tests = {"test_missing_default_branch_is_rejected",
+                          "test_missing_configured_branch_is_rejected"}
+        demoted = any(line.startswith("info: repos/a: ") and reason in line
+                      for line in process.stdout.splitlines())
+        if self._testMethodName in demotion_tests and demoted:
+            record_event(self, "expected-policy-demoted")
+        elif process.cbz_protocol == "accepted":
             record_event(self)
         self.assertNotEqual(process.returncode, 0, process.stdout + process.stderr)
         self.assertIn("FAIL:", process.stdout)

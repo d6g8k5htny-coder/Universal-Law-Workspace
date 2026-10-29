@@ -40,7 +40,9 @@ def read_event(path):
 def intended_failure(process, test, nonce, event):
     output = process.stdout + process.stderr
     kind = {"test_legacy_tip_difference_does_not_claim_ancestry": "unsupported-ancestry-claim",
-            "test_initial_manifest_mismatch_does_not_start_remote_lookup": "unverified-source-contact"}.get(
+            "test_initial_manifest_mismatch_does_not_start_remote_lookup": "unverified-source-contact",
+            "test_missing_default_branch_is_rejected": "expected-policy-demoted",
+            "test_missing_configured_branch_is_rejected": "expected-policy-demoted"}.get(
                 test, "invalid-source-accepted")
     expected = {"test": test, "event": kind, "nonce": nonce}
     return (process.returncode == 1
