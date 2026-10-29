@@ -158,3 +158,18 @@ workspace is being assessed; it is not yet CBZ-0.
   Current pins remain RED on Main and Math drift (40943291189/job123691960126).
   No mathematical or federation-baseline promotion. Reversible: yes;
   evidence: evidence/canonical-harness/OBSERVATION.json.
+
+
+- 2026-10-29 20:13:06 UTC · Phase 3 · A/B · Extended the verified intended-
+  outcome protocol to the adjacent strict-pin fifteen-mutant harness after
+  native source audit found its outer-failure-only false-kill signature.
+  Preserve all fifteen mutants and assertions. Record actual checker results
+  and fresh test-owned nonce/method/outcome observations; remove observation
+  coordinates from checker child environments; require exact one-test,
+  one-assertion outcomes; self-test four classifier source mutations and five
+  real checker crash/refusal behaviors. Preserve strict RED source
+  0f0f7f4bf5cec63caaaed16894e9196c1e296e9b. Its contract run40945946596 is
+  queued, not reported as executed; automatic review4417369636 corroborates
+  the deterministic failure. Continue to new-source hosted qualification
+  rather than idle on local EAGAIN. Reversible: yes; evidence: source history
+  and PR31 exact-source records. Existing production checkers and pins unchanged.

@@ -98,3 +98,20 @@ workflow. At exact source head `8397f29669ba213dcc6e678dd9f8015033f1e5af`, hoste
 See `evidence/canonical-harness/OBSERVATION.json` and the retained raw logs.
 Strict pins failed separately at that head because Main and Math had advanced;
 this component success is not current G7 or CBZ-0.
+
+
+## Strict-pin harness qualification
+
+Follow-on review found the same false-kill class in the older strict-pin
+mutation harness. Its fifteen source mutants and all assertions are retained.
+A real silent-checker adverse control is preserved at
+`0f0f7f4bf5cec63caaaed16894e9196c1e296e9b`. The corresponding hosted run
+40945946596 was still queued when the repair was written; its result remains
+unobserved. Automatic review 4417369636 independently corroborated that the
+adverse control fails for the intended reason.
+
+The repaired test-owned protocol and per-run observations, four classifier
+source mutations and five actual adverse checker behaviors now await their
+own hosted normal/optimized execution. Do not reuse the preceding 110-test
+canonical component result as qualification of these newer strict-harness
+bytes. Current cross-repository pins are still a separate unestablished gate.

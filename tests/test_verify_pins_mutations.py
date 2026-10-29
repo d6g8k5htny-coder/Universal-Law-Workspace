@@ -5,13 +5,15 @@ corresponding real-Git test must fail for an assertion, not a syntax/import
 error. These controls cover the listed pin-checking faults, not Layer A.
 """
 from pathlib import Path
+import inspect
+import os
+import re
+import secrets
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
-
-from pin_mutation_receipts import intended_failure
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,45 +59,144 @@ MUTANTS = (
 )
 
 
+from pin_mutation_receipts import intended_failure, pin_protocol, read_event
+
+
+def run_case(root, test, *, event=None, nonce=None):
+    flags = ["-B"] + (["-O"] if sys.flags.optimize else [])
+    env = dict(os.environ)
+    env.pop("CBZ_PIN_EVENT", None)
+    env.pop("CBZ_PIN_NONCE", None)
+    if event is not None:
+        env["CBZ_PIN_EVENT"] = str(event)
+        env["CBZ_PIN_NONCE"] = nonce
+    return subprocess.run(
+        [sys.executable, *flags, "-m", "unittest", "-v", TEST_CASE + test],
+        cwd=root / "tests", env=env, capture_output=True, text=True)
+
+
+def copy_controls(root):
+    (root / "tools").mkdir()
+    (root / "tests").mkdir()
+    for filename in ("test_verify_pins.py", "test_verify_pins_strict.py",
+                     "pin_mutation_receipts.py"):
+        shutil.copyfile(ROOT / "tests" / filename, root / "tests" / filename)
+
+
 class StrictPinMutationControls(unittest.TestCase):
     def test_all_named_guard_removals_are_detected(self):
-        source = (ROOT / "tools" / "verify_pins.py").read_text(encoding="utf-8")
-        flags = ["-O"] if sys.flags.optimize else []
-        for name, before, after, test_name in MUTANTS:
+        source = (ROOT / "tools/verify_pins.py").read_text(encoding="utf-8")
+        self.assertEqual(len(MUTANTS), 15)
+        for name, before, after, test in MUTANTS:
             with self.subTest(mutant=name):
                 self.assertEqual(source.count(before), 1,
                                  "mutant target missing or ambiguous: " + name)
+                baseline = run_case(ROOT, test)
+                self.assertEqual(baseline.returncode, 0, baseline.stdout + baseline.stderr)
+                self.assertRegex(baseline.stdout + baseline.stderr, r"Ran 1 test in ")
+                candidate = source.replace(before, after, 1)
+                compile(candidate, "strict-pin-checker-mutant", "exec")
                 with tempfile.TemporaryDirectory(prefix="cbz-pin-mutant-") as tmp:
                     root = Path(tmp)
-                    (root / "tools").mkdir()
-                    (root / "tests").mkdir()
-                    (root / "tools" / "verify_pins.py").write_text(
-                        source.replace(before, after, 1), encoding="utf-8")
-                    for filename in ("test_verify_pins.py", "test_verify_pins_strict.py"):
-                        shutil.copyfile(ROOT / "tests" / filename, root / "tests" / filename)
-                    proc = subprocess.run(
-                        [sys.executable] + flags + ["-m", "unittest", "-v", TEST_CASE + test_name],
-                        cwd=root / "tests", capture_output=True, text=True)
-                    result = proc.stdout + proc.stderr
-                    self.assertTrue(intended_failure(proc, test_name, None, None),
-                                    name + " was not rejected:\n" + result)
+                    copy_controls(root)
+                    (root / "tools/verify_pins.py").write_text(candidate, encoding="utf-8")
+                    event = root / "mutation-observation.json"
+                    nonce = secrets.token_hex(16)
+                    process = run_case(root, test, event=event, nonce=nonce)
+                    self.assertTrue(intended_failure(process, test, nonce, read_event(event)),
+                                    name + " did not fail for its intended policy outcome:\n" +
+                                    process.stdout + process.stderr)
 
 
 class StrictPinHarnessControls(unittest.TestCase):
+    TEST = "test_skipped_nonpublic_repository_is_rejected"
+    NONCE = "0" * 32
+
+    @staticmethod
+    def report(code=1, text=None):
+        if text is None:
+            text = ("FAIL: test_skipped_nonpublic_repository_is_rejected "
+                    "(fixture.Test.test_skipped_nonpublic_repository_is_rejected)\n"
+                    "Traceback (most recent call last)\nAssertionError: invalid input accepted\n"
+                    "Ran 1 test in 0.1s\nFAILED (failures=1)\n")
+        return subprocess.CompletedProcess([], code, stdout=text, stderr="")
+
+    def event(self):
+        return {"test": self.TEST, "event": "invalid-source-accepted", "nonce": self.NONCE}
+
     def test_actual_silent_checker_exit_cannot_count_as_a_kill(self):
-        flags = ["-O"] if sys.flags.optimize else []
-        test = "test_skipped_nonpublic_repository_is_rejected"
+        cases = {
+            "silent86": "raise SystemExit(86)\n",
+            "silent1": "raise SystemExit(1)\n",
+            "silent0": "raise SystemExit(0)\n",
+            "traceback": "raise RuntimeError('unrelated pin checker crash')\n",
+            "unrelated-refusal": "print('FAIL: unrelated'); print('verify_pins: FAIL (1 error(s) across 1 pin(s))'); raise SystemExit(1)\n",
+        }
         with tempfile.TemporaryDirectory(prefix="strict-pin-silent-checker-") as folder:
             root = Path(folder)
-            (root / "tools").mkdir()
-            (root / "tests").mkdir()
-            (root / "tools/verify_pins.py").write_text("raise SystemExit(86)\n")
-            for name in ("test_verify_pins.py", "test_verify_pins_strict.py"):
-                shutil.copyfile(ROOT / "tests" / name, root / "tests" / name)
-            process = subprocess.run([sys.executable, *flags, "-m", "unittest", "-v", TEST_CASE + test],
-                                     cwd=root / "tests", capture_output=True, text=True)
-        self.assertFalse(intended_failure(process, test, None, None),
-                         "silent inner strict-pin checker crash was counted as a mutation kill")
+            copy_controls(root)
+            checker = root / "tools/verify_pins.py"
+            event = root / "mutation-observation.json"
+            for label, source in cases.items():
+                with self.subTest(checker=label):
+                    checker.write_text(source)
+                    event.unlink(missing_ok=True)
+                    nonce = secrets.token_hex(16)
+                    process = run_case(root, self.TEST, event=event, nonce=nonce)
+                    self.assertFalse(intended_failure(process, self.TEST, nonce, read_event(event)),
+                                     "unrelated strict-pin checker failure was credited")
+                    self.assertFalse(event.exists(), "checker failure emitted policy-bypass evidence")
+
+    def test_exact_named_observation_and_assertion_are_required(self):
+        good = self.report()
+        self.assertTrue(intended_failure(good, self.TEST, self.NONCE, self.event()))
+        for code in (0, 2, 86):
+            self.assertFalse(intended_failure(self.report(code), self.TEST, self.NONCE, self.event()))
+        for event in (None, {}, {**self.event(), "nonce": "1" * 32},
+                      {**self.event(), "test": "other"}, {**self.event(), "event": "other"},
+                      {**self.event(), "extra": True}):
+            self.assertFalse(intended_failure(good, self.TEST, self.NONCE, event))
+        for text in (good.stdout.replace("Ran 1 test", "Ran 0 tests"),
+                     good.stdout.replace("failures=1", "errors=1"),
+                     good.stdout.replace("failures=1", "failures=1, errors=1"),
+                     good.stdout.replace("failures=1", "failures=1, skipped=1"),
+                     good.stdout.replace("FAIL: " + self.TEST, "FAIL: other"),
+                     good.stdout + "SyntaxError: unrelated\n"):
+            self.assertFalse(intended_failure(self.report(text=text), self.TEST, self.NONCE, self.event()))
+
+    def test_pin_result_protocol_has_positive_and_crash_controls(self):
+        self.assertEqual(pin_protocol(self.report(0, "verify_pins: OK (1 pin(s) agree)\n")), "accepted")
+        self.assertEqual(pin_protocol(self.report(1,
+            "FAIL: repos/a: invalid source\nverify_pins: FAIL (1 error(s) across 1 pin(s))\n")), "refused")
+        for process in (self.report(86, ""), self.report(1, ""), self.report(0, ""),
+                        self.report(1, "FAIL: unrelated without summary\n"),
+                        self.report(1, "Traceback (most recent call last)\nverify_pins: FAIL (1)\n")):
+            with self.assertRaisesRegex(RuntimeError, "pin checker"):
+                pin_protocol(process)
+
+    def test_four_actual_classifier_source_mutants_are_rejected(self):
+        source = inspect.getsource(intended_failure)
+        changes = [
+            ("process.returncode == 1", "process.returncode != 0", self.report(86), self.event()),
+            ("type(event) is dict and event == expected", "True", self.report(), None),
+            ('re.search(r"^Ran 1 test in ", output, re.M) is not None', "True",
+             self.report(text=self.report().stdout.replace("Ran 1 test", "Ran 0 tests")), self.event()),
+            ('"test": test, "event": kind', '"test": event.get("test"), "event": kind',
+             self.report(), {**self.event(), "test": "other"}),
+        ]
+        for before, after, process, event in changes:
+            with self.subTest(guard=before):
+                self.assertEqual(source.count(before), 1)
+                namespace = {"re": re}
+                exec(compile(source.replace(before, after), "strict-pin-harness-mutant", "exec"), namespace)
+                mutated = namespace["intended_failure"]
+                case = unittest.FunctionTestCase(
+                    lambda: self.assertFalse(mutated(process, self.TEST, self.NONCE, event)))
+                result = unittest.TestResult()
+                case.run(result)
+                self.assertEqual(result.testsRun, 1)
+                self.assertEqual(len(result.failures), 1)
+                self.assertEqual(result.errors, [])
 
 
 if __name__ == "__main__":

@@ -114,3 +114,27 @@ Math drift. No current federation pin or CBZ gate is asserted by this change.
 
 Raw hosted logs under `evidence/canonical-harness/hosted-*-job.log` retain their
 exact bytes via scoped Git attributes; this does not relax source formatting.
+
+
+### Strict-pin mutation evidence and `tests/pin_mutation_receipts.py`
+
+The retained strict-pin mutation harness had the same outer-failure-only
+weakness. Its source is repaired without changing `tools/verify_pins.py`
+or deleting any of the fifteen mutants or existing assertions. The test-owned
+helper validates the checker result protocol and requires a fresh nonce,
+exact method and intended policy outcome before a failure earns mutation
+credit. The two special outcomes are unverified-source remote contact and
+an unsupported ancestry label; all other scored cases require actual
+acceptance of an invalid source. Checker children receive neither observation
+path nor nonce. Four actual classifier source mutations and five real adverse
+checker behaviors test the evidence boundary itself.
+
+Run `python3 -m unittest discover -s tests -p 'test_verify_pins_mutations.py' -v`
+and its `python3 -O` equivalent, then the full suite in both modes. The
+strict-RED source is 0f0f7f4bf5cec63caaaed16894e9196c1e296e9b; its hosted
+contract run 40945946596 was queued at this source update, so no hosted RED
+result is invented. Automatic review 4417369636 independently corroborated
+the deterministic silent-crash failure. Qualification of the repaired source
+is pending actual execution. Maintenance owner: none; self-contained tests.
+This tool serves G6/A8 and supports G7; it certifies no mathematics or current
+remote pin agreement.
