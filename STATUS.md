@@ -123,7 +123,16 @@ At 2026-10-29 21:45:28 UTC, eight public default branches were observed sequenti
 and Math gitlinks, pins.json entries and README table were refreshed to
 `1e2be44c69e08e47472041ac329e1b27f7dec793` and `9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966`, respectively; the other six already matched
 their observed tips. These observations are not an atomic federation snapshot.
-This candidate has not yet passed its own hosted test and current-pin checks;
-source heads may move while they run. Do not report final G7 or CBZ-0 from it.
+At the 2026-10-29 21:45:28 UTC observation, this candidate's hosted verification was still pending. The later exact-head results and subsequent default-tip drift are recorded below. Neither the historical pass nor this status update establishes current G7 or CBZ-0.
 
 [Exact observation](evidence/cbz-pin-observation-20261029.json).
+
+
+## Exact-head hosted qualification and subsequent pin drift (2026-10-30)
+
+The candidate at Workspace PR #31 head `9d4ec7bdc79295f4e67944be352d8643d3cc7bff` was subsequently tested through synthetic merge `0c485d84122440c066e0ff195eba493313e82ea2`; the merge and PR head have the identical tree `31f4d8e7f987981f683e963f976470aac479d93e`.
+
+- Contract run [40960506324](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/actions/runs/40960506324), job `123751708721`, completed successfully on that exact head. Its contract suite ran 115 tests in normal Python and 115 in optimized Python, both passing.
+- Pin run [40960506599](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/actions/runs/40960506599), job `123751710163`, completed successfully on that exact head. Its log shows `verify_pins.py --network`, `verify_pins.py --require-current`, and `verify_canonical_inputs.py` all succeeded; four canonical inputs were checked, followed by the 115-test suite in the workflow's configured mode. The strict-current result is valid for that run's remote-tip observation only.
+
+At the fresh default-branch readback used for this correction, Main `main` was `11e28815163e15223e8827fe6ff47a1faaf36ebd`, while this candidate pins Main `1e2be44c69e08e47472041ac329e1b27f7dec793`; Math- `main` was `19a55750451b8016b50d1d20be6a18c021807ecb`, while this candidate pins Math- `9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966`. Both observed default tips differ from the recorded pins. Therefore the successful `--require-current` run is historical to its exact source cut and does not establish current G7. This correction did not remeasure the other six repositories or establish an atomic federation snapshot; no pin, README, gitlink or workflow was changed. No G7 or CBZ-0 completion is claimed.
