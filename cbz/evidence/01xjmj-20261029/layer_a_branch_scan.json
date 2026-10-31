@@ -1,0 +1,3448 @@
+{
+ "Math-": [
+  {
+   "branch": "origin/agent12/verifier-c7-01",
+   "files": 92,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/agent8/c299-c7-replacement-20261022",
+   "files": 92,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/agents/paper1-license-citation",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/archive/math421-20261011-pr416",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/archive/math421-20261011-pr417",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/archive/math421-20261011-pr418",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/archive/math421-20261011-pr420",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/benjamin/d5-collar-nonauthor-20260928b",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/ac1-f1-synthetic-controls-20261007-gp",
+   "files": 16,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/bq11-import-profile-20261007-f81c",
+   "files": 15,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-adapter-envelope-20261005",
+   "files": 9,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-angular-formal-20261006",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-chamber-bridge-20261006-r21",
+   "files": 35,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-clipped-integral-20261006-r17",
+   "files": 25,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-d3-moment8-20261005",
+   "files": 9,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-depth-kernel-20261006-r16",
+   "files": 25,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-entry-volume-20261006",
+   "files": 17,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-evidence-r2-20261005",
+   "files": 9,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-gaussian-envelope-20261006-r18",
+   "files": 27,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-independent-20261006-r15",
+   "files": 23,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-inner-integration-20261006-r19",
+   "files": 29,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-linear-formal-20261006",
+   "files": 15,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-matrix-formal-20261006",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-outer-composition-20261006-r20",
+   "files": 33,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-polar-formal-20261006",
+   "files": 11,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-product-transport-20261006-r14",
+   "files": 21,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-proposal-diagnostic-20261006-r12",
+   "files": 19,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-residual-law-20261006-r22",
+   "files": 35,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-source-bridge-20261005",
+   "files": 9,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cap-i4-spectral-assembly-20261006",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/collision-mechanism-transfer-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/contact-kernel-tail-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/contact-small-gap-20260925-oa",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cusp-contract-characterization-20261006-rfgate",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d1-borel-kac-rice-amend-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d1-section9-borel-repair-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d5-annulus-bridge-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d5-finite-r-hermite-repair-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d5-graph-regional-update-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d5-inner-axial-density-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d5-pin-compatibility-review-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/d5-thin-tube-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/downstream-boundary-review-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/fail-closed-claim-audit-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/fail-closed-claim-audit-20260925-v2",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/federation-coefficient-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/fold-affine-bridge-20261006-f81c",
+   "files": 15,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/full-price-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/gate-refuted-union-hotfix-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/integrate-reviewed-collision-package-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/landing-claim-manifest-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-fixture-signing-20261006-r11",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-json-refresh-20261006-r9",
+   "files": 11,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-json-repair-20261006-r8",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-parser-plus-20261006-r13",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-signing-isolation-20261006-r12",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-trigger-coverage-20261006-r6",
+   "files": 11,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/legacy-tty-followon-20261006",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/lifetime-parent-imports-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/lm006-coefficient-refine-4096-20261006-r22",
+   "files": 11,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/lm006-oned-certificate-ci-20261006-b91e",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/lm006-oned-replay-20261006-b91e",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/lm006-regression-rate-20261006",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/math-gate-identity-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/nav-verdict-word-start-20261006-r10",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-citation-identity-20261006",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-corpus-observation-20261006",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-price-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-reviewed-stack-preparation-20261006",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-verdict-boundaries-20261006",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-verdict-boundary-20261006",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/never-merge-formal-negative-20260927",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/p15-reviewed-manifest-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/p15-smt-pilot-20260925-1918",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/pr334-native-contract-support-20261006",
+   "files": 11,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/pr8-own-node-eligibility-fix",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/proof-availability-audit-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/proof-index-20260925-v2",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-imports-pointer-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/qs-raw-child-evidence-20261006-r9",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/qs340-inventory-amendment-support-20261006",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/remote-window-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/retrospective-round10-20261005",
+   "files": 8,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/rf-gate-helper-replay-22393e7b-20261006-r8",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/rf-gate-incorporation-rehearsal-20261006-r9",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/soft-fold-protocol-20261006",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/third-order-protocol-20261006-37bd-r4",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/three-fronts-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/transition-integrity-v2-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/two-scale-custody-postmerge-repair-20260929",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/dd-model-d-enclosure-wip-20261013",
+   "files": 46,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/determined-bardeen-mrqy4y",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/determined-bardeen-mrqy4y-c8-wrappers",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/round4-triage-table-20261011",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/all-frame-gaussian-rates-20261028",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c291-literal-lifetime-field-20261018",
+   "files": 87,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c293-morse-finite-critical-20261018",
+   "files": 85,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c294-critical-level-attainment-20261020",
+   "files": 91,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c299-critical-ridge-20261020",
+   "files": 92,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c299-timeout-test-adoption-20261024",
+   "files": 92,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c301-c291-static-workspace-20261024",
+   "files": 87,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-baseline-20261009-root01a11cbf",
+   "files": 46,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-controls-final-repair-20261011-root01a11cbf",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-controls-repair-20261011-root01a11cbf",
+   "files": 133,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-proof-20261010-root01a11cbf",
+   "files": 75,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-proof-repair-20261011-root01a11cbf",
+   "files": 104,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-proper-partial-control-20261011-root01a11cbf",
+   "files": 192,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/compact-cutoff-proper-partial-repair-20261011-root01a11cbf",
+   "files": 222,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/cubic-curvature-20261026",
+   "files": 1971,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/elder-cusp-parity-protocol-20261020",
+   "files": 88,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/essential-gaussian-rate-20261028",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/essential-sharp-asymptotics-20261028",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/gaussian-lifetime-limit-completion-20261029",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/gaussian-lifetime-tail-20261028",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/pr409-current-source-b4a66e52",
+   "files": 18,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/quotient-closed-superlevel-lpc-adapter-20261020",
+   "files": 88,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/quotient-closed-superlevel-lpc-adapter-20261020-r2",
+   "files": 88,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/quotient-closed-superlevel-lpc-adapter-20261022-r3",
+   "files": 88,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/source-admission-graph-package-20261020",
+   "files": 79,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/source-smooth-realization-20261013-root01a11cbf",
+   "files": 236,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/add-license-citation-files",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/cross-repo-proof-custody-7eca",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/d2-cumulative-confirm-870a",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/d2-cumulative-correction-review-5dce",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/d5-chart-graph-node-91fa",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/d5-chart-j0-on-hotfix-91fa",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/d5-pin-microdisk-c059",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/downstream-hard-gate-91fa",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/formal-verification-layer-ae3b",
+   "files": 10,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/lemma-theorem-registers-f339",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/moment-generality-alignment-cdd1",
+   "files": 8,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/nonauthor-hermite-axial-review-5dce",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/p15-full-price-review-55ed",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/pr25-contact-kernel-review-b00c",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/pr25-typed-transfer-review-bebc",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/pr28-annulus-nonauthor-review-bed2",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/pr69-pin-microdisk-review-4f5c",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/proof-custody-repair-8e33",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/rn-mesoscopic-chart-j0-91fa",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/custody/proof-index-erratum-pointer-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/congruence-erratum-on-default-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/required-math-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grokbot-agent12/steward-source-refresh-01",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grokbot/local-path-map-20261015",
+   "files": 46,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/harper/d5-contact-kernel-tail-review-20260928",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/purpose-readme-seed",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/main",
+   "files": 162,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/support/navigation-336-344-353-on-08f86862-20261006",
+   "files": 13,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/xai/outsider-directions-note-20260930",
+   "files": 3,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  }
+ ],
+ "main": [
+  {
+   "branch": "origin/agent/measure-title-reader-20261003",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/agent/observer-notes-20261001",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/agent/paper1-note-current-20261001",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/agent3/jetmod-rnunif-status-open-hold",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/agents/p15-and-simulation",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/carrier/v20-planner-source-delivery-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cbz/foundation-protocol-20261029",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/archsys-p2-current-population-20261015",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/c101-source-bound-successor-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/c245a-replay-admission-contract-20261012",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/cover-accounting-audit-20260924",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/current-queue-and-annulus-nav-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/default-home-repair-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/downstream-crosswalk-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/drive-github-hardening-20260919",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/fail-closed-claim-audit-repair-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/full-price-navigation-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/gb7c-side24-proof-implementation-20261023",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/h3-solver-pilot-20260921",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/main-lean-preflight-20261008-r1",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/main-research-home-20260923",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/main399-route-window-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/math-push-cap-palette-20260924",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/nav-manifest-trigger-20261021-c",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/navigation-price-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/never-merge-formal-negative-20260927",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/pr2-postmerge-handoff-20260923",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/probe-test-isolation-20260923",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-intake-identity-replay-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-mathematics-access-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-reader-access-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-research-shop-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-sard-successor-review-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-shop-live-metadata-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-side24-reading-links-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/public-source-visibility-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/q0-c103-source-bound-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/q0-ledger-external-binding-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/register-export-r1-20260923",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/register-source-preflight-20260923",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/remote-window-reading-20260924",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/research-capsule-311-20260924-1504",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/sard-g-boundary-review-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/side24-source-recovery-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/source-architecture-design-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/source-recovery-companions-20261016-6215376409",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/standing-authorization-20260923",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/storefront-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/vault-census-20260925",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/wedge-accounting-20260924",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/chatgpt/withdrawal-governance-20260921",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/build-manuscript-contributing-BowxS",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/build-manuscript-script-TiApQ",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/cover-outside-residual-guard",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/cover-survivor-tangency",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/cover-tangency-on-hardening",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/cover-uniform-cost-contract",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/dbx-crosswalk-01cz-20261024",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/dbx-crosswalk-01cz-20261024-r2",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/determined-bardeen-mrqy4y",
+   "files": 28,
+   "prod_sites": [
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/inv/GenLocal.lean",
+     4,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/inv/VariantA.lean",
+     4,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/inv/VariantB.lean",
+     4,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/inv/VariantC.lean",
+     4,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/inv/VariantD.lean",
+     4,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/rg2/out/compiled-admission/formal/ResearchFormalCoreR1/AlgebraV2.lean",
+     50,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/rg2/out/hidden_def.lean",
+     4,
+     "sorry"
+    ],
+    [
+     "recovery/session_015wNj8LPTKXsaT68G3DgPPh/scratch/rg2/out/hidden_sorry.lean",
+     4,
+     "sorry"
+    ]
+   ],
+   "production": 8,
+   "violations": 8
+  },
+  {
+   "branch": "origin/claude/drive-audit-github-migration-rrglpp",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/g1f2-g3f1-worker-liveness-71049ac9",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/g2-02-serialized-size-71049ac9",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/github-chatgpt-xxw5kp",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/handoff-lean-register-tools-20261013",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/help-other-claude-models-829990",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/incoming-side24-chart-v2-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/intake-gate-reachability-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/journal-623-624-combined-d476fc21",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/ladder-pin-reconcile",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/lean-verification-specification-20261010",
+   "files": 7,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/main-landing-page",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/nice-maxwell-7i7ok0",
+   "files": 81,
+   "prod_sites": [
+    [
+     "recovery/session_017Mi3hxjaxV45x6zo6o1ee3/increment2/local_lean_evidence/math_formal_partial_gate/custom_imported.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_017Mi3hxjaxV45x6zo6o1ee3/increment2/local_lean_evidence/math_formal_partial_gate/native.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_017Mi3hxjaxV45x6zo6o1ee3/increment2/local_lean_evidence/math_formal_partial_gate/sorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_017Mi3hxjaxV45x6zo6o1ee3/increment2/scratch/v15/Joint.lean",
+     10,
+     "axiom"
+    ],
+    [
+     "recovery/session_017Mi3hxjaxV45x6zo6o1ee3/increment2/scratch/v15/Joint.lean",
+     13,
+     "axiom"
+    ],
+    [
+     "recovery/session_017Mi3hxjaxV45x6zo6o1ee3/increment2/scratch/v19/B.lean",
+     193,
+     "sorry"
+    ]
+   ],
+   "production": 6,
+   "violations": 6
+  },
+  {
+   "branch": "origin/claude/physics-multiscale-reconstruction-a1G1I",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/pinned-sources-inventory",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/public-landing-professional-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/quarantine-digest-coverage",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/recovery-01N-20261013",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/recovery-01cz-20261013",
+   "files": 648,
+   "prod_sites": [
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/apply_scratch/real/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/apply_scratch/real/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/apply_scratch/real/RejectSorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/emit_now/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/emit_now/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/emit_now/RejectSorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_corrupt/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_corrupt/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_corrupt/RejectSorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_keep/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_keep/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_keep/RejectSorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_real/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_real/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/review_scratch/evidence_real/RejectSorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/scratch/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/scratch/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/scratch/RejectSorry.lean",
+     2,
+     "sorry"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/scratch/out/RejectCustomAxiom.lean",
+     2,
+     "axiom"
+    ],
+    [
+     "recovery/session_01Cz7WZybv8znP64SpPj6sWY/scratch/lvs/c254/companion/scratch/out/RejectNativeDecide.lean",
+     2,
+     "native_decide"
+    ]
+   ],
+   "production": 63,
+   "violations": 67
+  },
+  {
+   "branch": "origin/claude/recovery-01cz-delta-20261018",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/recovery-01cz-delta-20261020",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/recovery-S-20261013",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/review-grok-github-uploads-gsthj3",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/setup-complexity-physics-8H96d",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/shared-custody-01cz-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-draft-20261013",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft-20261013",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft10-20261019",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft11-20261019",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft12-20261019",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft13-20261020",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft14-20261021",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft15-20261021",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft16-20261021",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft17-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft18-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/side24-v3-supplement-draft9-20261015",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/zeta-fold-r2-replay-venue-20261020",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/zeta-fold-residual-diag-retention-20261021",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/claude/zeta-manifest-check-adoption-20261021",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/605-v22-canonical-dataset-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/architecture-cli-boundary-red-20261016",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/architecture-post-upload-probe-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c226-formal-phase-evidence",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/c287-population-current-main-20261016",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/canvas-model-controls-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/casefold-adapter-checked-probe-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/casefold-adapter-final-checked-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/current-observation-recovery-20261022-2234",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/cusp-analytic-guards-20261009-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/enforcement-control-20260922",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/enforcement-probe-20260922",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/exact-population-certificate-20261009-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/exact-population-certificate-ci-20261009-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/global-cusp-h0-selector-20261009-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/global-cusp-h0-validation-20261009-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/h3-closure-mirror-20261018",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/higher-homology-fold-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/integrate-625-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/integrate-636-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/integrate-source-list-continuity-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/integration-650-refresh-a51445b4",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/lease-crypto-runtime-preparation-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/lease-protocol-tests-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/main-classic-rule-evidence-20261025",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/main388-new-successor-20261014",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/main583-setup-python-only-20261024",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/mechanism-assimilation-20260922",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/milestone-audit-summary-20261002",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/navigation-timing-20261016",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/parallel-reader-tools-20261003",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/population-a1-controls-20261013",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/population-runner-attribution-20261013-root01a11cbf-2035z",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/pr656-preflight-01a17864",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/reader-native-admission-20261017",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/reader-native-cp-20261017",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/reader-runtime-preparation-20261011",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/reader438-review-evidence-20261017-root01a14b9f",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/req8-controls-r01-20261020-1500",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/retain-pr651-754417e48b21123a070151a156dbd4f752608c05",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/retain-pr653-56f7cd7c955bf6333ce6275f3a9483187b756412",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/retain-pr654-a27bf60cf15b882742ec9903c3d7737b0750882b",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/retain-pr656-5978c2e596c620584684a4097da27daeb4f66190",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/reviewed-fold-diagonal-20261016-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/routing-broker-tests-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/routing-sqlite-runtime-preparation-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/semantic-memory-task1-20261016",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/semantic-runtime-preparation-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/signed-lease-recovery-evidence-20261018-root01a14b9f",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/single-account-autonomy-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/site-at-generated-f614-20261025",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/site-first-red-20261022-2207",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/site-publication-receipts",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/site-route-controls-v3-20261022-2338",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/spectral-amplitude-crossover-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/spectral-gaussian-admission-20261008",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/stationary-quartic-cusp-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/two-control-cusp-population-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/verification-museum-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/weighted-cusp-production-20261026-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/codex/weighted-cusp-sampling-20261025-root01a11cbf",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/comprehensive-audit-d6g8k5htny-coder",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/copilotupdate-coordination-references-307",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/d6g8k5htny-coder-main-pull-578",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/ec-014-audit-tasks",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/research-task-analyze-repository",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/copilot/update-contributor-routing-agent-message-board-419",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cos/revert-pr2-never-main",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor-write-probe-1790476681870174240-3624305-65f2ee34",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/at-remainder-source-repair-8ffc",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/batch249-tip-observe-542e6ec-1c18",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/cond-importers-13-audit-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/contribution-plan-crosswalk-lpw-identity",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/downstream-crosswalk-outside-packet-31c5",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/env-rescov-node-classification-20260925",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/f1-repair-618-impl-ref-20261025-9e39",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/g1-f1-journal-lf-framing-0b94",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/intermediate-scale-bridge-ab2f",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-jetmod-probes-4488",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-jetmod-shortcut-refusals-09c9",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-jetmod-status-honesty-f8c0",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-nav-rescue-334e",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-probe-index-provenance-b0e1",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-refused-empty-absent-honesty-a3f9",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-refused-empty-absent-honesty-f763",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-registers-check-known-acceptance-c426",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-rn-absent-empty-honesty-f2a8",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-status-jetmod-24jet-row-852a",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-tip-observation-honesty-79ba",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-tip-observe-02cfbfdf-ad5a",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-tip-observe-388a22ca",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-tip-observe-3b3860da-cf44",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-tip-observe-542e6ec-8fc7",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-tip-observe-8e359e5-d0bd",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/inventable-vault-path-tooling-docs-360d",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/jetmod-partial-refused-not-24jet-status-vocab",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/jetmod-sibling-sweep-empty-7b82",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/jetmod-status-vocab-1814",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/main-crosswalk-nav-31c5",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/math-status-inventable-honesty-3242",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/math-status-open-hold-20260922-b4a3",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/math-status-open-hold-20260922-e340",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/math-status-readme-unmix-9b14",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/math-status-walls-20260922-da25",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/path-c-0019-attestations-rw-0c9d",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/path-c-portable-fixes",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/q0-ledger-reconcile-ebedb78-31c5",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/register-consumers-cold-start-nav-a2df",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/replace-2025-main-landing-6939",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/restore-independence-credit-quote-e6a4",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/retip-38-outside-residual-guard-077464ef",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/retip-46-cellcount-pin-077464ef",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/rn-unif-walkdown-scope-fixes",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/scientific-state-schema-crosswalk-31c5",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/side24-align-fresh-637-4904",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/side24-alignment-review-20261026-dd62",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/side24-missing-source-custody-0532",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/side24-nav-prep-honesty-a050",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/side24-prep-sot-absent-nav-d1b8",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/status-jetmod-inventable-merge-promote-2820",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/tip-align-packet-ae7daf7-dc7f",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/tip-docs-hygiene-banners-4a17",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/tip-observe-0adeb651-d320",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/tip-observe-3a29f526-8144",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/tip-observe-fcad7236-c5d9",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/vault-quarantine-hygiene-9f01",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/zeta-fold-slice-c-original-timing-bytes-20261021-458c",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/cursor/zeta-fold-slice-c-timing-retention-20261020-458c",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/custody/dot-p15-manifest-correction-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/custody/dot-v19-dependency-supplement-20261025",
+   "files": 8,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/custody/dot-v19-gap2-originals-20261026",
+   "files": 8,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/custody/status-erratum-boundary-bullet-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/dependabot/github_actions/github-actions-d51a082eac",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/docs/agents-board-307-pointers",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/docs/retro-proof-source-join-incorp-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/docs/workspace-board-307-h04",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/docs/workspace-board-pointer-307",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/fix/atlas-persistent-ci-discovery-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h01/c221-doc-01-readme-20261010",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h02-formal-routing-amend-20261013",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h02/board-links-539-20261023",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h02/docs-agents-board-pointers-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h02/docs-board-currency-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h02/retro-proof-source-join-incorp-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h04/c221-doc-01-public-shop-commands",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h04/c221-doc-01-restore-v2",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h04/c221-doc-01-w8b-commands",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h04/c221-doc-01-w8b-restore",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok-h04/c221-doc-01-w8b-tmp",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/c160-path-01-canonical-8687",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/c160-path-01-canonical-fixture",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/c160-path-01-fixture-alias",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/c221-doc-01-w8b-commands",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/drive-missing-source-hunt-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/h02-workspace-board-pointer-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok/workspace-board-pointer-20261009",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grok16/v20-planner-source-carrier-20261025",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grokbot-agent12/pr340-identity-binding-20261024",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/grokbot-agent15/ci-cache-01",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/h02-benjamin-retro-join-composition-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/harper/workspace-coord-307-pointer",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/incoming/grok-cycle2-nd-d5-sard-20260926",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/open-problems-frozen-errata-388a22ca",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/rn-certified-q2-carrier-absent-077464ef",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/rn-crosswalk-docs-077464ef",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/side24-cell-errata-pointer-848aea2a",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/side24-cell-spatial-crosslink-3a29f526",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/side24-cell-square-importers-077464ef",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/inventable/side24-nav-pages-3b3860da",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/lane1-evidence-path-grok-h03",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/lucas-h01/delete-stop-record",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/main",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/research/v22-second-height-generic-gpt6-20261026",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/rloop/formal-page-triggers-20261014-6178357042",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/rloop/recon-universality-20261014-6177794896",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/transport/register-integration-20260923",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "origin/transport/register-r1-20260923",
+   "files": 0,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/315",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/330",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/331",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/333",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/334",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/336",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/338",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/340",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/341",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/342",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/343",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/344",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/345",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/346",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/347",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/349",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/350",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/351",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/358",
+   "files": 7,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/363",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/385",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/389",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/394",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/395",
+   "files": 2,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/399",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/405",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/407",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/408",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/421",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/425",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/429",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/430",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/435",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/436",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/441",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/443",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/444",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/447",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/450",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/451",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  },
+  {
+   "branch": "prs/453",
+   "files": 4,
+   "prod_sites": [],
+   "production": 0,
+   "violations": 0
+  }
+ ]
+}

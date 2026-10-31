@@ -1,0 +1,65 @@
+{
+ "Math-": {
+  "failing": 0,
+  "files": 162,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "Universal-Law-Workspace": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "d6g8k5htny-coder": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "governance-": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "main": {
+  "failing": 0,
+  "files": 4,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "meta-framework": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "openclaw-custodian-validation": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "query-": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ },
+ "research-hosted-qualification": {
+  "failing": 0,
+  "files": 0,
+  "findings": 0,
+  "undecodable": [],
+  "violations": 0
+ }
+}
