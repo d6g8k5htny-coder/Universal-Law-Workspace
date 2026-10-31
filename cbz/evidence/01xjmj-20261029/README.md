@@ -83,7 +83,18 @@ literals) among `sorry`, `admit`, `sorryAx`, `admitGoal`, `mkSorry`, `axiom`,
   line-initial `stop` are reported for review.
 - **Fail closed.** Undecodable files fail the run. So do strings, block comments, raw
   strings, interpolated strings and `«` names left unterminated at end of file, which are
-  reported as `error` findings.
+  reported as `error` findings. A scan root that does not exist, a directory that cannot
+  be traversed, and an unknown or empty `--fail-on` context are usage/IO errors (exit 2),
+  never an empty clean scan.
+- **Native options on tokens.** `+native` and `native := …` are recognised on code
+  tokens, so comments and line breaks in between do not hide them. Any value other than
+  the literal `false` is flagged; `def native := …` names a declaration and is not.
+- **Context is repository-relative.** A filesystem file is classified by its path
+  relative to the enclosing git work tree, else relative to the scan argument (a file's
+  parent directory for a file argument), so `repo`, `repo/raw` and `repo/raw/A.lean` give
+  the same context, and an unrelated `archive` ancestor outside the repository does not
+  exempt anything. `--context-root DIR` states the base explicitly; a file outside it is
+  a usage error. Each finding records its `context_path`.
 - **Not certified.** It does not certify compilation, or the absence of placeholders
   produced by metaprogramming without those tokens. Kernel and axiom gates G2–G4 are
   authoritative for that.
@@ -115,8 +126,8 @@ python3 -I tools/cbz/layer_a_scan.py path/to/dir --fail-on production
 Self-verification (gate G0):
 
 ```sh
-python3 -B -m unittest tests.test_cbz_layer_a_scan          # 28 behavioural tests
-python3 -B -m unittest tests.test_cbz_layer_a_scan_mutants  # 39 mutants, all must be killed
+python3 -B -m unittest tests.test_cbz_layer_a_scan          # 35 behavioural tests
+python3 -B -m unittest tests.test_cbz_layer_a_scan_mutants  # 52 mutants, all must be killed
 ```
 
 Both were observed passing at this commit, in normal and `-O` mode, on CPython 3.13.16.
@@ -210,11 +221,18 @@ Sorted by the number of non-division signals.
 Self-verification (A8):
 
 ```sh
-python3 -B -m unittest tests.test_cbz_a3_float_census   # 18 behavioural, harness control, 15 mutants
+python3 -B -m unittest tests.test_cbz_a3_float_census   # 24 behavioural, harness control, 21 mutants
 ```
 
 Every mutant (each signal, the exact-math list, interval-layer detection, the `MIXED`
-class, the fail-closed exit and git mode) must be killed, or the suite fails. Both
+class, the fail-closed exit and git mode) must be killed, or the suite fails. Since the
+ULW#29 review the census also collects module aliases from the whole file before
+classifying (a function body may use `m.sqrt` with `import math as m` below it),
+recognises `from . import ia` / `from pkg import ia [as I]`, parses sources from bytes so
+a UTF-8 BOM or a PEP 263 encoding cookie is honoured in both directory and git modes,
+and treats a missing input path or an untraversable directory as an IO error (exit 2).
+Re-running at the recorded revisions after these changes gives identical per-file
+classes and signal counts in all six repositories, so the evidence JSON is unchanged. Both
 mutation harnesses count a mutant as killed only if the suite loaded, ran and reported a
 failing test; a suite that cannot import the tool is a survivor, not a kill. The census
 harness also runs an unmutated copy through the same path and requires it to pass,

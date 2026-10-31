@@ -19,7 +19,7 @@ Signals (each reported with line and column):
   interval_layer    an outward-rounding interval layer: ``math.nextafter`` /
                     ``math.ulp`` (attribute or import), or an import of a
                     module named ``ia`` (the project's outward-rounded
-                    interval modules)
+                    interval modules), including ``from pkg import ia``
 
 Classification per file (derived only from the signals above):
   NO_FLOAT_SIGNAL    no float_literal / float_call / true_division /
@@ -28,9 +28,15 @@ Classification per file (derived only from the signals above):
   MIXED              float signals and exact or interval machinery both present
   UNPARSEABLE        the file is not valid Python 3 (fails closed)
 
+Module aliases (``import math as m``) are collected from the whole file
+before any expression is classified, so a function body that uses an alias
+imported later is still counted. Sources are parsed from bytes, honouring a
+UTF-8 BOM and PEP 263 encoding declarations.
+
 Standard library only; no floating point is used in any decision. The exit
 status is 0 when every file parsed and 1 when any file is UNPARSEABLE; signal
 counts never change the exit status, because they are inventory, not verdicts.
+A missing input path or an untraversable directory is an IO error (exit 2).
 
 Usage:
   a3_float_census.py PATH...                 directories and/or .py files
@@ -65,6 +71,18 @@ class _Visitor(ast.NodeVisitor):
         self.mpmath_aliases = {"mpmath"}
         self.local_math_names: dict[str, str] = {}
 
+    def collect_aliases(self, tree):
+        # first pass: module aliases are visible to code that precedes the import
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                for a in node.names:
+                    top = a.name.split(".")[0]
+                    bound = (a.asname or a.name).split(".")[0]
+                    if top in ("math", "cmath"):
+                        self.math_aliases[bound] = top
+                    if top == "mpmath":
+                        self.mpmath_aliases.add(bound)
+
     def add(self, node, kind, detail):
         self.signals.append((getattr(node, "lineno", 0), getattr(node, "col_offset", -1) + 1, kind, detail))
 
@@ -88,6 +106,8 @@ class _Visitor(ast.NodeVisitor):
         self._module(node, mod)
         if mod == "ia" or mod.endswith(".ia"):
             self.add(node, "interval_layer", f"from {mod} import")
+        elif any(a.name == "ia" for a in node.names):
+            self.add(node, "interval_layer", f"from {'.' * node.level}{mod} import ia")
         if top in ("math", "cmath"):
             for a in node.names:
                 if a.name not in EXACT_MATH:
@@ -142,16 +162,18 @@ class _Visitor(ast.NodeVisitor):
         self.generic_visit(node)
 
 
-def census_text(text: str, path: str, blob: str | None = None) -> dict:
+def census_text(text: str | bytes, path: str, blob: str | None = None) -> dict:
+    """Census one source; bytes are decoded as Python would (BOM, encoding cookie)."""
     rec = {"path": path}
     if blob:
         rec["blob"] = blob
     try:
         tree = ast.parse(text, filename=path)
-    except (SyntaxError, ValueError) as exc:
+    except (SyntaxError, ValueError, LookupError) as exc:
         rec.update({"class": "UNPARSEABLE", "error": f"{type(exc).__name__}: {exc}", "signals": [], "counts": {}})
         return rec
     v = _Visitor()
+    v.collect_aliases(tree)
     v.visit(tree)
     sig = sorted(v.signals)
     counts: dict[str, int] = {}
@@ -165,10 +187,16 @@ def census_text(text: str, path: str, blob: str | None = None) -> dict:
     return rec
 
 
+def _raise(exc):
+    raise exc
+
+
 def _iter_fs(paths):
     for p in paths:
+        if not os.path.exists(p):
+            raise FileNotFoundError(2, "input path does not exist", p)
         if os.path.isdir(p):
-            for root, dirs, files in os.walk(p):
+            for root, dirs, files in os.walk(p, onerror=_raise):
                 dirs[:] = sorted(d for d in dirs if d != ".git")
                 for fn in sorted(files):
                     if fn.endswith(".py"):
@@ -222,22 +250,11 @@ def main(argv=None) -> int:
     try:
         if args.git:
             for p, sha, data in _git_blobs(args.git, args.rev):
-                try:
-                    text = data.decode("utf-8")
-                except UnicodeDecodeError as exc:
-                    records.append({"path": p, "blob": sha, "class": "UNPARSEABLE",
-                                    "error": f"UnicodeDecodeError: {exc}", "signals": [], "counts": {}})
-                    continue
-                records.append(census_text(text, p, sha))
+                records.append(census_text(data, p, sha))
         for rel, full in _iter_fs(args.paths):
-            try:
-                with open(full, encoding="utf-8") as fh:
-                    text = fh.read()
-            except UnicodeDecodeError as exc:
-                records.append({"path": rel, "class": "UNPARSEABLE", "error": f"UnicodeDecodeError: {exc}",
-                                "signals": [], "counts": {}})
-                continue
-            records.append(census_text(text, rel))
+            with open(full, "rb") as fh:
+                data = fh.read()
+            records.append(census_text(data, rel))
     except (OSError, subprocess.CalledProcessError) as exc:
         print(f"a3_float_census: error: {exc}", file=sys.stderr)
         return 2

@@ -11,7 +11,7 @@ What it certifies, exactly:
                       ofReduceBool, ofReduceNat, trustCompiler,
                       skipKernelTC (kernel-check bypass option),
                       addDeclWithoutChecking, and the ``decide`` options
-                      ``+native`` / ``native := true``
+                      ``+native`` / ``native := <anything but false>``
   review tokens (reported, never gate-failing on their own)
     A3 float        : Float, Float32
     A2 compiled code: unsafe, implemented_by, extern
@@ -28,7 +28,16 @@ What it certifies, exactly:
 Fail-closed: a string, block comment, raw string, interpolated string or
 ``«`` name left unterminated at end of file is reported as an ``error``
 finding, which fails the run like a violation, because the rest of the
-file cannot be lexed reliably.
+file cannot be lexed reliably. A scan root that does not exist, a directory
+that cannot be traversed, and an unknown ``--fail-on`` context are usage/IO
+errors (exit 2), never an empty clean scan.
+
+Context (production / evidence_copy / control) is decided from a
+repository-relative path, so it does not depend on how a path is spelled:
+for a filesystem input, the path relative to the enclosing git work tree,
+else relative to the scan argument (a directory, or a file's parent); an
+explicit ``--context-root DIR`` overrides both. Git-tree mode uses the
+tree path.
 
 What it does NOT certify:
   * That a file compiles, or that no placeholder arises through
@@ -51,7 +60,9 @@ Usage:
 Options:
   --json FILE     write all findings as JSON
   --fail-on CTX   comma list of contexts whose violations fail the run
-                  (default: production). Use "all" for every context.
+                  (default: production); each must be one of production,
+                  evidence_copy, control, or the single word "all".
+  --context-root DIR  classify filesystem paths relative to DIR
 Exit status: 0 = no failing violation, 1 = failing violation, 2 = usage/IO.
 """
 from __future__ import annotations
@@ -93,9 +104,14 @@ LINE_START_REVIEW = {"stop": "A1"}
 
 INTERP_PREFIXES = {"s!", "m!", "f!"}
 # ``decide +native`` and ``native := true`` select compiler evaluation, i.e.
-# ofReduceBool. ``native`` after a ``+`` is flagged even with a space between
-# (safe direction: ``x + native`` is a false positive, never a miss).
-_NATIVE_TRUE = re.compile(r"\s*:=\s*true(?![A-Za-z0-9_'!?])")
+# ofReduceBool. Both are recognised on code tokens, so comments and line
+# breaks in between do not matter. ``native`` after a ``+`` is flagged even
+# with a space between, and ``native :=`` with any value but the literal
+# ``false`` is flagged (safe direction: ``x + native`` or ``native := flag``
+# may be false positives, never misses).
+CONTEXTS = ("production", "evidence_copy", "control")
+# ``def native := ...`` names a declaration; it is not an option assignment.
+_DECL_KEYWORDS = {"def", "abbrev", "theorem", "lemma", "opaque", "instance", "axiom"}
 _EXCLUDED_LETTERS = {"λ", "Π", "Σ"}
 _CHAR_LIT = re.compile(r"'(?:\\(?:u\{[0-9a-fA-F]+\}|x[0-9a-fA-F]{2}|.)|[^\\'\n])'")
 
@@ -129,13 +145,53 @@ def _id_rest(ch: str) -> bool:
         or _is_letter(ch) or _is_subscript(ch)
 
 
+def _skip_trivia(text: str, j: int) -> int:
+    """Index of the next code character at or after j (skips whitespace and comments)."""
+    n = len(text)
+    while j < n:
+        if text[j].isspace():
+            j += 1
+        elif text.startswith("--", j):
+            k = text.find("\n", j)
+            j = n if k < 0 else k
+        elif text.startswith("/-", j):
+            depth = 0
+            while j < n:
+                if text.startswith("/-", j):
+                    depth += 1
+                    j += 2
+                elif text.startswith("-/", j):
+                    depth -= 1
+                    j += 2
+                    if depth == 0:
+                        break
+                else:
+                    j += 1
+        else:
+            break
+    return j
+
+
+def _native_assignment(text: str, j: int):
+    """After an identifier ``native`` ending at j: None if no ``:=`` follows,
+    "false" if the assigned value is the literal ``false``, else "other"."""
+    j = _skip_trivia(text, j)
+    if not text.startswith(":=", j):
+        return None
+    j = _skip_trivia(text, j + 2)
+    if text.startswith("false", j) and not (j + 5 < len(text) and _id_rest(text[j + 5])):
+        return "false"
+    return "other"
+
+
 def lex_tokens(text: str, errors: list | None = None):
-    """Yield (name, line, col, line_start, plus_before, follow) per code identifier.
+    """Yield (name, line, col, line_start, plus_before, native_assign) per code identifier.
 
     ``name`` is the full dotted identifier text; an escaped ``«...»``
     component becomes ``\x00`` plus its text (inner dots as ``\x01``), so it
     matches constant names but never a keyword. ``plus_before`` says the
-    identifier follows a ``+`` on its line; ``follow`` is the text after it.
+    previous code token (comments and whitespace skipped) is ``+``;
+    ``native_assign`` is _native_assignment() for an identifier ``native``.
     Unterminated constructs are appended to ``errors`` as (line, col, kind).
 
     Modes are kept on an explicit stack: a ``code`` frame (with a brace
@@ -147,6 +203,8 @@ def lex_tokens(text: str, errors: list | None = None):
     line = 1
     col = 1
     line_has_token = False
+    last_code = ""          # last code character outside comments and literals
+    last_word = ""          # text of the last identifier token
     stack: list[list] = [["code", None]]
     if errors is None:
         errors = []
@@ -247,11 +305,13 @@ def lex_tokens(text: str, errors: list | None = None):
             if not closed:
                 errors.append(start + ("unterminated_string",))
             line_has_token = True
+            last_code = '"'
             continue
         if c == "'":
             m = _CHAR_LIT.match(text, i)
             advance(m.end() - i if m else 1)
             line_has_token = True
+            last_code = "'"
             continue
         if c == "«":
             start_line, start_col, start_first = line, col, not line_has_token
@@ -265,7 +325,9 @@ def lex_tokens(text: str, errors: list | None = None):
             parts = ["\x00" + inner.replace(".", "\x01")]
             read_ident_tail(parts)
             line_has_token = True
-            yield ".".join(parts), start_line, start_col, start_first, False, text[i:i + 40]
+            last_code = "a"
+            last_word = ""
+            yield ".".join(parts), start_line, start_col, start_first, False, None
             continue
         if _id_start(c):
             start_line, start_col, start_first = line, col, not line_has_token
@@ -294,18 +356,23 @@ def lex_tokens(text: str, errors: list | None = None):
             parts = [word]
             read_ident_tail(parts)
             line_has_token = True
-            k = s - 1
-            while k >= 0 and text[k] in " \t":
-                k -= 1
-            yield ".".join(parts), start_line, start_col, start_first, k >= 0 and text[k] == "+", text[i:i + 40]
+            plus_before = last_code == "+"
+            declared = last_code == "a" and last_word in _DECL_KEYWORDS
+            last_code = "a"
+            name = ".".join(parts)
+            last_word = name
+            yield (name, start_line, start_col, start_first, plus_before,
+                   _native_assignment(text, i) if name == "native" and not declared else None)
             continue
         if c.isdigit():
             while i < n and (text[i].isalnum() or text[i] in "._"):
                 advance(1)
             line_has_token = True
+            last_code = "0"
             continue
         if not c.isspace():
             line_has_token = True
+            last_code = c
         advance(1)
     for frame in stack:
         if frame[0] == "istr":
@@ -313,7 +380,7 @@ def lex_tokens(text: str, errors: list | None = None):
             break
 
 
-def classify_token(name: str, line_start: bool, plus_before: bool = False, follow: str = ""):
+def classify_token(name: str, line_start: bool, plus_before: bool = False, native_assign=None):
     """Return (kind, layer, severity) or None."""
     last = name.split(".")[-1]
     if last.startswith("\x00"):
@@ -324,7 +391,7 @@ def classify_token(name: str, line_start: bool, plus_before: bool = False, follo
         if last in REVIEW_COMPONENT:
             return last, REVIEW_COMPONENT[last], "review"
         return None
-    if name == "native" and (plus_before or _NATIVE_TRUE.match(follow)):
+    if name == "native" and (plus_before or native_assign == "other"):
         return "native", "A2", "violation"
     if "." not in name:
         if name in VIOLATION_EXACT:
@@ -353,37 +420,70 @@ def context_of(path: str) -> str:
     return "production"
 
 
-def scan_text(text: str, path: str, blob: str | None = None) -> list[dict]:
+def scan_text(text: str, path: str, blob: str | None = None, context_path: str | None = None) -> list[dict]:
     out = []
-    ctx = context_of(path)
+    cpath = context_path if context_path is not None else path
+    ctx = context_of(cpath)
     errors: list = []
     found = []
-    for name, ln, cl, first, plus, follow in lex_tokens(text, errors):
-        r = classify_token(name, first, plus, follow)
+    for name, ln, cl, first, plus, native_assign in lex_tokens(text, errors):
+        r = classify_token(name, first, plus, native_assign)
         if r is not None:
             found.append((ln, cl, name.replace("\x00", "«").replace("\x01", "."), r))
     for ln, cl, kind in errors:
         found.append((ln, cl, "", (kind, "A", "error")))
     for ln, cl, token, (kind, layer, sev) in sorted(found, key=lambda x: (x[0], x[1])):
         f = {"path": path, "line": ln, "col": cl, "token": token, "kind": kind,
-             "layer": layer, "severity": sev, "context": ctx}
+             "layer": layer, "severity": sev, "context": ctx, "context_path": cpath}
         if blob:
             f["blob"] = blob
         out.append(f)
     return out
 
 
-def iter_fs(paths):
+def _raise(exc):
+    raise exc
+
+
+def _git_top(directory: str):
+    """The enclosing git work tree of an absolute directory, or None."""
+    d = directory
+    while True:
+        if os.path.exists(os.path.join(d, ".git")):
+            return d
+        parent = os.path.dirname(d)
+        if parent == d:
+            return None
+        d = parent
+
+
+def _context_path(full: str, scan_base: str, context_root: str | None) -> str:
+    full = os.path.abspath(full)
+    if context_root is not None:
+        rel = os.path.relpath(full, os.path.abspath(context_root))
+        if rel == ".." or rel.startswith(".." + os.sep):
+            raise ValueError(f"{full} is outside --context-root {context_root}")
+        return rel.replace(os.sep, "/")
+    base = _git_top(os.path.dirname(full)) or os.path.abspath(scan_base)
+    return os.path.relpath(full, base).replace(os.sep, "/")
+
+
+def iter_fs(paths, context_root: str | None = None):
+    """Yield (display_path, full_path, context_path) for every .lean input file.
+
+    A missing path or an untraversable directory raises OSError (fail closed)."""
     for p in paths:
         if os.path.isdir(p):
-            for root, dirs, files in os.walk(p):
+            for root, dirs, files in os.walk(p, onerror=_raise):
                 dirs[:] = sorted(d for d in dirs if d != ".git")
                 for fn in sorted(files):
                     if fn.endswith(".lean"):
                         full = os.path.join(root, fn)
-                        yield os.path.relpath(full, p), full
+                        yield os.path.relpath(full, p), full, _context_path(full, p, context_root)
+        elif not os.path.exists(p):
+            raise FileNotFoundError(2, "scan root does not exist", p)
         elif p.endswith(".lean"):
-            yield p, p
+            yield p, p, _context_path(p, os.path.dirname(os.path.abspath(p)), context_root)
 
 
 def git_lean_blobs(repo: str, rev: str):
@@ -424,10 +524,19 @@ def main(argv=None) -> int:
     ap.add_argument("--rev", default="HEAD")
     ap.add_argument("--json", metavar="FILE")
     ap.add_argument("--fail-on", default="production")
+    ap.add_argument("--context-root", metavar="DIR")
     args = ap.parse_args(argv)
     if not args.paths and not args.git:
         ap.print_usage(sys.stderr)
         return 2
+    if args.fail_on == "all":
+        fail_ctx = None
+    else:
+        fail_ctx = set(args.fail_on.split(","))
+        if not fail_ctx <= set(CONTEXTS):
+            print(f"layer_a_scan: error: --fail-on must name contexts from {', '.join(CONTEXTS)} "
+                  f"or be 'all', got {args.fail_on!r}", file=sys.stderr)
+            return 2
     findings: list[dict] = []
     files = 0
     undecodable = []
@@ -441,7 +550,7 @@ def main(argv=None) -> int:
                     undecodable.append(p)
                     continue
                 findings += scan_text(text, p, sha)
-        for rel, full in iter_fs(args.paths):
+        for rel, full, cpath in iter_fs(args.paths, args.context_root):
             files += 1
             try:
                 with open(full, encoding="utf-8") as fh:
@@ -449,11 +558,10 @@ def main(argv=None) -> int:
             except UnicodeDecodeError:
                 undecodable.append(rel)
                 continue
-            findings += scan_text(text, rel)
-    except (OSError, subprocess.CalledProcessError) as exc:
+            findings += scan_text(text, rel, context_path=cpath)
+    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
         print(f"layer_a_scan: error: {exc}", file=sys.stderr)
         return 2
-    fail_ctx = None if args.fail_on == "all" else set(args.fail_on.split(","))
     failing = [f for f in findings if f["severity"] in ("violation", "error")
                and (fail_ctx is None or f["context"] in fail_ctx)]
     summary = {"files": files, "findings": len(findings),

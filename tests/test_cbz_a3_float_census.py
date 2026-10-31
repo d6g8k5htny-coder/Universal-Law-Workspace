@@ -9,6 +9,7 @@ import os
 import re
 import shutil
 import subprocess
+from unittest import mock
 import sys
 import tempfile
 import unittest
@@ -97,6 +98,29 @@ class Signals(unittest.TestCase):
         self.assertIn((1, "interval_layer", "math.ulp"), sig)
         self.assertEqual(kinds("import iax\nx = 0.5\n")[0], "FLOAT_SIGNAL")
 
+    def test_alias_imported_after_its_use_in_a_function(self):
+        self.assertEqual(kinds("def f(n):\n    return m.sqrt(n)\nimport math as m\nprint(f(2))\n"),
+                         ("FLOAT_SIGNAL", [(2, "math_float", "math.sqrt")]))
+        cls, sig = kinds("def f():\n    return mp.mpf(1)\nimport mpmath as mp\nx = mp.iv\n")
+        self.assertIn((4, "exact_module", "mpmath.iv"), sig)
+
+    def test_interval_module_imported_through_parent_package(self):
+        for src in ["from . import ia\nx = ia.up(0.5)\n", "from pkg import ia\nx = ia.up(0.5)\n",
+                    "from pkg import ia as I\nx = I.up(0.5)\n", "from .. import other, ia\nx = 0.5\n"]:
+            with self.subTest(src=src):
+                cls, sig = kinds(src)
+                self.assertEqual(cls, "MIXED")
+                self.assertIn("interval_layer", [k for _, k, _ in sig])
+        self.assertEqual(kinds("from pkg import iax\nx = 0.5\n")[0], "FLOAT_SIGNAL")
+
+    def test_declared_source_encodings_are_honoured(self):
+        self.assertEqual(M.census_text(b"\xef\xbb\xbfx = 0.5\n", "bom.py")["class"], "FLOAT_SIGNAL")
+        latin = b"# -*- coding: latin-1 -*-\ns = '\xe9'\nx = 0.5\n"
+        self.assertEqual(M.census_text(latin, "latin.py")["class"], "FLOAT_SIGNAL")
+        # genuinely undecodable source still fails closed
+        self.assertEqual(M.census_text(b"x = '\xff\xfe'\n", "bad.py")["class"], "UNPARSEABLE")
+        self.assertEqual(M.census_text(b"# coding: no-such-codec\nx = 1\n", "bad2.py")["class"], "UNPARSEABLE")
+
     def test_strings_and_comments_are_not_code(self):
         self.assertEqual(kinds("s = '0.5 / 2 float(x)'\n# x = 0.5\n"), ("NO_FLOAT_SIGNAL", []))
 
@@ -137,6 +161,8 @@ class CommandLine(unittest.TestCase):
             git("init", "-q")
             with open(os.path.join(d, "a.py"), "w") as fh:
                 fh.write("x = 0.25\n")
+            with open(os.path.join(d, "b.py"), "wb") as fh:
+                fh.write(b"# -*- coding: latin-1 -*-\n\xe9t\xe9 = 1\n")
             git("add", "-A")
             git("commit", "-q", "-m", "c")
             out = os.path.join(d, "o.json")
@@ -144,11 +170,48 @@ class CommandLine(unittest.TestCase):
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             with open(out) as fh:
                 data = json.load(fh)
-            self.assertEqual(data["files"][0]["class"], "FLOAT_SIGNAL")
-            self.assertEqual(len(data["files"][0]["blob"]), 40)
+            by_path = {f["path"]: f for f in data["files"]}
+            self.assertEqual(by_path["a.py"]["class"], "FLOAT_SIGNAL")
+            self.assertEqual(by_path["b.py"]["class"], "NO_FLOAT_SIGNAL")
+            self.assertEqual(len(by_path["a.py"]["blob"]), 40)
 
     def test_usage(self):
         self.assertEqual(self.run_cli([]).returncode, 2)
+
+    def test_missing_root_is_an_error(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.assertEqual(self.run_cli([os.path.join(d, "no-such-dir")]).returncode, 2)
+            self.assertEqual(self.run_cli([d]).returncode, 0)
+
+    def test_traversal_error_fails_closed(self):
+        with tempfile.TemporaryDirectory() as d:
+            os.makedirs(os.path.join(d, "certs"))
+            with open(os.path.join(d, "certs", "c.py"), "w") as fh:
+                fh.write("x = 0.5\n")
+            real = os.scandir
+
+            def guarded(path="."):
+                if os.path.basename(os.fspath(path)) == "certs":
+                    raise PermissionError(13, "Permission denied", os.fspath(path))
+                return real(path)
+
+            with mock.patch("os.scandir", guarded):
+                self.assertEqual(M.main([d]), 2)
+
+    def test_encodings_in_directory_and_git_modes(self):
+        with tempfile.TemporaryDirectory() as d:
+            with open(os.path.join(d, "a.py"), "wb") as fh:
+                fh.write(b"\xef\xbb\xbfx = 0.5\n")
+            with open(os.path.join(d, "b.py"), "wb") as fh:
+                # a latin-1 identifier only parses when the declared encoding is honoured
+                fh.write(b"# -*- coding: latin-1 -*-\n\xe9t\xe9 = 1\ns = '\xe9'\n")
+            out = os.path.join(d, "o.json")
+            r = self.run_cli([d, "--json", out])
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            with open(out) as fh:
+                data = json.load(fh)
+            self.assertEqual(sorted((f["path"], f["class"]) for f in data["files"]),
+                             [("a.py", "FLOAT_SIGNAL"), ("b.py", "NO_FLOAT_SIGNAL")])
 
 
 MUTANTS = [
@@ -171,6 +234,15 @@ MUTANTS = [
     ("mixed collapsed", '("MIXED" if has_exact else "FLOAT_SIGNAL")', '"FLOAT_SIGNAL"'),
     ("unparseable passes", 'return 1 if by_class.get("UNPARSEABLE") else 0', "return 0"),
     ("git mode lists nothing", 'if typ == b"blob" and p.endswith(".py"):', "if False:"),
+    # added for the ULW#29 automated-review findings
+    ("aliases not pre-collected", "    v.collect_aliases(tree)\n", ""),
+    ("parent-package ia ignored", '        elif any(a.name == "ia" for a in node.names):', "        elif False:"),
+    ("source decoded as utf-8 text", "            records.append(census_text(data, rel))",
+     "            records.append(census_text(data.decode('utf-8', 'replace').lstrip('\\ufeff'), rel))"),
+    ("git source decoded strictly", "                records.append(census_text(data, p, sha))",
+     "                records.append(census_text(data.decode('utf-8'), p, sha))"),
+    ("missing input passes", '            raise FileNotFoundError(2, "input path does not exist", p)', "            continue"),
+    ("walk errors ignored", "for root, dirs, files in os.walk(p, onerror=_raise):", "for root, dirs, files in os.walk(p):"),
 ]
 
 

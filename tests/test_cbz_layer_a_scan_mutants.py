@@ -38,7 +38,8 @@ MUTANTS = [
     ("violation demoted to review", 'return name, VIOLATION_EXACT[name], "violation"',
      'return name, VIOLATION_EXACT[name], "review"'),
     ("no line comments", 'if c == "-" and text.startswith("--", i):', 'if False:'),
-    ("flat block comments", "                    depth += 1\n", "                    depth = 1\n"),
+    ("flat block comments", "                    depth += 1\n                    advance(2)",
+     "                    depth = 1\n                    advance(2)"),
     ("plain strings not skipped", "        if c == '\"':\n            start = (line, col)\n            advance(1)",
      "        if False:\n            start = (line, col)\n            advance(1)"),
     ("interpolation regions not lexed", 'stack.append(["code", 0])', "pass"),
@@ -56,9 +57,9 @@ MUTANTS = [
      'ap.add_argument("--fail-on", default="all")'),
     # added after 014K's specification (main#684/6503596060)
     ("drop addDeclWithoutChecking", '    "addDeclWithoutChecking": "A2",\n', ""),
-    ("+native ignored", 'if name == "native" and (plus_before or _NATIVE_TRUE.match(follow)):',
-     'if name == "native" and _NATIVE_TRUE.match(follow):'),
-    ("native := true ignored", 'if name == "native" and (plus_before or _NATIVE_TRUE.match(follow)):',
+    ("+native ignored", 'if name == "native" and (plus_before or native_assign == "other"):',
+     'if name == "native" and native_assign == "other":'),
+    ("native := true ignored", 'if name == "native" and (plus_before or native_assign == "other"):',
      'if name == "native" and plus_before:'),
     ("escaped constants never match", "        # escaped component: the same constant name, never a keyword\n        last = last[1:]",
      "        return None"),
@@ -80,6 +81,27 @@ MUTANTS = [
      '                    return',
      '                    advance(n - i)\n                    return'),
     ("lex errors never fail", 'f["severity"] in ("violation", "error")', 'f["severity"] == "violation"'),
+    # added for the ULW#29 automated-review findings
+    ("comments not skipped after native", "    j = _skip_trivia(text, j)\n    if not text.startswith(\":=\", j):",
+     "    if not text.startswith(\":=\", j):"),
+    ("comments not skipped before the value", "    j = _skip_trivia(text, j + 2)", "    j = j + 2"),
+    ("block comments not skipped", "        elif text.startswith(\"/-\", j):\n            depth = 0",
+     "        elif False:\n            depth = 0"),
+    ("any value but true allowed", '    return "other"\n', '    return "false" if text.startswith("true", j) is False else "other"\n'),
+    ("comment resets the previous token",
+     '                errors.append(start + ("unterminated_comment",))\n            continue',
+     '                errors.append(start + ("unterminated_comment",))\n            last_code = "-"\n            continue'),
+    ("nested trivia comments flat", "                    depth += 1\n                    j += 2", "                    depth = 1\n                    j += 2"),
+    ("declaration names flagged", 'if name == "native" and not declared else None', 'if name == "native" else None'),
+    ("missing roots pass", '            raise FileNotFoundError(2, "scan root does not exist", p)', "            continue"),
+    ("walk errors ignored", "for root, dirs, files in os.walk(p, onerror=_raise):", "for root, dirs, files in os.walk(p):"),
+    ("fail-on not validated", "        if not fail_ctx <= set(CONTEXTS):", "        if False:"),
+    ("context from spelled path", '            findings += scan_text(text, rel, context_path=cpath)',
+     '            findings += scan_text(text, rel)'),
+    ("git work tree ignored", "    base = _git_top(os.path.dirname(full)) or os.path.abspath(scan_base)",
+     "    base = os.path.abspath(scan_base)"),
+    ("context root outside accepted", '            raise ValueError(f"{full} is outside --context-root {context_root}")',
+     "            pass"),
 ]
 
 
@@ -118,7 +140,7 @@ class ScannerMutants(unittest.TestCase):
                     if not killed(r):
                         survivors.append(name)
         self.assertEqual(survivors, [], f"surviving mutants: {survivors}")
-        self.assertGreaterEqual(len(MUTANTS), 39)
+        self.assertGreaterEqual(len(MUTANTS), 51)
 
 
 if __name__ == "__main__":

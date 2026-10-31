@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORKSPACE = os.path.dirname(HERE)
@@ -69,6 +70,28 @@ class ViolationTokens(unittest.TestCase):
                          [(1, 38, "native", "violation")])
         self.assertEqual(hits("example : 2 = 2 := by decide +kernel"), [])
         self.assertEqual(hits("example : P := by decide (config := { native := false })"), [])
+        self.assertEqual(hits("example : P := by decide (config := { native := /- c -/ false })"), [])
+
+    def test_native_options_across_comments_and_lines(self):
+        # comments and line breaks do not change the option's meaning
+        self.assertEqual(hits("example : P := by decide (config := { native := /- use compiler -/ true })"),
+                         [(1, 39, "native", "violation")])
+        self.assertEqual(hits("example : 2 = 2 := by decide + /- c -/ native"), [(1, 40, "native", "violation")])
+        self.assertEqual(hits("example : 2 = 2 := by decide +\n  native"), [(2, 3, "native", "violation")])
+        self.assertEqual(hits("example : P := by decide (config := { native := -- c\n true })"),
+                         [(1, 39, "native", "violation")])
+        # a nested comment ends at its matching close, not at the first one
+        self.assertEqual(hits("example : P := by decide (config := { native := /- a /- b -/ false -/ true })"),
+                         [(1, 39, "native", "violation")])
+        # any value other than the literal false selects or may select compiler evaluation
+        self.assertEqual(hits("example : P := by decide (config := { native := (true) })"),
+                         [(1, 39, "native", "violation")])
+        self.assertEqual(hits("example : P := by decide (config := { native := flag })"),
+                         [(1, 39, "native", "violation")])
+        self.assertEqual(hits("example : P := by decide (config := { native := falsey })"),
+                         [(1, 39, "native", "violation")])
+        # a structure field declaration with a type is not an option assignment
+        self.assertEqual(hits("structure C where\n  native : Bool := false"), [])
         self.assertEqual(hits("def native := 1 ; def y := native + 1"), [])
         self.assertEqual(hits("def y := native"), [])
         # safe direction: arithmetic on an identifier named native is also flagged
@@ -263,6 +286,81 @@ class CommandLine(unittest.TestCase):
 
     def test_usage_error(self):
         self.assertEqual(cli([]).returncode, 2)
+
+    def test_missing_scan_root_is_an_error(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = cli([os.path.join(d, "no-such-checkout")])
+            self.assertEqual(r.returncode, 2, r.stdout + r.stderr)
+            self.assertEqual(cli([os.path.join(d, "Missing.lean")]).returncode, 2)
+            # an existing directory without Lean files is legitimately empty
+            self.assertEqual(cli([d]).returncode, 0)
+
+    def test_traversal_error_fails_closed(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.write(d, "ok/A.lean", "theorem t : True := trivial\n")
+            self.write(d, "proofs/B.lean", "theorem u : True := sorry\n")
+            real = os.scandir
+
+            def guarded(path="."):
+                if os.path.basename(os.fspath(path)) == "proofs":
+                    raise PermissionError(13, "Permission denied", os.fspath(path))
+                return real(path)
+
+            with mock.patch("os.scandir", guarded):
+                self.assertEqual(M.main([d]), 2)
+
+    def test_fail_on_rejects_unknown_contexts(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.write(d, "A.lean", "example : False := by sorry\n")
+            for bad in ["prodution", "", "production,", ",control", "production,nope"]:
+                with self.subTest(fail_on=bad):
+                    self.assertEqual(cli([d, "--fail-on", bad]).returncode, 2)
+            self.assertEqual(cli([d, "--fail-on", "production,control"]).returncode, 1)
+            self.assertEqual(cli([d, "--fail-on", "evidence_copy"]).returncode, 0)
+
+    def git_init(self, d):
+        env = dict(os.environ, GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_SYSTEM=os.devnull)
+        subprocess.run(["git", "init", "-q", d], check=True, capture_output=True, env=env)
+
+    def test_context_does_not_depend_on_path_spelling(self):
+        with tempfile.TemporaryDirectory() as d:
+            repo = os.path.join(d, "checkout")
+            os.makedirs(repo)
+            self.git_init(repo)
+            self.write(repo, "raw/A.lean", "theorem t : True := sorry\n")
+            spellings = [repo, os.path.join(repo, "raw"), os.path.join(repo, "raw", "A.lean")]
+            for arg in spellings:
+                with self.subTest(arg=arg):
+                    out = os.path.join(d, "o.json")
+                    r = cli([arg, "--json", out])
+                    self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+                    with open(out, encoding="utf-8") as fh:
+                        data = json.load(fh)
+                    self.assertEqual([(f["context"], f["context_path"]) for f in data["findings"]],
+                                     [("evidence_copy", "raw/A.lean")])
+
+    def test_unrelated_ancestor_does_not_change_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+            r = cli([p])
+            self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+            self.assertIn("P.lean:1:21: A1 sorry (production)", r.stdout)
+            r = cli([os.path.join(d, "archive", "project")])
+            self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+
+    def test_explicit_context_root(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+            out = os.path.join(d, "o.json")
+            r = cli([p, "--context-root", d, "--json", out])
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            with open(out, encoding="utf-8") as fh:
+                data = json.load(fh)
+            self.assertEqual(data["findings"][0]["context_path"], "archive/project/P.lean")
+            self.assertEqual(data["findings"][0]["context"], "evidence_copy")
+            # a file outside the stated context root cannot be classified: usage error
+            with tempfile.TemporaryDirectory() as other:
+                self.assertEqual(cli([p, "--context-root", other]).returncode, 2)
 
     def test_git_tree_mode(self):
         with tempfile.TemporaryDirectory() as d:
