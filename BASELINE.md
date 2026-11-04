@@ -15,11 +15,11 @@ Source cut used for this stage:
 |---|---|
 | G0–G1 Layer A auditor and full audit | Not established. The lexical Lean-source discovery is not a verified auditor. |
 | G2 axiom audit | Not established for the complete federation. |
-| G3 Lean build | Local formal-core execution failed because `lake` was absent; a separate hosted run is underway. |
-| G4 kernel audit | Not established for the complete federation. |
+| G3 Lean build | Local formal-core execution failed because `lake` was absent; a separate hosted formal-core build at Math- `8151f592` passed. Full federation build is not established. |
+| G4 kernel audit | The same hosted formal-core run timed out during `leanchecker` after 900 seconds; the complete federation audit is not established. |
 | G5 full regression | Not run federation-wide. Workspace and Math- formal-core Python controls are scoped observations in STATUS.md. Workspace hosted contract run 40918511097 failed on an unexpected gitlink in `e347db7`; run 40918788940 passed on corrected commit `66019e4`. |
 | G6 mutation | Strict pin-checker mutations are bounded engineering controls, not a full Layer A mutation result. |
-| G7 pin sync | Candidate pins and three control blobs were rebound to a source cut. Workspace pin run 40918510771 failed on an unexpected gitlink in `e347db7`. On corrected commit `66019e4`, run 40918789181 rejected Main drift from `4ef1867` to `81acc06`. The Main pin was subsequently refreshed; verify the newer commit. Historical authority source is separate. |
+| G7 pin sync | Candidate pins and three control blobs were rebound to a source cut. Run 40918510771 failed on an unexpected gitlink in `e347db7`; run 40918789181 rejected Main drift on `66019e4`; run 40919435108 rejected meta-framework drift on `a4b0168`. This candidate refreshes that pin and adds a source-blob check. Verify the actual candidate and all transitive cross-repo bindings separately. The authority-map source is historical. |
 | G8 status truth | Partial; several inventories and source-authority boundaries remain incomplete. |
 | G9 cold start | Not run. STATUS is not yet sufficient for a complete cold-start acceptance. |
 | G10 Git hygiene | Not met at discovery: many branches and open PRs remain. Other agents' worktrees and stashes were not observed. |

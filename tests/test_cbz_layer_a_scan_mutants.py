@@ -102,6 +102,18 @@ MUTANTS = [
      "    base = os.path.abspath(scan_base)"),
     ("context root outside accepted", '            raise ValueError(f"{full} is outside --context-root {context_root}")',
      "            pass"),
+    # Git-context discovery must validate markers and ignore ambient redirection.
+    ("unvalidated Git marker accepted", '        if os.path.exists(os.path.join(d, ".git")):\n',
+     '        if os.path.exists(os.path.join(d, ".git")):\n            return d\n'),
+    ("Git environment redirects discovery",
+     '    # Discovery must be tied to the filesystem input, not ambient Git overrides.\n'
+     '    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}\n',
+     '    env = dict(os.environ)\n'),
+    ("unrelated configured worktree accepted",
+     '                    raise ValueError(f"{directory} is outside discovered Git worktree {top}")',
+     '                    return top'),
+    ("linked worktree gitfile ignored", '        if os.path.exists(os.path.join(d, ".git")):',
+     '        if os.path.isdir(os.path.join(d, ".git")):'),
 ]
 
 

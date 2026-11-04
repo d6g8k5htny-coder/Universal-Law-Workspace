@@ -1,0 +1,77 @@
+{
+  "schema": "cbz.canonical-harness.qualification.v1",
+  "observed_utc": "2026-10-29 20:01:45 UTC",
+  "repository": "d6g8k5htny-coder/Universal-Law-Workspace",
+  "mathematical_certification": false,
+  "cbz_green": false,
+  "red": {
+    "head": "d4ae729871d17332f9adc705cc55e082897bc5ed",
+    "tested_merge": "e4d82962fa67d38f715cd86d0a92546fc30d2a83",
+    "tree": "76b9d10cb04f61d51385c93b031545037e949628",
+    "workflow_run": 40942797333,
+    "job": 123690270511,
+    "result": "failure",
+    "tests": 107,
+    "failures": 1,
+    "errors": 0,
+    "skips": 0,
+    "intended_failure": "test_actual_silent_checker_exit_is_not_a_mutation_kill",
+    "normal_only": true,
+    "optimized": "NOT_RUN_AFTER_NORMAL_FAILURE"
+  },
+  "green": {
+    "head": "8397f29669ba213dcc6e678dd9f8015033f1e5af",
+    "tested_merge": "10f9d4e8ecb98ad1e7abcced3b548160d6c6106c",
+    "tree": "85d96123ab4800268ad9858a010e139cd825ad22",
+    "workflow_run": 40943291131,
+    "job": 123691959826,
+    "result": "success",
+    "runs": [
+      {
+        "mode": "normal",
+        "tests": 110,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "seconds": "17.562"
+      },
+      {
+        "mode": "optimized",
+        "tests": 110,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "seconds": "16.312"
+      }
+    ],
+    "canonical_source_mutants": 13,
+    "classifier_source_mutants": 4,
+    "retained_strict_pin_source_mutants": 15,
+    "adverse_inner_checkers": [
+      "silent-exit-86",
+      "silent-exit-1",
+      "silent-exit-0",
+      "traceback-exit",
+      "unrelated-refusal-diagnostic"
+    ]
+  },
+  "pin_failure": {
+    "head": "8397f29669ba213dcc6e678dd9f8015033f1e5af",
+    "workflow_run": 40943291189,
+    "job": 123691960126,
+    "result": "failure",
+    "exact_drift": [
+      {
+        "repository": "main",
+        "pinned": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
+        "observed": "c93cec70223281492709ff74ca84fed5dc6e40e8"
+      },
+      {
+        "repository": "Math-",
+        "pinned": "8151f592918a845bf19eb8eafaf8444540a32734",
+        "observed": "e877242cf68fb24c605066f16dd07f513ee75a1d"
+      }
+    ]
+  },
+  "boundary": "Source-identity engineering component only. No current G7, global G0-G11, mathematical or CBZ-0 claim. Network observations are sequential. Original historical failures are retained."
+}

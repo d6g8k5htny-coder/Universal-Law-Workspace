@@ -341,16 +341,145 @@ class CommandLine(unittest.TestCase):
 
     def test_unrelated_ancestor_does_not_change_context(self):
         with tempfile.TemporaryDirectory() as d:
+            self.git_init(d)
             p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+            # Own the project boundary even when TMPDIR is inside a Git checkout.
+            self.git_init(os.path.join(d, "archive", "project"))
             r = cli([p])
             self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
             self.assertIn("P.lean:1:21: A1 sorry (production)", r.stdout)
             r = cli([os.path.join(d, "archive", "project")])
             self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
 
+    def test_invalid_nested_git_markers_preserve_outer_context(self):
+        for marker in ("empty-directory", "malformed-file", "missing-gitdir"):
+            with self.subTest(marker=marker), tempfile.TemporaryDirectory() as d:
+                self.git_init(d)
+                p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+                project = os.path.dirname(p)
+                git_path = os.path.join(project, ".git")
+                if marker == "empty-directory":
+                    os.mkdir(git_path)
+                else:
+                    with open(git_path, "w", encoding="utf-8") as fh:
+                        fh.write("not a gitfile\n" if marker == "malformed-file"
+                                 else "gitdir: missing-target\n")
+                for arg in (p, project):
+                    with self.subTest(arg=arg):
+                        out = os.path.join(d, "out.json")
+                        r = cli([arg, "--json", out])
+                        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+                        with open(out, encoding="utf-8") as fh:
+                            data = json.load(fh)
+                        self.assertEqual([(f["context"], f["context_path"]) for f in data["findings"]],
+                                         [("evidence_copy", "archive/project/P.lean")])
+
+    def test_real_outer_repository_retains_archive_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.git_init(d)
+            p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+            for arg in (p, os.path.dirname(p)):
+                with self.subTest(arg=arg):
+                    out = os.path.join(d, "out.json")
+                    r = cli([arg, "--json", out])
+                    self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+                    with open(out, encoding="utf-8") as fh:
+                        data = json.load(fh)
+                    self.assertEqual(data["findings"][0]["context_path"], "archive/project/P.lean")
+
+    def test_linked_worktree_gitfile_supplies_its_own_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            repo = os.path.join(d, "repo")
+            self.git_init(repo)
+            env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+            env.update(GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_SYSTEM=os.devnull)
+            command = ["git", "-C", repo, "-c", "user.name=t", "-c", "user.email=t@x",
+                       "-c", "commit.gpgsign=false"]
+            subprocess.run(command + ["commit", "--allow-empty", "-qm", "fixture"],
+                           check=True, capture_output=True, env=env)
+            worktree = os.path.join(d, "archive", "linked")
+            subprocess.run(command + ["worktree", "add", "--detach", worktree, "HEAD"],
+                           check=True, capture_output=True, env=env)
+            p = self.write(worktree, "raw/P.lean", "theorem t : True := sorry\n")
+            out = os.path.join(d, "out.json")
+            r = cli([p, "--json", out])
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            with open(out, encoding="utf-8") as fh:
+                data = json.load(fh)
+            self.assertEqual(data["findings"][0]["context_path"], "raw/P.lean")
+
+    def test_git_environment_cannot_redirect_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            repo = os.path.join(d, "repo")
+            other = os.path.join(d, "other")
+            self.git_init(repo)
+            self.git_init(other)
+            p = self.write(repo, "raw/P.lean", "theorem t : True := sorry\n")
+            out = os.path.join(d, "out.json")
+            with mock.patch.dict(os.environ, {"GIT_DIR": os.path.join(other, ".git"),
+                                              "GIT_WORK_TREE": other,
+                                              "GIT_CEILING_DIRECTORIES": repo}):
+                r = cli([p, "--json", out])
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            with open(out, encoding="utf-8") as fh:
+                data = json.load(fh)
+            self.assertEqual(data["findings"][0]["context_path"], "raw/P.lean")
+
+    def test_unrelated_configured_worktree_fails_closed(self):
+        with tempfile.TemporaryDirectory() as d:
+            repo = os.path.join(d, "repo")
+            other = os.path.join(d, "other")
+            self.git_init(repo)
+            os.mkdir(other)
+            p = self.write(repo, "P.lean", "theorem t : True := sorry\n")
+            subprocess.run(["git", "-C", repo, "config", "core.worktree", other],
+                           check=True, capture_output=True)
+            r = cli([p])
+            self.assertEqual(r.returncode, 2, r.stdout + r.stderr)
+            self.assertIn("outside discovered Git worktree", r.stderr)
+
+    def test_missing_git_executable_fails_closed(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.git_init(d)
+            p = self.write(d, "P.lean", "theorem t : True := sorry\n")
+            with mock.patch.object(M.subprocess, "run", side_effect=FileNotFoundError("git")):
+                self.assertEqual(M.main([p]), 2)
+
+    def test_no_worktree_uses_scan_argument_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+            # Exercise the fallback without assuming anything about host ancestors.
+            with mock.patch.object(M, "_git_top", return_value=None):
+                self.assertEqual(M._context_path(p, os.path.dirname(p), None), "P.lean")
+                self.assertEqual(M._context_path(p, d, None), "archive/project/P.lean")
+
+    def test_unvalidated_markers_do_not_establish_a_worktree(self):
+        with tempfile.TemporaryDirectory() as d:
+            os.mkdir(os.path.join(d, ".git"))
+            # Discovery refusal is controlled; host ancestors may be real repos.
+            refusal = subprocess.CompletedProcess([], 128, stdout="", stderr="not a repository")
+            with mock.patch.object(M.subprocess, "run", return_value=refusal):
+                self.assertIsNone(M._git_top(d))
+
+    def test_symlinked_checkout_keeps_lexical_context(self):
+        with tempfile.TemporaryDirectory() as d:
+            repo = os.path.join(d, "repo")
+            self.git_init(repo)
+            self.write(repo, "raw/P.lean", "theorem t : True := sorry\n")
+            alias = os.path.join(d, "alias")
+            os.symlink(repo, alias, target_is_directory=True)
+            out = os.path.join(d, "out.json")
+            r = cli([os.path.join(alias, "raw", "P.lean"), "--json", out])
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            with open(out, encoding="utf-8") as fh:
+                data = json.load(fh)
+            self.assertEqual(data["findings"][0]["context_path"], "raw/P.lean")
+
     def test_explicit_context_root(self):
         with tempfile.TemporaryDirectory() as d:
             p = self.write(d, "archive/project/P.lean", "theorem t : True := sorry\n")
+            # Git alone says production; the explicit outer root must win.
+            self.git_init(os.path.dirname(p))
             out = os.path.join(d, "o.json")
             r = cli([p, "--context-root", d, "--json", out])
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)

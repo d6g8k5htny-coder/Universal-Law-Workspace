@@ -37,7 +37,12 @@ repository-relative path, so it does not depend on how a path is spelled:
 for a filesystem input, the path relative to the enclosing git work tree,
 else relative to the scan argument (a directory, or a file's parent); an
 explicit ``--context-root DIR`` overrides both. Git-tree mode uses the
-tree path.
+tree path. Filesystem discovery validates enclosing ``.git`` markers with
+Git; an unvalidated marker is skipped, not treated as a worktree. Git must
+be executable when such a marker is encountered. Ambient ``GIT_*`` settings
+cannot redirect discovery. Successful discovery outside the scanned path
+is an error. Nonzero Git results are unvalidated candidates; this is not a
+diagnostic classifier for every Git configuration or ownership refusal.
 
 What it does NOT certify:
   * That a file compiles, or that no placeholder arises through
@@ -447,10 +452,25 @@ def _raise(exc):
 
 def _git_top(directory: str):
     """The enclosing git work tree of an absolute directory, or None."""
+    # Discovery must be tied to the filesystem input, not ambient Git overrides.
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
     d = directory
     while True:
         if os.path.exists(os.path.join(d, ".git")):
-            return d
+            result = subprocess.run(["git", "-C", d, "rev-parse", "--show-toplevel"],
+                                    capture_output=True, text=True, env=env)
+            if result.returncode == 0:
+                top = os.path.realpath(result.stdout.removesuffix("\n"))
+                if os.path.commonpath([os.path.realpath(directory), top]) != top:
+                    raise ValueError(f"{directory} is outside discovered Git worktree {top}")
+                # Git resolves symlinks; retain the matching lexical ancestor so
+                # _context_path does not mix resolved and spelled coordinates.
+                while os.path.realpath(d) != top:
+                    parent = os.path.dirname(d)
+                    if parent == d:
+                        raise ValueError(f"cannot locate discovered Git worktree {top}")
+                    d = parent
+                return d
         parent = os.path.dirname(d)
         if parent == d:
             return None
