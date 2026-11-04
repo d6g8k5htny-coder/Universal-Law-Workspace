@@ -199,3 +199,21 @@ workspace is being assessed; it is not yet CBZ-0.
   ran 44 tests with nine failing assertions/subtests; repaired focused tests
   passed 44 in each mode. Complete source-bound suite qualification is pending.
   No historical evidence, pins, theorem status or review disposition changes.
+
+- 2026-11-04 19:15 UTC · Phase 3 · B/C · Align the strict-pin mutation
+  contract in GOVERNANCE.md with the existing source at Workspace PR33 head
+  2ad2a8a4fc5cd603690fc6e4704fdcae54a83d6d. Its two missing-ref mutants record
+  an exact diagnostic demotion even when another guard still refuses; they
+  do not demonstrate complete invalid-source acceptance. Retain the default
+  acceptance outcome, separate remote-contact and ancestry outcomes, exact
+  test/nonce/outcome binding, all fifteen mutants and all assertions. The
+  pre-edit strict-pin behavior and mutation controls passed 63 tests in each
+  normal and optimized Python mode. This change corrects documentation only;
+  executable sources, tests, pins, historical evidence and the preserved PR32
+  STATUS.md correction are unchanged. New-candidate qualification must be
+  observed, not inferred from those baseline runs. Reversible: yes, ordinary
+  Git history. Evidence: tests/pin_mutation_receipts.py,
+  tests/test_verify_pins_mutations.py,
+  docs/cbz/pin-mutation-demotion-20261029.md and the PR33 source-bound handoff.
+  No inherited review-thread resolution, approval, merge or scientific status
+  change is performed by this correction.

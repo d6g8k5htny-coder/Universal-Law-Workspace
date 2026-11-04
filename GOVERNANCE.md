@@ -123,11 +123,16 @@ weakness. Its source is repaired without changing `tools/verify_pins.py`
 or deleting any of the fifteen mutants or existing assertions. The test-owned
 helper validates the checker result protocol and requires a fresh nonce,
 exact method and intended policy outcome before a failure earns mutation
-credit. The two special outcomes are unverified-source remote contact and
-an unsupported ancestry label; all other scored cases require actual
-acceptance of an invalid source. Checker children receive neither observation
-path nor nonce. Four actual classifier source mutations and five real adverse
-checker behaviors test the evidence boundary itself.
+credit. Most scored cases require actual acceptance of an invalid source.
+Unverified-source remote contact and an unsupported ancestry label are
+separate policy outcomes. The missing-default and missing-configured-branch
+controls instead require the specific diagnostic to be demoted to information,
+even if another guard still refuses; they measure that diagnostic contract,
+not complete invalid-source acceptance. Each of these two cases requires its
+exact `expected-policy-demoted` observation, and an unrelated diagnostic earns
+no credit. Checker children receive neither observation path nor nonce. Four
+actual classifier source mutations and five real adverse checker behaviors
+test the evidence boundary itself.
 
 Run `python3 -m unittest discover -s tests -p 'test_verify_pins_mutations.py' -v`
 and its `python3 -O` equivalent, then the full suite in both modes. The
