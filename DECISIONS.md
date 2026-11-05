@@ -283,3 +283,18 @@ workspace is being assessed; it is not yet CBZ-0.
   failure and other reviews are not resolved by refreshing this pin.
   Reversible through ordinary Git history. No final G7, CBZ-0, scientific
   acceptance, inherited-thread disposition, approval or merge is claimed.
+
+
+- 2026-11-05 22:31 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#751 merged the reviewed exact-location
+  federation-drift repair to 17952bb921899dec55f45fce389ca2cfb8438e6f. Preserve prior Main pin bc416552f9f4f19cf6a56aafd6cdd38ac8922701
+  and its full note history, all seven other complete pin records, executable
+  sources, tests, workflows, canonical map, historical evidence and exact PR32
+  STATUS blob. The integrated Main source passed fresh verify, landing,
+  federation-drift and adverse self-test, formal, architecture, navigation,
+  browser, public-shop and public-intake checks; that engineering qualification
+  changes no mathematical status. New Workspace committed-source and hosted
+  qualification remain separate obligations. Sequential tip observations are
+  not atomic, and this refresh is not final G7, CBZ-0, scientific acceptance,
+  inherited-thread disposition, approval or merge. Reversible through ordinary
+  Git history; evidence: Main#751 and Workspace PR33.
