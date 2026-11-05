@@ -266,3 +266,20 @@ workspace is being assessed; it is not yet CBZ-0.
   Reversible through ordinary Git history. Sequential tip observations are
   not atomic, final G7, CBZ-0, scientific acceptance, inherited-thread
   disposition, approval or merge. Evidence: Workspace PR33 and Math PR552.
+
+- 2026-11-05 21:25 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#730 merged to
+  bc416552f9f4f19cf6a56aafd6cdd38ac8922701 at 21:07 UTC. Fresh custody
+  and queue reads found no competing Workspace writer or imminent integration.
+  Preserve prior Main pin d2b0216e and its full note history, all seven other
+  complete pin records, executable sources, tests, workflows, canonical map,
+  historical evidence and exact PR32 STATUS blob. Baseline structure, offline
+  pins and four canonical identities passed at Workspace e0ab644d; strict
+  currentness failed exactly the new Main drift. The authority-map input
+  remains explicitly historical at a01c72f1, not current Main authority.
+  New candidate and hosted qualification remain separate obligations. Retain
+  the prior evidence archive unchanged; publish only one guarded source cut
+  if defaults and custody still match. Main's existing federation-drift
+  failure and other reviews are not resolved by refreshing this pin.
+  Reversible through ordinary Git history. No final G7, CBZ-0, scientific
+  acceptance, inherited-thread disposition, approval or merge is claimed.
