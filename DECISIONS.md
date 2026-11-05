@@ -298,3 +298,18 @@ workspace is being assessed; it is not yet CBZ-0.
   not atomic, and this refresh is not final G7, CBZ-0, scientific acceptance,
   inherited-thread disposition, approval or merge. Reversible through ordinary
   Git history; evidence: Main#751 and Workspace PR33.
+
+- 2026-11-05 22:55 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#754 closed the reviewed declaration-kind
+  exemption gap and merged normally to
+  165e99b9f2f0f6b8885dec2f73295bfd1c5604cb. Preserve prior Main pin 17952bb921899dec55f45fce389ca2cfb8438e6f
+  and its full note history, all seven other complete pin records, executable
+  sources, tests, workflows, canonical map, historical evidence and exact PR32
+  STATUS blob. The exact Main head passed the drift crawler's 88 behavior and
+  mutation tests in normal and optimized modes, live federation crawl, formal,
+  architecture, navigation and public-shop jobs. This custody-only refresh
+  changes no theorem, bound, kernel result or scientific status. New Workspace
+  committed-source and hosted qualification remain separate obligations.
+  Sequential tip observations are not atomic, and this is not final G7, CBZ-0,
+  scientific acceptance or a full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#754 and the Workspace pin-refresh PR.
