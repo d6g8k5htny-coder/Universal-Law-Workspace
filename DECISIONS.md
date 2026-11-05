@@ -217,3 +217,20 @@ workspace is being assessed; it is not yet CBZ-0.
   docs/cbz/pin-mutation-demotion-20261029.md and the PR33 source-bound handoff.
   No inherited review-thread resolution, approval, merge or scientific status
   change is performed by this correction.
+
+- 2026-11-05 01:48 UTC · Phase 3 · C · Refresh only the Math- pin, gitlink
+  and matching README link after Math-#554 merged to
+  4cc9ff6de9ed6f7887a24e459607fd1061853509. The previous pin
+  dfa9b30a27ea8f8ee647bb067549fa53c7d06ef6 and its note history remain
+  recoverable. All seven other pin records, canonical map, checker/test
+  sources, historical evidence and PR32 STATUS.md correction are unchanged.
+  At prior Workspace head 84e28cba866132ffa987e97a6eea8ba0a782b370, fresh
+  full regression passed 187 tests in each normal and optimized runner mode;
+  strict currentness failed exactly the Math drift, and all four canonical
+  identities passed. Math's two canonical blobs also match at the new pin.
+  Rationale: restore the bounded federation pin contract after upstream moved.
+  New committed-source and hosted qualification must be observed separately.
+  Evidence: Workspace PR33 source-bound handoff and Math- PR554 merge.
+  Reversible: yes, ordinary Git history. Observations are sequential, not an
+  atomic snapshot. No G7 award, CBZ-0, scientific status, inherited-thread
+  disposition, approval or merge is performed by this pin refresh.
