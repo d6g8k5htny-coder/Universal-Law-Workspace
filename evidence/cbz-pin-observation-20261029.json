@@ -1,0 +1,87 @@
+{
+  "schema": "ulw.cbz.pin-refresh.observation.v1",
+  "observed_utc": "2026-10-29T21:45:28Z",
+  "workspace_parent": "0ec778db868d2aef9cb172402a67c7ffd6c4d1de",
+  "workspace_main": "a4b016820329afc1787d9c191572b05cd88236ac",
+  "method": "Sequential GitHub REST default-branch ref reads. No atomic cross-repository snapshot is claimed.",
+  "repositories": [
+    {
+      "name": "main",
+      "path": "repos/main",
+      "branch": "main",
+      "observed_sha": "1e2be44c69e08e47472041ac329e1b27f7dec793"
+    },
+    {
+      "name": "Math-",
+      "path": "repos/Math-",
+      "branch": "main",
+      "observed_sha": "9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966"
+    },
+    {
+      "name": "meta-framework",
+      "path": "repos/meta-framework",
+      "branch": "main",
+      "observed_sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e"
+    },
+    {
+      "name": "query-",
+      "path": "repos/query-",
+      "branch": "main",
+      "observed_sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f"
+    },
+    {
+      "name": "google-drive",
+      "path": "repos/google-drive",
+      "branch": "main",
+      "observed_sha": "ad08584b3ea9d533af10113e85169f471fa8ec93"
+    },
+    {
+      "name": "trial",
+      "path": "repos/trial",
+      "branch": "main",
+      "observed_sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3"
+    },
+    {
+      "name": "governance-",
+      "path": "repos/governance-",
+      "branch": "main",
+      "observed_sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891"
+    },
+    {
+      "name": "sandbox",
+      "path": "repos/sandbox",
+      "branch": "main",
+      "observed_sha": "dce04a4174835107126ab4f36c199a2dc320f964"
+    }
+  ],
+  "changed": [
+    {
+      "name": "main",
+      "old": "81acc060341e8a31cc4cd4f9523ef71fb6c06175",
+      "new": "1e2be44c69e08e47472041ac329e1b27f7dec793"
+    },
+    {
+      "name": "Math-",
+      "old": "8151f592918a845bf19eb8eafaf8444540a32734",
+      "new": "9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966"
+    }
+  ],
+  "prior_component": {
+    "source_head": "0ec778db868d2aef9cb172402a67c7ffd6c4d1de",
+    "run": 40949547576,
+    "job": 123713717737,
+    "tests_per_mode": 115,
+    "conclusion": "success"
+  },
+  "prior_pin_check": {
+    "run": 40949547633,
+    "job": 123713717799,
+    "conclusion": "failure",
+    "reason": "Main and Math pins differed from then-observed default-branch tips"
+  },
+  "limitations": [
+    "No test, mutation or current-pin verification has yet been executed on the candidate created from this observation.",
+    "Public branch tips may change between sequential reads, candidate publication and later checks.",
+    "This is not a final federation vector, G7 pass or mathematical claim."
+  ]
+}

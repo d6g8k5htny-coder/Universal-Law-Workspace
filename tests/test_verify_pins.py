@@ -35,7 +35,10 @@ def run_checker(repo, pins=None, extra=(), python_args=()):
     if pins is not None:
         cmd += ["--pins", pins]
     cmd += list(extra)
-    return subprocess.run(cmd, capture_output=True, text=True)
+    child_env = dict(os.environ)
+    child_env.pop("CBZ_PIN_EVENT", None)
+    child_env.pop("CBZ_PIN_NONCE", None)
+    return subprocess.run(cmd, capture_output=True, text=True, env=child_env)
 
 
 def entry(name, sha, opt_in=False, public=True):
