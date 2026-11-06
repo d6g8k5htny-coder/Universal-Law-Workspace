@@ -313,3 +313,20 @@ workspace is being assessed; it is not yet CBZ-0.
   Sequential tip observations are not atomic, and this is not final G7, CBZ-0,
   scientific acceptance or a full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#754 and the Workspace pin-refresh PR.
+
+- 2026-11-06 00:22 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#720 repaired and qualified the G11
+  auditor component and merged normally to
+  62611e73d3e4bab4e6ac30b9a6f96af310c7d3f3. Preserve prior Main pin 165e99b9f2f0f6b8885dec2f73295bfd1c5604cb
+  and its full note history, all seven other complete pin records, executable
+  sources, tests, workflows, canonical map, historical evidence and exact PR32
+  STATUS blob. The exact Main head passed 38 G11 controls and all 75 adverse
+  mutations in normal and optimized modes, plus live federation crawl, formal,
+  architecture, navigation, browser, public-shop and public-intake checks.
+  The earlier digest RED, target-mismatch RED and their review history remain
+  preserved. This custody-only refresh changes no theorem, bound, kernel result
+  or scientific status. New Workspace committed-source and hosted qualification
+  remain separate obligations. Sequential tip observations are not atomic, and
+  this is not final G7, CBZ-0, scientific acceptance or full Layer A clearance.
+  Reversible through ordinary Git history; evidence: Main#720 and the Workspace
+  pin-refresh PR.
