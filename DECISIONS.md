@@ -428,3 +428,24 @@ workspace is being assessed; it is not yet CBZ-0.
   and this is not final G7, CBZ-0, scientific acceptance or full Layer A
   clearance. Reversible through ordinary Git history; evidence: Main#760 and
   the Workspace pin-refresh PR.
+
+- 2026-11-06 12:55:58 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#761, Main#762 and Main#763 merged
+  normally to 299c7fad72f1079b87b2d044b2d30f2098678f29. Preserve prior
+  Main pin 04989724b5142f8eea8d41946d0367d0372d845a and its full note
+  history, all seven other complete pin records, executable Workspace
+  sources, tests, workflows, canonical map, historical evidence and exact
+  PR32 STATUS blob. Main#761 added the truthful canonical CBZ surfaces;
+  Main#762 repaired G11 workflow-step scope with 39/39 unit tests and 76/76
+  exact mutations in both modes; Main#763 registered the active G11 tooling
+  residue and reduced the observed undocumented/unreferenced count from 55
+  to 48 without manufacturing green. Every hosted head workflow for all
+  three integrations completed successfully. The exact remaining G11
+  boundary is 20 active tools whose exercise attribution is missed and 28
+  tools with no current exercise detected. This custody-only refresh changes
+  no theorem, bound, kernel result or scientific status. New Workspace
+  committed-source and hosted qualification remain separate obligations.
+  Sequential tip observations are not atomic, and this is not final G7,
+  CBZ-0, scientific acceptance or full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#761, Main#762, Main#763 and the
+  Workspace pin-refresh PR.
