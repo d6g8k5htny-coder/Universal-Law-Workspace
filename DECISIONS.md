@@ -408,3 +408,23 @@ workspace is being assessed; it is not yet CBZ-0.
   final G7, CBZ-0, scientific acceptance or full Layer A clearance.
   Reversible through ordinary Git history; evidence: Main#697, Main#758 and
   the Workspace pin-refresh PR.
+
+- 2026-11-06 10:12 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#760 merged normally as
+  04989724b5142f8eea8d41946d0367d0372d845a. Preserve prior Main pin
+  c933b81f59929af85a7f2de5123df1ccfadd7f80 and its full note history, all
+  seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#760 integrates the qualified #698 reconstruction, released P1–P3
+  repairs and the bounded ordinary-string hole traversal repair; its native
+  tree is ce8a2b1687460e7dddfa0aca09b8ef01afa99d39 and its two parents preserve
+  current Main and the reviewed candidate head. All required and candidate-
+  head checks completed successfully before protected merge. The exact
+  documented residual remains: total work is the sum of hole lengths, so many
+  unmatched openings and deeply nested matched holes retain quadratic worst
+  cases. This custody-only refresh changes no theorem, bound, kernel result or
+  scientific status. New Workspace committed-source and hosted qualification
+  remain separate obligations. Sequential tip observations are not atomic,
+  and this is not final G7, CBZ-0, scientific acceptance or full Layer A
+  clearance. Reversible through ordinary Git history; evidence: Main#760 and
+  the Workspace pin-refresh PR.
