@@ -387,3 +387,24 @@ workspace is being assessed; it is not yet CBZ-0.
   final G7, CBZ-0, scientific acceptance or full Layer A clearance.
   Reversible through ordinary Git history; evidence: Main#756 and the
   Workspace pin-refresh PR.
+
+- 2026-11-06 08:08 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#697 and Main#758 merged normally to
+  4cd4799112dcf274ca13e4f208c685544944b6de and
+  c933b81f59929af85a7f2de5123df1ccfadd7f80. Preserve prior Main pin
+  4e8f58760ecc20fb3bf2f989eaf4b9ecfe3caa75 and its full note history, all
+  seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#697 integrated the bounded global-auditor repair; Main#758 repaired the
+  CPython-3.12 empty-discovery adverse control so it isolates the nonempty
+  guard. Every hosted head workflow for both integrations completed
+  successfully. Two fresh local Main full-suite attempts remain preserved as
+  RED because unrelated 20-second child processes timed out; each exact
+  timed-out case passed when rerun alone, and the repaired node-regression file
+  passed all 60 tests in both normal and optimized modes. This custody-only
+  refresh changes no theorem, bound, kernel result or scientific status. New
+  Workspace committed-source and hosted qualification remain separate
+  obligations. Sequential tip observations are not atomic, and this is not
+  final G7, CBZ-0, scientific acceptance or full Layer A clearance.
+  Reversible through ordinary Git history; evidence: Main#697, Main#758 and
+  the Workspace pin-refresh PR.
