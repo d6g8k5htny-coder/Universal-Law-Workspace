@@ -7,10 +7,10 @@
       "path": "repos/main",
       "url": "https://github.com/d6g8k5htny-coder/main.git",
       "default_branch": "main",
-      "pinned_sha": "62611e73d3e4bab4e6ac30b9a6f96af310c7d3f3",
+      "pinned_sha": "a7295bf20741c111da06d72faa846536ff76fa1c",
       "public": true,
       "opt_in": false,
-      "note": "default tip observed 2026-11-06T00:22Z after Main#720 merge; previous pin 165e99b9f2f0f6b8885dec2f73295bfd1c5604cb. Original note: default tip observed 2026-11-05T22:55Z after Main#754 merge; previous pin 17952bb921899dec55f45fce389ca2cfb8438e6f. Original note: default tip observed 2026-11-05T22:31Z after Main#751 merge; previous pin bc416552f9f4f19cf6a56aafd6cdd38ac8922701. Original note: default tip observed 2026-11-05T21:25Z after Main#730 merge; previous pin d2b0216e15d545c47f25b6a9265dd3298971e9fe. Original note: default tip observed 2026-11-04T14:37:05Z; previous pin 1e2be44c69e08e47472041ac329e1b27f7dec793. Original note: default tip observed 2026-10-29T21:45:28Z; previous pin 81acc060341e8a31cc4cd4f9523ef71fb6c06175. Original note: default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time; refreshed after Main governance merge; previous workspace pin 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff"
+      "note": "default tip observed 2026-11-06T04:53Z after Main#752 merge; previous pin 62611e73d3e4bab4e6ac30b9a6f96af310c7d3f3. Original note: default tip observed 2026-11-06T00:22Z after Main#720 merge; previous pin 165e99b9f2f0f6b8885dec2f73295bfd1c5604cb. Original note: default tip observed 2026-11-05T22:55Z after Main#754 merge; previous pin 17952bb921899dec55f45fce389ca2cfb8438e6f. Original note: default tip observed 2026-11-05T22:31Z after Main#751 merge; previous pin bc416552f9f4f19cf6a56aafd6cdd38ac8922701. Original note: default tip observed 2026-11-05T21:25Z after Main#730 merge; previous pin d2b0216e15d545c47f25b6a9265dd3298971e9fe. Original note: default tip observed 2026-11-04T14:37:05Z; previous pin 1e2be44c69e08e47472041ac329e1b27f7dec793. Original note: default tip observed 2026-10-29T21:45:28Z; previous pin 81acc060341e8a31cc4cd4f9523ef71fb6c06175. Original note: default tip observed 2026-10-29T17:01:02Z; previous pin b120e705654a773ac4ba04c324e5f85087e61ab4. Original note: default tip at generation time; refreshed after Main governance merge; previous workspace pin 4ef1867175dbe1072a54a02e95f80c4e2c70a4ff"
     },
     {
       "name": "Math-",
