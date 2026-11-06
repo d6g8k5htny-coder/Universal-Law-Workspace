@@ -368,3 +368,22 @@ workspace is being assessed; it is not yet CBZ-0.
   observations are not atomic, and this is not final G7, CBZ-0, scientific
   acceptance or full Layer A clearance. Reversible through ordinary Git
   history; evidence: Main#721 and the Workspace pin-refresh PR.
+
+- 2026-11-06 06:29 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#756 amended the bounded G12 statement
+  fuzz registration and merged normally to
+  4e8f58760ecc20fb3bf2f989eaf4b9ecfe3caa75. Preserve prior Main pin
+  6096be098e66401b2aa63c8727d9a1e01c058c2d and its full note history, all
+  seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#756 changed only `DECISIONS.md`, `GOVERNANCE.md` and `STATUS.md`;
+  it changed no theorem, bound, certifying implementation or test. Its exact
+  refreshed head passed the local workspace-landing and navigation checks and
+  five fresh current-base hosted workflows across all ten jobs. Earlier G12
+  receipts, limitations and failure boundaries remain preserved. This
+  custody-only refresh changes no mathematical or scientific status. New
+  Workspace committed-source and hosted qualification remain separate
+  obligations. Sequential tip observations are not atomic, and this is not
+  final G7, CBZ-0, scientific acceptance or full Layer A clearance.
+  Reversible through ordinary Git history; evidence: Main#756 and the
+  Workspace pin-refresh PR.
