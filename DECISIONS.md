@@ -449,3 +449,26 @@ workspace is being assessed; it is not yet CBZ-0.
   CBZ-0, scientific acceptance or full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#761, Main#762, Main#763 and the
   Workspace pin-refresh PR.
+
+- 2026-11-08 19:53:37 UTC · Phase 3 · C · Refresh only the Main pin, gitlink
+  and matching README link after Main#764, Main#766, Main#767 and Main#768
+  merged normally to 2540673afc7533584d9f82194fba9c786b8c037b.
+  Preserve prior Main pin 299c7fad72f1079b87b2d044b2d30f2098678f29
+  and its full note history, all seven other complete pin records, executable
+  Workspace sources, tests, workflows, canonical map, historical evidence and
+  exact PR32 STATUS blob. Main#764 repaired bounded G11 active-tool
+  attribution; Main#766 repaired aggregate-alias provenance; Main#767 closed
+  three architecture CLI exercise-attribution gaps; and Main#768 closed the
+  Atlas formal-source-bridge exercise gap. All six post-#768 workflows
+  completed successfully at the exact merge commit. The decoded G11 job ran
+  265 controls per workflow mode and killed all 328 designated mutations per
+  required mode with a 263-test baseline and zero skips. The separate
+  navigation artifact records 2,423 discovered tests with 37 preserved skips.
+  The exact current G11 census still exits nonzero with zero production
+  findings and 28 retained browser-check tools. This custody-only refresh
+  changes no theorem, bound, kernel result or scientific status. New Workspace
+  committed-source and hosted qualification remain separate obligations.
+  Sequential tip observations are not atomic, and this is not final G7,
+  CBZ-0, scientific acceptance or full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#764, Main#766, Main#767, Main#768,
+  durable checkpoint v126 and the Workspace pin-refresh PR.
