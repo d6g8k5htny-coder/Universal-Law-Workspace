@@ -472,3 +472,21 @@ workspace is being assessed; it is not yet CBZ-0.
   CBZ-0, scientific acceptance or full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#764, Main#766, Main#767, Main#768,
   durable checkpoint v126 and the Workspace pin-refresh PR.
+
+- 2026-11-08 21:03:53 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#769 merged normally to
+  90ae56160ebf0ab1f81e3de33efc07bafcbfcc09. Preserve prior Main pin 2540673afc7533584d9f82194fba9c786b8c037b and
+  its full note history, all seven other complete pin records, executable
+  Workspace sources, tests, workflows, canonical map, historical evidence and
+  exact PR32 STATUS blob. Main#769 integrated the focused website-navigation
+  browser regression and fail-closed Chrome-channel launch controls. Before
+  merge, its exact head passed all required checks; the real hosted browser
+  run executed 24/24 cases with zero failures and zero page errors. The exact
+  G11 census still exits nonzero with zero production findings and 27 retained
+  browser-check tools. Post-merge Main workflows and new Workspace
+  committed-source qualification remain separate observations. This
+  custody-only refresh changes no theorem, bound, kernel result or scientific
+  status. Sequential tip observations are not atomic, and this is not final
+  G7, CBZ-0, scientific acceptance or full Layer A clearance. Reversible
+  through ordinary Git history; evidence: Main#769, durable checkpoint v127
+  and this Workspace pin-refresh PR.
