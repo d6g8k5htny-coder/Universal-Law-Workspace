@@ -490,3 +490,25 @@ workspace is being assessed; it is not yet CBZ-0.
   G7, CBZ-0, scientific acceptance or full Layer A clearance. Reversible
   through ordinary Git history; evidence: Main#769, durable checkpoint v127
   and this Workspace pin-refresh PR.
+
+- 2026-11-08 22:33:34 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#770 merged normally to
+  6bf348787f19a6c9159d13c393a5a1ee93b09ecb. Preserve prior Main pin
+  90ae56160ebf0ab1f81e3de33efc07bafcbfcc09 and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#770 integrated the focused Atlas accessibility browser regression,
+  an explicit installed-Chrome channel default, retained sandboxing, and
+  fail-closed runner, mutation and workflow-reference controls. Its exact
+  focused controls passed 38/38 in normal and optimized modes; the complete
+  Main suite passed 2,433 tests with 25 preserved skips in each mode. The
+  protected merge followed all required checks. Independently downloaded
+  pull-request and published artifacts each record four light/dark 320/390
+  pixel browser cases with 12/12 checks, zero failures, Chrome
+  156.0.8078.79, `channel=chrome` and sandboxing enabled. The exact G11
+  census still exits nonzero; its unresolved count fell from 27 to 26 without
+  manufacturing green. This custody-only refresh changes no theorem, bound,
+  kernel result or scientific status. Sequential tip observations are not
+  atomic, and this is not final G7, CBZ-0, scientific acceptance or full
+  Layer A clearance. Reversible through ordinary Git history; evidence:
+  Main#770, durable checkpoint v129 and this Workspace pin-refresh PR.
