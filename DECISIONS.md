@@ -702,3 +702,27 @@ workspace is being assessed; it is not yet CBZ-0.
   scientific acceptance or full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#777, durable checkpoint v138 and this
   Workspace pin-refresh PR.
+
+- 2026-11-09 08:38:40 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#778 merged normally to
+  5ebe5771d44160f56d4f2fd1e11726858d17dc90. Preserve prior Main pin
+  ed5d83b7eff354cd7025117f4d2371422acd816b and its full note history, all
+  seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#778 was documentation-only: it bound all five canonical Main surfaces
+  and the append-only decision ledger to the signed Main#777 / Workspace#51
+  serial boundary and independently read-back durable v139. It did not alter
+  a theorem, proof source, quarantine, bound, axiom, G11 implementation,
+  authorship, historical failure, kernel outcome or scientific status. The
+  G11 component remains explicitly author-observed; 25 regression skips remain
+  and no full-regression-100%, final G7, full Layer A, cold-start, same-pass
+  G0--G11, CBZ-0 or terminal Partial result is manufactured. Its exact head
+  passed all jobs across five workflows and received a scoped read-only
+  engineering review with no change request and explicit re-execution limits.
+  The GitHub-signed merge has parents
+  ed5d83b7eff354cd7025117f4d2371422acd816b and
+  84b935a3370d52d785bfa1dd0f8ab9abac2b5a76 and preserves qualified tree
+  ccb76aaa970d5f95b1f7e0c9adf88604cd7f202a. This Workspace candidate still
+  requires its own committed-tree qualification. Sequential tip observations
+  are not atomic. Reversible through ordinary Git history; evidence: Main#778,
+  durable checkpoint v139 and this Workspace pin-refresh PR.
