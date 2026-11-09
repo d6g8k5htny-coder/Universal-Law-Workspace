@@ -535,3 +535,26 @@ workspace is being assessed; it is not yet CBZ-0.
   acceptance or full Layer A clearance. Reversible through ordinary Git
   history; evidence: Main#771, durable checkpoint v133 and this Workspace
   pin-refresh PR.
+
+- 2026-11-09 02:08:51 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#772 merged normally to
+  6deca3198c4b11b2d1208df904f5b942cd3e4bfb. Preserve prior Main pin
+  1046e3aceb869617efa349f94e48638bb5ceb030 and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#772 recovered the exact current Atlas source bridge for manifest blob
+  8d43188691c695f66e233727322484da22662a58, added fail-closed runner,
+  mutation and workflow-reference controls, and refreshed only the five
+  deterministic public-site asset pins affected by that bridge. Its exact
+  head passed all eight pull-request workflow runs plus both readiness-triggered
+  required public-intake checks. Focused custody tests passed 67/67 in normal
+  and optimized modes; source-bridge tests passed 20/20 and all three adverse
+  mutations were killed per mode. Local full Main discovery preserved two
+  Chromium launch errors because this managed executor forbids the singleton
+  socket; hosted Chrome qualification passed. The exact G11 census remains
+  nonzero with 24 retained unresolved tools; no green baseline is
+  manufactured. This custody-only refresh changes no theorem, bound, kernel
+  result or scientific status. Sequential tip observations are not atomic,
+  and this is not final G7, CBZ-0, scientific acceptance or full Layer A
+  clearance. Reversible through ordinary Git history; evidence: Main#772,
+  durable checkpoint v133 and this Workspace pin-refresh PR.
