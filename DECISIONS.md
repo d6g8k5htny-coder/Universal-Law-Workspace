@@ -558,3 +558,28 @@ workspace is being assessed; it is not yet CBZ-0.
   and this is not final G7, CBZ-0, scientific acceptance or full Layer A
   clearance. Reversible through ordinary Git history; evidence: Main#772,
   durable checkpoint v133 and this Workspace pin-refresh PR.
+
+- 2026-11-09 02:59:53 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#773 merged normally to
+  e18798544f16479436283d71689ae635a1817b20. Preserve prior Main pin
+  6deca3198c4b11b2d1208df904f5b942cd3e4bfb and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#773 was documentation-only: it refreshed STATUS, PROOF_INDEX,
+  GOVERNANCE, TOOLING and BASELINE from the stale 7 November snapshot and
+  appended DECISIONS without changing a proof, theorem statement, axiom,
+  mathematical bound, kernel outcome, authorship record or historical
+  failure. Its exact head passed all five pull-request workflow runs, and the
+  automated review completed with no findings. The canonical correction
+  candidate's first pre-commit Workspace suites ran 187 tests per mode and
+  failed exactly the committed-real-tree control because that control binds
+  `HEAD` while the new gitlink was only staged; no test was removed or
+  weakened, and fresh exact-commit qualification remains required.
+  The canonical correction
+  truthfully retains the 24-tool G11 failure, the managed Chromium regression
+  failure, every unawarded CBZ criterion and the absence of a same-pass
+  G0--G11 result. This custody-only refresh changes no scientific status.
+  Sequential tip observations are not atomic, and this is not final G7,
+  CBZ-0, scientific acceptance or full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#773, durable checkpoint v134 and this
+  Workspace pin-refresh PR.
