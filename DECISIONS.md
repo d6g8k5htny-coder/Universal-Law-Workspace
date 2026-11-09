@@ -803,3 +803,18 @@ workspace is being assessed; it is not yet CBZ-0.
   interrupted, creating no worktree or branch. The correct base is Workspace
   2441baf051312878ca28e462d455cfbcd8e91b20. This custody change is reversible
   through Git history; evidence: Main #782 and board #738 comment 6748477101.
+
+- 2026-11-09 UTC · Phase 2 · B · Refresh the Workspace Main gitlink and
+  manifest pin from `f1ef3a2babecca0f0d4eb35b018dc81d30e9d62c` to the
+  separately observed default `b1d36c80403acc96d257b9e71140a6cb83a595af`
+  after Main #780. Preserve all seven other pins, canonical inputs, earlier
+  outcomes, documentation and the prior source history. Main #780 restored a
+  bounded tracked-source inventory and isolated Git status metadata; its
+  mutation classifiers remain subject to independently reproduced
+  subject-origin false kills, and its author reported a separate Node run with
+  one failure among 767 cases. Neither is relabeled as a pass. Main #783 is
+  concurrently active and a later Main move requires another guarded pin
+  refresh. This sequential observation does not establish an atomic final G7,
+  complete regression, Layer A audit, proof closure, scientific acceptance,
+  CBZ-0 or terminal Partial. Candidate-specific checks remain to be observed.
+  Reversible through Git history.
