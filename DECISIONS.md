@@ -754,3 +754,14 @@ workspace is being assessed; it is not yet CBZ-0.
   scientific acceptance, CBZ-0 or terminal Partial is claimed. This custody
   change is reversible through Git history; evidence: Main#779, checkpoint
   v144 and the associated independently retained observations.
+
+- 2026-11-09 18:13 UTC — Preserve the initial hosted qualification failures
+  for Workspace #53 at head `39dadaba87c92ce886037904711abf25791e293b`.
+  Federation-contract run 42671456239 and pins run 42671456244 each stopped
+  before creating any job; GitHub's run pages reported internal server
+  errors, with correlation IDs `45f9d099-4d5b-48e2-b25c-de9a5083d55e`
+  and `5da24b9c-5c24-4295-9321-42ad1108d721`, respectively. GitHub
+  refused each targeted failed-job retry with HTTP 403, stating that the
+  workflow run cannot be retried. These are platform outcomes, not passing
+  tests or source-failure diagnoses. Preserve them and qualify this updated
+  candidate through the ordinary pull-request checks on its actual head.
