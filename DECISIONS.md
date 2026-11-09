@@ -613,3 +613,31 @@ workspace is being assessed; it is not yet CBZ-0.
   scientific acceptance or full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#774, durable checkpoint v135 and this
   Workspace pin-refresh PR.
+
+- 2026-11-09 05:18:28 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#775 merged normally to
+  31150f4a0736cb79bf33e366b6b725b061126000. Preserve prior Main pin
+  7712277ced9170c8d61d8f324319f40177c145b1 and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#775 retired two undocumented and unreferenced historical Atlas browser
+  drivers while preserving their exact native blobs and the unchanged frozen
+  F973 source record. Its final candidate retained zero production G11
+  findings and reduced the bounded residue from 23 to 21 tools; G11 remains
+  FAIL. The exact head passed all 12 hosted checks, including required verify,
+  public-intake and public-shop, the fresh formal Lean/kernel lane, both G11
+  jobs, browser/navigation, architecture and federation drift. Automated
+  review completed with no findings. The merge commit is GitHub-signed, has
+  parents 7712277ced9170c8d61d8f324319f40177c145b1 and
+  c7f1c736b944635d0ca95e34a8357c2aabf7dac0, and preserves qualified tree
+  b3f103e72a12cc766519c28bae92265162f2955e. Complete local Main discovery
+  remains RED with the same two managed Chromium singleton-socket errors and
+  23 skips in each mode; no regression-100% result is manufactured. Durable
+  v136 remains bound to its independently read-back status and evidence
+  identities. No theorem, bound, axiom, proof disposition, kernel outcome,
+  authorship, historical failure or scientific status changed. This Workspace
+  candidate still requires its own committed-tree qualification. Sequential
+  tip observations are not atomic, and this is not final G7, CBZ-0,
+  scientific acceptance or full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#775, durable checkpoint v136 and this
+  Workspace pin-refresh PR.
