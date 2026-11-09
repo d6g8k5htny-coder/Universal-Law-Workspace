@@ -143,3 +143,50 @@ the deterministic silent-crash failure. Qualification of the repaired source
 is pending actual execution. Maintenance owner: none; self-contained tests.
 This tool serves G6/A8 and supports G7; it certifies no mathematics or current
 remote pin agreement.
+
+## Immutable federation vector candidate — qualification pending
+
+`tools/verify_federation_vector.py` composes twelve selected immutable
+commit/tree/index relationships, selected structural working inputs, eight
+Workspace pointers, four canonical byte bindings and nine native Lean locks.
+Optional exact-commit HTTPS availability is a separate observation; immutable
+vectors need not equal moving default tips. Existing pure validators are reused.
+
+Run and self-verify using [the exact guide](docs/cbz/FEDERATION_VECTOR.md).
+The source and two test files were recovered from preserved inputs and matched
+their original native Git blob and SHA-256 identities. The original 62 declared controls
+still require final-source hosted execution and fresh engineering review.
+Earlier source-bound component passes and later resource failures retain their
+separate outcomes; no final gate is inferred.
+
+Full tracked working parity and Git hygiene remain `NOT_ASSESSED`. General
+configuration semantics are unassessed; the actual sibling TOML target has a
+strict name check. No proof/build execution or selected-source Git status
+occurs. Cleanup uncertainty preserves `NETWORK_CLEANUP_ERROR` and blocks more
+requests. Maintenance owner: none; standard library only. No Layer A, G7,
+CBZ criterion or scientific independence is awarded.
+
+The initial hosted revision adds three reviewed counterexamples (65 controls
+total) against the unchanged tool. Canonical object-type and noncanonical
+path gaps remain open until observed RED, repaired and requalified. This
+candidate is not an admitted certifier.
+
+The initial `be512430` hosted draft ran 252 normal Workspace tests with six
+intended test-body failures and no errors/skips; optimized execution was not
+reached. The two minimal guards and strengthened cleanup/filter controls now
+await complete current-source qualification. The finite mutation population
+is thirteen, retaining the original twelve tuples. Safe normalized traversal
+and target membership are checked without requiring shortest-relative spelling.
+
+### Source-bound self-verification observed at 7ee77666
+
+The complete 65 vector controls plus 187 retained Workspace controls passed
+normally and optimized:252 per mode, zero failures/errors/skips. Thirteen
+clean baselines and thirteen intended selected-body mutant failures per mode
+were observed in original runner-printed events; the original twelve tuples
+remain unchanged. Scoped static review confirmed the two production guards,
+owned descendant cleanup and CI evidence handling. See the guide for exact
+run/source identities and original artifact limits. The bounded engineering
+tool is self-tested; a passing actual current/final vector and global G7
+remain unobserved. The retained local attempt failed before repository checks
+and a later launch was refused with errno11. No failure is promoted to PASS.
