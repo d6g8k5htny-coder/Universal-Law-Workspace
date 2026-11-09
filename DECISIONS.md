@@ -1054,3 +1054,14 @@ CBZ-0 result follows from publishing this draft.
   checks before integration. This is a source pointer change and does not
   change any mathematical or scientific disposition. Reversible through Git
   history.
+
+## 2026-11-09 — Main pin after #791
+
+- Refresh the Main gitlink, manifest and README from
+  `27da96bd9546e1dcc08345ae2a0fc3842c0f5753` to the independently observed
+  default `05f2289478a0ee9492adc1eb501466e0f66866df` after Main #791. Preserve
+  the prior note and all seven other pin records. The nine default-ref reads
+  were sequential, not atomic. Require fresh structural, current-pin,
+  canonical-input and exact-composition hosted checks before integration.
+  This is a source pointer change, not mathematical or scientific acceptance.
+  Reversible through Git history.
