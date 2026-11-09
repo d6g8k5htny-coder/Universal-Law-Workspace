@@ -775,3 +775,31 @@ workspace is being assessed; it is not yet CBZ-0.
   outcomes. Later Main pull-request workflows were observed starting jobs;
   this is a reason to attempt fresh ordinary Workspace checks, not a passing
   Workspace qualification or permission to bypass protected integration.
+
+- 2026-11-09 18:49 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main #782 merged through the normal
+  expected-head endpoint as f1ef3a2babecca0f0d4eb35b018dc81d30e9d62c.
+  Preserve previous Main pin 6ab126beda65e19865b8468b52f8757ac2324e1f and
+  its complete note history, all seven other pin records, Workspace sources,
+  tests, workflows, canonical map, historical evidence and STATUS. Main #782
+  corrects the node-status freshness mutation grader's subject-origin false
+  kill, adds adverse checks and preserves the original eleven mutations and
+  old results. It also marks one observed engineering source record stale
+  without changing its historical pin. Current-head hosted grader and G11
+  jobs passed; the required workspace-landing aggregate passed on synthetic
+  merge d5b5c8f3987e3dbfafff23f0e2b75ac53969c738. Navigation reported 2,489
+  tests with 25 skips plus 20 separate no-skip history tests. Earlier-tree
+  full local regression ran 2,489 tests with 25 skips in each mode; those skips
+  remain unmet, and no final G0–G11 or complete Layer A audit is claimed.
+  Published merge tree 5b771047cb384a9bb167ed2df505489cee1cbf7d has parents
+  6ab126be… and 9bf048e9aeee3b846da92fba6e4d0708dee310e7. No theorem, bound,
+  axiom, proof disposition, authorship, historical failure or scientific
+  status changed. The new Workspace candidate requires its own exact-tree
+  checks. Sequential tip observations are not atomic; this does not claim
+  final G7, cold start, scientific acceptance, CBZ-0 or terminal Partial.
+  The prior Workspace post-merge federation startup failure remains recorded.
+  A local initial worktree command mistakenly used the Main commit as a
+  Workspace base; the remote reported “not our ref” and the attempt was
+  interrupted, creating no worktree or branch. The correct base is Workspace
+  2441baf051312878ca28e462d455cfbcd8e91b20. This custody change is reversible
+  through Git history; evidence: Main #782 and board #738 comment 6748477101.
