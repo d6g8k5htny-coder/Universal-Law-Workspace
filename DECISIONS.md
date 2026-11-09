@@ -669,3 +669,36 @@ workspace is being assessed; it is not yet CBZ-0.
   are not atomic, and this is not final G7, CBZ-0, scientific acceptance or
   full Layer A clearance. Reversible through ordinary Git history; evidence:
   Main#776, durable checkpoint v137 and this Workspace pin-refresh PR.
+
+- 2026-11-09 07:45:24 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#777 merged normally to
+  ed5d83b7eff354cd7025117f4d2371422acd816b. Preserve prior Main pin
+  848cd66bbf4a73e77a6f3e1fff64ce4796150f6d and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#777 recoverably retired the final thirteen documented historical
+  research/browser drivers that had no current executable reference or
+  exercise. All plans, reports, preserved failures, authorship and scientific
+  status remain unchanged; exact native recovery identities are registered in
+  Main STATUS. Its final candidate passed the bounded G11 census with 69 tools,
+  zero unresolved tools and zero production findings. Its 263/263 auditor
+  controls and 328/328 designated mutants passed per mode. Both complete
+  discoveries ran 2,459 tests with exit 0 and 25 explicit skips; no
+  full-regression-100% result is manufactured. The exact head passed all eight
+  jobs across five workflows. The merge commit is GitHub-signed, has parents
+  848cd66bbf4a73e77a6f3e1fff64ce4796150f6d and
+  c9a2c1e04496f5d2b2fe585eeb5ae8f8d40b5fa2, and preserves qualified tree
+  87fdabafadfdb1ee2b766222b6d0c313de8d9a89. Six landed workflows were
+  observed. Five passed on their first attempts. The workspace-landing formal
+  job's source controls passed, then its pinned Elan archive download returned
+  HTTP 504; that actual failure and its 175-byte evidence artifact remain
+  preserved. A targeted retry at the identical landed commit succeeded on
+  attempt 2, including formal/kernel evidence, architecture, landing checks
+  and verify. Durable v138 remains bound to its independently read-back status
+  and evidence identities. No theorem, bound, axiom, proof disposition,
+  authorship, historical failure or scientific status changed. This Workspace
+  candidate still requires its own committed-tree qualification. Sequential
+  tip observations are not atomic, and this is not final G7, CBZ-0,
+  scientific acceptance or full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#777, durable checkpoint v138 and this
+  Workspace pin-refresh PR.
