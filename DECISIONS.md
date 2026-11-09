@@ -846,3 +846,17 @@ workspace is being assessed; it is not yet CBZ-0.
   comparison before normal integration remain required. No final G7, full
   no-skip regression, Layer A audit, scientific acceptance, CBZ-0 or terminal
   Partial follows from this pin. Reversible through Git history.
+
+- 2026-11-09 UTC · Phase 2 · B · Refresh the Workspace Main gitlink and
+  manifest pin from `c81b7572f3c690338db9d66fdea582fc68f4a73f` to
+  `1902aac113761974c4569f78acb6a8baadabb7f1` after Main #784, which also
+  carries #781's original authored entry-routing commits. Eight separately
+  observed defaults matched these proposed pins during 20:56:56--20:57:00
+  UTC; this was not atomic. Preserve all other pins, earlier notes, source
+  history, outcomes and canonical inputs. The tested #784 merge ran 767 Node
+  tests per Python preparation mode with no failures or skips; its normal Main
+  regression ran 2,576 tests with 25 skips. The previous failed Node execution
+  remains retained. These observations do not establish final G7, a no-skip
+  full regression, Layer A clearance, scientific acceptance, CBZ-0 or
+  terminal Partial. Candidate checks and a fresh head comparison are required
+  before normal integration. Reversible through Git history.
