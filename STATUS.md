@@ -136,3 +136,37 @@ The candidate at Workspace PR #31 head `9d4ec7bdc79295f4e67944be352d8643d3cc7bff
 - Pin run [40960506599](https://github.com/d6g8k5htny-coder/Universal-Law-Workspace/actions/runs/40960506599), job `123751710163`, completed successfully on that exact head. Its log shows `verify_pins.py --network`, `verify_pins.py --require-current`, and `verify_canonical_inputs.py` all succeeded; four canonical inputs were checked, followed by the 115-test suite in the workflow's configured mode. The strict-current result is valid for that run's remote-tip observation only.
 
 At the fresh default-branch readback used for this correction, Main `main` was `11e28815163e15223e8827fe6ff47a1faaf36ebd`, while this candidate pins Main `1e2be44c69e08e47472041ac329e1b27f7dec793`; Math- `main` was `19a55750451b8016b50d1d20be6a18c021807ecb`, while this candidate pins Math- `9f8dbb4d18b9f3ebd9ffac6b0caa42df9f343966`. Both observed default tips differ from the recorded pins. Therefore the successful `--require-current` run is historical to its exact source cut and does not establish current G7. This correction did not remeasure the other six repositories or establish an atomic federation snapshot; no pin, README, gitlink or workflow was changed. No G7 or CBZ-0 completion is claimed.
+
+## Immutable-vector structural candidate — qualification pending
+
+The separately documented [vector verifier](docs/cbz/FEDERATION_VECTOR.md)
+checks twelve immutable source relationships, eight pointers, four canonical
+byte bindings and nine native locks. It observes requested exact-commit
+availability without imposing default-tip equality.
+
+```sh
+python3 -B -S tools/verify_federation_vector.py --root /absolute/siblings --vector /outside/vector.json --output /outside/new-offline.json
+python3 -B -S tools/verify_federation_vector.py --root /absolute/siblings --vector /outside/vector.json --network --output /outside/new-network.json
+python3 -B -S -m unittest discover -s tests -p 'test_verify_federation_vector*.py' -v
+python3 -B -O -S -m unittest discover -s tests -p 'test_verify_federation_vector*.py' -v
+```
+
+Complete final-source normal/optimized qualification, actual live smoke and
+fresh engineering review remain pending. The original sixty-two controls were declared;
+they have not all passed on this final source. Local resource-exhausted
+attempts receive no pass credit. Six Git-free final-source controls and static
+checks completed; the three recovered code/test hashes match the preserved
+native manifest. The four accompanying documentation revisions are new
+proposals on the current published Workspace base, not byte-exact recovery of
+the unreadable original documentation snapshot.
+
+Full working-byte parity and Git hygiene remain unassessed. No full proof
+inventory, classification/quarantine reconciliation, final G0–G11 or CBZ
+criterion follows. A local unpublished candidate is not remotely available
+merely because it passes offline structure. Root owns later publication,
+source-bound hosted qualification, review and guarded integration.
+
+Three reviewed counterexamples have since been added, making 65 declared
+controls. The initial hosted draft intentionally retains the unchanged tool
+until the canonical object-type and noncanonical path cases fail by the
+expected test assertions. The tool is not admitted while those gaps remain.

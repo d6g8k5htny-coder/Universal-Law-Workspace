@@ -860,3 +860,70 @@ workspace is being assessed; it is not yet CBZ-0.
   full regression, Layer A clearance, scientific acceptance, CBZ-0 or
   terminal Partial. Candidate checks and a fresh head comparison are required
   before normal integration. Reversible through Git history.
+
+## 2026-11-09 — structural vector verifier staged for qualification
+
+- Phase 2, Layer B/tooling. OpenAI Codex implemented the bounded verifier in
+  isolated local history based on Workspace
+  `1c552538e6a8952548e2bd5297a0031dda1f94e7`. Four local library slices end at
+  `9d4ed4933e0a581279209a32d23990db3651beac`; the complete final source was
+  preserved with a seven-file manifest and private snapshot. Frozen source
+  checkouts and peer pin updates were preserved.
+- The tool/test files were recovered in memory from exact creation/patch inputs
+  after local process creation became unavailable. Recovery matched the native
+  final Git blobs and SHA-256 identities:
+  tool `b917bcf9ef11d0845b7db948e485d81e56018d34`;
+  behavioral tests `680c11361139c921cbd6441c2aba908a82550212`;
+  mutation tests `978872fc7c1a736dd43cfeb79415c4f0d2da7671`.
+  The tool also matched every available intermediate development digest.
+- The four accompanying documentation files are consciously new proposed
+  revisions on published Workspace
+  `8a7aac8626438967830ea5a516a944ce48759018`. Existing current governance,
+  status and decisions bytes remain intact prefixes. These new revisions are
+  not claimed byte-identical to the unreadable original four documentation
+  files. No pin, gitlink, module or README pin-row change belongs to this tool.
+- Initial source/index, pointer/canonical and lock slices passed respectively
+  13, 21 and 33 focused controls in normal/optimized modes. Eight network
+  controls passed normally and the then-complete 41 controls passed optimized.
+  A twelve-mutant normal campaign passed on an earlier CLI source. Those
+  observations remain source-bound and do not qualify the later final source.
+- Root's target-TOML-name counterexample was observed red then fixed through
+  the minimal sibling TOML check. Selected-input executable-mode and cleanup
+  refinements retain their red/green records. SDGA's existing stale general
+  lock name is preserved; general configuration semantics remain unassessed.
+- Final focused local attempts hit process-creation exhaustion: each ran only
+  39 tests because setup also failed; normal retained three failures/sixteen
+  errors and optimized three failures/ten errors. They receive no pass credit.
+  One later Git-free control launch could not start at all. A single successful
+  fork-free check then parsed the three final Python files, checked all twelve
+  unique mutation anchors/mutated syntax, and passed six Git-free controls.
+  The full 62-control final population, hosted normal/optimized execution,
+  actual live smoke and fresh engineering review remain pending.
+- Root authorized only seven unreferenced public source/document blobs for
+  review and later draft qualification. The implementer created no commit,
+  ref, PR or settings through that staging, and uploaded no source snapshot,
+  log, private vector/report or private repository contents. The private local
+  evidence and original snapshot remain preserved separately. Root owns the
+  explicit qualification commit, later publication and guarded integration.
+- Structural scope only: selected sources/index/inputs, eight pointers, four
+  canonical byte bindings, nine native locks and explicit optional remote
+  availability. Full working parity and Git hygiene stay unassessed; CBZ and
+  semantic-completeness flags stay false. An unpublished/equal-tree local
+  commit cannot substitute for observing an actual published commit remotely.
+  No Layer A, global G7, final G0–G11, CBZ criterion, scientific independence
+  or CBZ-0 is awarded. Ordinary Git additions remain reversible.
+
+## 2026-11-09 — reviewed counterexamples staged before vector fixes
+
+Root preserved the complete Workspace `8a4d2248e9646ba3181a61defc90d13a01fe08ac`
+source prefix and Main pin `1902aac113761974c4569f78acb6a8baadabb7f1`.
+The original tool and mutation-control blobs remain unchanged. A behavioral
+test revision adds rejection cases for tree and annotated-tag canonical refs,
+and dependency paths whose lexical normalization hides impossible detours.
+Static engineering review identified these acceptance gaps; actual hosted
+assertion failures must precede the corresponding production fixes. There are
+65 declared controls after these additions. No static finding or failure in
+setup is counted as a successful rejection experiment. Complete normal and
+optimized qualification, the twelve-mutant campaign, live source smoke and
+fresh fix review remain pending. No admission, proof classification, G7 or
+CBZ-0 result follows from publishing this draft.
