@@ -818,3 +818,17 @@ workspace is being assessed; it is not yet CBZ-0.
   complete regression, Layer A audit, proof closure, scientific acceptance,
   CBZ-0 or terminal Partial. Candidate-specific checks remain to be observed.
   Reversible through Git history.
+
+- 2026-11-09 UTC · Phase 2 · B · Refresh the Workspace Main gitlink and
+  manifest pin from `b1d36c80403acc96d257b9e71140a6cb83a595af` to
+  `7738e4c2e0881dd952772421877d9854364d272f` after Main #783. Individually
+  observed defaults for all eight pinned repositories matched the proposed
+  pins during 20:06:32--20:06:38 UTC; this was not an atomic observation.
+  Preserve all other pins, prior notes, outcomes, source history and canonical
+  inputs. Main #783 updates baseline documents and decisions; it does not
+  qualify the known inventory classifier defect, resolve the preserved Node
+  failure or close any mathematical claim. The separate inventory-origin and
+  Node repair candidates remain under test. Candidate-specific checks and a
+  fresh comparison before normal integration remain required. No final G7,
+  regression, Layer A audit, scientific acceptance, CBZ-0 or terminal Partial
+  follows from this pin. Reversible through Git history.
