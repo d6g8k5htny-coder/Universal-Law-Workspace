@@ -641,3 +641,31 @@ workspace is being assessed; it is not yet CBZ-0.
   scientific acceptance or full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#775, durable checkpoint v136 and this
   Workspace pin-refresh PR.
+
+- 2026-11-09 06:28:19 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#776 merged normally to
+  848cd66bbf4a73e77a6f3e1fff64ce4796150f6d. Preserve prior Main pin
+  31150f4a0736cb79bf33e366b6b725b061126000 and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#776 recoverably retired eight documented historical Atlas browser
+  drivers that had no current executable reference or exercise. All plans,
+  reports, failures, authorship and scientific status remain unchanged; exact
+  native recovery identities are registered in Main STATUS. Its final
+  candidate retained zero production G11 findings, reduced the registry from
+  90 to 82 tools and the bounded unresolved residue from 21 to 13 tools, and
+  still exited 1; G11 remains FAIL. Its 263/263 auditor controls and 328/328
+  designated mutants passed per mode. Both corrected complete discoveries ran
+  2,459 tests and preserved exactly two managed Chromium singleton-socket
+  errors and 23 skips; no regression-100% result is manufactured. The exact
+  head passed all ten hosted jobs across five workflows. The merge commit is
+  GitHub-signed, has parents 31150f4a0736cb79bf33e366b6b725b061126000
+  and 5b4116bce98c5a3c25ff5117af6399711863a295, and preserves qualified tree
+  2f48833cbd051545be1a7d383137c99e5fa57a12. Durable v137 remains bound to
+  its independently read-back status and evidence identities. No theorem,
+  bound, axiom, proof disposition, kernel outcome, authorship, historical
+  failure or scientific status changed. This Workspace candidate still
+  requires its own committed-tree qualification. Sequential tip observations
+  are not atomic, and this is not final G7, CBZ-0, scientific acceptance or
+  full Layer A clearance. Reversible through ordinary Git history; evidence:
+  Main#776, durable checkpoint v137 and this Workspace pin-refresh PR.
