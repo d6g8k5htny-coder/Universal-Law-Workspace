@@ -139,6 +139,48 @@ At the fresh default-branch readback used for this correction, Main `main` was `
 
 ## Immutable-vector structural candidate — qualification pending
 
+### Later origin correction and structural observation — 9 November 2026
+
+The original vector mutation grader accepted an `AssertionError` from a
+subject under a directory named `unittest` as a test-oracle failure. The
+recorded earlier campaign remains historical; it does not qualify future
+grading. The candidate grader now records the live traceback before unittest
+cleanup and requires the actual selected body, dispatch and permitted unittest
+code objects by identity. Its supported domain is the selected synchronous
+unittest bodies and their standard unittest assertion helpers; it is not a
+hostile-code sandbox or a general arbitrary-helper classifier.
+
+At the candidate test source SHA-256
+`e7630a0642101e2070d73f0bcb84b22e301cfbfac5a0ed66847ee7048d23d3a4`,
+CPython 3.12.14 ran 67 focused vector tests in each mode with no skips or
+failures. Each mode ran 13 clean baselines and 13 designated source mutants;
+the real spoofed-path control was refused and an actual guard-removal
+self-mutation exposed the false kill in both child modes. Full current-source
+Workspace and hosted qualification remain to be observed.
+
+The complete pre-pin-refresh candidate suite subsequently ran 254 Workspace
+tests in each mode on CPython 3.12.14, with no failures, errors or skips. This
+composition now also proposes the Main pin `b0a6c12abe87ae2a43163b3fe6ba4fa14adf389d`,
+observed as the Main default after #789 merged; the preceding full-suite
+results are not a hosted execution of this pin composition. Fresh pin checks
+and exact-head CI remain required.
+
+A sequential twelve-repository offline cut first failed `GIT_READ_FAILED` on
+the historical Main blob `fb0e8c2275cf66dc686064f1476e99b7b3653bea`. After
+the original blob was recovered and its Git identity verified, a fresh run
+passed the selected structural checks: twelve repositories, eight pointers,
+four canonical bindings and nine lock packages. It used Main `1902aac1`,
+Math `f532c3e2` and Workspace `30a042a8`, among the selected commits. This
+is not an atomic or final vector, current-tip test, remote availability,
+full working-byte parity, Git hygiene, G7 or CBZ-0. The failed run remains
+part of the evidence.
+
+The later network-enabled run of the same cut failed
+`NETWORK_REQUIRED_FAILURE`: 20 of 22 exact Git commit requests returned
+`FETCHED_COMMIT`; the private custodian-validation and hosted-qualification
+repositories returned `FETCH_FAILED` with exit 128. Their API-reconstructed
+local objects do not establish authenticated native Git remote availability.
+
 The separately documented [vector verifier](docs/cbz/FEDERATION_VECTOR.md)
 checks twelve immutable source relationships, eight pointers, four canonical
 byte bindings and nine native locks. It observes requested exact-commit

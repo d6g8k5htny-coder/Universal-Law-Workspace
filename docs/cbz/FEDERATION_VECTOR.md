@@ -1,5 +1,42 @@
 # Immutable federation vector checks
 
+## Later mutation-origin correction — 9 November 2026
+
+An actual subject assertion beneath a directory named `unittest` was wrongly
+accepted by the earlier filename-based grader in both modes. The successor
+requires live traceback code identity for the selected test, its unittest
+dispatch and standard unittest assertion helpers before cleanup, and rejects
+lifecycle and non-`AssertionError` origins. Arbitrary helpers and hostile
+runtime manipulation are outside its supported domain. The historical
+campaign remains an observation at its original source, not qualification of
+the earlier grader for future use.
+
+The corrected test source SHA-256 is
+`e7630a0642101e2070d73f0bcb84b22e301cfbfac5a0ed66847ee7048d23d3a4`.
+On CPython 3.12.14 the focused commands below each completed 67 tests without
+skips or failures, including 13 actual source mutants and their clean
+baselines per mode. The spoofed subject was refused, and an actual removal of
+the new guard reopened the false kill in both child modes under each parent
+mode. Full current-source and hosted Workspace qualification is still pending.
+Before the subsequent Main pin refresh, the full Workspace suite ran 254 tests
+in each mode without skips or failures. It remains bound to that earlier
+composition; the refreshed pin requires its own hosted qualification.
+
+The first real twelve-source offline attempt at the later sequential cut
+reached all twelve indexes but failed `GIT_READ_FAILED` on the historical Main
+blob `fb0e8c2275cf66dc686064f1476e99b7b3653bea`; it is retained. After that
+exact blob was restored and its Git object ID checked, a new offline run
+passed the selected structural checks. It checked twelve commits, eight
+pointers, four canonical bindings and nine lock packages; its receipt SHA-256
+is `095df488c97648e84bc42324ffdd416c9ce7e225cf3e5c997625b3a64e065dd6`.
+The cut was sequential, network was not requested, and full tracked working
+parity and Git hygiene were `NOT_ASSESSED`. This is not final G7 or CBZ-0.
+The network-enabled run on that same cut fetched 20 of 22 exact commits;
+both private repository Git fetches failed with exit 128, yielding
+`NETWORK_REQUIRED_FAILURE`. Its receipt SHA-256 is
+`7aadc625ac39f54cd3b4c29a5e8e4690f4008f5d038967b4ea67642f5068a8ee`.
+The API-verified local objects do not substitute for successful Git transport.
+
 The bounded checker and controls at published source
 `7ee77666c1ed848d236db8d6911ce0a784db4593` passed 252 normal and 252
 optimized Workspace tests, with zero failures, errors or skips, under

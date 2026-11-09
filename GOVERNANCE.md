@@ -146,6 +146,25 @@ remote pin agreement.
 
 ## Immutable federation vector candidate — qualification pending
 
+The earlier vector mutation grader's filename-based attribution was shown to
+credit a subject assertion from a `unittest`-named path as an oracle failure.
+The successor uses pre-cleanup live code identity for the selected body,
+dispatch and permitted unittest helpers, with actual assertion type and
+lifecycle guards. Its supported domain is selected synchronous unittest bodies
+and standard unittest assertion helpers, not arbitrary helpers or hostile code.
+At test-source SHA-256
+`e7630a0642101e2070d73f0bcb84b22e301cfbfac5a0ed66847ee7048d23d3a4`,
+67 focused tests passed per Python mode, including 13 real source mutants per
+mode and a guard-removal self-mutation of the origin classifier. Earlier
+observations retain their source boundaries; full current-source and hosted
+qualification remain pending. See STATUS for the actual offline cut and the
+preserved first failure. The same cut's network run fetched 20 of 22 requested
+commits and failed on the two private Git transports; it is not a network pass.
+None of these observations establishes a final G7.
+The pre-pin-refresh candidate also ran the full 254-test Workspace suite in
+each Python mode without skips. The subsequent Main pin composition requires
+its own exact-source pin checks and hosted qualification.
+
 `tools/verify_federation_vector.py` composes twelve selected immutable
 commit/tree/index relationships, selected structural working inputs, eight
 Workspace pointers, four canonical byte bindings and nine native Lean locks.
