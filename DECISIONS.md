@@ -1030,3 +1030,27 @@ CBZ-0 result follows from publishing this draft.
   after Main #789 merged. Preserve the prior pin and note in Git history and
   `pins.json`. This update changes no mathematical or scientific disposition;
   require fresh pin checks and exact-composition hosted tests before merge.
+
+## 2026-11-09 — Math pin after #559
+
+- Refresh the Math- gitlink, manifest and README from
+  `f532c3e2d91a0c7679a37c733741660917a9b21b` to the independently observed
+  default `9bdfc54b76173b57912503bfcf901a5f9d43b09c` after Math- #559.
+  The previous value and its full manifest note remain in history. Preserve
+  the other seven pin records and all canonical-input identities. This is a
+  source pointer change, not new proof or scientific acceptance. The candidate
+  requires structural, current-pin, canonical-input and exact-composition
+  hosted checks; a later Main default move requires a fresh Main pin update.
+  Reversible through Git history.
+
+## 2026-11-09 — Main pin after #790
+
+- Refresh the Main gitlink, manifest and README from
+  `b0a6c12abe87ae2a43163b3fe6ba4fa14adf389d` to the independently observed
+  default `27da96bd9546e1dcc08345ae2a0fc3842c0f5753` after Main #790. Preserve
+  the full prior note and the other seven pin records, including the preceding
+  Math- refresh. Nine default-ref reads were sequential, not atomic. Require
+  fresh structural, current-pin, canonical-input and exact-composition hosted
+  checks before integration. This is a source pointer change and does not
+  change any mathematical or scientific disposition. Reversible through Git
+  history.
