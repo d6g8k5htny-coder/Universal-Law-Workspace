@@ -994,3 +994,39 @@ CBZ-0 result follows from publishing this draft.
   tooling available during the runtime obstacle without claiming any unobserved
   gate or weakening its checks. Both global flags stay false, fullworkingparity
   and Githygiene stayNOT_ASSESSED, and no mathematical/CBZ status is changed.
+
+## 2026-11-09 — vector assertion provenance and actual source cut
+
+- Preserve the earlier thirteen-mutant campaign and the separately reproduced
+  false kill: a subject `AssertionError` below a path containing `unittest`
+  was attributed to the selected oracle. Replace filename filtering with
+  actual code-object identity and pre-cleanup traceback provenance, retaining
+  the existing test bodies, mutations and ordinary failure guards. The
+  supported domain is selected synchronous unittest bodies and standard
+  unittest assertion helpers, not arbitrary helper or hostile runtime code.
+- At candidate test SHA-256
+  `e7630a0642101e2070d73f0bcb84b22e301cfbfac5a0ed66847ee7048d23d3a4`,
+  67 focused controls passed per mode on CPython 3.12.14 with no skips,
+  including 13 clean baselines and 13 actual source mutants per mode. A real
+  guard-removal self-mutation reopened the spoofed-path false kill in both
+  child modes under both parent modes. Full current-source and hosted
+  Workspace qualification remains outstanding.
+- Preserve the actual offline `GIT_READ_FAILED` at the missing historical
+  Main blob `fb0e8c2275cf66dc686064f1476e99b7b3653bea`. After exact Git
+  object recovery, a new sequential twelve-source offline cut passed its
+  bounded structural checks; receipt SHA-256
+  `095df488c97648e84bc42324ffdd416c9ce7e225cf3e5c997625b3a64e065dd6`.
+  Remote access, current tips, full working parity and Git hygiene were not
+  established. No theorem, scientific disposition, G7 or CBZ status changes.
+- Preserve the later network-enabled run on the same cut. Twenty of 22 exact
+  Git commit requests were fetched; both private repository transports failed
+  with exit 128 and the aggregate failed `NETWORK_REQUIRED_FAILURE`. Receipt
+  SHA-256 `7aadc625ac39f54cd3b4c29a5e8e4690f4008f5d038967b4ea67642f5068a8ee`.
+  The API-reconstructed local objects do not upgrade this to remote success.
+- The complete pre-pin-refresh candidate ran 254 tests in each Python mode,
+  with no skips, errors or failures; the source-specific logs are retained.
+  Refresh the Main gitlink, matching pin and README from `1902aac1` to the
+  separately observed default `b0a6c12abe87ae2a43163b3fe6ba4fa14adf389d`
+  after Main #789 merged. Preserve the prior pin and note in Git history and
+  `pins.json`. This update changes no mathematical or scientific disposition;
+  require fresh pin checks and exact-composition hosted tests before merge.

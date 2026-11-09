@@ -8,10 +8,12 @@ import os
 from pathlib import Path
 import re
 import secrets
+import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+import unittest.mock
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOL = ROOT/'tools/verify_federation_vector.py'
@@ -53,19 +55,49 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def unittest_code_objects(container, module, seen=None):
+    """Collect actual unittest function code; filenames are not authority."""
+    seen = set() if seen is None else seen
+    if id(container) in seen:
+        return []
+    seen.add(id(container))
+    result = []
+    for value in vars(container).values():
+        if isinstance(value, (staticmethod, classmethod)):
+            value = value.__func__
+        wrapped = set()
+        while inspect.isfunction(value) and id(value) not in wrapped:
+            wrapped.add(id(value))
+            result.append(value.__code__)
+            value = getattr(value, '__wrapped__', None)
+        if inspect.isclass(value) and value.__module__ == module:
+            result.extend(unittest_code_objects(value, module, seen))
+    return result
+
+
+UNITTEST_CODES = (unittest_code_objects(unittest.case, unittest.case.__name__) +
+                  unittest_code_objects(unittest.mock, unittest.mock.__name__))
+DISPATCH_CODE = unittest.TestCase._callTestMethod.__code__
+LIFECYCLE_CODES = tuple(getattr(unittest.TestCase, name).__code__ for name in
+                        ('_callSetUp', '_callTearDown', '_callCleanup', 'doCleanups'))
+
+
 def failure_origin(error, selected_code):
     frames = []
     trace = error[2]
     while trace:
         frames.append(trace.tb_frame.f_code)
         trace = trace.tb_next
-    outside = [code for code in frames if '/unittest/' not in code.co_filename.replace('\\', '/')]
-    dispatch = any(code.co_name == '_callTestMethod' and '/unittest/' in code.co_filename.replace('\\', '/')
-                   for code in frames)
-    lifecycle = any(code.co_name in ('_callSetUp', '_callTearDown', '_callCleanup') and
-                    '/unittest/' in code.co_filename.replace('\\', '/') for code in frames)
-    return bool(issubclass(error[0], AssertionError) and outside and outside[-1] is selected_code
-                and dispatch and not lifecycle)
+    selected = [index for index, code in enumerate(frames) if code is selected_code]
+    if len(selected) != 1 or type(error[1]) is not AssertionError:
+        return False
+    position = selected[0]
+    dispatch = any(code is DISPATCH_CODE for code in frames[:position])
+    lifecycle = any(any(code is lifecycle_code for lifecycle_code in LIFECYCLE_CODES)
+                    for code in frames)
+    return bool(dispatch and not lifecycle and
+                all(any(code is oracle for oracle in UNITTEST_CODES)
+                    for code in frames[position + 1:]))
 
 
 def intended_failure(process, event, test, nonce, source_hash, reason):
@@ -112,6 +144,64 @@ def run_child(test):
 
 
 class MutationControls(unittest.TestCase):
+    def test_subject_assertion_from_unittest_named_path_is_not_a_kill(self):
+        source = TOOL.read_text()
+        anchor = 'def load_vector(path: Path) -> dict[str, str]:\n'
+        self.assertEqual(source.count(anchor), 1)
+        changed = source.replace(anchor, anchor + "    raise AssertionError('ValueError not raised')\n", 1)
+        selected = 'VectorSources.test_vector_omission_rejected'
+        for optimized in (False, True):
+            with self.subTest(optimized=optimized), tempfile.TemporaryDirectory(prefix='vector-origin-adverse-') as tmp:
+                folder = Path(tmp)/'unittest'
+                folder.mkdir()
+                candidate = folder/'subject.py'
+                candidate.write_text(changed)
+                event_path = Path(tmp)/'event.json'
+                nonce = secrets.token_hex(16)
+                env = dict(os.environ, CBZ_VECTOR_UNDER_TEST=str(candidate),
+                           CBZ_VECTOR_EVENT=str(event_path), CBZ_VECTOR_NONCE=nonce)
+                child = subprocess.run([sys.executable, '-B', *(['-O'] if optimized else []),
+                                        '-S', str(Path(__file__).resolve()), '--child', selected],
+                                       env=env, text=True, capture_output=True, timeout=180)
+                event = json.loads(event_path.read_text())
+                self.assertEqual(child.returncode, 1)
+                self.assertFalse(event['failures'][0]['selected_body'])
+                self.assertFalse(intended_failure(child, event, selected, nonce, digest(candidate),
+                                                  'ValueError not raised'))
+
+    def test_origin_guard_removal_reopens_real_spoofed_subject(self):
+        harness = Path(__file__).read_text()
+        guard = ('all(any(code is oracle for oracle in ' +
+                 'UNITTEST_CODES)\n                    for code in frames[position + 1:])')
+        self.assertEqual(harness.count(guard), 1)
+        mutant = harness.replace(guard, 'all(True for code in frames[position + 1:])', 1)
+        source = TOOL.read_text()
+        anchor = 'def load_vector(path: Path) -> dict[str, str]:\n'
+        self.assertEqual(source.count(anchor), 1)
+        subject = source.replace(anchor, anchor + "    raise AssertionError('ValueError not raised')\n", 1)
+        selected = 'VectorSources.test_vector_omission_rejected'
+        for optimized in (False, True):
+            with self.subTest(optimized=optimized), tempfile.TemporaryDirectory(prefix='vector-origin-self-') as tmp:
+                base = Path(tmp)
+                (base/'tests').mkdir(); (base/'tools').mkdir(); (base/'unittest').mkdir()
+                shutil.copy2(ROOT/'tests/test_verify_federation_vector.py', base/'tests')
+                for name in ('check_workspace.py', 'verify_pins.py', 'verify_canonical_inputs.py'):
+                    shutil.copy2(ROOT/'tools'/name, base/'tools'/name)
+                candidate = base/'unittest/subject.py'; candidate.write_text(subject)
+                for label, code, expected in (('baseline', harness, False), ('mutant', mutant, True)):
+                    with self.subTest(version=label):
+                        runner = base/'tests/vector_harness.py'; runner.write_text(code)
+                        event_path = base/(label+'.json'); nonce = secrets.token_hex(16)
+                        env = dict(os.environ, CBZ_VECTOR_UNDER_TEST=str(candidate),
+                                   CBZ_VECTOR_EVENT=str(event_path), CBZ_VECTOR_NONCE=nonce)
+                        child = subprocess.run([sys.executable, '-B', *(['-O'] if optimized else []),
+                                                '-S', str(runner), '--child', selected], env=env,
+                                               text=True, capture_output=True, timeout=180)
+                        event = json.loads(event_path.read_text())
+                        self.assertEqual(child.returncode, 1)
+                        self.assertEqual(intended_failure(child, event, selected, nonce, digest(candidate),
+                                                          'ValueError not raised'), expected)
+
     def test_actual_subject_crash_skip_syntax_and_silent_exit_are_not_kills(self):
         source = TOOL.read_text()
         anchor = 'def capture_sources(root: Path, vector: dict[str, str]) -> dict:\n'
