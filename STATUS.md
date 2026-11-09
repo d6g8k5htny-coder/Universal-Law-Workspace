@@ -176,3 +176,20 @@ failures, no errors/skips; optimized not executed. The follow-up source adds
 the two guards and strengthens existing descendant/filter controls, with a
 thirteenth finite guard mutation. Current-source execution and fix review are
 pending; this structural candidate remains unadmitted.
+
+### Vector engineering checks observed; actual final vector outstanding
+
+Published7ee77666c1ed848d236db8d6911ce0a784db4593 passed252normal and
+252optimized Workspace tests without failures/errors/skips, including65 vector
+controls and the13-mutant finite campaign. Both pin jobs also passed252normal
+and their pin/canonical checks. Original printed52events bind13cleanbaselines
+and13intended selected-body mutant failures per mode; ZIPmemberbytes were not
+independently read. Scoped engineering fix review is complete.
+
+The first retained-source offline attempt failed before Gitversion/repository
+observations; a second launch was rejected with process-creation errno11
+before execution. No actual current/final12-source vector PASS or globalG7 is
+claimed. Integrating the complete self-tested structural tool leaves those
+live/source obligations open, preserves both false global flags and changes
+no mathematical disposition or CBZ criterion. Exact final-docheadCI must still
+be observed before ordinary integration.

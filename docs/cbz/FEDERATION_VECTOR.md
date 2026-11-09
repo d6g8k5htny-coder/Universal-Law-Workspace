@@ -1,16 +1,29 @@
 # Immutable federation vector checks
 
-This bounded structural verifier is undergoing hosted qualification. The
-initial unchanged source at `be512430997757f415c5463ccfa9ad3056a504c5`
-ran 252 normal Workspace tests and produced six intended test-body assertion
-failures: tree/tag canonical refs and four path detours. There were no errors
-or skips; optimized execution was not reached. Those failures remain evidence.
+The bounded checker and controls at published source
+`7ee77666c1ed848d236db8d6911ce0a784db4593` passed 252 normal and 252
+optimized Workspace tests, with zero failures, errors or skips, under
+CPython 3.11.18. This comprises 65 vector controls and 187 existing controls.
+The finite campaign observed 13 clean baselines and 13 intended selected-body
+mutant failures per mode; the original twelve mutation tuples remain intact.
+Both pin jobs also passed 252 normal tests, eight network/current pins and
+four canonical inputs. Scoped static engineering review confirmed the two
+production fixes, the descendant-fixture repair and the CI evidence handling.
+These are source-bound engineering observations, not scientific independence.
 
-The current candidate adds two minimal guards, strengthens the existing real
-descendant/filter controls and adds a thirteenth finite source mutant. It has
-65 declared controls. Complete current-source normal/optimized qualification
-and fresh fix review remain pending; no previous source or static inspection
-is a passing substitute.
+Initial `be512430` retained the original verifier and produced six intended
+test-body failures among 252 normal tests: tree/tag canonical refs and four
+path detours. It had no errors/skips; optimized was not reached. Those failures
+remain retained. The repaired source requires native commit objects and safe
+normalized traversal before existing target-membership checks.
+
+The first actual retained-federation offline attempt failed before Git-version
+or repository observations; a later bounded launch was rejected with process
+creation errno 11 before the verifier ran. Neither supplies a passing actual
+vector result. No current/final twelve-source cut, full G7 or CBZ result is
+established. The complete, self-tested structural tool can be integrated with
+these limits; final-vector gate admission still requires actual observations.
+The final documentation composition requires its own exact-head CI readback.
 
 ## Run and self-verify
 
@@ -123,8 +136,8 @@ focused attempts hit process-creation exhaustion and receive no passing credit.
 Only six final-source Git-free cleanup/classifier controls and static
 syntax/anchor checks completed after that incident. Source recovery matched
 the three original code/test Git blobs and SHA-256 identities; it did not run
-the full final population. Hosted qualification and fresh review must precede
-admission.
+the full final population. The later hosted qualification and scoped engineering review above retain
+their own source identities. They do not replace an actual final-vector run.
 
 The final vector/tag, full source inventory, proof/classification reconciliation,
 complete quarantine/isolation, actual G0–G11, canonical semantic truth,

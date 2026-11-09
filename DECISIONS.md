@@ -964,3 +964,33 @@ CBZ-0 result follows from publishing this draft.
   remains read-only; required test commands/exit handling are unchanged.
   The previous source/run outcomes retain their identities. Fresh actual
   execution and scoped review must qualify this new composition.
+
+## 2026-11-09 — vector engineering qualification and integration boundary
+
+- Root independently read contract42701172256/attempt1/job129445975258 at
+  head7ee77666c1ed848d236db8d6911ce0a784db4593/tree9f8708d6b120f6e336076ed5a7c62d5dfa32a3a8.
+  Actual252normal114.966s and252optimized117.142s bothOK with zero
+  failures/errors/skips, CPython3.11.18. Both pin jobs passed252normal plus
+  eight network/current pins and four canonical inputs.
+- Root independently parsed original52printed events and2summary arrays:
+  13cleanbaselines(exit0) and13selected-body mutant failures(exit1) per mode,
+  52unique nonces and exact source/test/count bindings. ProductionSHA256
+  fbcec74b8abe4be9345829319a83c11d0acc6953e757e9f3a090df9840cfa312.
+  Artifact13710949241 metadata528267bytes/digest
+  4d137885c7e7ca728fe993fb6f7592952661c89af8bd50d70cb1d4573c6a1f79;
+  originalZIP/candidate/stdout/stderr memberbytes were not independently read.
+  All earlier RED/resource-failed and intermediate-source results remain.
+- Scoped engineering re-review confirmed both production fixes and the
+  test-only parent-reap repair; no CI failure-masking issue was found. These
+  source-exposed reviews confer no scientific or organizational independence.
+- The first actual retained-federation offline attempt failed before Git
+  version/repository observations. One bounded follow-up launcher was rejected
+  before Python with errno11; no second verifier or optimized attempt ran.
+  Local evidence and private source cuts remain local. No actual current/final
+  vector, remote availability or G7 PASS is inferred from fixture controls.
+- Ruling: integrate this complete self-tested bounded engineering checker
+  after exact final-document-head CI, while leaving final-vector gate admission
+  and actual live/source observations outstanding. This keeps usable verified
+  tooling available during the runtime obstacle without claiming any unobserved
+  gate or weakening its checks. Both global flags stay false, fullworkingparity
+  and Githygiene stayNOT_ASSESSED, and no mathematical/CBZ status is changed.

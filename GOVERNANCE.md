@@ -177,3 +177,16 @@ reached. The two minimal guards and strengthened cleanup/filter controls now
 await complete current-source qualification. The finite mutation population
 is thirteen, retaining the original twelve tuples. Safe normalized traversal
 and target membership are checked without requiring shortest-relative spelling.
+
+### Source-bound self-verification observed at 7ee77666
+
+The complete 65 vector controls plus 187 retained Workspace controls passed
+normally and optimized:252 per mode, zero failures/errors/skips. Thirteen
+clean baselines and thirteen intended selected-body mutant failures per mode
+were observed in original runner-printed events; the original twelve tuples
+remain unchanged. Scoped static review confirmed the two production guards,
+owned descendant cleanup and CI evidence handling. See the guide for exact
+run/source identities and original artifact limits. The bounded engineering
+tool is self-tested; a passing actual current/final vector and global G7
+remain unobserved. The retained local attempt failed before repository checks
+and a later launch was refused with errno11. No failure is promoted to PASS.
