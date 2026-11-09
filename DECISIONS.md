@@ -583,3 +583,33 @@ workspace is being assessed; it is not yet CBZ-0.
   CBZ-0, scientific acceptance or full Layer A clearance. Reversible through
   ordinary Git history; evidence: Main#773, durable checkpoint v134 and this
   Workspace pin-refresh PR.
+
+- 2026-11-09 03:57:36 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#774 merged normally to
+  7712277ced9170c8d61d8f324319f40177c145b1. Preserve prior Main pin
+  e18798544f16479436283d71689ae635a1817b20 and its full note history,
+  all seven other complete pin records, executable Workspace sources, tests,
+  workflows, canonical map, historical evidence and exact PR32 STATUS blob.
+  Main#774 retired one unsupported historical Atlas browser acceptance driver
+  from the current operational tool surface instead of manufacturing A8 or
+  G11 credit. Its exact 20,118-byte source remains recoverable at native Git
+  blob 9576fd34806528484a3898665c19cabe9eb3797c and in Main ancestry; the
+  two qualified consumers retain only their small byte-identity helpers.
+  The exact head passed all 12 hosted checks, including required verify,
+  public-intake and public-shop, the fresh formal Lean/kernel lane, both G11
+  jobs, browser/navigation, architecture and federation drift. Automated
+  review completed with no findings. The merge commit is GitHub-signed, has
+  parents e18798544f16479436283d71689ae635a1817b20 and
+  52c24401d1c0b58c9f1940ead30fe5d1518259de, and preserves qualified tree
+  1bafc1d181ddc161c51d58bfe3084a118d2d9bbf. The bounded G11 residue is
+  reduced from 24 to 23 tools and remains FAIL. No theorem, bound, axiom,
+  proof disposition, kernel outcome, authorship, historical failure or
+  scientific status changed. The pre-commit Workspace suites ran 187 tests
+  per mode and failed exactly the committed-real-tree control because that
+  control binds `HEAD` while the new gitlink was staged; no test was removed
+  or weakened. This Workspace candidate still requires its own committed-tree
+  qualification. Sequential
+  tip observations are not atomic, and this is not final G7, CBZ-0,
+  scientific acceptance or full Layer A clearance. Reversible through
+  ordinary Git history; evidence: Main#774, durable checkpoint v135 and this
+  Workspace pin-refresh PR.
