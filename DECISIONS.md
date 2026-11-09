@@ -726,3 +726,31 @@ workspace is being assessed; it is not yet CBZ-0.
   requires its own committed-tree qualification. Sequential tip observations
   are not atomic. Reversible through ordinary Git history; evidence: Main#778,
   durable checkpoint v139 and this Workspace pin-refresh PR.
+
+- 2026-11-09 18:02:13 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#779 merged normally to
+  6ab126beda65e19865b8468b52f8757ac2324e1f. Preserve the prior Main pin
+  5ebe5771d44160f56d4f2fd1e11726858d17dc90 and its full note history, all
+  seven other complete pin records, Workspace sources, tests, workflows,
+  canonical map, historical evidence and STATUS. The Main change requires
+  full history for its navigation workflow and a separate no-skip execution
+  of the two existing history-backed reader classes. Hosted navigation ran
+  2,469 tests with 25 skips and the separate reader suite ran 20 with no skips;
+  the prior 37-skip log remains preserved. Five other applicable sandbox,
+  two browser and two Lean controls ran separately without skips at the same
+  tested tree, while ten pytest-policy controls and the #525 composition test
+  were separately exercised locally. These do not constitute one complete
+  no-skip regression. The protected merge was initially rejected because the
+  required trusted public-intake workflow failed to start during GitHub's
+  scheduled protection brownout; the failed runs are retained. After that
+  window, run 42670053409 succeeded and normal required-check integration
+  produced a GitHub-verified signed merge with parents 5ebe5771… and
+  2d440383… and tree df5509f1f25dc406bad95ab4b88c288300901a98. A separate
+  adverse test found a subject-origin false kill in the existing node-status
+  freshness mutation grader; its repair remains in progress and no mutation
+  evidence from that grader is promoted. This pin candidate still requires
+  its own committed-tree and hosted qualification. Sequential tip observations
+  are not atomic; no final G7, full regression, complete Layer A audit,
+  scientific acceptance, CBZ-0 or terminal Partial is claimed. This custody
+  change is reversible through Git history; evidence: Main#779, checkpoint
+  v144 and the associated independently retained observations.
