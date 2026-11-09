@@ -947,3 +947,20 @@ CBZ-0 result follows from publishing this draft.
   The complete ordinary suite includes65 vector controls plus187 existing
   controls. Full normal/optimized current-source tests, live smoke and fresh
   fix review remain pending. No mathematical, G7 or CBZ status changes.
+
+## 2026-11-09 — timeout fixture race and retained hosted experiments
+
+- Scoped static review confirmed both production fixes and identified a test
+  fixture race: a waiting parent could reap the killed descendant before its
+  own group-kill exit. This was not reproduced or counted as a RED failure.
+  Keep the descendant referenced while the parent sleeps; the adopting test
+  remains responsible for its owned waitpid cleanup. Assertions are unchanged.
+- Ordinary contract CI retains normal and optimized mutation experiments in
+  separate runner-temporary directories through the existing evidence env.
+  An always-running bounded reporter prints original summary/event fields,
+  hashes and missing/read-failure observations without regrading them. An
+  immutable pinned upload action retains original logs, candidate copies and
+  child event/transcript files, including after failures. Contents permission
+  remains read-only; required test commands/exit handling are unchanged.
+  The previous source/run outcomes retain their identities. Fresh actual
+  execution and scoped review must qualify this new composition.

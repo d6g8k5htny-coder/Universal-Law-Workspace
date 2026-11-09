@@ -471,9 +471,9 @@ class NetworkControls(Fixture):
         descendant_file = Path(self.temp.name)/'descendant.pid'
         child_code = ('import os,time,pathlib;pathlib.Path(' + repr(str(descendant_file)) +
                       ').write_text(str(os.getpid()));time.sleep(30)')
-        parent_code = ('import os,pathlib,subprocess,sys;pathlib.Path(' + repr(str(pid_file)) +
-                       ').write_text(str(os.getpid()));subprocess.Popen([sys.executable,"-c",' +
-                       repr(child_code) + ']).wait()')
+        parent_code = ('import os,pathlib,subprocess,sys,time;pathlib.Path(' + repr(str(pid_file)) +
+                       ').write_text(str(os.getpid()));child=subprocess.Popen([sys.executable,"-c",' +
+                       repr(child_code) + ']);time.sleep(30)')
         command = [sys.executable, '-c', parent_code]
         original = self.tool.subprocess.Popen
         owned = []

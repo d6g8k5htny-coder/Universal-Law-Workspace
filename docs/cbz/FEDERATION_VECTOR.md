@@ -130,3 +130,14 @@ The final vector/tag, full source inventory, proof/classification reconciliation
 complete quarantine/isolation, actual G0–G11, canonical semantic truth,
 cold-start and Git/ref administration remain outstanding. This component awards
 no Layer A result, global gate, CBZ criterion, scientific independence or CBZ-0.
+
+## Hosted experiment retention
+
+The ordinary federation-contract workflow records normal and optimized finite
+campaigns separately under runner-temporary storage through
+`CBZ_VECTOR_MUTATION_EVIDENCE`. It prints original summary/event observations
+and hashes, and always uploads the original logs, candidate copies, events and
+child stdout/stderr. Missing or malformed evidence remains explicit. The
+reporter adds visibility and does not regrade tests or turn failed execution
+into success. Artifact metadata or printed fields alone do not establish that
+a reviewer downloaded and hashed every original ZIP member.
