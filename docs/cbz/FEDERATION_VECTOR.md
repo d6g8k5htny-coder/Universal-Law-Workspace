@@ -1,11 +1,16 @@
 # Immutable federation vector checks
 
-This is the bounded structural verifier candidate. Its complete final-source
-qualification remains pending. The original 62 controls have three new
-counterexamples for the reviewed canonical-ref and path-traversal gaps; no
-65-control passing result is inferred from earlier component runs, source
-recovery or static review. Production remains unchanged for the initial hosted
-RED observation.
+This bounded structural verifier is undergoing hosted qualification. The
+initial unchanged source at `be512430997757f415c5463ccfa9ad3056a504c5`
+ran 252 normal Workspace tests and produced six intended test-body assertion
+failures: tree/tag canonical refs and four path detours. There were no errors
+or skips; optimized execution was not reached. Those failures remain evidence.
+
+The current candidate adds two minimal guards, strengthens the existing real
+descendant/filter controls and adds a thirteenth finite source mutant. It has
+65 declared controls. Complete current-source normal/optimized qualification
+and fresh fix review remain pending; no previous source or static inspection
+is a passing substitute.
 
 ## Run and self-verify
 
@@ -37,8 +42,8 @@ Each real sibling checkout must have the expected toplevel, selected HEAD/tree
 and matching stage-zero index entries. The selected structural working inputs
 must match their committed regular-file bytes and executable mode. The tool
 checks eight Workspace gitlinks/pins/modules, including opt-in sandbox, and
-four canonical byte bindings. An explicit canonical ref is a separate immutable
-source; no age, ancestry, current authority or default-tip equality is inferred.
+four canonical byte bindings. An explicit canonical ref must identify a
+native commit object and remains a separate immutable source; no age, ancestry, current authority or default-tip equality is inferred.
 The native nine-public-repository navigation map remains distinct from the
 twelve-repository vector.
 
@@ -54,8 +59,10 @@ The nine lock roots are Main `formal`; Math `formal`,
 Native Lake schema 1.2.0 is checked without evaluating Lake code. Resolved Git
 `rev` must be immutable; floating `inputRev` metadata, empty scope, null
 subdirectory and Main's empty dependency list are legitimate. Repeated
-dependency identities must agree. Path dependencies resolve inside the same
-selected Git tree to declared package roots. The actual sibling TOML target
+dependency identities must agree. Path dependencies reject non-normalized detours and resolve inside the same
+selected Git tree to declared package roots. Safe leading-parent traversal
+through captured real ancestors is permitted; literal shortest-relative
+spelling is not required. The actual sibling TOML target
 has a strict dependency-name/target-lock/TOML-name agreement check; unsupported
 path-target configuration formats fail closed.
 
@@ -103,7 +110,7 @@ outside this bounded trust model.
 
 ## Evidence and remaining obligations
 
-The twelve declared source mutants require a copied-source baseline and one
+The thirteen declared source mutants require a copied-source baseline and one
 designated selected-body assertion failure per mutant. Nonce/source bindings
 and classifier controls reject malformed populations, errors, skips,
 subject/lifecycle-origin assertions, silent exits and forged transcript text.

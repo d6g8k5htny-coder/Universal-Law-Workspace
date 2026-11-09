@@ -170,3 +170,10 @@ The initial hosted revision adds three reviewed counterexamples (65 controls
 total) against the unchanged tool. Canonical object-type and noncanonical
 path gaps remain open until observed RED, repaired and requalified. This
 candidate is not an admitted certifier.
+
+The initial `be512430` hosted draft ran 252 normal Workspace tests with six
+intended test-body failures and no errors/skips; optimized execution was not
+reached. The two minimal guards and strengthened cleanup/filter controls now
+await complete current-source qualification. The finite mutation population
+is thirteen, retaining the original twelve tuples. Safe normalized traversal
+and target membership are checked without requiring shortest-relative spelling.

@@ -927,3 +927,23 @@ setup is counted as a successful rejection experiment. Complete normal and
 optimized qualification, the twelve-mutant campaign, live source smoke and
 fresh fix review remain pending. No admission, proof classification, G7 or
 CBZ-0 result follows from publishing this draft.
+
+## 2026-11-09 — actual vector RED and minimal guarded candidate
+
+- Root independently read contract run `42699263867`, attempt1, job
+  `129439316391`, at initial head `be512430997757f415c5463ccfa9ad3056a504c5`.
+  Normal ran252 with exactly6 test-body `ValueError not raised` assertion
+  failures, zero errors/skips; optimized was not executed after normal failed.
+  Both ordinary pin jobs independently observed the same six failures.
+- Author adds only native canonical commit-kind refusal and a normalized-dir
+  guard before existing target resolution/membership. The path policy forbids
+  hidden detours, permits safe leading-parent traversal through captured real
+  ancestors, and does not require a literal shortest relative path.
+- Existing timeout and filter tests now exercise an actual inherited-pipe
+  descendant with owned cleanup and attributed-file native Git positive
+  probes. Their new source has no passing credit until executed.
+- Original twelve mutation tuples are unchanged; a thirteenth removes the
+  new canonical-kind guard and must be detected by its designated body.
+  The complete ordinary suite includes65 vector controls plus187 existing
+  controls. Full normal/optimized current-source tests, live smoke and fresh
+  fix review remain pending. No mathematical, G7 or CBZ status changes.

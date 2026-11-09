@@ -2,15 +2,19 @@
 from __future__ import annotations
 
 import copy
+import ctypes
 import hashlib
 import importlib.util
 import json
 import os
 from pathlib import Path
 import shutil
+import shlex
+import signal
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from unittest import mock
 
@@ -458,14 +462,80 @@ class NetworkControls(Fixture):
         self.assertEqual(before, (git(self.root/'main', 'show-ref'), (self.root/'main/.git/config').read_bytes()))
 
     def test_timeout_reaps_child(self):
+        # Adopt only this fixture's orphaned descendant so no zombie is left to PID 1.
+        libc = ctypes.CDLL(None, use_errno=True)
+        previous = ctypes.c_int()
+        self.assertEqual(libc.prctl(37, ctypes.byref(previous), 0, 0, 0), 0)
+        self.assertEqual(libc.prctl(36, 1, 0, 0, 0), 0)
         pid_file = Path(self.temp.name)/'child.pid'
-        command = [sys.executable, '-c', 'import os,time,pathlib;pathlib.Path(' + repr(str(pid_file)) +
-                   ').write_text(str(os.getpid()));time.sleep(30)']
-        with self.assertRaises(subprocess.TimeoutExpired):
-            self.tool._network_process(command, self.tool._read_env(), timeout=0.2)
-        pid = int(pid_file.read_text())
-        with self.assertRaises(ProcessLookupError):
-            os.kill(pid, 0)
+        descendant_file = Path(self.temp.name)/'descendant.pid'
+        child_code = ('import os,time,pathlib;pathlib.Path(' + repr(str(descendant_file)) +
+                      ').write_text(str(os.getpid()));time.sleep(30)')
+        parent_code = ('import os,pathlib,subprocess,sys;pathlib.Path(' + repr(str(pid_file)) +
+                       ').write_text(str(os.getpid()));subprocess.Popen([sys.executable,"-c",' +
+                       repr(child_code) + ']).wait()')
+        command = [sys.executable, '-c', parent_code]
+        original = self.tool.subprocess.Popen
+        owned = []
+        def ready_process(*args, **kwargs):
+            process = original(*args, **kwargs)
+            owned.append(process)
+            deadline = time.monotonic() + 5
+            while True:
+                try:
+                    descendant = int(descendant_file.read_text())
+                except (FileNotFoundError, ValueError):
+                    descendant = None
+                if descendant is not None:
+                    self.assertEqual(os.getpgid(descendant), process.pid)
+                    return process
+                if process.poll() is not None:
+                    self.fail('timeout fixture exited before descendant readiness')
+                if time.monotonic() >= deadline:
+                    self.fail('timeout fixture descendant readiness deadline')
+                time.sleep(0.01)
+        try:
+            with mock.patch.object(self.tool.subprocess, 'Popen', ready_process):
+                try:
+                    with self.assertRaises(subprocess.TimeoutExpired):
+                        self.tool._network_process(command, self.tool._read_env(), timeout=0.2)
+                except ValueError as error:
+                    self.fail('timeout descendant cleanup failed: ' + str(error))
+            pid = int(pid_file.read_text())
+            with self.assertRaises(ProcessLookupError):
+                os.kill(pid, 0)
+            descendant = int(descendant_file.read_text())
+            deadline = time.monotonic() + 2
+            while True:
+                reaped, status = os.waitpid(descendant, os.WNOHANG)
+                if reaped:
+                    break
+                if time.monotonic() >= deadline:
+                    self.fail('timeout left a live descendant holding its output pipe')
+                time.sleep(0.01)
+            self.assertEqual(reaped, descendant)
+            self.assertTrue(os.WIFSIGNALED(status))
+            self.assertEqual(os.WTERMSIG(status), signal.SIGKILL)
+        finally:
+            try:
+                for process in owned:
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                    process.wait(timeout=2)
+                    deadline = time.monotonic() + 2
+                    while True:
+                        try:
+                            reaped, _ = os.waitpid(-process.pid, os.WNOHANG)
+                        except ChildProcessError:
+                            break
+                        if not reaped:
+                            if time.monotonic() >= deadline:
+                                self.fail('owned timeout fixture cleanup deadline')
+                            time.sleep(0.01)
+            finally:
+                self.assertEqual(libc.prctl(36, previous.value, 0, 0, 0), 0)
 
     def test_cleanup_failure_has_explicit_status(self):
         original = self.tool._network_process
@@ -642,10 +712,90 @@ class VectorSources(Fixture):
 
     def test_no_git_status_or_filter_execution(self):
         marker = Path(self.temp.name)/'executed'
-        command = 'touch ' + str(marker)
+        script = Path(self.temp.name)/'filter_probe.py'
+        script.write_text(r'''import pathlib, sys
+marker = pathlib.Path(sys.argv[1])
+mode = sys.argv[2]
+def observed(value):
+    with marker.open('ab') as stream:
+        stream.write(value.encode() + b'\n')
+if mode != 'process':
+    observed(mode)
+    sys.stdout.buffer.write(sys.stdin.buffer.read())
+else:
+    incoming, outgoing = sys.stdin.buffer, sys.stdout.buffer
+    def receive():
+        rows = []
+        while True:
+            header = incoming.read(4)
+            if not header:
+                return None
+            if len(header) != 4:
+                raise RuntimeError('short filter packet')
+            size = int(header, 16)
+            if size == 0:
+                return rows
+            if size < 4:
+                raise RuntimeError('invalid filter packet')
+            data = incoming.read(size - 4)
+            if len(data) != size - 4:
+                raise RuntimeError('short filter payload')
+            rows.append(data)
+    def send(rows):
+        for row in rows:
+            outgoing.write(('%04x' % (len(row) + 4)).encode() + row)
+        outgoing.write(b'0000')
+        outgoing.flush()
+    if receive() != [b'git-filter-client\n', b'version=2\n']:
+        raise RuntimeError('invalid filter handshake')
+    send([b'git-filter-server\n', b'version=2\n'])
+    capabilities = receive()
+    if capabilities is None:
+        raise RuntimeError('missing filter capabilities')
+    send([b'capability=clean\n', b'capability=smudge\n'])
+    while True:
+        header = receive()
+        if header is None:
+            break
+        commands = [row[len(b'command='):].strip() for row in header if row.startswith(b'command=')]
+        if len(commands) != 1 or commands[0] not in (b'clean', b'smudge'):
+            raise RuntimeError('invalid filter command')
+        content = receive()
+        if content is None:
+            raise RuntimeError('missing filter content')
+        observed('process:' + commands[0].decode())
+        send([b'status=success\n'])
+        send(content)
+        send([])
+''')
+        payload = b'identity filter probe\n'
         for name in ('main', 'Universal-Law-Workspace'):
-            git(self.root/name, 'config', 'filter.probe.clean', command)
-            git(self.root/name, 'config', 'core.fsmonitor', command)
+            repo = self.root/name
+            write(repo, '.gitattributes', 'filter-probe.txt filter=probe\n')
+            write(repo, 'filter-probe.txt', payload)
+            git(repo, 'add', '.gitattributes', 'filter-probe.txt')
+            git(repo, 'commit', '-qm', 'attributed filter fixture')
+            self.vector[name] = git(repo, 'rev-parse', 'HEAD').decode().strip()
+            for mode in ('clean', 'smudge'):
+                command = shlex.join([sys.executable, str(script), str(marker), mode])
+                git(repo, 'config', 'filter.probe.' + mode, command)
+            git(repo, 'config', 'filter.probe.required', 'true')
+            git(repo, 'hash-object', '--path=filter-probe.txt', 'filter-probe.txt')
+            self.assertIn('clean', marker.read_text().splitlines())
+            marker.unlink()
+            self.assertEqual(git(repo, 'cat-file', '--filters', 'HEAD:filter-probe.txt'), payload)
+            self.assertIn('smudge', marker.read_text().splitlines())
+            marker.unlink()
+            command = shlex.join([sys.executable, str(script), str(marker), 'process'])
+            git(repo, 'config', 'filter.probe.process', command)
+            git(repo, 'hash-object', '--path=filter-probe.txt', 'filter-probe.txt')
+            self.assertIn('process:clean', marker.read_text().splitlines())
+            marker.unlink()
+            self.assertEqual(git(repo, 'cat-file', '--filters', 'HEAD:filter-probe.txt'), payload)
+            self.assertIn('process:smudge', marker.read_text().splitlines())
+            marker.unlink()
+            git(repo, 'config', 'core.fsmonitor', 'touch ' + shlex.quote(str(marker)))
+        self.save_vector()
         original = subprocess.run
         def guarded(args, *a, **kw):
             self.assertNotIn('status', args, 'selected source Git status is forbidden')

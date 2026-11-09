@@ -283,6 +283,8 @@ def verify_workspace(snapshot: dict) -> dict:
     for key, repository, url, path, commit, blob, binding in source_specs(doc, pins):
         short = repository.split('/', 1)[1]
         require(short in snapshot['repositories'], 'CANONICAL_REPOSITORY')
+        require(read_git(snapshot['repositories'][short]['_path'],
+                         ('cat-file', '-t', commit)).strip() == b'commit', 'CANONICAL_COMMIT')
         actual = read_blob(snapshot['repositories'][short]['_path'], commit, path)
         require(actual['blob'] == blob, 'CANONICAL_BLOB')
         canonical.append(dict(_public(actual), key=key, repository=short, url=url, binding=binding))
@@ -350,6 +352,7 @@ def verify_locks(snapshot: dict) -> dict:
                 relative = dependency['dir']
                 require(type(relative) is str and relative and '\\' not in relative and '\0' not in relative
                         and not relative.startswith('/'), 'LOCK_PATH_TARGET')
+                require(relative == posixpath.normpath(relative), 'LOCK_PATH_TARGET')
                 target = posixpath.normpath(package + '/' + relative)
                 require(target in PACKAGE_ROOTS[repository], 'LOCK_PATH_TARGET')
                 target_key = repository + ':' + target

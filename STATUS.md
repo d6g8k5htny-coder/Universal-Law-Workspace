@@ -170,3 +170,9 @@ Three reviewed counterexamples have since been added, making 65 declared
 controls. The initial hosted draft intentionally retains the unchanged tool
 until the canonical object-type and noncanonical path cases fail by the
 expected test assertions. The tool is not admitted while those gaps remain.
+
+Observed RED at `be512430`: 252 normal Workspace tests, six designated assertion
+failures, no errors/skips; optimized not executed. The follow-up source adds
+the two guards and strengthens existing descendant/filter controls, with a
+thirteenth finite guard mutation. Current-source execution and fix review are
+pending; this structural candidate remains unadmitted.

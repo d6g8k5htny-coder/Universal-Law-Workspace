@@ -1,4 +1,4 @@
-"""Twelve finite weakening controls; native selected-body failures only earn kills."""
+"""Thirteen finite weakening controls; native selected-body failures only earn kills."""
 from __future__ import annotations
 
 import hashlib
@@ -42,6 +42,10 @@ MUTANTS = (
      "'FETCHED_COMMIT' != 'IDENTITY_MISMATCH'"),
     ('final-recheck', '                recheck_sources(snapshot)', '                None',
      'CliControls.test_midrun_head_drift_refused', "'PASS' != 'FAIL'"),
+    ('canonical-kind',
+     "require(read_git(snapshot['repositories'][short]['_path'],\n"
+     "                         ('cat-file', '-t', commit)).strip() == b'commit', 'CANONICAL_COMMIT')",
+     'None', 'WorkspaceControls.test_explicit_canonical_tree_oid_refused', 'ValueError not raised'),
 )
 
 
@@ -157,7 +161,7 @@ class MutationControls(unittest.TestCase):
             result = 'classifier crashed'
         self.assertIs(result, False)
 
-    def test_twelve_source_mutants_are_killed_by_designated_body_assertions(self):
+    def test_thirteen_source_mutants_are_killed_by_designated_body_assertions(self):
         source = TOOL.read_text()
         parent = os.environ.get('CBZ_VECTOR_MUTATION_EVIDENCE')
         if parent:
