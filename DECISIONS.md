@@ -765,3 +765,13 @@ workspace is being assessed; it is not yet CBZ-0.
   workflow run cannot be retried. These are platform outcomes, not passing
   tests or source-failure diagnoses. Preserve them and qualify this updated
   candidate through the ordinary pull-request checks on its actual head.
+
+- 2026-11-09 18:22 UTC — On the next candidate head
+  `bd617949f349805b87f51ede2b793553f30c542f`, federation-contract run
+  42672115232 and pins run 42672114965 likewise failed before creating
+  jobs. GitHub's run pages reported internal server errors with correlation
+  IDs `9e77ee74-79dc-4d23-a8f9-276fa00576cd` and
+  `60025573-4dd6-46c3-9589-a0a33d31778f`. Preserve those separate
+  outcomes. Later Main pull-request workflows were observed starting jobs;
+  this is a reason to attempt fresh ordinary Workspace checks, not a passing
+  Workspace qualification or permission to bypass protected integration.
