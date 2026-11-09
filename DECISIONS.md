@@ -726,3 +726,52 @@ workspace is being assessed; it is not yet CBZ-0.
   requires its own committed-tree qualification. Sequential tip observations
   are not atomic. Reversible through ordinary Git history; evidence: Main#778,
   durable checkpoint v139 and this Workspace pin-refresh PR.
+
+- 2026-11-09 18:02:13 UTC · Phase 3 · C · Refresh only the Main pin,
+  gitlink and matching README link after Main#779 merged normally to
+  6ab126beda65e19865b8468b52f8757ac2324e1f. Preserve the prior Main pin
+  5ebe5771d44160f56d4f2fd1e11726858d17dc90 and its full note history, all
+  seven other complete pin records, Workspace sources, tests, workflows,
+  canonical map, historical evidence and STATUS. The Main change requires
+  full history for its navigation workflow and a separate no-skip execution
+  of the two existing history-backed reader classes. Hosted navigation ran
+  2,469 tests with 25 skips and the separate reader suite ran 20 with no skips;
+  the prior 37-skip log remains preserved. Five other applicable sandbox,
+  two browser and two Lean controls ran separately without skips at the same
+  tested tree, while ten pytest-policy controls and the #525 composition test
+  were separately exercised locally. These do not constitute one complete
+  no-skip regression. The protected merge was initially rejected because the
+  required trusted public-intake workflow failed to start during GitHub's
+  scheduled protection brownout; the failed runs are retained. After that
+  window, run 42670053409 succeeded and normal required-check integration
+  produced a GitHub-verified signed merge with parents 5ebe5771… and
+  2d440383… and tree df5509f1f25dc406bad95ab4b88c288300901a98. A separate
+  adverse test found a subject-origin false kill in the existing node-status
+  freshness mutation grader; its repair remains in progress and no mutation
+  evidence from that grader is promoted. This pin candidate still requires
+  its own committed-tree and hosted qualification. Sequential tip observations
+  are not atomic; no final G7, full regression, complete Layer A audit,
+  scientific acceptance, CBZ-0 or terminal Partial is claimed. This custody
+  change is reversible through Git history; evidence: Main#779, checkpoint
+  v144 and the associated independently retained observations.
+
+- 2026-11-09 18:13 UTC — Preserve the initial hosted qualification failures
+  for Workspace #53 at head `39dadaba87c92ce886037904711abf25791e293b`.
+  Federation-contract run 42671456239 and pins run 42671456244 each stopped
+  before creating any job; GitHub's run pages reported internal server
+  errors, with correlation IDs `45f9d099-4d5b-48e2-b25c-de9a5083d55e`
+  and `5da24b9c-5c24-4295-9321-42ad1108d721`, respectively. GitHub
+  refused each targeted failed-job retry with HTTP 403, stating that the
+  workflow run cannot be retried. These are platform outcomes, not passing
+  tests or source-failure diagnoses. Preserve them and qualify this updated
+  candidate through the ordinary pull-request checks on its actual head.
+
+- 2026-11-09 18:22 UTC — On the next candidate head
+  `bd617949f349805b87f51ede2b793553f30c542f`, federation-contract run
+  42672115232 and pins run 42672114965 likewise failed before creating
+  jobs. GitHub's run pages reported internal server errors with correlation
+  IDs `9e77ee74-79dc-4d23-a8f9-276fa00576cd` and
+  `60025573-4dd6-46c3-9589-a0a33d31778f`. Preserve those separate
+  outcomes. Later Main pull-request workflows were observed starting jobs;
+  this is a reason to attempt fresh ordinary Workspace checks, not a passing
+  Workspace qualification or permission to bypass protected integration.
