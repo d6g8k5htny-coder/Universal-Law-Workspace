@@ -832,3 +832,17 @@ workspace is being assessed; it is not yet CBZ-0.
   fresh comparison before normal integration remain required. No final G7,
   regression, Layer A audit, scientific acceptance, CBZ-0 or terminal Partial
   follows from this pin. Reversible through Git history.
+
+- 2026-11-09 UTC · Phase 2 · B · Refresh the Workspace Main gitlink and
+  manifest pin from `7738e4c2e0881dd952772421877d9854364d272f` to
+  `c81b7572f3c690338db9d66fdea582fc68f4a73f` after Main #785. Individually
+  observed defaults for all eight pinned repositories matched these proposed
+  pins during 20:39:18--20:39:23 UTC; this was not an atomic observation.
+  Preserve all other pins, prior notes, outcomes, source history and canonical
+  inputs. Main #785 repairs the bounded inventory mutation-origin controller;
+  its hosted normal regression ran 2,576 tests with 25 skips, and the separate
+  local optimized full run has no final result. The historical false kills and
+  Node failure remain retained. Candidate-specific checks and a fresh head
+  comparison before normal integration remain required. No final G7, full
+  no-skip regression, Layer A audit, scientific acceptance, CBZ-0 or terminal
+  Partial follows from this pin. Reversible through Git history.
