@@ -1,0 +1,255 @@
+{
+  "schema": "cbz.workspace.pin-observation.v1",
+  "source_workspace": {
+    "commit": "47221adf89749dc226e8e3578af2f8fd7c16ea20",
+    "tree": "2bf6f42a183643e8c4483249335ab121d59ec07d"
+  },
+  "started_at": "2026-11-10T06:09:37.964Z",
+  "finished_at": "2026-11-10T06:09:39.211Z",
+  "non_atomic": true,
+  "observations": [
+    {
+      "kind": "ref",
+      "name": "main",
+      "sha": "d291b42801a26252a046d8ca78a6bd62abc448ae"
+    },
+    {
+      "kind": "pin",
+      "name": "main",
+      "sha": "964390a94c08f00f119dc3b2e0be16180c1544e2",
+      "expected": "964390a94c08f00f119dc3b2e0be16180c1544e2",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "main",
+      "count": 2,
+      "first_page_only": false,
+      "open": [
+        {
+          "number": 807,
+          "head": "9607199c12ec0d279da1b5dc634671adf5f3394e",
+          "draft": true
+        },
+        {
+          "number": 804,
+          "head": "16b4e198a5799e0e1a40b7032e6b6d4d1e981c2f",
+          "draft": true
+        }
+      ]
+    },
+    {
+      "kind": "ref",
+      "name": "Math-",
+      "sha": "9bdfc54b76173b57912503bfcf901a5f9d43b09c"
+    },
+    {
+      "kind": "pin",
+      "name": "Math-",
+      "sha": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "expected": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "Math-",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "meta-framework",
+      "sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e"
+    },
+    {
+      "kind": "pin",
+      "name": "meta-framework",
+      "sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "expected": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "meta-framework",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "query-",
+      "sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f"
+    },
+    {
+      "kind": "pin",
+      "name": "query-",
+      "sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "expected": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "query-",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "google-drive",
+      "sha": "ad08584b3ea9d533af10113e85169f471fa8ec93"
+    },
+    {
+      "kind": "pin",
+      "name": "google-drive",
+      "sha": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "expected": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "google-drive",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "trial",
+      "sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3"
+    },
+    {
+      "kind": "pin",
+      "name": "trial",
+      "sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "expected": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "trial",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "governance-",
+      "sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891"
+    },
+    {
+      "kind": "pin",
+      "name": "governance-",
+      "sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "expected": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "governance-",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "sandbox",
+      "sha": "dce04a4174835107126ab4f36c199a2dc320f964"
+    },
+    {
+      "kind": "pin",
+      "name": "sandbox",
+      "sha": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "expected": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "match": true
+    },
+    {
+      "kind": "prs",
+      "name": "sandbox",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "Universal-Law-Workspace",
+      "sha": "47221adf89749dc226e8e3578af2f8fd7c16ea20"
+    },
+    {
+      "kind": "prs",
+      "name": "Universal-Law-Workspace",
+      "count": 0,
+      "first_page_only": false,
+      "open": []
+    }
+  ],
+  "gitlinks": [
+    {
+      "path": "repos/main",
+      "pin": "964390a94c08f00f119dc3b2e0be16180c1544e2",
+      "actual": "964390a94c08f00f119dc3b2e0be16180c1544e2",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/Math-",
+      "pin": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "actual": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/meta-framework",
+      "pin": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "actual": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/query-",
+      "pin": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "actual": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/google-drive",
+      "pin": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "actual": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/trial",
+      "pin": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "actual": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/governance-",
+      "pin": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "actual": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    },
+    {
+      "path": "repos/sandbox",
+      "pin": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "actual": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "type": "commit",
+      "mode": "160000",
+      "match": true
+    }
+  ],
+  "proposed_main": "d291b42801a26252a046d8ca78a6bd62abc448ae",
+  "scope": "Separately read repository refs, pinned commit objects, manifest/gitlinks and first-page open PRs; no final G7 or scientific claim."
+}
