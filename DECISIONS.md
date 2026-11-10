@@ -1169,3 +1169,7 @@ CBZ-0 result follows from publishing this draft.
 ## 2026-11-10 — Main pin after #806
 
 - Refresh the Main gitlink, manifest and README from `964390a94c08f00f119dc3b2e0be16180c1544e2` to separately observed default `d291b42801a26252a046d8ca78a6bd62abc448ae` after Main #806. Preserve the previous note and all seven other pin records. The nine repository ref reads, eight pinned-object reads and open-PR observations at 06:09:37–06:09:39 UTC were non-atomic; retain `evidence/cbz-pin-observation-20261110-main806.json`. Require fresh strict-current, canonical-input and exact-head hosted checks and recheck tips before integration. This reversible pointer update is not final G7, scientific acceptance, publication or CBZ-0.
+
+## 2026-11-10 — Main pin after #804
+
+- Refresh the Main gitlink, manifest and README from `d291b42801a26252a046d8ca78a6bd62abc448ae` to separately observed default `1a6acb192f0946900c4d445ee36febec27540da0` after Main #804. Preserve the previous note and all seven other pin records. Eight default-ref and commit-object reads plus the Workspace ref read at 06:24:11–06:24:18 UTC were non-atomic; retain `evidence/cbz-pin-observation-20261110-main804.json`. Require fresh strict-current, canonical-input and exact-head hosted checks and recheck tips before integration. This reversible pointer update is not final G7, scientific acceptance, publication or CBZ-0.

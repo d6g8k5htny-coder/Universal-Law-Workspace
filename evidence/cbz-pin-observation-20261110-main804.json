@@ -1,0 +1,82 @@
+{
+  "schema": "cbz.workspace-pin-observation.v1",
+  "started_at": "2026-11-10T06:24:11.508Z",
+  "finished_at": "2026-11-10T06:24:18.325Z",
+  "non_atomic": true,
+  "workspace_default": "bb4a3f9c15f69e0f574f948e9f84ab55f6693a69",
+  "repositories": [
+    {
+      "name": "main",
+      "path": "repos/main",
+      "prior_pin": "d291b42801a26252a046d8ca78a6bd62abc448ae",
+      "observed_default": "1a6acb192f0946900c4d445ee36febec27540da0",
+      "tip_object": "1a6acb192f0946900c4d445ee36febec27540da0",
+      "tree": "0653510713b14da67c0d3746aee854d47c4ed869",
+      "at": "2026-11-10T06:24:12.305Z"
+    },
+    {
+      "name": "Math-",
+      "path": "repos/Math-",
+      "prior_pin": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "observed_default": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "tip_object": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "tree": "80220da34423ae3209b4868b7b3d1e561380f962",
+      "at": "2026-11-10T06:24:13.113Z"
+    },
+    {
+      "name": "meta-framework",
+      "path": "repos/meta-framework",
+      "prior_pin": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "observed_default": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "tip_object": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "tree": "71e6f3fab0725e4fb7f474d383310cb0594ce9e1",
+      "at": "2026-11-10T06:24:13.754Z"
+    },
+    {
+      "name": "query-",
+      "path": "repos/query-",
+      "prior_pin": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "observed_default": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "tip_object": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "tree": "a2a697df64cb0aed7b04557e238b52a984617275",
+      "at": "2026-11-10T06:24:14.386Z"
+    },
+    {
+      "name": "google-drive",
+      "path": "repos/google-drive",
+      "prior_pin": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "observed_default": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "tip_object": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "tree": "82ffba57701d4d25e49ef7571d061fdf94edb647",
+      "at": "2026-11-10T06:24:15.606Z"
+    },
+    {
+      "name": "trial",
+      "path": "repos/trial",
+      "prior_pin": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "observed_default": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "tip_object": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "tree": "af7a2408e10caf3ec2f034e42d9e4c4c0acb5fd6",
+      "at": "2026-11-10T06:24:16.455Z"
+    },
+    {
+      "name": "governance-",
+      "path": "repos/governance-",
+      "prior_pin": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "observed_default": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "tip_object": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "tree": "284fd037bc8967326d12c55508f7a14d78f78b6f",
+      "at": "2026-11-10T06:24:17.161Z"
+    },
+    {
+      "name": "sandbox",
+      "path": "repos/sandbox",
+      "prior_pin": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "observed_default": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "tip_object": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "tree": "84aeb320503b44db64add9734514061987f7637d",
+      "at": "2026-11-10T06:24:17.959Z"
+    }
+  ],
+  "scope": "Separate API ref and commit-object reads; no final G7, mathematical or scientific claim."
+}
