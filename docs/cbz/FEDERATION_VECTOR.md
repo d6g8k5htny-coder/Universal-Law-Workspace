@@ -1,5 +1,37 @@
 # Immutable federation vector checks
 
+## Deferred assertion-origin correction — 10 November 2026
+
+On Workspace source `344f81f5cb1e7040dfedb2c752b9a3514775b257`, the earlier
+vector mutation grader's test file SHA-256 was
+`e7630a0642101e2070d73f0bcb84b22e301cfbfac5a0ed66847ee7048d23d3a4`.
+Four adversarial subject-return cases, each run in normal and optimized child
+mode against real fixture tests, produced `AssertionError` from deferred
+runtime behavior and were incorrectly classified as selected-oracle kills.
+They included mock side effects, a deferred `unittest.case` failure, a
+partial bound assertion and equality evaluated during an assertion. These
+are deliberately adverse cases, not proof that every historical mutation
+result was false. Earlier reports and original outcomes remain preserved;
+their selected-body flag alone is insufficient to establish origin against
+these cases.
+
+This source contains a candidate correction whose mutation-test file SHA-256 is
+`c88d938ab224140495153305ce8e187cadb158465cdbf74d11d2c2425e08cf3d`.
+It uses the live traceback, selected code identity, selected instruction source
+position bound back to the compiled selected code, and an exact supported
+oracle-code path. Unsupported positions, changed or missing selected source,
+and unlisted paths fail closed. The finite supported oracles are the observed
+`assertEqual` and `assertRaisesRegex` paths used by the 13 declared controls;
+this is not a universal Python assertion-origin proof. Local CPython 3.12.14
+ran the mutation-test module in both modes: 12 tests per mode with no skips,
+including 13 retained source-mutant/baseline pairs per mode, the four adverse
+cases and actual removals of the callsite and oracle-path guards. Each removal
+reopened its matching real false kill. The retained local archive contains
+original red/green logs, candidates, events and source hashes. These observations
+do not replace exact-head hosted qualification or the final federation G6.
+
+[Retained local evidence](../../evidence/vector-origin-20261110/README.md)
+
 ## Later mutation-origin correction — 9 November 2026
 
 An actual subject assertion beneath a directory named `unittest` was wrongly

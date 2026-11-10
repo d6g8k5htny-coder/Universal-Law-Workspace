@@ -1,7 +1,10 @@
 """Thirteen finite weakening controls; native selected-body failures only earn kills."""
 from __future__ import annotations
 
+import ast
+import dis
 import hashlib
+import importlib.util
 import inspect
 import json
 import os
@@ -12,6 +15,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import types
 import unittest
 import unittest.mock
 
@@ -82,11 +86,72 @@ LIFECYCLE_CODES = tuple(getattr(unittest.TestCase, name).__code__ for name in
                         ('_callSetUp', '_callTearDown', '_callCleanup', 'doCleanups'))
 
 
+def authorized_oracle(selected_code, lasti, following):
+    """Admit only observed assertion call sites and their exact oracle paths.
+
+    The source position is an additional restriction on the selected code
+    identity, never a replacement for that identity or for the live traceback.
+    Unsupported methods, bytecode positions and oracle paths fail closed.
+    """
+    paths = {
+        'assertEqual': (
+            (unittest.TestCase.assertEqual.__code__, unittest.TestCase._baseAssertEqual.__code__),
+            (unittest.TestCase.assertEqual.__code__, unittest.TestCase.assertMultiLineEqual.__code__,
+             unittest.TestCase.fail.__code__),
+        ),
+        'assertRaisesRegex': (
+            (unittest.case._AssertRaisesContext.__exit__.__code__,
+             unittest.case._BaseTestCaseContext._raiseFailure.__code__),
+        ),
+    }
+    try:
+        source = Path(selected_code.co_filename).read_text(encoding='utf-8')
+        parsed = ast.parse(source)
+        compiled = compile(source, selected_code.co_filename, 'exec', dont_inherit=True,
+                           optimize=sys.flags.optimize)
+        pending, matches = [compiled], []
+        while pending:
+            current = pending.pop()
+            if (current.co_qualname == selected_code.co_qualname
+                    and current.co_firstlineno == selected_code.co_firstlineno):
+                matches.append(current)
+            pending.extend(item for item in current.co_consts if isinstance(item, types.CodeType))
+        if (len(matches) != 1 or matches[0] != selected_code
+                or matches[0].co_linetable != selected_code.co_linetable
+                or matches[0].co_exceptiontable != selected_code.co_exceptiontable):
+            return False
+        methods = [node for node in ast.walk(parsed)
+                   if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+                   and node.name == selected_code.co_name and node.lineno == selected_code.co_firstlineno]
+        if len(methods) != 1:
+            return False
+        ins = next(i for i in dis.get_instructions(selected_code, show_caches=True) if i.offset == lasti)
+        pos = ins.positions
+        if pos is None:
+            return False
+        observed = (pos.lineno, pos.end_lineno, pos.col_offset, pos.end_col_offset)
+        for call in ast.walk(methods[0]):
+            if (not isinstance(call, ast.Call) or not isinstance(call.func, ast.Attribute)
+                    or not isinstance(call.func.value, ast.Name) or call.func.value.id != 'self'
+                    or call.func.attr not in paths):
+                continue
+            if (call.lineno, call.end_lineno, call.col_offset, call.end_col_offset) != observed:
+                continue
+            for path in paths[call.func.attr]:
+                if len(path) == len(following) and all(left is right for left, right in zip(path, following)):
+                    return True
+    except (OSError, UnicodeError, SyntaxError, ValueError, TypeError, StopIteration):
+        return False
+    return False
+
+
 def failure_origin(error, selected_code):
     frames = []
+    offsets = []
     trace = error[2]
     while trace:
         frames.append(trace.tb_frame.f_code)
+        offsets.append(trace.tb_lasti)
         trace = trace.tb_next
     selected = [index for index, code in enumerate(frames) if code is selected_code]
     if len(selected) != 1 or type(error[1]) is not AssertionError:
@@ -97,7 +162,8 @@ def failure_origin(error, selected_code):
                     for code in frames)
     return bool(dispatch and not lifecycle and
                 all(any(code is oracle for oracle in UNITTEST_CODES)
-                    for code in frames[position + 1:]))
+                    for code in frames[position + 1:]) and
+                authorized_oracle(selected_code, offsets[position], frames[position + 1:]))
 
 
 def intended_failure(process, event, test, nonce, source_hash, reason):
@@ -144,6 +210,65 @@ def run_child(test):
 
 
 class MutationControls(unittest.TestCase):
+    def test_deferred_subject_assertions_in_unittest_code_are_not_kills(self):
+        source = TOOL.read_text()
+        request_anchor = 'def required_remote_commits(snapshot: dict, workspace: dict, locks: dict) -> list[dict]:\n'
+        fetch_anchor = 'def fetch_exact_commit(request: dict, storage: Path) -> dict:\n'
+        self.assertEqual(source.count(request_anchor), 1)
+        self.assertEqual(source.count(fetch_anchor), 1)
+        cases = (
+            ('mock-len', request_anchor,
+             "    import unittest.mock\n"
+             "    result = unittest.mock.MagicMock()\n"
+             "    result.__len__.side_effect = AssertionError('21 != 22')\n"
+             "    return result\n",
+             'NetworkControls.test_network_includes_canonical_historical_commit', '21 != 22'),
+            ('case-len', request_anchor,
+             "    import unittest\n"
+             "    class DeferredLength:\n"
+             "        __len__ = unittest.TestCase.fail\n"
+             "        @staticmethod\n"
+             "        def failureException(message):\n"
+             "            return AssertionError('21 != 22')\n"
+             "    return DeferredLength()\n",
+             'NetworkControls.test_network_includes_canonical_historical_commit', '21 != 22'),
+            ('partial-len', request_anchor,
+             "    import functools, unittest\n"
+             "    class DeferredLength:\n"
+             "        __len__ = functools.partial(unittest.TestCase().assertEqual, 21, 22)\n"
+             "    return DeferredLength()\n",
+             'NetworkControls.test_network_includes_canonical_historical_commit', '21 != 22'),
+            ('case-equality', fetch_anchor,
+             "    import unittest\n"
+             "    class DeferredEquality:\n"
+             "        __eq__ = unittest.TestCase.fail\n"
+             "        @staticmethod\n"
+             "        def failureException(message):\n"
+             "            return AssertionError(\"'FETCHED_COMMIT' != 'IDENTITY_MISMATCH'\")\n"
+             "    return {'status': DeferredEquality()}\n",
+             'NetworkControls.test_wrong_fetched_commit_refused', "'FETCHED_COMMIT' != 'IDENTITY_MISMATCH'"),
+        )
+        with tempfile.TemporaryDirectory(prefix='vector-deferred-origin-') as tmp:
+            folder = Path(tmp)
+            for label, anchor, body, test, reason in cases:
+                candidate = folder / (label + '.py')
+                candidate.write_text(source.replace(anchor, anchor + body, 1))
+                for optimized in (False, True):
+                    with self.subTest(case=label, optimized=optimized):
+                        event_path = folder / (label + '-' + str(optimized) + '.json')
+                        nonce = secrets.token_hex(16)
+                        env = dict(os.environ, CBZ_VECTOR_UNDER_TEST=str(candidate),
+                                   CBZ_VECTOR_EVENT=str(event_path), CBZ_VECTOR_NONCE=nonce)
+                        child = subprocess.run([sys.executable, '-B', *(['-O'] if optimized else []),
+                                                '-S', str(Path(__file__).resolve()), '--child', test],
+                                               env=env, text=True, capture_output=True, timeout=180)
+                        self.assertEqual(child.returncode, 1, child.stderr)
+                        event = json.loads(event_path.read_text())
+                        self.assertEqual(event['tests_run'], 1)
+                        self.assertEqual(event['errors'] + event['skipped'], 0)
+                        self.assertFalse(event['failures'][0]['selected_body'], child.stderr)
+                        self.assertFalse(intended_failure(child, event, test, nonce, digest(candidate), reason))
+
     def test_subject_assertion_from_unittest_named_path_is_not_a_kill(self):
         source = TOOL.read_text()
         anchor = 'def load_vector(path: Path) -> dict[str, str]:\n'
@@ -175,6 +300,9 @@ class MutationControls(unittest.TestCase):
                  'UNITTEST_CODES)\n                    for code in frames[position + 1:])')
         self.assertEqual(harness.count(guard), 1)
         mutant = harness.replace(guard, 'all(True for code in frames[position + 1:])', 1)
+        callsite = ('authorized_' + 'oracle(selected_code, offsets[position], frames[position + 1:])')
+        self.assertEqual(mutant.count(callsite), 1)
+        mutant = mutant.replace(callsite, 'True', 1)
         source = TOOL.read_text()
         anchor = 'def load_vector(path: Path) -> dict[str, str]:\n'
         self.assertEqual(source.count(anchor), 1)
@@ -201,6 +329,94 @@ class MutationControls(unittest.TestCase):
                         self.assertEqual(child.returncode, 1)
                         self.assertEqual(intended_failure(child, event, selected, nonce, digest(candidate),
                                                           'ValueError not raised'), expected)
+
+    def test_callsite_and_oracle_path_removals_reopen_deferred_failures(self):
+        harness = Path(__file__).read_text()
+        callsite_guard = ('if (call.lineno, call.end_lineno, call.col_offset, call.end_col_offset) '
+                          + '!= observed:')
+        path_guard = ('if len(path) == len(following) and '
+                      + 'all(left is right for left, right in zip(path, following)):')
+        self.assertEqual(harness.count(callsite_guard), 1)
+        self.assertEqual(harness.count(path_guard), 1)
+        source = TOOL.read_text()
+        request_anchor = 'def required_remote_commits(snapshot: dict, workspace: dict, locks: dict) -> list[dict]:\n'
+        fetch_anchor = 'def fetch_exact_commit(request: dict, storage: Path) -> dict:\n'
+        self.assertEqual(source.count(request_anchor), 1)
+        self.assertEqual(source.count(fetch_anchor), 1)
+        cases = (
+            ('callsite', harness.replace(callsite_guard, 'if False:', 1), request_anchor,
+             "    import functools, unittest\n"
+             "    class DeferredLength:\n"
+             "        __len__ = functools.partial(unittest.TestCase().assertEqual, 21, 22)\n"
+             "    return DeferredLength()\n",
+             'NetworkControls.test_network_includes_canonical_historical_commit', '21 != 22'),
+            ('path', harness.replace(path_guard, 'if True:', 1), fetch_anchor,
+             "    import unittest\n"
+             "    class DeferredEquality:\n"
+             "        __eq__ = unittest.TestCase.fail\n"
+             "        @staticmethod\n"
+             "        def failureException(message):\n"
+             "            return AssertionError(\"'FETCHED_COMMIT' != 'IDENTITY_MISMATCH'\")\n"
+             "    return {'status': DeferredEquality()}\n",
+             'NetworkControls.test_wrong_fetched_commit_refused', "'FETCHED_COMMIT' != 'IDENTITY_MISMATCH'"),
+        )
+        with tempfile.TemporaryDirectory(prefix='vector-deferred-self-') as tmp:
+            base = Path(tmp)
+            (base/'tests').mkdir(); (base/'tools').mkdir(); (base/'subjects').mkdir()
+            shutil.copy2(ROOT/'tests/test_verify_federation_vector.py', base/'tests')
+            for name in ('check_workspace.py', 'verify_pins.py', 'verify_canonical_inputs.py'):
+                shutil.copy2(ROOT/'tools'/name, base/'tools'/name)
+            for label, mutant, anchor, body, selected, reason in cases:
+                candidate = base/'subjects'/(label + '.py')
+                candidate.write_text(source.replace(anchor, anchor + body, 1))
+                for optimized in (False, True):
+                    for version, code, expected in (('baseline', harness, False), ('mutant', mutant, True)):
+                        with self.subTest(guard=label, optimized=optimized, version=version):
+                            runner = base/'tests/vector_harness.py'; runner.write_text(code)
+                            event_path = base/(label + '-' + str(optimized) + '-' + version + '.json')
+                            nonce = secrets.token_hex(16)
+                            env = dict(os.environ, CBZ_VECTOR_UNDER_TEST=str(candidate),
+                                       CBZ_VECTOR_EVENT=str(event_path), CBZ_VECTOR_NONCE=nonce)
+                            child = subprocess.run([sys.executable, '-B', *(['-O'] if optimized else []),
+                                                    '-S', str(runner), '--child', selected], env=env,
+                                                   text=True, capture_output=True, timeout=180)
+                            self.assertEqual(child.returncode, 1, child.stderr)
+                            event = json.loads(event_path.read_text())
+                            self.assertEqual(intended_failure(child, event, selected, nonce, digest(candidate), reason),
+                                             expected, child.stderr)
+
+    def test_oracle_positions_refuse_changed_or_missing_selected_source(self):
+        original = (ROOT/'tests/test_verify_federation_vector.py').read_text()
+        before = 'self.assertEqual(len(requests), 22)'
+        self.assertEqual(original.count(before), 1)
+        with tempfile.TemporaryDirectory(prefix='vector-oracle-source-') as tmp:
+            path = Path(tmp)/'selected_controls.py'
+            path.write_text(original)
+            spec = importlib.util.spec_from_file_location('vector_selected_source_control', path)
+            controls = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(controls)
+            code = controls.NetworkControls.test_network_includes_canonical_historical_commit.__code__
+            methods = [node for node in ast.walk(ast.parse(original))
+                       if isinstance(node, ast.FunctionDef) and node.name == code.co_name
+                       and node.lineno == code.co_firstlineno]
+            self.assertEqual(len(methods), 1)
+            calls = [node for node in ast.walk(methods[0]) if isinstance(node, ast.Call)
+                     and isinstance(node.func, ast.Attribute) and node.func.attr == 'assertEqual']
+            self.assertEqual(len(calls), 1)
+            call = calls[0]
+            expected = (call.lineno, call.end_lineno, call.col_offset, call.end_col_offset)
+            offsets = [ins.offset for ins in dis.get_instructions(code, show_caches=True)
+                       if ins.positions is not None and
+                       (ins.positions.lineno, ins.positions.end_lineno, ins.positions.col_offset,
+                        ins.positions.end_col_offset) == expected]
+            self.assertTrue(offsets)
+            oracle = (unittest.TestCase.assertEqual.__code__, unittest.TestCase._baseAssertEqual.__code__)
+            self.assertTrue(authorized_oracle(code, offsets[-1], oracle))
+            self.assertFalse(authorized_oracle(code, -1, oracle))
+            path.write_text(original.replace(before, 'self.assertEqual(22, len(requests))', 1))
+            self.assertFalse(authorized_oracle(code, offsets[-1], oracle))
+            path.unlink()
+            self.assertFalse(authorized_oracle(code, offsets[-1], oracle))
 
     def test_actual_subject_crash_skip_syntax_and_silent_exit_are_not_kills(self):
         source = TOOL.read_text()

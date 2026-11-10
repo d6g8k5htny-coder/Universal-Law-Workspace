@@ -1191,3 +1191,42 @@ CBZ-0 result follows from publishing this draft.
 ## 2026-11-10 — Main pin after #808
 
 - Refresh the Main gitlink, manifest and README from `b285dd7a31ad7b297abc9f2aa93267300111a4e9` to separately observed default `02973f3975a1c4cc91b7c51d372f65717c9b3c5c` after Main #808. Preserve the previous note and all seven other pin records. Eight default-ref and commit-object reads at 08:25:18–08:25:25 UTC were non-atomic; retain `evidence/cbz-pin-observation-20261110-main808.json`. Require fresh strict-current, canonical-input and exact-head hosted checks and recheck tips before integration. This pin update changes no mathematical statement, proof status or scientific acceptance.
+
+
+## 2026-11-10 · Layer B · Vector origin guard
+
+On Workspace source `344f81f5cb1e7040dfedb2c752b9a3514775b257`, the earlier
+vector mutation grader's test file SHA-256 was
+`e7630a0642101e2070d73f0bcb84b22e301cfbfac5a0ed66847ee7048d23d3a4`.
+Four adversarial subject-return cases, each run in normal and optimized child
+mode against real fixture tests, produced `AssertionError` from deferred
+runtime behavior and were incorrectly classified as selected-oracle kills.
+They included mock side effects, a deferred `unittest.case` failure, a
+partial bound assertion and equality evaluated during an assertion. These
+are deliberately adverse cases, not proof that every historical mutation
+result was false. Earlier reports and original outcomes remain preserved;
+their selected-body flag alone is insufficient to establish origin against
+these cases.
+
+This source contains a candidate correction whose mutation-test file SHA-256 is
+`c88d938ab224140495153305ce8e187cadb158465cdbf74d11d2c2425e08cf3d`.
+It uses the live traceback, selected code identity, selected instruction source
+position bound back to the compiled selected code, and an exact supported
+oracle-code path. Unsupported positions, changed or missing selected source,
+and unlisted paths fail closed. The finite supported oracles are the observed
+`assertEqual` and `assertRaisesRegex` paths used by the 13 declared controls;
+this is not a universal Python assertion-origin proof. Local CPython 3.12.14
+ran the mutation-test module in both modes: 12 tests per mode with no skips,
+including 13 retained source-mutant/baseline pairs per mode, the four adverse
+cases and actual removals of the callsite and oracle-path guards. Each removal
+reopened its matching real false kill. The retained local archive contains
+original red/green logs, candidates, events and source hashes. These observations
+do not replace exact-head hosted qualification or the final federation G6.
+
+Disposition: retain the original grader source and all historical outcomes;
+replace only its future-use classification path in this tree, retain the
+original 13 source mutations, add the adverse fixtures and independent guard
+mutations, and keep exact-head hosted qualification outstanding until observed.
+No mathematical statement or scientific status is changed. The decision is
+recoverable through the prior native Git commit and the retained evidence ZIP.
+
