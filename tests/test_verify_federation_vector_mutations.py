@@ -135,7 +135,14 @@ def authorized_oracle(selected_code, lasti, following):
                     or not isinstance(call.func.value, ast.Name) or call.func.value.id != 'self'
                     or call.func.attr not in paths):
                 continue
-            if (call.lineno, call.end_lineno, call.col_offset, call.end_col_offset) != observed:
+            positions = {(call.lineno, call.end_lineno, call.col_offset, call.end_col_offset)}
+            if call.func.attr == 'assertRaisesRegex':
+                for context in ast.walk(methods[0]):
+                    if (isinstance(context, ast.With) and len(context.items) == 1
+                            and context.items[0].context_expr is call):
+                        positions.add((context.lineno, context.end_lineno,
+                                       context.col_offset, context.end_col_offset))
+            if observed not in positions:
                 continue
             for path in paths[call.func.attr]:
                 if len(path) == len(following) and all(left is right for left, right in zip(path, following)):
@@ -332,8 +339,7 @@ class MutationControls(unittest.TestCase):
 
     def test_callsite_and_oracle_path_removals_reopen_deferred_failures(self):
         harness = Path(__file__).read_text()
-        callsite_guard = ('if (call.lineno, call.end_lineno, call.col_offset, call.end_col_offset) '
-                          + '!= observed:')
+        callsite_guard = ('if observed not in ' + 'positions:')
         path_guard = ('if len(path) == len(following) and '
                       + 'all(left is right for left, right in zip(path, following)):')
         self.assertEqual(harness.count(callsite_guard), 1)
@@ -417,6 +423,28 @@ class MutationControls(unittest.TestCase):
             self.assertFalse(authorized_oracle(code, offsets[-1], oracle))
             path.unlink()
             self.assertFalse(authorized_oracle(code, offsets[-1], oracle))
+
+    def test_assert_raises_exit_is_authorized_on_current_python(self):
+        source = TOOL.read_text()
+        anchor = 'set(values) == set(REPOSITORIES)'
+        self.assertEqual(source.count(anchor), 1)
+        selected = 'VectorSources.test_vector_omission_rejected'
+        with tempfile.TemporaryDirectory(prefix='vector-context-exit-') as tmp:
+            folder = Path(tmp)
+            candidate = folder/'subject.py'
+            candidate.write_text(source.replace(anchor, 'True', 1))
+            for optimized in (False, True):
+                with self.subTest(optimized=optimized):
+                    event_path = folder/(str(optimized) + '.json')
+                    nonce = secrets.token_hex(16)
+                    env = dict(os.environ, CBZ_VECTOR_UNDER_TEST=str(candidate),
+                               CBZ_VECTOR_EVENT=str(event_path), CBZ_VECTOR_NONCE=nonce)
+                    child = subprocess.run([sys.executable, '-B', *(['-O'] if optimized else []),
+                                            '-S', str(Path(__file__).resolve()), '--child', selected],
+                                           env=env, text=True, capture_output=True, timeout=180)
+                    event = json.loads(event_path.read_text())
+                    self.assertTrue(intended_failure(child, event, selected, nonce, digest(candidate),
+                                                     'ValueError not raised'), child.stderr)
 
     def test_actual_subject_crash_skip_syntax_and_silent_exit_are_not_kills(self):
         source = TOOL.read_text()
