@@ -1,5 +1,9 @@
 # CBZ status — work in progress
 
+## Main pointer after #806 — 10 November 2026
+
+This candidate refreshes the Main gitlink and `pins.json` from `964390a94c08f00f119dc3b2e0be16180c1544e2` to separately observed default `d291b42801a26252a046d8ca78a6bd62abc448ae`. The seven other gitlinks and manifest entries remain unchanged. Eight old pin objects resolved; at the 06:09:37–06:09:39 UTC observation the seven non-Main pins matched their defaults and the old Main pin was stale. Reads were non-atomic; see [the observation](evidence/cbz-pin-observation-20261110-main806.json). Fresh strict-current, canonical-input and exact-head hosted checks are required. This does not establish final G7, scientific acceptance, successful Pages publication or CBZ-0.
+
 ## Main pointer after #805 — 10 November 2026
 
 This candidate refreshes the Main gitlink and `pins.json` from `b6be588c82d2256c917b7d26d901085bc90319fb` to separately observed default `964390a94c08f00f119dc3b2e0be16180c1544e2`. All seven other gitlinks and pin records remain unchanged. Eight old gitlink commits resolved; at the 05:23:47–05:23:48 UTC observation the seven non-Main pins matched their default refs and the old Main pin was stale. Reads were non-atomic; see `evidence/cbz-pin-observation-20261110-main805.json`. Fresh strict-current, canonical-input and exact-head hosted results are required; this is not final G7, scientific acceptance, successful Pages publication or CBZ-0.
