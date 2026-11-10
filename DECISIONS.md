@@ -1133,3 +1133,15 @@ CBZ-0 result follows from publishing this draft.
   all seven other records. Default reads are sequential, not atomic. Require
   fresh current-pin, canonical-input and exact-composition checks. This is a
   reversible source pointer change, not mathematical or scientific acceptance.
+
+
+## 2026-11-10 — Main pin after #796
+
+- Refresh the Main gitlink, manifest and README from
+  `ad64930cbdc0d27bd896fc6231649e211ebf1562` to the independently observed
+  default `812a799f4cf4cee730efa0177a9101af4cf259ef` after Main #796. Preserve
+  the prior note and all seven other pin records. The default-ref reads were
+  sequential, not atomic. Require fresh structural, current-pin, canonical-input
+  and exact-composition checks before integration. This source pointer change
+  is reversible through Git history and makes no mathematical or scientific
+  acceptance claim.
