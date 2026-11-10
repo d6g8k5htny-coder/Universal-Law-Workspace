@@ -1,0 +1,70 @@
+"""Run the exact Workspace contract workflow block against finite fixtures."""
+import hashlib
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import unittest
+
+import yaml
+
+HERE = Path(__file__).resolve().parent
+WORKFLOW = Path('/workspace/scratch/7abea556a9be/cbz_workspace_origin_audit/full_proposal/.github/workflows/ci.yml')
+RAW = WORKFLOW.read_bytes()
+if hashlib.sha1(b'blob ' + str(len(RAW)).encode() + b'\0' + RAW).hexdigest() != '0d57f8e2b6bf468dcee1fbc12eed9e0026834914':
+    raise ValueError('workflow does not match the observed native blob')
+document = yaml.safe_load(RAW)
+steps = document['jobs']['verify']['steps']
+blocks = [step['run'] for step in steps if step.get('name') == 'Run contract tests']
+if len(blocks) != 1:
+    raise ValueError('expected exactly one contract block')
+BLOCK = blocks[0]
+
+
+def run_fixture(test_source):
+    with tempfile.TemporaryDirectory(prefix='workspace-contract-adverse-') as directory:
+        root = Path(directory)
+        (root / 'tests').mkdir()
+        (root / 'runner-temp').mkdir()
+        (root / 'tests/test_fixture.py').write_text(test_source)
+        env = dict(os.environ, RUNNER_TEMP=str(root / 'runner-temp'), PYTHONDONTWRITEBYTECODE='1')
+        result = subprocess.run(['bash', '-c', BLOCK], cwd=root, env=env,
+                                text=True, capture_output=True, timeout=30)
+        normal = (root / 'runner-temp/discovery.log').read_text() if (root / 'runner-temp/discovery.log').exists() else ''
+        optimized = (root / 'runner-temp/discovery-optimized.log').read_text() if (root / 'runner-temp/discovery-optimized.log').exists() else ''
+        return result, normal, optimized
+
+
+class ExactWorkflowControls(unittest.TestCase):
+    def test_passing_fixture_is_accepted(self):
+        result, normal, optimized = run_fixture('import unittest\nclass T(unittest.TestCase):\n def test_ok(self): self.assertEqual(1, 1)\n')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('Ran 1 test', normal)
+        self.assertIn('Ran 1 test', optimized)
+
+    def test_skipped_test_must_fail_qualification(self):
+        result, normal, optimized = run_fixture("import unittest\nclass T(unittest.TestCase):\n @unittest.skip('adverse fixture')\n def test_skip(self): pass\n")
+        self.assertIn('OK (skipped=1)', normal)
+        self.assertIn('OK (skipped=1)', optimized)
+        self.assertNotEqual(result.returncode, 0, 'workflow accepted a skipped test')
+
+    def test_expected_failure_must_fail_qualification(self):
+        result, normal, optimized = run_fixture('import unittest\nclass T(unittest.TestCase):\n @unittest.expectedFailure\n def test_failure(self): self.fail("adverse fixture")\n')
+        self.assertIn('OK (expected failures=1)', normal)
+        self.assertIn('OK (expected failures=1)', optimized)
+        self.assertNotEqual(result.returncode, 0, 'workflow accepted an expected failure')
+
+    def test_failing_test_is_rejected(self):
+        result, normal, _ = run_fixture('import unittest\nclass T(unittest.TestCase):\n def test_failure(self): self.fail("adverse fixture")\n')
+        self.assertIn('FAILED (failures=1)', normal)
+        self.assertNotEqual(result.returncode, 0)
+
+    def test_empty_discovery_is_rejected(self):
+        result, normal, _ = run_fixture('import unittest\n')
+        self.assertIn('Ran 0 tests', normal)
+        self.assertNotEqual(result.returncode, 0)
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

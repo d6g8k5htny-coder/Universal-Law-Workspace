@@ -1,0 +1,26 @@
+test_empty_discovery_is_rejected (__main__.ExactWorkflowControls.test_empty_discovery_is_rejected) ... ok
+test_expected_failure_must_fail_qualification (__main__.ExactWorkflowControls.test_expected_failure_must_fail_qualification) ... FAIL
+test_failing_test_is_rejected (__main__.ExactWorkflowControls.test_failing_test_is_rejected) ... ok
+test_passing_fixture_is_accepted (__main__.ExactWorkflowControls.test_passing_fixture_is_accepted) ... ok
+test_skipped_test_must_fail_qualification (__main__.ExactWorkflowControls.test_skipped_test_must_fail_qualification) ... FAIL
+
+======================================================================
+FAIL: test_expected_failure_must_fail_qualification (__main__.ExactWorkflowControls.test_expected_failure_must_fail_qualification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/test_workflow_guard.py", line 56, in test_expected_failure_must_fail_qualification
+    self.assertNotEqual(result.returncode, 0, 'workflow accepted an expected failure')
+AssertionError: 0 == 0 : workflow accepted an expected failure
+
+======================================================================
+FAIL: test_skipped_test_must_fail_qualification (__main__.ExactWorkflowControls.test_skipped_test_must_fail_qualification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/test_workflow_guard.py", line 50, in test_skipped_test_must_fail_qualification
+    self.assertNotEqual(result.returncode, 0, 'workflow accepted a skipped test')
+AssertionError: 0 == 0 : workflow accepted a skipped test
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.978s
+
+FAILED (failures=2)

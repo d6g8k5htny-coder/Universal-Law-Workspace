@@ -1,0 +1,19 @@
+test_empty_discovery_refuses (test_contract_test_runner.ContractWorkflowControls.test_empty_discovery_refuses) ... ok
+test_expected_failure_refuses (test_contract_test_runner.ContractWorkflowControls.test_expected_failure_refuses) ... ok
+test_failure_refuses (test_contract_test_runner.ContractWorkflowControls.test_failure_refuses) ... ok
+test_import_error_refuses (test_contract_test_runner.ContractWorkflowControls.test_import_error_refuses) ... ok
+test_normal_skip_refuses (test_contract_test_runner.ContractWorkflowControls.test_normal_skip_refuses) ... ok
+test_optimized_skip_refuses (test_contract_test_runner.ContractWorkflowControls.test_optimized_skip_refuses) ... ok
+test_passing_fixture_runs_both_modes (test_contract_test_runner.ContractWorkflowControls.test_passing_fixture_runs_both_modes) ... ok
+test_printed_ok_does_not_hide_skip (test_contract_test_runner.ContractWorkflowControls.test_printed_ok_does_not_hide_skip) ... ok
+test_removing_empty_guard_reopens_empty_discovery (test_contract_test_runner.ContractWorkflowControls.test_removing_empty_guard_reopens_empty_discovery) ... ok
+test_removing_expected_failure_guard_reopens_failure (test_contract_test_runner.ContractWorkflowControls.test_removing_expected_failure_guard_reopens_failure) ... ok
+test_removing_skip_guard_reopens_skip (test_contract_test_runner.ContractWorkflowControls.test_removing_skip_guard_reopens_skip) ... ok
+test_skipped_class_refuses (test_contract_test_runner.ContractWorkflowControls.test_skipped_class_refuses) ... ok
+test_skipped_subtest_refuses (test_contract_test_runner.ContractWorkflowControls.test_skipped_subtest_refuses) ... ok
+test_unexpected_success_refuses (test_contract_test_runner.ContractWorkflowControls.test_unexpected_success_refuses) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.197s
+
+OK

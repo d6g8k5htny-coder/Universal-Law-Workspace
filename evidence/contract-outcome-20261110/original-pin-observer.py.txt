@@ -1,0 +1,50 @@
+"""Read-only adverse observation of the separately owned pin workflow."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+
+root = Path(__file__).resolve().parent
+path = root / 'worktree/.github/workflows/pins.yml'
+raw = path.read_bytes()
+blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+if blob != '49c5b74e26af1cc9a7ed10ead98f29864b0ce883':
+    raise ValueError('pin workflow source differs from observed native blob')
+text = raw.decode('utf-8')
+marker = '      - name: Negative controls\n'
+if text.count(marker) != 1:
+    raise ValueError('pin step is not unique')
+step = text.split(marker, 1)[1]
+lines = step.split('        run: |\n', 1)[1].splitlines()
+if not lines or any(line and not line.startswith('          ') for line in lines):
+    raise ValueError('unexpected pin block indentation')
+block = '\n'.join(line[10:] if line else '' for line in lines) + '\n'
+cases = {
+    'pass': 'import unittest\nclass T(unittest.TestCase):\n def test_x(self): pass\n',
+    'skip': "import unittest\nclass T(unittest.TestCase):\n @unittest.skip('adverse')\n def test_x(self): pass\n",
+    'expected_failure': 'import unittest\nclass T(unittest.TestCase):\n @unittest.expectedFailure\n def test_x(self): self.fail("adverse")\n',
+}
+records = {}
+for name, source in cases.items():
+    with tempfile.TemporaryDirectory(prefix='workspace-pin-adverse-') as directory:
+        fixture = Path(directory)
+        (fixture / 'tests').mkdir()
+        (fixture / 'runner-temp').mkdir()
+        (fixture / 'tests/test_fixture.py').write_text(source)
+        env = dict(os.environ, RUNNER_TEMP=str(fixture / 'runner-temp'), PYTHONDONTWRITEBYTECODE='1')
+        for key in ('PYTHONHOME', 'PYTHONOPTIMIZE', 'PYTHONPATH'):
+            env.pop(key, None)
+        result = subprocess.run(['bash', '-c', block], cwd=fixture, env=env,
+                                capture_output=True, text=True, timeout=30)
+        log = (fixture / 'runner-temp/discovery.log').read_text()
+        records[name] = {'exit_code': result.returncode, 'discovery_log': log}
+if records['pass']['exit_code'] != 0 or records['skip']['exit_code'] != 0 or records['expected_failure']['exit_code'] != 0:
+    raise ValueError('actual finite observation differs from the recorded outcome')
+if 'skipped=1' not in records['skip']['discovery_log'] or 'expected failures=1' not in records['expected_failure']['discovery_log']:
+    raise ValueError('expected adverse results were not observed')
+result = {'workflow_blob': blob, 'source_commit': '5ee815d60d5e11cb590b2a3b274fd13104bd915d',
+          'records': records, 'scope': 'synthetic fixtures, original pin workflow block, normal Python only'}
+(root / 'pin-workflow-observation.json').write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps({'workflow_blob': blob, 'cases': {k: v['exit_code'] for k, v in records.items()}, 'scope': result['scope']}))

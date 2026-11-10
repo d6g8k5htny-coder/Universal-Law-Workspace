@@ -1,0 +1,23 @@
+test_abrupt_zero_must_refuse (__main__.AbruptExitControls.test_abrupt_zero_must_refuse) ... FAIL
+test_printed_ok_then_abrupt_zero_must_refuse (__main__.AbruptExitControls.test_printed_ok_then_abrupt_zero_must_refuse) ... FAIL
+
+======================================================================
+FAIL: test_abrupt_zero_must_refuse (__main__.AbruptExitControls.test_abrupt_zero_must_refuse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/test_abrupt_exit.py", line 42, in test_abrupt_zero_must_refuse
+    self.assertNotEqual(result.returncode, 0, 'candidate accepted an incomplete test process')
+AssertionError: 0 == 0 : candidate accepted an incomplete test process
+
+======================================================================
+FAIL: test_printed_ok_then_abrupt_zero_must_refuse (__main__.AbruptExitControls.test_printed_ok_then_abrupt_zero_must_refuse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/test_abrupt_exit.py", line 49, in test_printed_ok_then_abrupt_zero_must_refuse
+    self.assertNotEqual(result.returncode, 0, 'candidate accepted a spoofed incomplete process')
+AssertionError: 0 == 0 : candidate accepted a spoofed incomplete process
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.480s
+
+FAILED (failures=2)

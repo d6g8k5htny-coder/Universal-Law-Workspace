@@ -1,5 +1,24 @@
 # CBZ working rules and tool registry
 
+## Contract discovery outcome guard — 10 November 2026
+
+`tools/run_contract_tests.py` runs ordinary Workspace `unittest` discovery in a
+child and requires a nonce-bound pipe receipt after a successful result. It
+returns nonzero for an empty run, a skip, an expected failure, any unsuccessful
+result or an absent/invalid receipt. Run `python3 -B -m tools.run_contract_tests` and
+`python3 -B -O -m tools.run_contract_tests` from the Workspace root. The
+contract workflow retains both discovery logs and mutation observations.
+Focused verification is `python3 -B -m unittest discover -s tests -p
+test_contract_test_runner.py -v` and the same command with `-O` after `-B`.
+Eighteen local controls per mode include real workflow-block fixtures and four
+actual guard-removal mutations; the original and first-candidate red evidence is in
+`evidence/contract-outcome-20261110/`. Current hosted qualification is not
+claimed by those local observations. The runner observes the discovered suite's
+in-process `unittest` result and a POSIX child receipt, not a proof of discovery
+completeness or protection against hostile tests that falsify that result or
+forge the receipt. The separate pin workflow's
+count-only guard is unchanged and requires its own disposition.
+
 ## Source-bound hosted observation — 10 November 2026, 09:11 UTC
 
 For PR #78 head `64b4b360575b482432eb8f052d268ddcfbfca8c4` and base

@@ -1,0 +1,80 @@
+name: federation-contract
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+      - name: Validate federation manifest
+        run: python3 tools/check_workspace.py
+      - name: Run contract tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          CBZ_VECTOR_MUTATION_EVIDENCE="$RUNNER_TEMP/cbz-vector-mutations/normal" python3 -m tools.run_contract_tests 2>&1 | tee "$RUNNER_TEMP/discovery.log"
+          CBZ_VECTOR_MUTATION_EVIDENCE="$RUNNER_TEMP/cbz-vector-mutations/optimized" python3 -O -m tools.run_contract_tests 2>&1 | tee "$RUNNER_TEMP/discovery-optimized.log"
+      - name: Report retained vector mutation observations
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ["RUNNER_TEMP"]) / "cbz-vector-mutations"
+          for mode in ("normal", "optimized"):
+              campaigns = sorted((root / mode).glob("campaign-*"))
+              if not campaigns:
+                  print(json.dumps(dict(mode=mode, observation="NO_RETAINED_CAMPAIGN")))
+              for campaign in campaigns:
+                  summary = campaign / "summary.json"
+                  if summary.is_file():
+                      raw = summary.read_bytes()
+                      try:
+                          rows = json.loads(raw)
+                          print(json.dumps(dict(mode=mode, file=str(summary.relative_to(root)),
+                              sha256=hashlib.sha256(raw).hexdigest(), observations=rows), sort_keys=True))
+                      except (ValueError, TypeError) as error:
+                          print(json.dumps(dict(mode=mode, observation="SUMMARY_READ_FAILED",
+                              error=type(error).__name__, sha256=hashlib.sha256(raw).hexdigest())))
+                  else:
+                      print(json.dumps(dict(mode=mode, observation="SUMMARY_MISSING",
+                          campaign=campaign.name)))
+                  for event_path in sorted(campaign.glob("*.json")):
+                      if event_path.name == "summary.json":
+                          continue
+                      raw = event_path.read_bytes()
+                      try:
+                          event = json.loads(raw)
+                          fields = ("test", "nonce", "source_before", "source_after", "tests_run",
+                                    "errors", "skipped", "expected_failures", "unexpected_successes",
+                                    "failures")
+                          observed = {key: event.get(key) for key in fields}
+                          print(json.dumps(dict(mode=mode, file=event_path.name,
+                              sha256=hashlib.sha256(raw).hexdigest(), event=observed), sort_keys=True))
+                      except (ValueError, TypeError, AttributeError) as error:
+                          print(json.dumps(dict(mode=mode, file=event_path.name,
+                              observation="EVENT_READ_FAILED", error=type(error).__name__,
+                              sha256=hashlib.sha256(raw).hexdigest())))
+          PY
+      - name: Retain contract logs and vector experiments
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: cbz-vector-qualification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/discovery.log
+            ${{ runner.temp }}/discovery-optimized.log
+            ${{ runner.temp }}/cbz-vector-mutations
+          if-no-files-found: warn

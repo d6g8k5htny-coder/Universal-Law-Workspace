@@ -1,0 +1,112 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 3156,
+      "sha256": "a15b0f6cc476523346108300ef67a04c2fb9d9949e210a4affee93e9c66b9589"
+    },
+    "abrupt-red-normal.log": {
+      "bytes": 1543,
+      "sha256": "6ab9ba420dcf0fcf84515d8f9b16b1ff5114d9d9673dff0b2d30ec4436e2e10e"
+    },
+    "abrupt-red-optimized.log": {
+      "bytes": 1543,
+      "sha256": "8a8d934cca0e06ee5b6467724456b86a8d0681d7efb0362174d833af314c5f61"
+    },
+    "candidate-test-red-normal.log": {
+      "bytes": 2211,
+      "sha256": "a83cb3df7964ed6b7173eb69d4d946f8d531607a30d05fc9e3360e73b8de937c"
+    },
+    "candidate-test-red-optimized.log": {
+      "bytes": 2211,
+      "sha256": "ab46d4a56256f32c8cae639c85bd3d30b96e9dc1e0ab48b61e9686450eba7f8d"
+    },
+    "completion-control-normal.log": {
+      "bytes": 2409,
+      "sha256": "88e382a10723af2362153edd5fa67f15fa210038da11028c4ff2fd4fe98cc358"
+    },
+    "completion-control-optimized.log": {
+      "bytes": 2409,
+      "sha256": "4f19c701ded70b10ae72880f163aa2c05eeaa086b2d29cb0def10423430aeaf2"
+    },
+    "completion-test-red-normal.log": {
+      "bytes": 2422,
+      "sha256": "2b49b6808bfff22a257be8083af28e3896f354207e247ba158f03b5dcb9059bf"
+    },
+    "completion-test-red-optimized.log": {
+      "bytes": 2422,
+      "sha256": "31f0ff2424b783d450f5928456e570d5a0063e124d0cafd068e0b42a34d11bac"
+    },
+    "control-normal.log": {
+      "bytes": 1859,
+      "sha256": "6bedb5cebf33920315791201579e8cf08d933116a14e0a64d6fe593de77a9b3f"
+    },
+    "control-optimized.log": {
+      "bytes": 1859,
+      "sha256": "8e73c3d79e868b8b5a904d7f13318237d81e991357c8d5379bcae1550c12f5cb"
+    },
+    "first-candidate-abrupt-reproducer.py.txt": {
+      "bytes": 2377,
+      "sha256": "e3900993cc585d5467cebe8b48995b001d32c602ee0f98ffa72dd6b1c9cdb4f3"
+    },
+    "first-candidate-ci.yml": {
+      "bytes": 3902,
+      "sha256": "7ae2b8ab70bdf3c3a1cb9b26f0c1fd1a5adf97aeb3860bb90b8e068e5e26e79d"
+    },
+    "first-candidate-local.zip": {
+      "bytes": 524743,
+      "sha256": "9cba9126bf6bfe10c8f9b1fd473d04715428f56eac26a3e7d0e032c294632023"
+    },
+    "first-candidate-runner.py.txt": {
+      "bytes": 1024,
+      "sha256": "348c636f6aeda5cf788bc6235e23312a0f43cb5a0dbea873e29061c3523a8f5d"
+    },
+    "original-ci.yml": {
+      "bytes": 4298,
+      "sha256": "9f44c2c6f1e85ba2c9c5fbcfea0628a7aa27537780da35ca2ba61a4e5e6a7230"
+    },
+    "original-pin-observer.py.txt": {
+      "bytes": 2937,
+      "sha256": "d5cbe202c948a3142fab8b03385b39670a8b5f0a08233525e6565a6cd6bd8d91"
+    },
+    "original-pins.yml": {
+      "bytes": 1339,
+      "sha256": "5ab2e9b7f33e6b8365da51883ed6d10ecc8276001b2fd97fa72f69b905ddaba3"
+    },
+    "original-red-normal.log": {
+      "bytes": 1897,
+      "sha256": "2b80de167d27e2dc3133d450137dfcdb3014431454dc9464987873ceab33dccf"
+    },
+    "original-red-optimized.log": {
+      "bytes": 1897,
+      "sha256": "43729979cf62888d65eca7874000e3599fc7b8338a0410614e2f9e9fc6304e49"
+    },
+    "original-red-reproducer.py.txt": {
+      "bytes": 3502,
+      "sha256": "74dda01d6972e00e1fad2b88e41a1d2ad9ab4c1784bb4d01bfc8260af803f62a"
+    },
+    "pin-workflow-observation.json": {
+      "bytes": 935,
+      "sha256": "2489fafcc2d827a953560adf35ff2f86298b8f184f1e7d04cd4d96066ff0889e"
+    },
+    "portable-red-normal.log": {
+      "bytes": 1559,
+      "sha256": "62f74cf58a284c4e5ea41ece295e3dcc89be885d78f08cdce8925ed79130a597"
+    },
+    "portable-red-optimized.log": {
+      "bytes": 1559,
+      "sha256": "52b96ec51d3a56e91ee24926bc49b9f0dd6f699f6cac49af94a8b69cd1b97f91"
+    },
+    "reproduce_original.py": {
+      "bytes": 2724,
+      "sha256": "cb2744bd9e78632485587bbf7566c10c35ebd2f5dd9c67c973c5f82603efedb7"
+    }
+  },
+  "first_candidate": "75e2d53a8cbe9211ec55cc67248a1da6dd039c4b",
+  "first_candidate_red": "abrupt zero exit accepted without result, including spoofed OK",
+  "followup_controls": "18 per parent mode, four actual guard-removal mutations, CPython 3.12.14",
+  "original_contract_workflow_blob": "0d57f8e2b6bf468dcee1fbc12eed9e0026834914",
+  "original_pin_workflow_blob": "49c5b74e26af1cc9a7ed10ead98f29864b0ce883",
+  "original_red": "synthetic skip and expected-failure accepted by original contract workflow both modes and original pin workflow normal mode",
+  "scope": "finite local workflow and runner controls, not hosted or final federation qualification",
+  "source_commit": "5ee815d60d5e11cb590b2a3b274fd13104bd915d"
+}

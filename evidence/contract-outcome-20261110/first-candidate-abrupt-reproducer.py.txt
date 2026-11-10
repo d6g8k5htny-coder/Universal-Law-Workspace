@@ -1,0 +1,53 @@
+"""Adversarial check of the first candidate's completion boundary."""
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+import unittest
+
+ROOT = Path(__file__).resolve().parent / 'worktree'
+text = (ROOT / '.github/workflows/ci.yml').read_text()
+marker = '      - name: Run contract tests\n'
+if text.count(marker) != 1:
+    raise ValueError('contract step is not unique')
+step = text.split(marker, 1)[1].split('      - name:', 1)[0]
+lines = step.split('        run: |\n', 1)[1].splitlines()
+block = '\n'.join(line[10:] if line else '' for line in lines) + '\n'
+
+
+def run(source):
+    with tempfile.TemporaryDirectory(prefix='workspace-contract-abrupt-') as directory:
+        root = Path(directory)
+        (root / 'tests').mkdir()
+        (root / 'runner-temp').mkdir()
+        (root / 'tests/test_fixture.py').write_text(source)
+        env = dict(os.environ, RUNNER_TEMP=str(root / 'runner-temp'), PYTHONPATH=str(ROOT),
+                   PYTHONDONTWRITEBYTECODE='1')
+        for name in ('PYTHONHOME', 'PYTHONOPTIMIZE'):
+            env.pop(name, None)
+        result = subprocess.run(['bash', '-c', block], cwd=root, env=env,
+                                capture_output=True, text=True, timeout=30)
+        logs = [(root / 'runner-temp' / name).read_text() for name in
+                ('discovery.log', 'discovery-optimized.log')
+                if (root / 'runner-temp' / name).exists()]
+        return result, logs
+
+
+class AbruptExitControls(unittest.TestCase):
+    def test_abrupt_zero_must_refuse(self):
+        source = 'import os,unittest\nclass T(unittest.TestCase):\n def test_x(self): os._exit(0)\n'
+        result, logs = run(source)
+        self.assertEqual(len(logs), 2)
+        self.assertTrue(all('Ran ' not in log for log in logs))
+        self.assertNotEqual(result.returncode, 0, 'candidate accepted an incomplete test process')
+
+    def test_printed_ok_then_abrupt_zero_must_refuse(self):
+        source = "import os,unittest\nclass T(unittest.TestCase):\n def test_x(self):\n  print('OK',flush=True)\n  os._exit(0)\n"
+        result, logs = run(source)
+        self.assertEqual(len(logs), 2)
+        self.assertTrue(all('OK' in log and 'Ran ' not in log for log in logs))
+        self.assertNotEqual(result.returncode, 0, 'candidate accepted a spoofed incomplete process')
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
