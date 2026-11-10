@@ -1,5 +1,27 @@
 # Python 3.11 vector-origin observation
 
+## Source-bound hosted observation — 10 November 2026, 09:11 UTC
+
+For PR #78 head `64b4b360575b482432eb8f052d268ddcfbfca8c4` and base
+`344f81f5cb1e7040dfedb2c752b9a3514775b257`, GitHub tested merge
+`3ed8493993c18e5752398f5f7f655ff7898ed2f5` with tree
+`a92e5876d2366ba06a085506546672be42604069`. Contract run `42787699084`,
+job `129732985197`, passed 258 tests per mode without skips on CPython 3.11.
+Its original artifact `13750121464`, SHA-256
+`fef8bdc1bb7cfd7d71fda34b0fd0b1a150e4d2888d41773ce8781fd4fdd4629c`,
+has 212 unique CRC-valid members. Independent verification matched all 13
+declared baseline/mutant pairs per mode, their 52 source-bound events,
+candidate bytes, stderr hashes and nonces. The PR and push pin jobs also
+passed 258 normal-mode tests and their eight public pin checks. These results
+are bound to their actual tested sources and do not qualify a later head.
+
+The one-off artifact verifier refused missing evidence, altered source and an
+inserted skip in both modes. Two source mutations of that verifier separately
+reopened the matching false accepts; the synthetic adverse archives are
+explicitly labeled. Original job logs, artifact bytes, verifier source,
+controls and local 258-test-per-mode observations are retained in the linked
+evidence bundle. None establishes final federation G0–G11 or scientific review.
+
 ## Python 3.11 context-exit follow-up — 10 November 2026
 
 The first candidate at Workspace PR #78 head
@@ -22,7 +44,7 @@ five focused controls in both parent modes, including both child modes for the
 context exit and four adverse origins, plus actual callsite and oracle-path
 guard removals. The 13-test mutation module passed locally in normal and optimized modes; all
 52 retained baseline/mutant events and their source and stderr hashes were
-checked. Exact-head hosted follow-up qualification remains pending. The earlier
+checked. A source-bound hosted observation is recorded in the 10 November evidence; future heads require their own platform checks. The earlier
 257-test local success was for the first candidate source and does not qualify
 this new source. No federation-wide gate or scientific acceptance is inferred.
 
