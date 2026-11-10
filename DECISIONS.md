@@ -1098,3 +1098,15 @@ CBZ-0 result follows from publishing this draft.
   canonical-input and exact-composition hosted checks before integration.
   This is a source pointer change, not mathematical or scientific acceptance.
   Reversible through Git history.
+
+
+## 2026-11-10 — Main pin after #795
+
+- Refresh the Main gitlink, manifest and README from
+  `da92c8290d99b7ab1db686ce9294e20c915f01a7` to the independently observed
+  default `ae8de850475f6924aef0abe0fa3670f5e4360751` after Main #795. Preserve
+  the prior note and all seven other pin records. The default-ref reads were
+  sequential, not atomic. Require fresh structural, current-pin, canonical-input
+  and exact-composition checks before integration. This source pointer change
+  is reversible through Git history and makes no mathematical or scientific
+  acceptance claim.
