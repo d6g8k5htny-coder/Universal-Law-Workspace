@@ -1161,3 +1161,7 @@ CBZ-0 result follows from publishing this draft.
 ## 2026-11-10 — Main pin after #797
 
 - Refresh the Main gitlink, manifest and README from `31bc4c1f5b66e92bfbf327366956944ea691289c` to the separately observed default `b6be588c82d2256c917b7d26d901085bc90319fb` after Main #797. Preserve the previous note and all seven other pin records. The nine repository ref reads and eight gitlink object reads were separate, not atomic; the exact observation is in `evidence/cbz-pin-observation-20261110-main797.json`. Fresh strict-current, canonical-input and exact-tree hosted checks are required, including another check of all current tips before integration. This is a reversible pointer change, not a mathematical or scientific acceptance, site publication, final G7 or CBZ-0.
+
+## 2026-11-10 — Main pin after #805
+
+- Refresh the Main gitlink, manifest and README from `b6be588c82d2256c917b7d26d901085bc90319fb` to separately observed default `964390a94c08f00f119dc3b2e0be16180c1544e2` after Main #805. Preserve the previous note, all seven other pin records and the non-atomic observation at `evidence/cbz-pin-observation-20261110-main805.json`. Require fresh strict-current, canonical-input and exact-tree hosted checks and recheck current tips before integration. This reversible pointer change is not a final G7, mathematical or scientific acceptance, publication or CBZ-0.

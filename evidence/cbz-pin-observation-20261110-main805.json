@@ -1,0 +1,195 @@
+{
+  "schema": "cbz.workspace.pin-observation.v1",
+  "source_workspace": {
+    "commit": "0bbf389e6893c1448e7599e9e290dd6efb60ae50",
+    "tree": "46fd6ea0c2bfb4cc5275c02e1d4e40fd638feb7a",
+    "pins_blob": "91d54970e892045879fcaeca28bc05eb29d882a9"
+  },
+  "non_atomic": true,
+  "started_at": "2026-11-10T05:23:47.749Z",
+  "finished_at": "2026-11-10T05:23:48.363Z",
+  "observations": [
+    {
+      "kind": "ref",
+      "name": "main",
+      "sha": "964390a94c08f00f119dc3b2e0be16180c1544e2"
+    },
+    {
+      "kind": "pin",
+      "name": "main",
+      "sha": "b6be588c82d2256c917b7d26d901085bc90319fb"
+    },
+    {
+      "kind": "prs",
+      "name": "main",
+      "open": [
+        {
+          "number": 807,
+          "head": "2850d98a75565a1c74815a864ce77956c07bf652",
+          "draft": true
+        },
+        {
+          "number": 806,
+          "head": "329376996218ff6576c699a61f931d2cf290fc5d",
+          "draft": true
+        },
+        {
+          "number": 804,
+          "head": "0f7412c5933a97dfa15d84667d176bcc60a130e6",
+          "draft": true
+        }
+      ]
+    },
+    {
+      "kind": "ref",
+      "name": "Math-",
+      "sha": "9bdfc54b76173b57912503bfcf901a5f9d43b09c"
+    },
+    {
+      "kind": "pin",
+      "name": "Math-",
+      "sha": "9bdfc54b76173b57912503bfcf901a5f9d43b09c"
+    },
+    {
+      "kind": "prs",
+      "name": "Math-",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "meta-framework",
+      "sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e"
+    },
+    {
+      "kind": "pin",
+      "name": "meta-framework",
+      "sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e"
+    },
+    {
+      "kind": "prs",
+      "name": "meta-framework",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "query-",
+      "sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f"
+    },
+    {
+      "kind": "pin",
+      "name": "query-",
+      "sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f"
+    },
+    {
+      "kind": "prs",
+      "name": "query-",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "google-drive",
+      "sha": "ad08584b3ea9d533af10113e85169f471fa8ec93"
+    },
+    {
+      "kind": "pin",
+      "name": "google-drive",
+      "sha": "ad08584b3ea9d533af10113e85169f471fa8ec93"
+    },
+    {
+      "kind": "prs",
+      "name": "google-drive",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "trial",
+      "sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3"
+    },
+    {
+      "kind": "pin",
+      "name": "trial",
+      "sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3"
+    },
+    {
+      "kind": "prs",
+      "name": "trial",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "governance-",
+      "sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891"
+    },
+    {
+      "kind": "pin",
+      "name": "governance-",
+      "sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891"
+    },
+    {
+      "kind": "prs",
+      "name": "governance-",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "sandbox",
+      "sha": "dce04a4174835107126ab4f36c199a2dc320f964"
+    },
+    {
+      "kind": "pin",
+      "name": "sandbox",
+      "sha": "dce04a4174835107126ab4f36c199a2dc320f964"
+    },
+    {
+      "kind": "prs",
+      "name": "sandbox",
+      "open": []
+    },
+    {
+      "kind": "ref",
+      "name": "Universal-Law-Workspace",
+      "sha": "0bbf389e6893c1448e7599e9e290dd6efb60ae50"
+    },
+    {
+      "kind": "prs",
+      "name": "Universal-Law-Workspace",
+      "open": []
+    }
+  ],
+  "gitlinks_before": [
+    {
+      "path": "repos/Math-",
+      "pin": "9bdfc54b76173b57912503bfcf901a5f9d43b09c"
+    },
+    {
+      "path": "repos/google-drive",
+      "pin": "ad08584b3ea9d533af10113e85169f471fa8ec93"
+    },
+    {
+      "path": "repos/governance-",
+      "pin": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891"
+    },
+    {
+      "path": "repos/main",
+      "pin": "b6be588c82d2256c917b7d26d901085bc90319fb"
+    },
+    {
+      "path": "repos/meta-framework",
+      "pin": "0f5894f81a5462c10ee5ec8f8109f466e712e47e"
+    },
+    {
+      "path": "repos/query-",
+      "pin": "fb4c457b5861dc49696fd0a8e11c7c405056c05f"
+    },
+    {
+      "path": "repos/sandbox",
+      "pin": "dce04a4174835107126ab4f36c199a2dc320f964"
+    },
+    {
+      "path": "repos/trial",
+      "pin": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3"
+    }
+  ],
+  "proposed_main": "964390a94c08f00f119dc3b2e0be16180c1544e2",
+  "scope": "Repository ref and object observations only; no final G7 or scientific claim."
+}
