@@ -1,0 +1,35 @@
+name: pins
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-pins:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          # Never initialise submodules here: repos/sandbox is opt-in
+          # (update = none) so a checkout never depends on its visibility,
+          # and the checker only needs the gitlinks in the HEAD tree, not
+          # the submodule contents.
+          submodules: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+      - name: Verify pins against tree, .gitmodules and remotes
+        run: python3 tools/verify_pins.py --network
+      - name: Require current, committed federation pins
+        run: python3 tools/verify_pins.py --require-current
+      - name: Verify canonical input identities at pinned sources
+        run: python3 tools/verify_canonical_inputs.py
+      - name: Negative controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -v 2>&1 | tee "$RUNNER_TEMP/discovery.log"
+          grep -Eq '^Ran [1-9][0-9]* tests? in ' "$RUNNER_TEMP/discovery.log" || { echo "::error::unittest discovery collected 0 tests or returned no count"; exit 1; }

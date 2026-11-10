@@ -1,5 +1,37 @@
 # CBZ status — work in progress
 
+## Contract discovery outcome guard — 10 November 2026
+
+The original contract workflow at Workspace `5ee815d60d5e11cb590b2a3b274fd13104bd915d`
+accepted finite synthetic discoveries containing a skip or an expected failure
+in both Python modes. The preserved red experiment executes the exact original
+workflow block. Its count check did reject empty discovery and ordinary test
+failure. The actual post-merge #78 contract and pin observations each reported
+no skips; the adverse result does not change those historical outcomes.
+
+This candidate runs ordinary `unittest` discovery through a result-based guard
+that refuses no tests, skips, expected failures, errors, failures and unexpected
+successes. Local CPython 3.12.14 ran 14 focused controls in each parent mode;
+three actual guard removals reopened the corresponding false accepts. The
+original workflow, red observations and commands are retained in
+`evidence/contract-outcome-20261110/`. Hosted qualification of this candidate
+requires observing the exact candidate's checks and original artifacts. A
+separate read-only synthetic observation found that the original
+pin workflow also accepts a skip and an expected failure in normal mode; its
+count-only shell guard is unchanged here, and its future discovery outcome is
+not qualified by this change.
+
+```sh
+python3 -B -m tools.run_contract_tests
+python3 -B -O -m tools.run_contract_tests
+python3 -B -m unittest discover -s tests -p test_contract_test_runner.py -v
+python3 -B -O -m unittest discover -s tests -p test_contract_test_runner.py -v
+```
+
+The runner evaluates the `unittest` result of the suite it actually discovers;
+it is not a complete test census, a hostile-test sandbox, federation G5 or a
+scientific assessment. Historical failures and tests remain intact.
+
 ## Source-bound hosted observation — 10 November 2026, 09:11 UTC
 
 For PR #78 head `64b4b360575b482432eb8f052d268ddcfbfca8c4` and base

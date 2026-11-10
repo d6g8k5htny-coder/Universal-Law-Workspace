@@ -1,5 +1,18 @@
 # CBZ baseline observations
 
+## Contract discovery adverse finding — 10 November 2026
+
+The exact original Workspace contract workflow block at `5ee815d60d5e11cb590b2a3b274fd13104bd915d`
+accepted synthetic skipped and expected-failure discoveries in both modes;
+empty discovery and an ordinary failure were refused. The candidate replaces
+that count-only check with the bounded result guard documented in STATUS and
+GOVERNANCE. Its 14 focused local controls per mode passed, including three
+guard-removal mutations. The original red logs remain in
+`evidence/contract-outcome-20261110/`. A separate normal-mode synthetic
+observation found that the original pin workflow also accepts skipped and
+expected-failure fixtures; the pin workflow remains outside this repair. No new
+current-head hosted or federation-wide gate result is claimed.
+
 ## Source-bound hosted observation — 10 November 2026, 09:11 UTC
 
 For PR #78 head `64b4b360575b482432eb8f052d268ddcfbfca8c4` and base

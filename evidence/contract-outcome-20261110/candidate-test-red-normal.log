@@ -1,0 +1,32 @@
+test_normal_skip_refuses (test_contract_test_runner.ContractWorkflowControls.test_normal_skip_refuses) ... FAIL
+test_optimized_skip_refuses (test_contract_test_runner.ContractWorkflowControls.test_optimized_skip_refuses) ... FAIL
+test_expected_failure_refuses (test_contract_test_runner.ContractWorkflowControls.test_expected_failure_refuses) ... FAIL
+
+======================================================================
+FAIL: test_normal_skip_refuses (test_contract_test_runner.ContractWorkflowControls.test_normal_skip_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/worktree/tests/test_contract_test_runner.py", line 69, in test_normal_skip_refuses
+    self.assertNotEqual(result.returncode, 0, 'normal skip was accepted')
+AssertionError: 0 == 0 : normal skip was accepted
+
+======================================================================
+FAIL: test_optimized_skip_refuses (test_contract_test_runner.ContractWorkflowControls.test_optimized_skip_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/worktree/tests/test_contract_test_runner.py", line 74, in test_optimized_skip_refuses
+    self.assertNotEqual(result.returncode, 0, 'optimized skip was accepted')
+AssertionError: 0 == 0 : optimized skip was accepted
+
+======================================================================
+FAIL: test_expected_failure_refuses (test_contract_test_runner.ContractWorkflowControls.test_expected_failure_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/worktree/tests/test_contract_test_runner.py", line 79, in test_expected_failure_refuses
+    self.assertNotEqual(result.returncode, 0, 'expected failure was accepted')
+AssertionError: 0 == 0 : expected failure was accepted
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.038s
+
+FAILED (failures=3)

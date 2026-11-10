@@ -1,0 +1,23 @@
+test_expected_failure_should_refuse (__main__.OriginalWorkflowRed.test_expected_failure_should_refuse) ... FAIL
+test_skip_should_refuse (__main__.OriginalWorkflowRed.test_skip_should_refuse) ... FAIL
+
+======================================================================
+FAIL: test_expected_failure_should_refuse (__main__.OriginalWorkflowRed.test_expected_failure_should_refuse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/worktree/evidence/contract-outcome-20261110/reproduce_original.py", line 53, in test_expected_failure_should_refuse
+    self.assertNotEqual(result.returncode, 0, 'original workflow accepted an expected failure')
+AssertionError: 0 == 0 : original workflow accepted an expected failure
+
+======================================================================
+FAIL: test_skip_should_refuse (__main__.OriginalWorkflowRed.test_skip_should_refuse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/worktree/evidence/contract-outcome-20261110/reproduce_original.py", line 46, in test_skip_should_refuse
+    self.assertNotEqual(result.returncode, 0, 'original workflow accepted a skipped test')
+AssertionError: 0 == 0 : original workflow accepted a skipped test
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.510s
+
+FAILED (failures=2)

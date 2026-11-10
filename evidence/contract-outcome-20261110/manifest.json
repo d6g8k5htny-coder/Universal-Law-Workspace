@@ -1,0 +1,70 @@
+{
+  "candidate_controls": "14 per parent mode, three actual guard-removal mutations, CPython 3.12.14",
+  "files": {
+    "README.md": {
+      "bytes": 2469,
+      "sha256": "fde8600b162eb4b1b7b3806bcfcd46e58a93fb1c7e0f21dbf66cf30945ac24a4"
+    },
+    "candidate-test-red-normal.log": {
+      "bytes": 2211,
+      "sha256": "a83cb3df7964ed6b7173eb69d4d946f8d531607a30d05fc9e3360e73b8de937c"
+    },
+    "candidate-test-red-optimized.log": {
+      "bytes": 2211,
+      "sha256": "ab46d4a56256f32c8cae639c85bd3d30b96e9dc1e0ab48b61e9686450eba7f8d"
+    },
+    "control-normal.log": {
+      "bytes": 1859,
+      "sha256": "6bedb5cebf33920315791201579e8cf08d933116a14e0a64d6fe593de77a9b3f"
+    },
+    "control-optimized.log": {
+      "bytes": 1859,
+      "sha256": "8e73c3d79e868b8b5a904d7f13318237d81e991357c8d5379bcae1550c12f5cb"
+    },
+    "original-ci.yml": {
+      "bytes": 4298,
+      "sha256": "9f44c2c6f1e85ba2c9c5fbcfea0628a7aa27537780da35ca2ba61a4e5e6a7230"
+    },
+    "original-pin-observer.py.txt": {
+      "bytes": 2937,
+      "sha256": "d5cbe202c948a3142fab8b03385b39670a8b5f0a08233525e6565a6cd6bd8d91"
+    },
+    "original-pins.yml": {
+      "bytes": 1339,
+      "sha256": "5ab2e9b7f33e6b8365da51883ed6d10ecc8276001b2fd97fa72f69b905ddaba3"
+    },
+    "original-red-normal.log": {
+      "bytes": 1897,
+      "sha256": "2b80de167d27e2dc3133d450137dfcdb3014431454dc9464987873ceab33dccf"
+    },
+    "original-red-optimized.log": {
+      "bytes": 1897,
+      "sha256": "43729979cf62888d65eca7874000e3599fc7b8338a0410614e2f9e9fc6304e49"
+    },
+    "original-red-reproducer.py.txt": {
+      "bytes": 3502,
+      "sha256": "74dda01d6972e00e1fad2b88e41a1d2ad9ab4c1784bb4d01bfc8260af803f62a"
+    },
+    "pin-workflow-observation.json": {
+      "bytes": 935,
+      "sha256": "2489fafcc2d827a953560adf35ff2f86298b8f184f1e7d04cd4d96066ff0889e"
+    },
+    "portable-red-normal.log": {
+      "bytes": 1559,
+      "sha256": "62f74cf58a284c4e5ea41ece295e3dcc89be885d78f08cdce8925ed79130a597"
+    },
+    "portable-red-optimized.log": {
+      "bytes": 1559,
+      "sha256": "52b96ec51d3a56e91ee24926bc49b9f0dd6f699f6cac49af94a8b69cd1b97f91"
+    },
+    "reproduce_original.py": {
+      "bytes": 2724,
+      "sha256": "cb2744bd9e78632485587bbf7566c10c35ebd2f5dd9c67c973c5f82603efedb7"
+    }
+  },
+  "original_contract_workflow_blob": "0d57f8e2b6bf468dcee1fbc12eed9e0026834914",
+  "original_pin_workflow_blob": "49c5b74e26af1cc9a7ed10ead98f29864b0ce883",
+  "original_red": "synthetic skip and expected-failure accepted by exact contract workflow block in each mode; separately accepted by original pin workflow block in normal mode",
+  "scope": "finite local workflow and runner controls, not hosted or final federation qualification",
+  "source_commit": "5ee815d60d5e11cb590b2a3b274fd13104bd915d"
+}

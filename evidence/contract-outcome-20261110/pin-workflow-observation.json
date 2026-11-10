@@ -1,0 +1,19 @@
+{
+  "workflow_blob": "49c5b74e26af1cc9a7ed10ead98f29864b0ce883",
+  "source_commit": "5ee815d60d5e11cb590b2a3b274fd13104bd915d",
+  "records": {
+    "pass": {
+      "exit_code": 0,
+      "discovery_log": "test_x (test_fixture.T.test_x) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    "skip": {
+      "exit_code": 0,
+      "discovery_log": "test_x (test_fixture.T.test_x) ... skipped 'adverse'\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK (skipped=1)\n"
+    },
+    "expected_failure": {
+      "exit_code": 0,
+      "discovery_log": "test_x (test_fixture.T.test_x) ... expected failure\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK (expected failures=1)\n"
+    }
+  },
+  "scope": "synthetic fixtures, original pin workflow block, normal Python only"
+}

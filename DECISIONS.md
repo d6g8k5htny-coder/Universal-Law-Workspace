@@ -3,6 +3,17 @@
 This file records the initial, bounded CBZ implementation decisions. The
 workspace is being assessed; it is not yet CBZ-0.
 
+- 2026-11-10 UTC · B · The original Workspace contract step accepted finite
+  skipped and expected-failure fixtures because `unittest` returned zero and
+  the shell required only a positive test count. Replace that step's acceptance
+  with a check of the actual discovered suite's `unittest` result: empty,
+  skipped, expected-failure and unsuccessful outcomes refuse qualification.
+  Preserve the original block and red logs. Fourteen focused controls per mode
+  exercised the candidate, including three actual guard removals. This bounded
+  change neither proves discovery completeness nor modifies the separate pin
+  workflow; exact-head hosted qualification was pending at this observation.
+  Reversible: yes.
+
 - 2026-10-29 UTC · Phase 1 · C · Reconstructed an isolated local mirror of
   Universal-Law-Workspace commit `45a80ab01504936b46d035c2de1f92c73ed273de`.
   Its 19 tracked file blobs and eight gitlinks match that commit; the local
