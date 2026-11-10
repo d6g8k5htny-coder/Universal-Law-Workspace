@@ -1122,3 +1122,14 @@ CBZ-0 result follows from publishing this draft.
   and exact-composition checks before integration. This source pointer change
   is reversible through Git history and makes no mathematical or scientific
   acceptance claim.
+
+
+## 2026-11-10 — Main pin after #788
+
+- Main #788 advanced the default after this pin refresh was prepared. A fresh
+  guard refused the stale merge; preserve that observation. Refresh Main from
+  `6d928a3216233fb75dc717ee0b2d2e4bb08db266` to the independently observed
+  default `ad64930cbdc0d27bd896fc6231649e211ebf1562` and retain the previous note and
+  all seven other records. Default reads are sequential, not atomic. Require
+  fresh current-pin, canonical-input and exact-composition checks. This is a
+  reversible source pointer change, not mathematical or scientific acceptance.
