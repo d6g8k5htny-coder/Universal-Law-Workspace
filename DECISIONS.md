@@ -8,10 +8,13 @@ workspace is being assessed; it is not yet CBZ-0.
   the shell required only a positive test count. Replace that step's acceptance
   with a check of the actual discovered suite's `unittest` result: empty,
   skipped, expected-failure and unsuccessful outcomes refuse qualification.
-  Preserve the original block and red logs. Fourteen focused controls per mode
-  exercised the candidate, including three actual guard removals. This bounded
-  change neither proves discovery completeness nor modifies the separate pin
-  workflow; exact-head hosted qualification was pending at this observation.
+  A later adverse check showed that the first candidate also accepted an abrupt
+  zero exit before any result. The follow-up requires a nonce-bound POSIX child
+  completion receipt; preserve both candidates' source and red logs. Eighteen
+  focused controls per mode exercised the follow-up, including four actual
+  guard removals. This bounded change neither proves discovery completeness nor
+  resists deliberately falsified results or receipts, and does not modify the
+  separate pin workflow. Exact-head hosted qualification was pending here.
   Reversible: yes.
 
 - 2026-10-29 UTC · Phase 1 · C · Reconstructed an isolated local mirror of

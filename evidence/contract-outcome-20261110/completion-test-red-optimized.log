@@ -1,0 +1,32 @@
+test_abrupt_normal_zero_refuses (test_contract_test_runner.ContractWorkflowControls.test_abrupt_normal_zero_refuses) ... FAIL
+test_abrupt_optimized_zero_refuses (test_contract_test_runner.ContractWorkflowControls.test_abrupt_optimized_zero_refuses) ... FAIL
+test_printed_ok_cannot_hide_abrupt_zero (test_contract_test_runner.ContractWorkflowControls.test_printed_ok_cannot_hide_abrupt_zero) ... FAIL
+
+======================================================================
+FAIL: test_abrupt_normal_zero_refuses (test_contract_test_runner.ContractWorkflowControls.test_abrupt_normal_zero_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/candidate-v2/tests/test_contract_test_runner.py", line 125, in test_abrupt_normal_zero_refuses
+    self.assertNotEqual(result.returncode, 0, 'normal incomplete process was accepted')
+AssertionError: 0 == 0 : normal incomplete process was accepted
+
+======================================================================
+FAIL: test_abrupt_optimized_zero_refuses (test_contract_test_runner.ContractWorkflowControls.test_abrupt_optimized_zero_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/candidate-v2/tests/test_contract_test_runner.py", line 132, in test_abrupt_optimized_zero_refuses
+    self.assertNotEqual(result.returncode, 0, 'optimized incomplete process was accepted')
+AssertionError: 0 == 0 : optimized incomplete process was accepted
+
+======================================================================
+FAIL: test_printed_ok_cannot_hide_abrupt_zero (test_contract_test_runner.ContractWorkflowControls.test_printed_ok_cannot_hide_abrupt_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/7abea556a9be/cbz_workspace_contract_skip_audit/candidate-v2/tests/test_contract_test_runner.py", line 139, in test_printed_ok_cannot_hide_abrupt_zero
+    self.assertNotEqual(result.returncode, 0, 'spoofed incomplete process was accepted')
+AssertionError: 0 == 0 : spoofed incomplete process was accepted
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.836s
+
+FAILED (failures=3)

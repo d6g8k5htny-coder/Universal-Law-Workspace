@@ -118,6 +118,26 @@ class ContractWorkflowControls(unittest.TestCase):
         self.assertIn('skipped=1', logs[0])
         self.assertNotEqual(result.returncode, 0)
 
+    def test_abrupt_normal_zero_refuses(self):
+        source = 'import os,unittest\nclass T(unittest.TestCase):\n def test_x(self): os._exit(0)\n'
+        result, logs = fixture(source)
+        self.assertNotIn('Ran 1 test', logs[0])
+        self.assertNotEqual(result.returncode, 0, 'normal incomplete process was accepted')
+
+    def test_abrupt_optimized_zero_refuses(self):
+        source = 'import os,unittest\nclass T(unittest.TestCase):\n def test_x(self):\n  if not __debug__: os._exit(0)\n'
+        result, logs = fixture(source)
+        self.assertIn('Ran 1 test', logs[0])
+        self.assertNotIn('Ran 1 test', logs[1])
+        self.assertNotEqual(result.returncode, 0, 'optimized incomplete process was accepted')
+
+    def test_printed_ok_cannot_hide_abrupt_zero(self):
+        source = "import os,unittest\nclass T(unittest.TestCase):\n def test_x(self):\n  print('OK',flush=True)\n  os._exit(0)\n"
+        result, logs = fixture(source)
+        self.assertIn('OK', logs[0])
+        self.assertNotIn('Ran 1 test', logs[0])
+        self.assertNotEqual(result.returncode, 0, 'spoofed incomplete process was accepted')
+
     def test_removing_skip_guard_reopens_skip(self):
         source = RUNNER.read_text(encoding='utf-8')
         anchor = 'if result.skipped:'
@@ -144,6 +164,16 @@ class ContractWorkflowControls(unittest.TestCase):
         mutated = source.replace(anchor, 'if False:', 1)
         for optimized in (False, True):
             result, _ = fixture('import unittest\n', runner_source=mutated, optimized=optimized)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_removing_receipt_guard_reopens_abrupt_zero(self):
+        source = RUNNER.read_text(encoding='utf-8')
+        anchor = 'if process.returncode != 0 or receipt != expected:'
+        self.assertEqual(source.count(anchor), 1)
+        mutated = source.replace(anchor, 'if process.returncode != 0:', 1)
+        abrupt = 'import os,unittest\nclass T(unittest.TestCase):\n def test_x(self): os._exit(0)\n'
+        for optimized in (False, True):
+            result, _ = fixture(abrupt, runner_source=mutated, optimized=optimized)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 

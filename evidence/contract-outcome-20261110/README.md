@@ -22,14 +22,25 @@ python3 -B -O -S evidence/contract-outcome-20261110/reproduce_original.py
 ```
 
 `control-normal.log` and `control-optimized.log` retain the 14 focused local
-controls per parent mode for the candidate. They exercise the actual workflow
-block on passing, empty, failing, skipped, expected-failure and output-spoof
-fixtures, including mode-specific and fixture-lifecycle cases. Three actual
-runner mutations remove the skip, expected-failure and empty-run guards; each
-reopens its matching false accept in both child modes. The candidate tool
-checks the in-process result of the suite that `unittest` discovers. It does
-not establish that discovery selected every intended test and does not defend
-against hostile test code replacing or falsifying the runner's result.
+controls per parent mode for the first candidate. They exercise the actual
+workflow block on passing, empty, failing, skipped, expected-failure and output-
+spoof fixtures. Three actual runner mutations remove the skip, expected-failure
+and empty-run guards; each reopens its matching false accept in both child
+modes. A subsequent check showed that this candidate accepted an abrupt zero
+exit before results, even after a printed `OK`. The retained first-candidate
+source, abrupt red logs and completion-test red logs preserve that failure.
+`first-candidate-local.zip`, SHA-256
+`9cba9126bf6bfe10c8f9b1fd473d04715428f56eac26a3e7d0e032c294632023`,
+retains its two local 272-test discovery logs and mutation observations; that
+green run did not establish a sound completion guard.
+
+`completion-control-normal.log` and `completion-control-optimized.log` record
+18 passing focused controls per mode for the follow-up, including four actual
+guard removals. Its POSIX child writes a nonce-bound pipe receipt only after an
+acceptable in-process `unittest` result; the parent requires that receipt and a
+zero exit. It rejects the observed early-zero cases and does not establish that
+discovery selected every intended test or defend against hostile test code
+falsifying the result or forging the receipt.
 
 The separate pin workflow uses the original count-only approach and is not
 repaired here. A read-only experiment executed its exact original negative-
