@@ -1,5 +1,10 @@
 # CBZ status — work in progress
 
+## Main pointer after #797 — 10 November 2026
+
+This source cut records the Main gitlink and `pins.json` pointer at `b6be588c82d2256c917b7d26d901085bc90319fb`, replacing `31bc4c1f5b66e92bfbf327366956944ea691289c`. The other seven gitlinks and manifest entries are preserved. At the separately observed cut, all eight old gitlink commits resolved and the seven non-Main pins matched their default refs; the old Main pin was stale. Reads were non-atomic. See `evidence/cbz-pin-observation-20261110-main797.json`. Fresh `--require-current`, canonical-input and exact-head hosted results are required; no full-federation G7, successful Pages publication or CBZ-0 is claimed.
+
+
 This repository maps the Universal Law federation and its pinned sources.
 Clean Baseline Zero is not established. The current discovery is recorded in
 `INVENTORY.md` and `INVENTORY.json`; it is incomplete and is not a full proof,

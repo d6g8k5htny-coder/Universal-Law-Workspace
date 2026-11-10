@@ -1157,3 +1157,7 @@ CBZ-0 result follows from publishing this draft.
   site publication remains blocked by an earlier prepared receipt; this pin
   refresh does not claim a successful publication, mathematical acceptance or
   final federation gate. This pointer change is reversible through Git history.
+
+## 2026-11-10 — Main pin after #797
+
+- Refresh the Main gitlink, manifest and README from `31bc4c1f5b66e92bfbf327366956944ea691289c` to the separately observed default `b6be588c82d2256c917b7d26d901085bc90319fb` after Main #797. Preserve the previous note and all seven other pin records. The nine repository ref reads and eight gitlink object reads were separate, not atomic; the exact observation is in `evidence/cbz-pin-observation-20261110-main797.json`. Fresh strict-current, canonical-input and exact-tree hosted checks are required, including another check of all current tips before integration. This is a reversible pointer change, not a mathematical or scientific acceptance, site publication, final G7 or CBZ-0.

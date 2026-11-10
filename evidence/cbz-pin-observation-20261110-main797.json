@@ -1,0 +1,148 @@
+{
+  "observed_after": "2026-11-10T04:57:46Z",
+  "source_workspace": {
+    "commit": "d8d8b16af35b3f6d3d4b454ce98e26d7c3b81ab0",
+    "tree": "0bb00bcefff98806513b2340faa07b0912a7ca3d",
+    "previous_pins_blob": "563fa44f0404b4be384047e70b536785af35d326"
+  },
+  "repositories": [
+    {
+      "repo": "main",
+      "default_ref": "refs/heads/main",
+      "default_sha": "b6be588c82d2256c917b7d26d901085bc90319fb",
+      "open_pulls": [
+        {
+          "number": 806,
+          "head": "329376996218ff6576c699a61f931d2cf290fc5d",
+          "draft": true
+        },
+        {
+          "number": 805,
+          "head": "81fcda5f2f36309011ae7f021bb8d509f76fa282",
+          "draft": true
+        },
+        {
+          "number": 804,
+          "head": "991ecf42c248d293aa3eda45828f815f5d71e25d",
+          "draft": false
+        }
+      ]
+    },
+    {
+      "repo": "Math-",
+      "default_ref": "refs/heads/main",
+      "default_sha": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "open_pulls": []
+    },
+    {
+      "repo": "meta-framework",
+      "default_ref": "refs/heads/main",
+      "default_sha": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "open_pulls": []
+    },
+    {
+      "repo": "query-",
+      "default_ref": "refs/heads/main",
+      "default_sha": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "open_pulls": []
+    },
+    {
+      "repo": "google-drive",
+      "default_ref": "refs/heads/main",
+      "default_sha": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "open_pulls": []
+    },
+    {
+      "repo": "trial",
+      "default_ref": "refs/heads/main",
+      "default_sha": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "open_pulls": []
+    },
+    {
+      "repo": "governance-",
+      "default_ref": "refs/heads/main",
+      "default_sha": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "open_pulls": []
+    },
+    {
+      "repo": "sandbox",
+      "default_ref": "refs/heads/main",
+      "default_sha": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "open_pulls": []
+    },
+    {
+      "repo": "Universal-Law-Workspace",
+      "default_ref": "refs/heads/main",
+      "default_sha": "d8d8b16af35b3f6d3d4b454ce98e26d7c3b81ab0",
+      "open_pulls": []
+    }
+  ],
+  "gitlinks_before": [
+    {
+      "repo": "main",
+      "workspace_path": "repos/main",
+      "pin": "31bc4c1f5b66e92bfbf327366956944ea691289c",
+      "resolved_commit": "31bc4c1f5b66e92bfbf327366956944ea691289c",
+      "observed_default": "b6be588c82d2256c917b7d26d901085bc90319fb",
+      "matches_default": false
+    },
+    {
+      "repo": "Math-",
+      "workspace_path": "repos/Math-",
+      "pin": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "resolved_commit": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "observed_default": "9bdfc54b76173b57912503bfcf901a5f9d43b09c",
+      "matches_default": true
+    },
+    {
+      "repo": "meta-framework",
+      "workspace_path": "repos/meta-framework",
+      "pin": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "resolved_commit": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "observed_default": "0f5894f81a5462c10ee5ec8f8109f466e712e47e",
+      "matches_default": true
+    },
+    {
+      "repo": "query-",
+      "workspace_path": "repos/query-",
+      "pin": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "resolved_commit": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "observed_default": "fb4c457b5861dc49696fd0a8e11c7c405056c05f",
+      "matches_default": true
+    },
+    {
+      "repo": "google-drive",
+      "workspace_path": "repos/google-drive",
+      "pin": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "resolved_commit": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "observed_default": "ad08584b3ea9d533af10113e85169f471fa8ec93",
+      "matches_default": true
+    },
+    {
+      "repo": "trial",
+      "workspace_path": "repos/trial",
+      "pin": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "resolved_commit": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "observed_default": "3738c859d519d2dbf1e388fe48fe0ae60c9487a3",
+      "matches_default": true
+    },
+    {
+      "repo": "governance-",
+      "workspace_path": "repos/governance-",
+      "pin": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "resolved_commit": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "observed_default": "1b62ca2f64b3012c2fdbbf7f55ced236c3042891",
+      "matches_default": true
+    },
+    {
+      "repo": "sandbox",
+      "workspace_path": "repos/sandbox",
+      "pin": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "resolved_commit": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "observed_default": "dce04a4174835107126ab4f36c199a2dc320f964",
+      "matches_default": true
+    }
+  ],
+  "proposed_main": "b6be588c82d2256c917b7d26d901085bc90319fb",
+  "scope": "Separate non-atomic API observations for nine public repositories and eight Workspace gitlinks, not a full federation inventory or final G7/G10."
+}
